@@ -9,3 +9,7 @@ html {
 *:after {
   box-sizing: inherit;
 }
+
+.dark {
+  filter: invert(1);
+}
