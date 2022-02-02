@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-// import { changeInputPassword } from '../Helpers/loginFormHelpers';
+import GoogleLogin from 'react-google-login';
 import './LoginForm.css';
 
 function LoginForm() {
@@ -8,6 +8,11 @@ function LoginForm() {
 
   const onClick = () => {
     setSeePassword(!seePassword);
+  };
+
+  const respuestaGoogle = (respuesta) => {
+    console.log(respuesta);
+    console.log(respuesta.profileObj);
   };
 
   return (
@@ -58,15 +63,28 @@ function LoginForm() {
         </form>
 
         <div className="divider">O</div>
-
-        <Link to="/login" className="btn btn-google">
-          <span
-            className="iconify"
-            data-inline="false"
-            data-icon="grommet-icons:google"
-          />
-          Iniciar sesión con Google
-        </Link>
+        <GoogleLogin
+          clientId="481476732546-redihub2q7951q72m79sjcgglp0iatsc.apps.googleusercontent.com"
+          // buttonText="Login"
+          render={(renderProps) => (
+            <button
+              type="button"
+              onClick={renderProps.onClick}
+              disabled={renderProps.disabled}
+              className="btn btn-google"
+            >
+              <span
+                className="iconify"
+                data-inline="false"
+                data-icon="grommet-icons:google"
+              />
+              Iniciar sesión con Google
+            </button>
+          )}
+          onSuccess={respuestaGoogle}
+          onFailure={respuestaGoogle}
+          cookiePolicy="single_host_origin"
+        />
 
         <div className="text'center">
           <small>
