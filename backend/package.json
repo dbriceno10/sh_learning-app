@@ -4,13 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./index.js",
-    "dev": "nodemon",
-    "lint": "eslint .",
-    "format": "prettier ./src/** --check",
-    "format:write": "prettier ./src/** --write",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "cd .. && husky install backend/.husky"
+    "start": "nodemon -L",
+    "test": "mocha -w ./tests/**/*.spec.js"
   },
   "keywords": [],
   "author": "",
@@ -31,23 +26,9 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "eslint": "^8.6.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-import": "^2.25.4",
-    "husky": "^7.0.4",
-    "lint-staged": "^12.1.5",
     "mocha": "^8.2.1",
-    "prettier": "^2.5.1",
     "sequelize-cli": "^6.3.0",
     "supertest": "^6.0.1",
     "supertest-session": "^4.1.0"
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint --cache --fix",
-      "prettier --write"
-    ],
-    "*.--check": "prettier --write"
   }
 }
