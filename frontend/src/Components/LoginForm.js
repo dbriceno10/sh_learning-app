@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
+import { loginGoogle} from "../Actions/login.actions";
 import './LoginForm.css';
 
 function LoginForm() {
   const [seePassword, setSeePassword] = useState(false);
+  const dispatch = useDispatch()
 
   const onClick = () => {
     setSeePassword(!seePassword);
@@ -13,6 +16,15 @@ function LoginForm() {
   const respuestaGoogle = (respuesta) => {
     console.log(respuesta);
     console.log(respuesta.profileObj);
+    let userData = {
+      firstName: respuesta.profileObj.givenName,
+      lastName: respuesta.profileObj.familyName,
+      image: respuesta.profileObj.imageUrl,
+      email: respuesta.profileObj.email,
+      tokenId: respuesta.tokenId
+    }
+    console.log(userData)
+    return dispatch(loginGoogle(userData))
   };
 
   return (

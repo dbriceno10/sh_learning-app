@@ -78,6 +78,7 @@ input[type="password"]:focus {
 .btn.btn-google {
   background: var(--white);
   border-color: var(--gray);
+  cursor: pointer;
 }
 
 .btn.btn-facebook {
