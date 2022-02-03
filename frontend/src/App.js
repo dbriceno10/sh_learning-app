@@ -15,7 +15,7 @@ function App() {
   return (
     <Routes>
        <Route exact path = '/' element = {<Landing/>}/> 
-       <Route exact path = '/login' element = {<FormRegister/>}/>  
+       <Route exact path = '/signUp' element = {<FormRegister/>}/>  
 
     </Routes>
   )
