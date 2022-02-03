@@ -79,20 +79,24 @@ Category.belongsToMany(Course, { through: "Course-Category" });
 //?Ahora vienen las relaciones de uno a muchos
 //?Relación entre Teachers y Courses
 // Course.belongsTo(Teacher, { as: "profesor" });
-Teacher.hasMany(Course,{ 
-    foreignKey:{
-      type: DataTypes.UUID,
-      allowNull: false,
-      name:'teacherID',
-    }
-  
-})
-Course.belongsTo(Teacher)
-
-
+Teacher.hasMany(Course, {
+  foreignKey: {
+    type: DataTypes.UUID,
+    allowNull: false,
+    name: "FKteacherID",
+  },
+});
+Course.belongsTo(Teacher);
 
 //?Relación entre Courses y Videos
-Video.belongsTo(Course, { as: "curso" });
+Course.hasMany(Video, {
+  foreignKey: {
+    type: DataTypes.UUID,
+    allowNull: false,
+    name: "FKcourseID",
+  },
+});
+Course.belongsTo(Teacher);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

@@ -1,6 +1,5 @@
 const { Router } = require("express");
 const axios = require("axios");
-// const { Type } = require('../db'); //me raigo mis
 const router = Router();
 const { Category, Course, Student, Teacher, Video } = require("../db");
 
@@ -35,34 +34,25 @@ router.get("/students", async (req, res, next) => {
 });
 
 router.post("/courses", async (req, res, next) => {
-  const { name, description, teacherID } = req.body;
+  const { name, description, email } = req.body;
   try {
+    const FK = await Teacher.findOne({
+      where: {
+        email: email,
+      },
+    });
     const courseCreated = await Course.create({
       name,
       description,
-      //!foreignKey
-      teacherID
+      FKteacherID: FK.id,
     });
-  
+
     res.status(200).send(courseCreated);
   } catch (error) {
     console.error(error.message);
     res.status(404).send(error);
   }
 });
-
-// router.post("/courses", async (req, res, next) => {
-//   const { name, description } = req.body;
-//   try {
-//     const course = await Course.create({
-//       name,
-//       description,
-//     });
-//     res.status(200).send(course);
-//   } catch (error) {
-//     res.status(404).send(error);
-//   }
-// });
 
 router.get("/courses", async (req, res, next) => {
   try {
@@ -72,30 +62,6 @@ router.get("/courses", async (req, res, next) => {
     res.status(404).send(error);
   }
 });
-
-router.post("/courses", async (req, res, next) => {
-  const { name, description, ID_teacher } = req.body;
-  try {
-    // const teacherId = await Teacher.findOne({
-    //   where: {
-    //     username: "usename20",
-    //   },
-    // });
-    const course = await Course.create({
-      name,
-      description,
-      ID_teacher
-    });
-    course.addTeacher("483abc92-ac5f-4a91-b802-68a770db72f4");
-    res.status(200).send(teacherId);
-  } catch (error) {
-    console.error(error.message);
-    res.status(404).send(error);
-  }
-});
-
-
-
 
 router.post("/teachers", async (req, res, next) => {
   const { username, name, lastname, email, password, avatar } = req.body;
@@ -125,34 +91,25 @@ router.get("/teachers", async (req, res, next) => {
 });
 
 router.post("/videos", async (req, res, next) => {
-  const { title, description, url, courseId } = req.body;
+  const { title, description, url, duration, name } = req.body;
   try {
+    const FK = await Course.findOne({
+      where: {
+        name: name
+      },
+    });
     const video = await Video.create({
       title,
       description,
       url,
-      courseId,
+      duration,
+      FKcourseID: FK.id,
     });
     res.status(200).send(video);
   } catch (error) {
     res.status(404).send(error);
   }
 });
-
-// router.post("/videos", async (req, res, next) => {
-//   const { title, description, url, duration } = req.body;
-//   try {
-//     const video = await Video.create({
-//       title,
-//       description,
-//       url,
-//       duration,
-//     });
-//     res.status(200).send(video);
-//   } catch (error) {
-//     res.status(404).send(error);
-//   }
-// });
 
 router.get("/videos", async (req, res, next) => {
   try {
@@ -162,6 +119,5 @@ router.get("/videos", async (req, res, next) => {
     res.status(404).send(error);
   }
 });
-
 
 module.exports = router;

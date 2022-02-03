@@ -14,20 +14,13 @@ module.exports = (sequelize) => {
       },
       name: {
         type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
       },
       description: {
         type: DataTypes.TEXT,
+        allowNull: false
       },
-      // id_student: {
-      //   type: DataTypes.STRING,
-      //   unique: true,
-      // },
-    
-      // id_category: {
-      //   type: DataTypes.STRING,
-      //   unique: true,
-      // }
-      //Rating?
     },
     {
       timestamps: true,
