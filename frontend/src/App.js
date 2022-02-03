@@ -1,7 +1,7 @@
 import './App.css';
 import {Routes, Route} from 'react-router-dom';
 import Landing from './Components/Landing';
-import FormRegister from './Components/Register';
+import FormRegister from './Components/FormRegister';
 
 
 function App() {

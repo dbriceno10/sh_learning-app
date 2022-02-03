@@ -1,6 +1,6 @@
 import React  from 'react';
 import {Formik} from 'formik'
-import './Register.css'
+import './FormRegister.css'
 
 
 const FormRegister = ()=>{
