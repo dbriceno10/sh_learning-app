@@ -1,0 +1,47 @@
+.nav-bar {
+    margin-top: 2rem;
+}
+
+.nav-bar .nav-bar_items {
+    display        : flex;
+    justify-content: space-between;
+    align-items    : center;
+    list-style     : none;
+}
+
+.nav-bar .nav-bar_middle-btns,
+.nav-bar .nav-bar_cta {
+    display: flex;
+    gap    : 1rem;
+}
+
+.nav-bar_items .nav-bar_cta .nav-bar_cta_login {
+    background-color: var(--crayola-yellow);
+    color           : var(--dark-purple);
+}
+
+.nav-bar .nav-bar_menu {
+    display: none;
+}
+
+@media screen and (max-width: 67rem) {
+
+    .nav-bar .nav-bar_middle-btns,
+    .nav-bar .nav-bar_cta {
+        display: none;
+    }
+
+    .nav-bar .nav-bar_menu {
+        display: flex;
+    }
+
+    .nav-bar .nav-bar_menu .button-raised {
+        padding: .5em 1.5em;
+    }
+
+    .nav-bar .nav-bar_menu svg {
+        color         : var(--honeydew);
+        font-size     : 1.5rem;
+        vertical-align: middle;
+    }
+}
