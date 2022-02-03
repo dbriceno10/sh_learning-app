@@ -1,13 +1,22 @@
+
 import { React } from 'react';
+
+
+import  React  from 'react';
+import LoginForm from './LoginForm';
+/* import Profile from './Profile'; */
+
 
 
 
 export default function Landing(){
 
     return (
-        <div>
-            <button type='submit'>Log</button>
         
+        <div>
+            <LoginForm />
+            {/* <Profile/> */}
         </div>
     )
-}
+} 
+
