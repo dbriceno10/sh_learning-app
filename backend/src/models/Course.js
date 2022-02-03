@@ -12,18 +12,24 @@ module.exports = (sequelize) => {
         primaryKey: true,
         allowNull: false,
       },
-      id_student: {
+      name: {
         type: DataTypes.STRING,
-        unique: true,
       },
-      id_teacher: {
-        type: DataTypes.STRING,
-        unique: true,
+      description: {
+        type: DataTypes.TEXT,
       },
-      id_category: {
-        type: DataTypes.STRING,
-        unique: true,
-      }
+      // id_student: {
+      //   type: DataTypes.STRING,
+      //   unique: true,
+      // },
+      // id_teacher: {
+      //   type: DataTypes.STRING,
+      //   unique: true,
+      // },
+      // id_category: {
+      //   type: DataTypes.STRING,
+      //   unique: true,
+      // }
       //Rating?
     },
     {

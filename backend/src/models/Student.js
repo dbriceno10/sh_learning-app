@@ -34,6 +34,9 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      avatar: {
+        type: DataTypes.TEXT,
+      },
     },
     {
       timestamps: true,
