@@ -96,7 +96,7 @@ Course.hasMany(Video, {
     name: "FKcourseID",
   },
 });
-Course.belongsTo(Teacher);
+Video.belongsTo(Course);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
