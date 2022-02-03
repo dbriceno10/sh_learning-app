@@ -22,10 +22,7 @@ module.exports = (sequelize) => {
       //   type: DataTypes.STRING,
       //   unique: true,
       // },
-      // id_teacher: {
-      //   type: DataTypes.STRING,
-      //   unique: true,
-      // },
+    
       // id_category: {
       //   type: DataTypes.STRING,
       //   unique: true,

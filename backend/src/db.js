@@ -3,6 +3,7 @@ const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
+const { DataTypes } = require("sequelize");
 
 const sequelize =
   process.env.NODE_ENV === "production"
@@ -77,7 +78,19 @@ Category.belongsToMany(Course, { through: "Course-Category" });
 
 //?Ahora vienen las relaciones de uno a muchos
 //?Relación entre Teachers y Courses
-Course.belongsTo(Teacher, { as: "profesor" });
+// Course.belongsTo(Teacher, { as: "profesor" });
+Teacher.hasMany(Course,{ 
+    foreignKey:{
+      type: DataTypes.UUID,
+      allowNull: false,
+      name:'teacherID',
+    }
+  
+})
+Course.belongsTo(Teacher)
+
+
+
 //?Relación entre Courses y Videos
 Video.belongsTo(Course, { as: "curso" });
 

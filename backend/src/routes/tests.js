@@ -35,16 +35,18 @@ router.get("/students", async (req, res, next) => {
 });
 
 router.post("/courses", async (req, res, next) => {
-  const { title, description, image, teacherId } = req.body;
+  const { name, description, teacherID } = req.body;
   try {
-    const course = await Course.create({
-      title,
+    const courseCreated = await Course.create({
+      name,
       description,
-      image,
-      teacherId: "ef8ab179-9ad5-4fed-9e3f-8d6a91f51ecb",
+      //!foreignKey
+      teacherID
     });
-    res.status(200).send(course);
+  
+    res.status(200).send(courseCreated);
   } catch (error) {
+    console.error(error.message);
     res.status(404).send(error);
   }
 });
@@ -71,6 +73,30 @@ router.get("/courses", async (req, res, next) => {
   }
 });
 
+router.post("/courses", async (req, res, next) => {
+  const { name, description, ID_teacher } = req.body;
+  try {
+    // const teacherId = await Teacher.findOne({
+    //   where: {
+    //     username: "usename20",
+    //   },
+    // });
+    const course = await Course.create({
+      name,
+      description,
+      ID_teacher
+    });
+    course.addTeacher("483abc92-ac5f-4a91-b802-68a770db72f4");
+    res.status(200).send(teacherId);
+  } catch (error) {
+    console.error(error.message);
+    res.status(404).send(error);
+  }
+});
+
+
+
+
 router.post("/teachers", async (req, res, next) => {
   const { username, name, lastname, email, password, avatar } = req.body;
   try {
@@ -84,6 +110,7 @@ router.post("/teachers", async (req, res, next) => {
     });
     res.status(200).send(teacher);
   } catch (error) {
+    console.error(error.message);
     res.status(404).send(error);
   }
 });
@@ -135,4 +162,6 @@ router.get("/videos", async (req, res, next) => {
     res.status(404).send(error);
   }
 });
+
+
 module.exports = router;
