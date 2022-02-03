@@ -1,7 +1,7 @@
 import './App.css';
 import {Routes, Route} from 'react-router-dom';
 import Landing from './Components/Landing';
-
+import FormRegister from './Components/Register';
 
 
 function App() {
@@ -14,7 +14,9 @@ function App() {
 
   return (
     <Routes>
-       <Route exact path = '/' element = {<Landing/>}/>  
+       <Route exact path = '/' element = {<Landing/>}/> 
+       <Route exact path = '/login' element = {<FormRegister/>}/>  
+
     </Routes>
   )
 }
