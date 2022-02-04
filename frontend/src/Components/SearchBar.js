@@ -5,6 +5,7 @@ import "./SearchBar.css";
 
 export default function SearchBar(){
     const {courses} = useSelector(state => state.courses)
+    console.log(courses)
 
     const [filteredData, setFilteredData] = useState([]);
     /* const [input, setInput] = useState("") */

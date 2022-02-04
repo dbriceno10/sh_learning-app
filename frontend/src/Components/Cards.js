@@ -3,11 +3,14 @@ import MaterialCard from "./Card";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loader from "./Loader";
 import Message from "./Message";
+import {getCourses} from "../Actions/courses.actions"
+import { useDispatch } from "react-redux";
 
 const Cards = () => {
 	const [courses, setCourses] = useState([]);
 	const [hasMore, sethasMore] = useState(true);
 	const [page, setPage] = useState(2);
+  const dispatch = useDispatch();
 
 	useEffect(() => {
 		// const getData = async () => {
@@ -16,9 +19,10 @@ const Cards = () => {
 		//   console.log(coursesData);
 		// }
 		// getData();
+    dispatch(getCourses())
 		const getData = async () => {
 			// const data = await dispatch(getCourses(page))
-			const res = await fetch(`http://localhost:3001/cursos?_page=1&_limit=5`);
+			const res = await fetch(`http://localhost:3001/cursos?_page=1&_limit=10`);
 			const data = await res.json();
 			setCourses(data);
 		};
@@ -28,7 +32,7 @@ const Cards = () => {
 
 	const fetchCourses = async () => {
 		const res = await fetch(
-			`http://localhost:3001/cursos?_page=${page}&_limit=5`
+			`http://localhost:3001/cursos?_page=${page}&_limit=10`
 		);
 		const data = await res.json();
 		return data;
