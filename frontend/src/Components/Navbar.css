@@ -10,7 +10,9 @@
 }
 
 .nav-bar .nav-bar_middle-btns,
-.nav-bar .nav-bar_cta {
+.nav-bar .nav-bar_cta,
+.nav-bar .nav-bar_user-controls {
+
     display: flex;
     gap    : 1rem;
 }
@@ -18,6 +20,21 @@
 .nav-bar_items .nav-bar_cta .nav-bar_cta_login {
     background-color: var(--crayola-yellow);
     color           : var(--dark-purple);
+}
+
+.nav-bar_items .nav-bar_user-controls .user-controls-profile-pic {
+    all                : unset;
+    border-radius      : 7rem;
+    background-color   : var(--honeydew);
+    padding            : 1rem 2rem;
+    background-image   : url('https://i.imgur.com/x8aIlqh.jpg"');
+    background-position: center;
+    background-repeat  : no-repeat;
+    background-size    : cover;
+}
+
+.nav-bar_items .nav-bar_user-controls .user-controls-profile-pic>img {
+    width: 100%;
 }
 
 .nav-bar .nav-bar_menu {
