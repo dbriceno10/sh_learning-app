@@ -8,18 +8,11 @@ import store from './Store/index'
 
 import App from './App';
 
-
-import App from './App';
-
 ReactDOM.render(
   <BrowserRouter>
-<<<<<<< HEAD
-    <App />
-=======
     <Provider store ={store}>
       <App />
     </Provider>
->>>>>>> 54a36d39d80a2f434af2e663477ac976a414b3b0
   </BrowserRouter>,
   document.getElementById('root')
 );

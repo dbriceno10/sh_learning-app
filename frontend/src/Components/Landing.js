@@ -1,7 +1,3 @@
-
-import { React } from 'react';
-
-
 import  React  from 'react';
 import LoginForm from './LoginForm';
 /* import Profile from './Profile'; */
