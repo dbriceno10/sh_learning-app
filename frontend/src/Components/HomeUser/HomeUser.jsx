@@ -10,9 +10,14 @@ export default function HomeUser(){
             <section className={styles.seccion}>
                 <NavHomeUser/>
             </section>
+
             <section className={styles.view}>
                 <Recentview/>
             </section>
+
+            
+
+
         </div>
 
     )

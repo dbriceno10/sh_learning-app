@@ -1,5 +1,5 @@
 import React from 'react';
-import CardHome from './CardHome';
+
 
 function Recentview() {
   return <div>

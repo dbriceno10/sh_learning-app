@@ -1,6 +1,7 @@
 import './App.css';
 import {Routes, Route} from 'react-router-dom';
 import Landing from './Components/Landing';
+import HomeUser from './Components/HomeUser/HomeUser.jsx' ;
 
 
 
@@ -14,7 +15,8 @@ function App() {
 
   return (
     <Routes>
-       <Route exact path = '/' element = {<Landing/>}/>  
+       <Route exact path = '/Login' element = {<Landing/>}/> 
+       <Route path='HomeUser' element={<HomeUser/>} />
     </Routes>
   )
 }
