@@ -1,7 +1,7 @@
 import { GET_COURSES } from "../Actions/courses.actions";
 
 const initialState = {
-  courses: []
+  courses: [],
 }
 
 const coursesReducer = (state = initialState, { type, payload }) => {
