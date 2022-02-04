@@ -17,7 +17,7 @@ function App() {
 
   return (
     <Routes>
-       <Route path = '/' element = {[<Navbar/>, <Cards />]}/> 
+       <Route path = '/' element = {[<Navbar key="1"/>, <Cards key="2"/>]}/> 
        <Route exact path = '/login' element = {<LoginForm/>} />
        <Route exact path = '/profile' element = {<Profile/>} />
     </Routes>
