@@ -2,9 +2,11 @@
 const { Router } = require("express");
 
 // Importar todos los routers;
-const tests = require("./tests.js");
+const tests = require("./testRoutes/tests.js");
 const register = require("./register.js");
-// const nodemailer = require("./nodemailer.js");
+// const nodemailer = require("./testRoutes/nodemailer.js");
+const fakeCourses = require("./mocksCourses.js")
+const courses = require("./courses.js");
 
 const router = Router();
 
@@ -15,6 +17,10 @@ const user = require('./user.routes')
 router.use("/tests", tests);
 router.use("/register", register);
 // router.use("/nodemailer", nodemailer);
+router.use("/fakecourses", fakeCourses);
+router.use("/courses", courses);
+
+
 
 
 

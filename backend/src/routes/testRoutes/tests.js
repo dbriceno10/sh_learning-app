@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const axios = require("axios");
 const router = Router();
-const { Category, Course, Student, Teacher, Video, Review } = require("../db");
+const { Category, Course, Student, Teacher, Video, Review } = require("../../db.js");
 
 async function getCategoryData(data) {
   const id = await Category.findOne({
