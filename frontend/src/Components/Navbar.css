@@ -12,6 +12,7 @@
 .nav-bar .nav-bar_middle-btns,
 .nav-bar .nav-bar_cta,
 .nav-bar .nav-bar_user-controls {
+
     display: flex;
     gap    : 1rem;
 }
