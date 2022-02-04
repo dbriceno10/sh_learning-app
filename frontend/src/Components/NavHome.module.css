@@ -28,7 +28,7 @@
     margin-right: 2vw;
 }
 .circulo{
-    background-color: green;
+    background-color: rgb(168, 163, 163);
     height: 3.5vw;
     width: 3.5vw;
     display: flex;
@@ -41,6 +41,18 @@
     text-decoration: none;
     color:black;
     text-size-adjust:25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+.icono1{
+    text-decoration: none;
+    color:black;
+    height: 100%;
+    width: 100%;
+    
     
 }
 .logo{

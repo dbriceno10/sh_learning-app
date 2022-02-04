@@ -1,5 +1,6 @@
 import React from "react";
 import styles from './NavHome.module.css';
+import { Icon } from '@iconify/react';
 
 
 
@@ -16,10 +17,10 @@ export default function NavHomeUser() {
                 
                 <section className={styles.seccion1}>
                     <li className={styles.circulo}>
-                        <a className={styles.icono} href="/"><span class="iconify" data-icon="ci:settings-filled"></span></a>
+                        <a className={styles.icono} href="/"><Icon icon="ci:settings-filled" width="60%" height="40%" /></a>
                     </li>
                     <li className={styles.circulo}>
-                        <a className={styles.icono} href="/landing"><span class="iconify" data-icon="radix-icons:exit"></span></a>
+                        <a className={styles.icono} href="/landing"><Icon icon="radix-icons:exit" width="60%" height="40%" /></a>
                     </li>
                     <li className={styles.circulo}>
                         <a className={styles.icono} href="/landing">Foto</a>

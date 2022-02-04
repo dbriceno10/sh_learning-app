@@ -6,3 +6,6 @@
     display: flex;
     flex-direction: column;
 }
+.view{
+    margin-left:8vw;
+}
