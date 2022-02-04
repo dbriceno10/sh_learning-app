@@ -1,15 +1,21 @@
 import React from "react";
 import './Navbar.css';
+
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 
-export default function Navbar() {
+import Button from './Button.js';
+
+
+export default function Navbar({ isUser }) {
+    /* isUser is either false or true; true means is a logged-in user */
     return (
         <nav className="nav-bar">
             <ul className="nav-bar_items">
                 <img className="nav-bar_logo"
                     src="https://i.imgur.com/sq20yHH.png"
                     alt="Learnzilla online academy logo (with a purple dinosaur)" />
+
                 <section className="nav-bar_middle-btns">
                     <li className="nav-bar_item">
                         <a className="button-flat" href="#why-us-section">Why us?</a>
@@ -42,5 +48,6 @@ export default function Navbar() {
                 </section>
             </ul>
         </nav>
+
     )
 }
