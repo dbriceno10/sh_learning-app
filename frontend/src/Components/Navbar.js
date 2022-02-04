@@ -1,6 +1,7 @@
 import React from "react";
 import './Navbar.css';
 import { Link } from "react-router-dom";
+import SearchBar from "./SearchBar";
 
 export default function Navbar() {
     return (
@@ -31,6 +32,7 @@ export default function Navbar() {
                         <Link to = "/profile" className="button-raised" href="/landing">Profile</Link>
                     </li>
                 </section>
+                <SearchBar/>
                 <section className="nav-bar_menu">
                     <li className="nav-bar_item">
                         <a className="button-raised" href="/landing">
