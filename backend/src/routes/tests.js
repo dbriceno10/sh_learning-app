@@ -1,10 +1,27 @@
 const { Router } = require("express");
 const axios = require("axios");
 const router = Router();
-const { Category, Course, Student, Teacher, Video } = require("../db");
+const { Category, Course, Student, Teacher, Video, Review } = require("../db");
 
 router.get("/prueba", async (req, res, next) => {
   res.status(200).send("Hola soy un GET");
+});
+
+router.post("/reviews", async (req, res, next) => {
+  const { idCourse, idStudent, score } = req.body;
+  try {
+    const student = await Student.create({
+      username,
+      // name,
+      lastname,
+      email,
+      password,
+      avatar,
+    });
+    res.status(200).send(student);
+  } catch (error) {
+    res.status(404).send(error);
+  }
 });
 
 router.post("/students", async (req, res, next) => {
@@ -95,7 +112,7 @@ router.post("/videos", async (req, res, next) => {
   try {
     const FK = await Course.findOne({
       where: {
-        name: name
+        name: name,
       },
     });
     const video = await Video.create({
@@ -119,5 +136,54 @@ router.get("/videos", async (req, res, next) => {
     res.status(404).send(error);
   }
 });
+
+router.post("/category", async (req, res, next) => {
+  const { name } = req.body;
+  try {
+    const category = await Category.findOrCreate({
+      where: {
+        name,
+      },
+    });
+    res.status(200).send(category);
+  } catch (error) {
+    console.log(error);
+    res.status(404).send(error);
+  }
+});
+
+router.get("/category", async (req, res, next) => {
+  try {
+    const category = await Category.findAll();
+    res.status(200).send(category);
+  } catch (error) {
+    res.status(404).send(error);
+  }
+});
+
+router.post("/review", async(req, res, next) => {
+  const { nameCourse, emailStudent, score } = req.body;
+
+    const FKCourse = await Course.findOne({
+      where: {
+        name: nameCourse,
+      },
+    });
+      const FKStudent = await Student.findOne({
+        where: {
+          email: emailStudent,
+        },
+      });
+  try {
+    const review = await Review.create({
+      score,
+      FKstudentID: FKStudent.id,
+      FKcourseID: FKCourse.id,
+    });
+    res.status(200).send(review);
+  } catch (error) {
+    res.status(404).send(error);
+  }
+})
 
 module.exports = router;
