@@ -9,25 +9,18 @@ import { useDispatch } from "react-redux";
 const Cards = () => {
 	const [courses, setCourses] = useState([]);
 	const [hasMore, sethasMore] = useState(true);
-	const [page, setPage] = useState(2);
+	const [page, setPage] = useState(1);
   const dispatch = useDispatch();
 
 	useEffect(() => {
-		// const getData = async () => {
-		//   const coursesData = await dispatch(getCourses(page))
-		//   setCourses(coursesData)
-		//   console.log(coursesData);
-		// }
-		// getData();
     dispatch(getCourses())
 		const getData = async () => {
-			// const data = await dispatch(getCourses(page))
 			const res = await fetch(`http://localhost:3001/cursos?_page=1&_limit=10`);
 			const data = await res.json();
 			setCourses(data);
 		};
 		getData();
-	}, []);
+	}, [dispatch]);
 	console.log(courses);
 
 	const fetchCourses = async () => {
@@ -50,7 +43,6 @@ const Cards = () => {
 	};
 
 	return (
-		// <section >
 		<InfiniteScroll
 			className="cards-container"
 			style={{
@@ -76,10 +68,8 @@ const Cards = () => {
 						price={c.price}
 					/>
 				);
-				// <Card key={c.id} id={c.id} name={c.name} image={c.image} price={c.price} rating={c.rating} />;
 			})}
 		</InfiniteScroll>
-		// </section>
 	);
 };
 
