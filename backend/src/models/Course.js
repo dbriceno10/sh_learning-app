@@ -19,7 +19,15 @@ module.exports = (sequelize) => {
       },
       description: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: false,
+      },
+      price: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+      },
+      img: {
+        type: DataTypes.TEXT,
+        allowNull: false,
       },
     },
     {
