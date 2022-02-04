@@ -1,5 +1,6 @@
 import React from "react";
 import './Navbar.css';
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
     return (
@@ -21,10 +22,13 @@ export default function Navbar() {
                 </section>
                 <section className="nav-bar_cta">
                     <li className="nav-bar_item">
-                        <a className="button-raised nav-bar_cta_login" href="/landing">Login</a>
+                        <Link to = "/login" className="button-raised nav-bar_cta_login" href="/landing">Login</Link>
                     </li>
                     <li className="nav-bar_item">
-                        <a className="button-raised" href="/landing">Sign up</a>
+                        <Link to = "/signUp" className="button-raised" href="/landing">Sign up</Link>
+                    </li>
+                    <li className="nav-bar_item">
+                        <Link to = "/profile" className="button-raised" href="/landing">Profile</Link>
                     </li>
                 </section>
                 <section className="nav-bar_menu">

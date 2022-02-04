@@ -1,6 +1,9 @@
 import './App.css';
 import {Routes, Route} from 'react-router-dom';
-import Landing from './Components/Landing';
+import Navbar from './Components/Navbar';
+import LoginForm from './Components/LoginForm';
+import Profile from './Components/Profile';
+import Cards from './Components/Cards';
 
 
 
@@ -14,7 +17,9 @@ function App() {
 
   return (
     <Routes>
-       <Route exact path = '/' element = {<Landing/>}/>  
+       <Route path = '/' element = {[<Navbar/>, <Cards />]}/> 
+       <Route exact path = '/login' element = {<LoginForm/>} />
+       <Route exact path = '/profile' element = {<Profile/>} />
     </Routes>
   )
 }
