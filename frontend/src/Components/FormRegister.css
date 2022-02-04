@@ -56,8 +56,16 @@ input[type="password"] {
   max-width: 380px;
 }
 .error{
-  color: var( --blue);
-  border-color: var(--primary);
+  color: var( --primary);
+  font-size: 13px;
+  margin: -1rem 0 1rem 0;
+}
 
+.role-container {
+  display: flex;
+  justify-content: space-around;
+}
 
+.h4-rol {
+  margin-top: 0;
 }
