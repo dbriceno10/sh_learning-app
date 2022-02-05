@@ -1,6 +1,7 @@
 import NavHomeUser from "./NavHomeUser"
 import styles from './HomeUser.module.css'
 import Recentview from "./Recentview"
+import Cards from "../Cards"
 export default function HomeUser(){
 
 
@@ -13,6 +14,9 @@ export default function HomeUser(){
 
             <section className={styles.view}>
                 <Recentview/>
+            </section>
+            <section>
+                <Cards />
             </section>
 
             

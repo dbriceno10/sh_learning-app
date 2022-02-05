@@ -34,7 +34,7 @@
     display: flex;
     align-items    : center;
     justify-content: center;
-    border-radius: 999999px;
+    border-radius: 100%;
  
 }
 .icono{
@@ -59,3 +59,11 @@
     width: 40%;
     height: 80%;
 }
+
+
+
+/* @media screen and (max-width: 570px){
+    .circulo{
+        visibility: hidden;
+    }
+} */

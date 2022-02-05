@@ -7,7 +7,9 @@ import LoginForm from './Components/LoginForm';
 import Profile from './Components/Profile';
 import Cards from './Components/Cards';
 import FormRegister from './Components/FormRegister';
-
+import LandingPage from './Views/LandingPage';
+import HomeUnlogin from './Components/Home/HomeUnlogin'
+import CourseDetail from './Views/CourseDetail';
 
 
 function App() {
@@ -22,11 +24,13 @@ function App() {
     <Routes>
 
 
-       <Route path = '/' element = {[<Navbar key="1"/>, <Cards key="2"/>]}/> 
-       <Route path='HomeUser' element={<HomeUser/>} />
+       <Route exact path = '/' element = {<LandingPage />}/> 
+       <Route exact path='/home' element={<HomeUser />} />
        <Route exact path = '/login' element = {<LoginForm/>} />
        <Route exact path = '/profile' element = {<Profile/>} />
-       <Route exact path = '/signUp' element = {<FormRegister/>}/>  
+       <Route exact path = '/signUp' element = {<FormRegister/>}/> 
+       <Route path = '/unlogin' element = {<HomeUnlogin/>}/> 
+       <Route exact path='/courses/:id' element={<CourseDetail />} />
 
 
     </Routes>
