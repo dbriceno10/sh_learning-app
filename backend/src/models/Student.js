@@ -37,6 +37,11 @@ module.exports = (sequelize) => {
       avatar: {
         type: DataTypes.TEXT,
       },
+      lastVideos:{
+        type: DataTypes.UUID,
+        allowNull: true,
+        
+      }
     },
     {
       timestamps: true,

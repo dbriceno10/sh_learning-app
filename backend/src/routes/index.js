@@ -8,6 +8,7 @@ const category = require("./category.js");
 const review = require("./review.js");
 const video = require("./video.js");
 const buyCourse = require("./buyCourse.js");
+const home = require("./home.js");
 
 const router = Router();
 
@@ -21,6 +22,9 @@ router.use("/category", category);
 router.use("/review", review);
 router.use("/video", video);
 router.use("/buy", buyCourse);
+//In this route the front will send the id of the student and the back will give back the last five videos the user has watched
+router.use("/home", home);
+
 
 /////////////////USER////////////////
 router.use("/user", user);

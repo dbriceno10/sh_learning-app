@@ -11,8 +11,13 @@ El endpoind es http://localhost:3001/category
 Ruta de Cursos recibe name, description, email(Del teacher), img, price, category
 El endpoind es http://localhost:3001/courses
 
-Ruta de videos recibe title, description, url, duration, name(del curso asociado)
+Ruta de videos  Post : recibe title, description, url, duration, name(del curso asociado)
 El endpoind es http://localhost:3001/video
+
+Ruta de videos GET : recibe por query el nombre del curso y retorna la info de ese video.
+El endpoind es http://localhost:3001/video
+
+
 
 Ruta de compra de curso, de momento solo hace la relación en la tabla intermedia Course-Student, recibe nameCourse, emailStudent
 El endpoind es http://localhost:3001/buy
