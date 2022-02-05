@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 const Cards = () => {
 	const [courses, setCourses] = useState([]);
 	const [hasMore, sethasMore] = useState(true);
-	const [page, setPage] = useState(1);
+	const [page, setPage] = useState(2);
   const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -64,8 +64,9 @@ const Cards = () => {
 						id={c.id}
 						name={c.name}
 						image={c.image}
-						description={c.description}
+						teacher="Instructor del curso"
 						price={c.price}
+            rating={c.rating}
 					/>
 				);
 			})}
