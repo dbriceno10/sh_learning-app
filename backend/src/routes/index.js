@@ -1,28 +1,28 @@
-
 const { Router } = require("express");
 
 // Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
-// const pokemons = require('./pokemons.js');
-// const types = require('./types.js');
-const tests = require("./tests.js");
 const register = require("./register.js");
+const fakeCourses = require("./mocksCourses.js");
+const courses = require("./courses.js");
+const category = require("./category.js");
+const review = require("./review.js");
+const video = require("./video.js");
+const buyCourse = require("./buyCourse.js");
 
 const router = Router();
 
-const user = require('./user.routes')
+const user = require("./user.routes");
 
 // Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
-// router.use('/pokemons', pokemons);
-// router.use('/types', types);
-router.use("/tests", tests);
 router.use("/register", register);
-
-
+router.use("/fakecourses", fakeCourses);
+router.use("/courses", courses);
+router.use("/category", category);
+router.use("/review", review);
+router.use("/video", video);
+router.use("/buy", buyCourse);
 
 /////////////////USER////////////////
-router.use("/user", user)
+router.use("/user", user);
 
 module.exports = router;
-

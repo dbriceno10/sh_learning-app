@@ -17,10 +17,10 @@ module.exports = (sequelize) => {
       }
     },
     {
-      timestamps: true,
-      createdAt: true,
-      updatedAt: true,
-      freezeTableName: true,
+      timestamps: false,
+      // createdAt: true,
+      // updatedAt: true,
+      // freezeTableName: true,
     }
   );
 };
