@@ -1,15 +1,26 @@
 const { Router } = require("express");
 const axios = require("axios");
 const router = Router();
-const { Category, Course, Student, Teacher, Video, Review } = require("../../db.js");
+const {
+  Category,
+  Course,
+  Student,
+  Teacher,
+  Video,
+  Review,
+} = require("../../db.js");
 
 async function getCategoryData(data) {
-  const id = await Category.findOne({
-    where: { name: data },
-    attributes: ["id"],
-  });
-
-  return id;
+  let categories = [];
+  for (let i = 0; i < data.length; i++) {
+    categories.push(
+      await Category.findOne({
+        where: { name: data[i] },
+        attributes: ["id"], //saco el atributo id
+      })
+    );
+  }
+  return categories;
 }
 
 router.get("/prueba", async (req, res, next) => {
@@ -56,17 +67,8 @@ router.post("/courses", async (req, res, next) => {
       img,
       FKteacherID: FK.id,
     });
-    //Guarda el id del curso y el id de la categoria en la tabla de relaciones
-    // const categoryID = await getCategoryData(category);
-    // await courseCreated.setCategory(categoryID);
-    // const course = await Course.findOne({
-    //   where: {
-    //     id: courseCreated.id,
-    //   },
-    //   include: Category,
-    // });
-    // res.status(200).send(course);
-
+    const categoryID = await getCategoryData(category);
+    courseCreated.addCategory(categoryID);
     res.status(200).send(courseCreated);
   } catch (error) {
     console.error(error.message);
@@ -140,14 +142,17 @@ router.get("/videos", async (req, res, next) => {
 });
 
 router.post("/category", async (req, res, next) => {
-  const { name } = req.body;
+  const { categories } = req.body;
   try {
-    const category = await Category.findOrCreate({
-      where: {
-        name,
-      },
+    categories.forEach((category) => {
+      Category.findOrCreate({
+        where: {
+          name: category,
+        },
+      });
     });
-    res.status(200).send(category);
+    const categoriesCreated = await Category.findAll();
+    res.status(200).send(categoriesCreated);
   } catch (error) {
     console.log(error);
     res.status(404).send(error);
@@ -217,4 +222,30 @@ router.get("/review", async (req, res, next) => {
     res.status(404).send(error);
   }
 });
+
+router.post("/buy", async (req, res, next) => {
+  const { nameCourse, emailStudent } = req.body;
+  try {
+    console.log("holi")
+    const course = await Course.findOne({
+      where: {
+        name: nameCourse,
+      },
+    });
+    const student = await Student.findOne({
+      where: {
+        email: emailStudent,
+      },
+      // attributes: ["id"],
+    });
+    student.addCourse(course.id);
+    res.status(200).send("Curso comprado");
+  } catch (error) {
+    console.error(error);
+    res.status(404).send(error);
+  }
+});
+
+
+
 module.exports = router;
