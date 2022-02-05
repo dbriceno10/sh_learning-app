@@ -8,8 +8,8 @@ router.get("/prueba", async (req, res, next) => {
 });
 
 router.post("/reviews", async (req, res, next) => {
-  const { idCourse, idStudent, score } = req.body;
   try {
+  const { idCourse, idStudent, score } = req.body;
     const student = await Student.create({
       username,
       // name,
@@ -25,8 +25,8 @@ router.post("/reviews", async (req, res, next) => {
 });
 
 router.post("/students", async (req, res, next) => {
-  const { username, name, lastname, email, password, avatar } = req.body;
   try {
+  const { username, name, lastname, email, password, avatar } = req.body;
     const student = await Student.create({
       username,
       name,
@@ -51,8 +51,8 @@ router.get("/students", async (req, res, next) => {
 });
 
 router.post("/courses", async (req, res, next) => {
-  const { name, description, email } = req.body;
   try {
+  const { name, description, email } = req.body;
     const FK = await Teacher.findOne({
       where: {
         email: email,
@@ -81,8 +81,8 @@ router.get("/courses", async (req, res, next) => {
 });
 
 router.post("/teachers", async (req, res, next) => {
-  const { username, name, lastname, email, password, avatar } = req.body;
   try {
+  const { username, name, lastname, email, password, avatar } = req.body;
     const teacher = await Teacher.create({
       username,
       name,
@@ -108,8 +108,8 @@ router.get("/teachers", async (req, res, next) => {
 });
 
 router.post("/videos", async (req, res, next) => {
-  const { title, description, url, duration, name } = req.body;
   try {
+  const { title, description, url, duration, name } = req.body;
     const FK = await Course.findOne({
       where: {
         name: name,
@@ -138,8 +138,8 @@ router.get("/videos", async (req, res, next) => {
 });
 
 router.post("/category", async (req, res, next) => {
-  const { name } = req.body;
   try {
+  const { name } = req.body;
     const category = await Category.findOrCreate({
       where: {
         name,
@@ -162,6 +162,7 @@ router.get("/category", async (req, res, next) => {
 });
 
 router.post("/review", async(req, res, next) => {
+  try {
   const { nameCourse, emailStudent, score } = req.body;
 
     const FKCourse = await Course.findOne({
@@ -174,7 +175,6 @@ router.post("/review", async(req, res, next) => {
           email: emailStudent,
         },
       });
-  try {
     const review = await Review.create({
       score,
       FKstudentID: FKStudent.id,

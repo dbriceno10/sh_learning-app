@@ -41,7 +41,7 @@ export default function SearchBar(){
                 <button className="searchIcon">🔎</button>
                 </div>
                 {
-                   filteredData.length != 0 && (
+                   filteredData.length !== 0 && (
                 <div className="dataResult">
                 {filteredData.map(c =>{
                     return (
