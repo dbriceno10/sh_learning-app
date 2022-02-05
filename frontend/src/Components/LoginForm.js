@@ -3,11 +3,13 @@ import { useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 import { loginGoogle} from "../Actions/login.actions";
+import { useNavigate } from 'react-router-dom';
 import './LoginForm.css';
 
 function LoginForm() {
   const [seePassword, setSeePassword] = useState(false);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onClick = () => {
     setSeePassword(!seePassword);
@@ -24,6 +26,8 @@ function LoginForm() {
       tokenId: respuesta.tokenId
     }
     console.log(userData)
+    localStorage.setItem("user", JSON.stringify(userData));
+    navigate('/profile')
     return dispatch(loginGoogle(userData))
   };
 

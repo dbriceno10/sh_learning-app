@@ -4,7 +4,7 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define(
-    "course",
+    "review",
     {
       id: {
         type: DataTypes.UUID, //genera un identidicador numérico único
@@ -12,14 +12,16 @@ module.exports = (sequelize) => {
         primaryKey: true,
         allowNull: false,
       },
-      name: {
-        type: DataTypes.STRING,
+      score: {
+        type: DataTypes.ENUM("1", "2", "3", "4", "5"),
+        // type: DataTypes.INTEGER,
+        // defaultValue: 0,
         allowNull: false,
-        unique: true,
       },
-      description: {
-        type: DataTypes.TEXT,
-        allowNull: false
+      flag: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
       },
     },
     {

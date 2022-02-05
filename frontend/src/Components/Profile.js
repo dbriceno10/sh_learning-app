@@ -1,16 +1,17 @@
-/* import React from "react";
-import { useSelector } from "react-redux";
+import React from "react";
+
 
 export default function Profile (){
     
-    const userData = useSelector(state => state.userData)
-    console.log(userData)
+    let user = JSON.parse(localStorage.getItem("user"));
 
     return (
         <div>
             <h2>
-              {userData.email}
+              {user.email}
+              {user.firstName}
+              {user.image}
             </h2>
         </div>
     )
-} */
+}
