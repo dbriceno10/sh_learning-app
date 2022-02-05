@@ -24,8 +24,8 @@ module.exports = (sequelize) => {
         unique: true,
       },
       duration: {
-        type: DataTypes.FLOAT,//*Puede ser una duración en segundos...
-      }
+        type: DataTypes.FLOAT, //*Puede ser una duración en segundos...
+      },
     },
     {
       timestamps: true,
