@@ -15,8 +15,13 @@ function App() {
 
   return (
     <Routes>
-       <Route exact path = '/login' element = {<Landing/>}/> 
+
+       <Route path = '/' element = {[<Navbar key="1"/>, <Cards key="2"/>]}/> 
+       <Route exact path = '/login' element = {<LoginForm/>} />
+       <Route exact path = '/profile' element = {<Profile/>} />
+       <Route exact path = '/signUp' element = {<FormRegister/>}/>  
        <Route path='HomeUser' element={<HomeUser/>} />
+       
     </Routes>
   )
 }
