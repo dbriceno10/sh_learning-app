@@ -2,6 +2,8 @@ const { Router } = require("express");
 const axios = require("axios");
 const router = Router();
 const { getCategoryId } = require("./controller/getCategoryId.js");
+const {getCourses} = require('./controller/get.courses')
+
 const { Category, Course, Student, Teacher, Video, Review } = require("../db");
 
 router.post("/", async (req, res, next) => {
@@ -39,5 +41,8 @@ router.get("/", async (req, res, next) => {
     res.status(404).send(error);
   }
 });
+
+
+router.get('/', getCourses) //trae todos los cursos
 
 module.exports = router;

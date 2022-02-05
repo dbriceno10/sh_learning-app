@@ -1,4 +1,4 @@
-const { Student } = require("../db");
+const { Student } = require("../../db");
 
 clientId = "481476732546-redihub2q7951q72m79sjcgglp0iatsc.apps.googleusercontent.com"
 
