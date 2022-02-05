@@ -3,6 +3,11 @@
 Ruta de registro recibe  name, lastName, email, password, role, avatar.
 El endpoind es http://localhost:3001/register
 
+Ruta de Login Local recibe email y password
+El endpoind es http://localhost:3001/login
+
+Se añadio la propiedad salt en los modelos de Student y Teacher, que es para encriptar y validar la password
+
 Ruta fake de Cursos, endpoind http://localhost:3001/fakecourses
 
 Ruta de categorias, recibe categories(un array de categorías)
