@@ -12,11 +12,11 @@ module.exports = (sequelize) => {
         primaryKey: true,
         allowNull: false,
       },
-      username: {
-        type: DataTypes.STRING,
-        allowNull: false, //para hacer que sea obligatorio
-        unique: true,
-      },
+      // username: {
+      //   type: DataTypes.STRING,
+      //   allowNull: false, //para hacer que sea obligatorio
+      //   unique: true,
+      // },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -30,9 +30,12 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      lastname: {
+      lastName: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      avatar: {
+        type: DataTypes.TEXT,
       },
     },
     {

@@ -13,3 +13,4 @@ package-lock.json
 #docker
 docker-compose.yaml
 docker/database/postgres/data
+ejemplos_sequelize

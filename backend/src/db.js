@@ -3,6 +3,7 @@ const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
+const { DataTypes } = require("sequelize");
 
 const sequelize =
   process.env.NODE_ENV === "production"
@@ -62,17 +63,65 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Category, Course, Student, Teacher, Video } = sequelize.models;
+const { Category, Course, Student, Teacher, Video, Review } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 //Relación de muchos a muchos, generamos una tabla intermedia con el nombre 'Pokemon-Types'
-// Pokemon.belongsToMany(Type, { through: 'Pokemon-Types' });
-// Type.belongsToMany(Pokemon, { through: 'Pokemon-Types' });
+//?Primero vienen las relaciones de muchos a muchos
+//*Relación entre Students y Courses
 Student.belongsToMany(Course, { through: "Student-Course" });
 Course.belongsToMany(Student, { through: "Student-Course" });
+//*Relación entre Categories y Courses
 Course.belongsToMany(Category, { through: "Course-Category" });
 Category.belongsToMany(Course, { through: "Course-Category" });
+
+//?Ahora vienen las relaciones de uno a muchos
+//?Relación entre Teachers y Courses
+// Course.belongsTo(Teacher, { as: "profesor" });
+Teacher.hasMany(Course, {
+  foreignKey: {
+    type: DataTypes.UUID,
+    allowNull: false,
+    name: "FKteacherID",
+  },
+});
+Course.belongsTo(Teacher);
+
+//?Relación entre Courses y Videos
+Course.hasMany(Video, {
+  foreignKey: {
+    type: DataTypes.UUID,
+    allowNull: false,
+    name: "FKcourseID",
+  },
+});
+Video.belongsTo(Course);
+
+//? Relación entre Estudiante, Review y Curso
+//? Relación entre Estudiante y Review
+// Student.hasMany(Review)
+// Review.belongsTo(Student)
+Student.hasMany(Review, {
+  foreignKey: {
+    type: DataTypes.UUID,
+    allowNull: false,
+    name: "FKstudentID",
+  },
+});
+Review.belongsTo(Student);
+
+//? Relación entre Cursos y Review
+// Course.hasMany(Review)
+// Review.belongsTo(Course)
+Course.hasMany(Review, {
+  foreignKey: {
+    type: DataTypes.UUID,
+    allowNull: false,
+    name: "FKcourseID",
+  },
+});
+Review.belongsTo(Course);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
