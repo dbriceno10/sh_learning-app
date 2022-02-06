@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const axios = require("axios");
 const router = Router();
-const { Category, Course, Student, Teacher, Video, Review } = require("../db");
+const { Category } = require("../db");
 
 //*Create the categories , the input is an array of categories
 router.post("/", async (req, res, next) => {

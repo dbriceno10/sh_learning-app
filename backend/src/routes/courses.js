@@ -2,7 +2,7 @@ const { Router } = require("express");
 const axios = require("axios");
 const router = Router();
 const { getCategoryId } = require("./controller/getCategoryId.js");
-const { Category, Course, Student, Teacher, Video, Review } = require("../db");
+const { Course, Teacher } = require("../db");
 
 router.post("/", async (req, res, next) => {
   //*email is of the teacher, category must be an array
