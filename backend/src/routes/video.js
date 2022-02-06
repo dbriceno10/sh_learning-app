@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const axios = require("axios");
 const router = Router();
-const { Category, Course, Student, Teacher, Video, Review } = require("../db");
+const { Category, Course, Student, Teacher, Video, Review,Records } = require("../db");
 
 router.post("/", async (req, res, next) => {
   // const { title, description, url, duration, courseName } = req.body;
@@ -31,19 +31,25 @@ router.get("/", async (req, res, next) => {
   try {
    
     const {idVideo,idStudent} = req.query;
-    //*If exists a query parameter return the info of that video
-    if (idVideo){
-      const dataVideo = await Video.findOne({
-        where: {
-          id: idVideo,
-        },
-      });
+    //*If exists a query parameter add the record to stdent_record table
+    if (idVideo && idStudent) {
 
-      Student.update(
-        { lastVideos: idVideo },
-        { where: { id: idStudent }   }
-      )
-      res.status(200).send(dataVideo.url);
+      const newRecord = await Records.create({
+        idVideo,
+        idStudent
+      });
+      // const dataVideo = await Video.findOne({
+      //   where: {
+      //     id: idVideo,
+      //   },
+      // });
+
+      // const studentChange = await Student.update(
+      //   { lastVideos: idVideo },
+      //   { where: { id: idStudent }   }
+      // )
+
+      res.status(200).send(newRecord);
 
     } else{ //* Else return all the videos
       const videos = await Video.findAll();
