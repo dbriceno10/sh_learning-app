@@ -3,12 +3,14 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styles from './SearchModificado.module.css'
 import { Icon } from "@iconify/react";
+import { useDispatch } from "react-redux";
+import { getName } from "../../Actions/courses.actions";
 
 
 export default function SearchModificado(){
     const {courses} = useSelector(state => state.courses)
     console.log(courses)
-
+    const dispatch = useDispatch();
     const [filteredData, setFilteredData] = useState([]);
     /* const [input, setInput] = useState("") */
 
@@ -27,6 +29,8 @@ export default function SearchModificado(){
 
 const handleSubmit = (e) => {
         e.preventDefault()
+        // dispatch(getName(filteredData))
+        // setFilteredData('')
         alert('Hice click')
 
     }
@@ -50,7 +54,7 @@ const handleSubmit = (e) => {
                     return (
                         <Link to={`/courses/${c.id}`}>
                         <a className={styles.dataItem}>
-                        <p>{c.name}</p>
+                        <p  className={styles.p}>{c.name}</p>
                         </a>
                         </Link>
                     )
