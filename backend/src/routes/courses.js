@@ -2,7 +2,11 @@ const { Router } = require("express");
 const axios = require("axios");
 const router = Router();
 const { getCategoryId } = require("./controller/getCategoryId.js");
-const { Course, Teacher } = require("../db");
+
+const {getCourses} = require('./controller/get.courses')
+
+const { Category, Course, Student, Teacher, Video, Review } = require("../db");
+
 
 router.post("/", async (req, res, next) => {
   //*email is of the teacher, category must be an array
@@ -41,5 +45,8 @@ router.get("/", async (req, res, next) => {
     res.status(404).send(error);
   }
 });
+
+
+router.get('/', getCourses) //trae todos los cursos
 
 module.exports = router;
