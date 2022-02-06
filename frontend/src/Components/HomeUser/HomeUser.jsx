@@ -1,8 +1,8 @@
 import React from "react";
 import NavHomeUser from "./NavHomeUser";
-import styles from './HomeUser.module.css;'
+import styles from './HomeUser.module.css';
 import Recentview from "./Recentview";
-import Orders from "../Orders/Orders";
+
 export default function HomeUser(){
 
 
@@ -17,7 +17,7 @@ export default function HomeUser(){
                 <Recentview/>
             </section>
            
-           
+          
            
 
             
