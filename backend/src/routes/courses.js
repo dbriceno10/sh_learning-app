@@ -2,11 +2,14 @@ const { Router } = require("express");
 const axios = require("axios");
 const router = Router();
 const { getCategoryId } = require("./controller/getCategoryId.js");
+
 const {getCourses} = require('./controller/get.courses')
 
 const { Category, Course, Student, Teacher, Video, Review } = require("../db");
 
+
 router.post("/", async (req, res, next) => {
+  //*email is of the teacher, category must be an array
   const { name, description, email, img, price, category } = req.body;
   try {
     const FK = await Teacher.findOne({
@@ -24,6 +27,7 @@ router.post("/", async (req, res, next) => {
       FKteacherID: FK.id,
     });
     const categoryID = await getCategoryId(category); //Busca el id de las categorias
+    // console.log('category id in post course:',categoryID);
     courseCreated.addCategory(categoryID); //Agrega las categorias al curso
     res.status(200).send(courseCreated);
   } catch (error) {

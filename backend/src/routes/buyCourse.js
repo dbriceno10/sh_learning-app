@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const axios = require("axios");
 const router = Router();
-const { Category, Course, Student, Teacher, Video, Review } = require("../db");
+const { Course, Student } = require("../db");
 
 router.post("/", async (req, res, next) => {
   const { nameCourse, emailStudent } = req.body;

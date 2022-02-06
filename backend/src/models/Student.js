@@ -26,6 +26,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      salt: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -37,6 +41,11 @@ module.exports = (sequelize) => {
       avatar: {
         type: DataTypes.TEXT,
       },
+      lastVideos:{
+        type: DataTypes.UUID,
+        allowNull: true,
+        
+      }
     },
     {
       timestamps: true,
