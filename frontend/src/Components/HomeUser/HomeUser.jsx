@@ -1,3 +1,4 @@
+import React from "react";
 import NavHomeUser from "./NavHomeUser";
 import styles from './HomeUser.module.css;'
 import Recentview from "./Recentview";
@@ -15,9 +16,9 @@ export default function HomeUser(){
             <section className={styles.view}>
                 <Recentview/>
             </section>
-            <section>
-              
-            </section>
+           
+           
+           
 
             
 
