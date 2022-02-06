@@ -4,6 +4,7 @@ export const GET_COURSES = "GET_COURSES";
 export const GET_COURSES_FILTER='GET_COURSES_FILTER'
 export const GET_COURSES_ORDER='GET_COURSES_ORDER'
 export const GET_CATEGORIES='GET_CATEGORIES'
+export const GET_COURSES_NAME='GET_COURSES_NAME'
 
 export const getCourses = () => {
   return async (dispatch) => {
@@ -37,6 +38,15 @@ export const getCategories = () => {
     const courses = await axios.get(`http://localhost:3001/category?_page=1_limit=10`)
     dispatch({
       type: GET_CATEGORIES,
+      payload: courses.data
+    })
+  }
+}
+export const getName = (payload) => {
+  return async (dispatch) => {
+    const courses = await axios.get(`http://localhost:3001/cursos?name=${payload}&&_page=1_limit=10`)
+    dispatch({
+      type: GET_COURSES_NAME,
       payload: courses.data
     })
   }

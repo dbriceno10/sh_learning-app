@@ -21,7 +21,7 @@ const getCourses = async (req,res) => {
     if (name){
         getAllCourses.filter(x => x.name.toLowerCase().includes(name.toLowerCase()))
     }
-    if (order) {
+    if (order==='maxP') {
         getAllCourses = getAllCourses.sort(function (a, b) {
             if (a.price > b.price) return -1;
             if (b.price > a.price) return 1;
