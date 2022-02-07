@@ -11,7 +11,7 @@ router.post("/", async (req, res, next) => {
     let DB = await Student.findOne({ where: { email } });
     if (!DB) {
       DB = await Teacher.findOne({ where: { email } });
-      if (!DB) return res.status(404).send("usuario y/o contraseña incorrecta");
+      if (!DB) return res.status(404).send("usuario invalido");
     }
     user= DB
     crypto.pbkdf2(

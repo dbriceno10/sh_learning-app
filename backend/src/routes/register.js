@@ -7,10 +7,6 @@ const { Student, Teacher } = require("../db");
 router.post("/", async (req, res, next) => {
   let { name, lastName, email, password, role, avatar } = req.body;
   try {
-    let DB = {
-      saltDB: "",
-      passwordDB: "",
-    };
     let user;
     if (!avatar)
       avatar =
@@ -25,9 +21,6 @@ router.post("/", async (req, res, next) => {
         "sha1",
         async (error, key) => {
           const encryptedPassword = key.toString("base64");
-          DB.saltDB = newSalt;
-          DB.passwordDB = encryptedPassword;
-          console.log("salt: ", DB.saltDB, "password: ", DB.passwordDB);
           if (role === "alumno") {
             const student = await Student.create({
               name,
