@@ -6,11 +6,11 @@ import styles from './Orders.module.css'
 
 const array=['Programacion','Matematica','Ingles','Español','UI/UX','React','Java']
 function Orders({ setrenderizado,renderizado}) {
-//   const dispatch=useDispatch();
-//   useEffect(()=>{
-//     dispatch(getCategories())
-//   })
-//   const categorias=useSelector(state=>state.categories)
+   const dispatch=useDispatch();
+   useEffect(()=>{
+    dispatch(getCategories())
+   })
+ const categorias=useSelector(state=>state.categories)
 
   return <div className={styles.categorias}>
       

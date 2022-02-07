@@ -1,9 +1,10 @@
-import { GET_COURSES,GET_CATEGORIES, GET_COURSE_DETAIL, CLEAR_PAGE} from "../Actions/courses.actions";
+import { GET_COURSES,GET_CATEGORIES, GET_COURSE_DETAIL, CLEAR_PAGE, SET_ORDER} from "../Actions/courses.actions";
 
 const initialState = {
   courses: [],
   categories:[],
-  courseDetail: undefined
+  courseDetail: undefined,
+  order: ""
 }
 
 const coursesReducer = (state = initialState, { type, payload }) => {
@@ -28,9 +29,15 @@ const coursesReducer = (state = initialState, { type, payload }) => {
         ...state,
         courseDetail: undefined
       }
+    case SET_ORDER:
+      return{
+        ...state,
+        order: payload
+      }
       default:
        return state
   } 
+    
 }
 
 export default coursesReducer;
