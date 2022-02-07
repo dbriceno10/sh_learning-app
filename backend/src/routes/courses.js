@@ -25,6 +25,7 @@ router.post("/", async (req, res, next) => {
       price,
       img,
       FKteacherID: FK.id,
+      score: "5",
     });
     const categoryID = await getCategoryId(category); //Busca el id de las categorias
     // console.log('category id in post course:',categoryID);
@@ -38,7 +39,27 @@ router.post("/", async (req, res, next) => {
 
 router.get("/", async (req, res, next) => {
   try {
-    const courses = await Course.findAll();
+    let courses = await Course.findAll({
+      include: {
+        model: Category,
+        attributes: ["name"], //trae la data mediante el nombre(la propiedad del modelo type)
+        // exclude: ["description"],
+        thorugh: {
+          attributes: [], //para comprobación, siempre va
+        },
+      },
+      attributes: ["id", "name", "description", "price", "img", "FKteacherID", "score"],//score es temporal
+    });
+    let response = courses.map((e) => {
+      return e.categories.map((e) => {
+        return e.name;
+      });
+    });
+    // courses = courses.map((course) => {
+    //   return course.categories.map((e) => {
+    //     return e.name;
+    //   });
+    // });
     res.status(200).send(courses);
   } catch (error) {
     console.error(error);
