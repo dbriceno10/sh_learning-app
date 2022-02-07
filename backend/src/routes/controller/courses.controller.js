@@ -1,4 +1,4 @@
-const { Courses } = require("../../db.js");
+const { Course } = require("../../db.js");
 
 const {
     filterCategory,
@@ -12,8 +12,8 @@ const getCourses = async (req,res) => {
         order
     } = req.query;
 
-    let getAllCourses = await Courses.findAll()
-
+    let getAllCourses = await Course.findAll()
+    console.log(getAllCourses)
     if (category) {
         filterCategory(category, getAllCourses)
     }
@@ -52,6 +52,17 @@ const getCourses = async (req,res) => {
     res.json(getAllCourses)
 }
 
+const getCourseById = async (id) => {
+    try {
+      const courseById = await Course.findByPk(id.toUpperCase())
+      console.log(courseById)
+      return courseById
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
 module.exports = {
     getCourses,
+    getCourseById
 }

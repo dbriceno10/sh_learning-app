@@ -3,7 +3,7 @@ const axios = require("axios");
 const router = Router();
 const { getCategoryId } = require("./controller/getCategoryId.js");
 
-const {getCourses} = require('./controller/get.courses')
+const {getCourses, getCourseById} = require('./controller/courses.controller')
 
 const { Category, Course, Student, Teacher, Video, Review } = require("../db");
 
@@ -68,6 +68,17 @@ router.get("/", async (req, res, next) => {
 });
 
 
-router.get('/', getCourses) //trae todos los cursos
+router.get('/all', getCourses) //trae todos los cursos
+
+
+router.get('/:id', async (req, res) => {
+  const { id } = req.params
+  try {
+    const course = await getCourseById(id)
+    return res.status(200).json(course)
+  } catch (error) {
+    return res.status(400).json({ message: error })
+  }
+})
 
 module.exports = router;
