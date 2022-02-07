@@ -1,6 +1,6 @@
 import React,{ useEffect, useState } from 'react';
 import SearchModificado from './SearchModificado';
-import '../SearchBar.css'
+import './SearchBar.css'
 import Orders from '../Orders/Orders'
 import Cards from '../Cards';
 import styles from './HomeShare.module.css'
