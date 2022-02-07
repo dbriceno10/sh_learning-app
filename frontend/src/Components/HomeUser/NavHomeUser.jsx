@@ -1,28 +1,31 @@
 import React from "react";
-import styles from "./NavHome.module.css";
-import { Link } from "react-router-dom";
-import SearchBar from "../SearchBar";
-import AccountMenu from "./AccountMenu";
+import styles from './NavHome.module.css';
+import { Icon } from '@iconify/react';
 
 export default function NavHomeUser() {
-	return (
-		<div>
-			<nav className={styles.nav}>
-				<ul className={styles.items}>
-					<section className={styles.seccion0}>
-						<Link to="/" className={styles.logo}>
-						<img
-							src="https://i.imgur.com/sq20yHH.png"
-							alt="Learnzilla online academy logo (with a purple dinosaur)"
-							/>
-							</Link>
-					</section>
-					<section className={styles.seccion1}>
-                <AccountMenu className={styles.perfilbtn}/>
-					</section>
-				</ul>
-			</nav>
-			<SearchBar />
-		</div>
-	);
+    return (
+        <nav className={styles.nav}>
+            <ul className={styles.items}>
+               <section className={styles.seccion0}>
+
+                <img className={styles.logo}
+                    src="https://i.imgur.com/sq20yHH.png"
+                    alt="Learnzilla online academy logo (with a purple dinosaur)" />
+               </section>
+                
+                <section className={styles.seccion1}>
+                    <li className={styles.circulo}>
+                        <a className={styles.icono} href="/settings"><Icon icon="ci:settings-filled" width="60%" height="40%" /></a>
+                    </li>
+                    <li className={styles.circulo}>
+                        <a className={styles.icono} href="/logout"><Icon icon="radix-icons:exit" width="60%" height="40%" /></a>
+                    </li>
+                    <li className={styles.circulo}>
+                        <a className={styles.icono} href="">Foto</a>
+                    </li>
+                </section>
+                
+            </ul>
+        </nav>
+    )
 }

@@ -28,7 +28,7 @@
     margin-right: 2vw;
 }
 .circulo{
-    background-color: rgb(168, 163, 163);
+    background-color: var(--crayola-yellow);
     height: 3.5vw;
     width: 3.5vw;
     display: flex;
@@ -44,8 +44,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 9999px;
+    background-color: var(--crayola-yellow);
     
     
+}
+.icono:hover{
+    background-color: var(--crayola-yellow);
 }
 .icono1{
     text-decoration: none;
@@ -60,10 +65,8 @@
     height: 80%;
 }
 
-
-
-/* @media screen and (max-width: 570px){
-    .circulo{
-        visibility: hidden;
-    }
-} */
+.icon{
+    background-color: transparent;
+    width:90%;
+     height:90%;
+}

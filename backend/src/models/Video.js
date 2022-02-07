@@ -18,11 +18,11 @@ module.exports = (sequelize) => {
       description: {
         type: DataTypes.STRING,
       },
-      url: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-        unique: true,
-      },
+      // url: {
+      //   type: DataTypes.TEXT,
+      //   allowNull: false,
+      //   unique: true,
+      // },
       duration: {
         type: DataTypes.FLOAT, //*Puede ser una duración en segundos...
       },
