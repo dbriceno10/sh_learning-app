@@ -15,7 +15,7 @@ export default function Navbar({ isUser }) {
                     <section className="nav-bar_middle-btns">
                         <li className="nav-bar_item">
                             <Button
-                                link={'#why-us-section'}
+                                link={'#why-section'}
                                 type={'flat'}
                                 text={'Why us?'}>
                             </Button>
