@@ -13,6 +13,6 @@ const filterCategory = async (name, array) =>{
     }
 }
 
-moodule.exports = {
+module.exports = {
     filterCategory,
 }

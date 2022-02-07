@@ -4,7 +4,7 @@ const router = Router();
 
 const {
     loginGoogle
-} = require('../controllers/user.controller')
+} = require("./controller/user.controller")
 
 
 
