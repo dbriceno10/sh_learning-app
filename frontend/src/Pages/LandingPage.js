@@ -267,7 +267,7 @@ export default function LandingPage() {
                     </div>
                 </div>
                 <h3 className="landing_footer-section_bottom-text">
-                    Ut tempor non posuere porta pellentesque ut blandit massa.
+                    Ut tempor non posuere porta pentesque ut blandit massa.
                 </h3>
                 <div className="landing_footer-section_bg"></div>
             </section>
