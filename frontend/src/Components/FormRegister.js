@@ -58,7 +58,7 @@ const FormRegister = () => {
 								password: password,
 								role: role,
 							}
-							await axios.post("http://localhost:5432/register", newUser)
+							await axios.post("http://localhost:3001/register", newUser)
 							alert("Felicitaciones! Te has registrado con éxito!");
 							resetForm();
 						}

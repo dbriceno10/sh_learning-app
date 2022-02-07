@@ -7,7 +7,7 @@ import LoginForm from './Components/LoginForm';
 import Profile from './Components/Profile';
 import Cards from './Components/Cards';
 import FormRegister from './Components/FormRegister';
-import LandingPage from './Views/LandingPage';
+import LandingPage from './Pages/LandingPage';
 import HomeUnlogin from './Components/Home/HomeUnlogin'
 import CourseDetail from './Views/CourseDetail';
 
