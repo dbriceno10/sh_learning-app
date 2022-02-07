@@ -34,7 +34,7 @@
     display: flex;
     align-items    : center;
     justify-content: center;
-    border-radius: 999999px;
+    border-radius: 100%;
  
 }
 .icono{
@@ -64,6 +64,7 @@
     width: 40%;
     height: 80%;
 }
+
 .icon{
     background-color: transparent;
     width:90%;

@@ -2,8 +2,6 @@ import React from "react";
 import styles from './NavHome.module.css';
 import { Icon } from '@iconify/react';
 
-
-
 export default function NavHomeUser() {
     return (
         <nav className={styles.nav}>
