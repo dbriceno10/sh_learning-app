@@ -7,16 +7,16 @@ export const GET_CATEGORIES='GET_CATEGORIES'
 export const SET_ORDER = 'SET_ORDER'
 
 
-export const getCourses = (name, category, order) => async (dispatch) => {
+export const getCourses = (order) => async (dispatch) => {
 
-    const courses = await axios.get(`http://localhost:3001/cursos?category=${category ? category : ""}&order=${order ? order : ""}&name=${name}&_page=1_limit=10`)
+    const courses = await axios.get(`http://localhost:3001/courses/all?order=${order ? order : ""}`)
     return  dispatch({
       type: GET_COURSES,
       payload: courses.data
     })
   }
 
-export const getCategories = () => {
+/* export const getCategories = () => {
   return async (dispatch) => {
     const courses = await axios.get(`http://localhost:3001/category?_page=1_limit=10`)
     dispatch({
@@ -24,15 +24,17 @@ export const getCategories = () => {
       payload: courses.data
     })
   }
-}
+} */
 
 export const getCourseDetail = (id) => {
   return async (dispatch) => {
-    const course = await axios.get(`http://localhost:3001/cursos/${id}`)
+    const course = await axios.get(`http://localhost:3001/courses/${id}`)
+    console.log(course.data);
     dispatch({
       type: GET_COURSE_DETAIL,
       payload: course.data
     })
+    /* console.log(payload) */
   }
 }
 

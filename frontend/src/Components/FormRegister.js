@@ -1,9 +1,11 @@
 import React from "react";
 import axios from "axios";
 import { Formik } from "formik";
+import { useNavigate } from "react-router-dom";
 import "./FormRegister.css";
 
 const FormRegister = () => {
+	let navigate = useNavigate();
 	return (
 		<>
 			<div className="contenedor">
@@ -59,8 +61,8 @@ const FormRegister = () => {
 								role: role,
 							}
 							await axios.post("http://localhost:3001/register", newUser)
-							alert("Felicitaciones! Te has registrado con éxito!");
 							resetForm();
+							alert("Felicitaciones! Te has registrado con éxito!");
 						}
 
 
