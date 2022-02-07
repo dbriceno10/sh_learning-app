@@ -1,6 +1,11 @@
 import React from "react";
 import './Navbar.css';
+
+import { Link } from "react-router-dom";
+import SearchBar from "./SearchBar";
+
 import Button from './Button.js';
+
 
 export default function Navbar({ isUser }) {
     /* isUser is either false or true; true means is a logged-in user */
