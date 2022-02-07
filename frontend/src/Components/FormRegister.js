@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { Formik } from "formik";
 import "./FormRegister.css";
 
@@ -44,13 +45,24 @@ const FormRegister = () => {
 						}
 						return errores;
 					}}
-					onSubmit={(valores, { resetForm }) => {
+					onSubmit={ async (valores, { resetForm }) => {
             if(!valores.role) {
               alert("Por favor, elige un rol")
               return;
-            }
-						resetForm();
-						alert("Felicitaciones! Te has registrado con éxito!");
+            } else {
+							let { name, lastName, email, password, role } = valores
+							let newUser = {
+								name: name,
+								lastName: lastName,
+								email: email,
+								password: password,
+								role: role,
+							}
+							await axios.post("http://localhost:3001/register", newUser)
+							alert("Felicitaciones! Te has registrado con éxito!");
+							resetForm();
+						}
+
 
 						//enviar datos
 						console.log(valores); //estan todos los datos en un objeto

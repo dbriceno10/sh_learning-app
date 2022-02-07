@@ -15,6 +15,7 @@
 a {
   text-decoration: none;
   color: var(--primary);
+  cursor: pointer !important;
 }
 
 .input-group {
@@ -121,7 +122,7 @@ input[type="password"]:focus {
   background: var(--gray);
   position: absolute;
   transform: rotate(45deg);
-  left: 15px;
+  left: 10px;
   transition: all .2s ease-in-out;
 }
 

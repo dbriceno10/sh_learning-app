@@ -1,5 +1,5 @@
 .nav-bar {
-    margin-top: 2rem;
+    margin: .5rem;
 }
 
 .nav-bar .nav-bar_items {
@@ -52,13 +52,15 @@
         display: flex;
     }
 
-    .nav-bar .nav-bar_menu .button-raised {
-        padding: .5em 1.5em;
-    }
+    
 
     .nav-bar .nav-bar_menu svg {
         color         : var(--honeydew);
         font-size     : 1.5rem;
         vertical-align: middle;
     }
+}
+
+@media screen and (max-width: 480px){
+
 }

@@ -62,10 +62,6 @@ function LoginForm() {
               />
             </button>
           </div>
-          <label htmlFor="remember">
-            <input type="checkbox" name="remember" />
-            Recordar mis datos
-          </label>
 
           <button type="submit" className="btn btn-primary">
             INICIAR SESIÓN
@@ -73,7 +69,7 @@ function LoginForm() {
 
           <div className="text-center">
             <small>
-              <Link to="/">¿Olvidaste tu contraseña?</Link>
+              <Link to="/login" className='formLinks' onClick={() => alert("Redirigir a reseteo de contraseña")}>¿Olvidaste tu contraseña?</Link>
             </small>
           </div>
         </form>
@@ -102,9 +98,9 @@ function LoginForm() {
           cookiePolicy="single_host_origin"
         />
 
-        <div className="text'center">
+        <div className="text-center">
           <small>
-            ¿Aún no tienes una cuenta? <Link to="/register">Regístrate</Link>
+            ¿Aún no tienes una cuenta? <Link to="/signUp" className='formLinks'>Regístrate</Link>
           </small>
         </div>
       </div>

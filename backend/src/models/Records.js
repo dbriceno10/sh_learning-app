@@ -1,10 +1,11 @@
+
 const { DataTypes } = require("sequelize");
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define(
-    "teacher",
+    "records",
     {
       id: {
         type: DataTypes.UUID, //genera un identidicador numérico único
@@ -12,35 +13,17 @@ module.exports = (sequelize) => {
         primaryKey: true,
         allowNull: false,
       },
-      // username: {
-      //   type: DataTypes.STRING,
-      //   allowNull: false, //para hacer que sea obligatorio
-      //   unique: true,
-      // },
-      email: {
-        type: DataTypes.STRING,
+      idVideo: {
+        type: DataTypes.UUID, //genera un identidicador numérico único
         allowNull: false,
-        unique: true,
+        
       },
-      password: {
-        type: DataTypes.STRING,
+      idStudent: {
+        type: DataTypes.UUID, //genera un identidicador numérico único
         allowNull: false,
       },
-      salt: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      lastName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      avatar: {
-        type: DataTypes.TEXT,
-      },
+      
+      
     },
     {
       timestamps: true,

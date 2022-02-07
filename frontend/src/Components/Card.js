@@ -1,18 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
+import Rating from '@mui/material/Rating';
 import "./Card.css";
 
-const MaterialCard = ({ id, name, image, price, description }) => {
+const MaterialCard = ({ id, name, image, price, teacher, rating }) => {
+
+  let navigate = useNavigate();
+
+  const handleClickCard = () => {
+    navigate(`/courses/${id}`)
+  }
+
   return (
-    <div className='card'>
-      <Link to={`/courses/${id}`}>
-						<Card sx={{ maxWidth: 345 }} className="">
-							<CardActionArea>
+						<Card sx={{ width: 270 }} onClick={handleClickCard}>
 								<CardMedia
 									component="img"
 									height="140"
@@ -20,17 +24,18 @@ const MaterialCard = ({ id, name, image, price, description }) => {
 									alt={name}
 								/>
 								<CardContent>
-									<Typography gutterBottom variant="h5" component="div">
+									<Typography gutterBottom variant="body2" component="div" sx={{fontSize: 15, fontWeight: 700, lineHeight: 1.2}}>
 										{name}
 									</Typography>
-									<Typography variant="body2" color="text.secondary">
-										{description}
+									<Typography gutterBottom variant="body2" color="text.secondary" >
+										{teacher}
+									</Typography>
+                  <Rating name="read-only" value={rating} readOnly />
+									<Typography variant="body1" color="text.secondary" >
+										$ {price}
 									</Typography>
 								</CardContent>
-							</CardActionArea>
 						</Card>
-					</Link>
-    </div>
   ) 
 };
 
