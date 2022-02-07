@@ -5,25 +5,42 @@ import './Button.css';
 export default function Button({
     text, link, type, icon
 }) {
-    if ((text && link && type) &&
-        (typeof text === 'string' && typeof link === 'string' && typeof type === 'string')) {
+    if ((typeof link === 'string' && typeof type === 'string')) {
         console.log('here');
         if (icon && typeof icon === 'string') {
             console.log('here');
             if (type === 'flat-icon') {
-                return (
-                    <Link className="button-flat icon" to={link}>
-                        <span>{text}</span>
-                        <span className="iconify-inline" data-icon={icon}></span>
-                    </Link>
-                )
+                if (link.startsWith('/')) {
+                    return (
+                        <Link className="button-flat icon" to={link}>
+                            {text ? <span>{text}</span> : null}
+                            <span className="iconify" data-icon={icon}></span>
+                        </Link>
+                    )
+                } else if (link.startsWith('http', 0)) {
+                    return (
+                        <a className="button-flat icon" href={link} target='_blank'>
+                            {text ? <span>{text}</span> : null}
+                            <span className="iconify" data-icon={icon}></span>
+                        </a>
+                    )
+                }
             } else if (type === 'raised-icon') {
-                return (
-                    <Link className="button-raised icon" to={link}>
-                        <span>{text}</span>
-                        <span className="iconify-inline" data-icon={icon}></span>
-                    </Link>
-                )
+                if (link.startsWith('/')) {
+                    return (
+                        <Link className="button-raised icon" to={link}>
+                            {text ? <span>{text}</span> : null}
+                            <span className="iconify" data-icon={icon}></span>
+                        </Link>
+                    )
+                } else if (link.startsWith('http', 0)) {
+                    return (
+                        <a className="button-raised icon" href={link} target='_blank'>
+                            {text ? <span>{text}</span> : null}
+                            <span className="iconify" data-icon={icon}></span>
+                        </a>
+                    )
+                }
             } else if (type === 'round') {
                 return (
                     <Link className="button-round" to={link}>
