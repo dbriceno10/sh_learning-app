@@ -4,20 +4,25 @@ import { useDispatch,useSelector } from "react-redux";
 import { getCoursesorder } from '../../Actions/courses.actions';
 import styles from './Sort.module.css'
 
-function Sort() {
+function Sort({renderizado,setrenderizado}) {
     const dispatch=useDispatch();
     function HandleSort(e){
-        e.preventDefault()
-        // dispatch ( getCoursesorder(e.target.value))
-        alert('Hice click')
+    
+        setrenderizado({
+          ...renderizado,
+          order:e.target.value
+        })
+        // dispatch ( getCourses(renderizado))
+         //console.log(`Hola: ${renderizado.order}`)
+        
     }
   return <div>
-      <select className={styles.selection}>
-          <option >Sort By</option>
-<option value='minP' key='minP' onClick={HandleSort}>Precio Ascendente </option>
-<option value='maxP'key='maxP' onClick={HandleSort}>Precio Descendente</option>
-<option value='minR' key='minR' onClick={HandleSort}>Rating Ascendente </option>
-<option value='maxR' key='maxR' onClick={HandleSort}>Rating Descendente </option>
+      <select className={styles.selection} onClick={HandleSort}>
+          <option value='' key='1' >Sort By</option>
+<option value='minP' key='minP'  name='order'>Precio Ascendente </option>
+<option value='maxP'key='maxP'  name='order'>Precio Descendente</option>
+<option value='minR' key='minR' onClick={HandleSort} name='order'>Rating Ascendente </option>
+<option value='maxR' key='maxR'  name='order'>Rating Descendente </option>
 </select>
   </div>;
 }

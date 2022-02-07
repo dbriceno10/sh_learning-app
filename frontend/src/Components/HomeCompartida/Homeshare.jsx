@@ -1,11 +1,17 @@
-import React from 'react';
+import React,{ useEffect, useState } from 'react';
 import SearchModificado from './SearchModificado';
 import '../SearchBar.css'
 import Orders from '../Orders/Orders'
 import Cards from '../Cards';
 import styles from './HomeShare.module.css'
 import Sort from '../Orders/Sort'
+
 function Homeshare() {
+const [renderizado,setrenderizado]=useState({
+  name:'',
+  category:'',
+  order:''
+})
   return <div className={styles.container}>
     <div className={styles.bloqueo}>
       <section className={styles.search}>
@@ -15,7 +21,7 @@ function Homeshare() {
   </div>
   <div className={styles.div2}>
    
-  <Sort/>
+  <Sort  setrenderizado={setrenderizado} renderizado={renderizado}/>
 
   </div>
     </section>
@@ -24,7 +30,7 @@ function Homeshare() {
      
   <div className={styles.orden}>
   <h1>Categories</h1>
-      <Orders/>
+      <Orders setrenderizado={setrenderizado} renderizado={renderizado}/>
   </div>
       <div className={styles.cartas}>
 

@@ -1,4 +1,4 @@
-import { GET_COURSES,GET_COURSES_FILTER,GET_COURSES_ORDER,GET_CATEGORIES,GET_COURSES_NAME} from "../Actions/courses.actions";
+import { GET_COURSES,GET_CATEGORIES} from "../Actions/courses.actions";
 
 const initialState = {
   courses: [],
@@ -12,26 +12,11 @@ const coursesReducer = (state = initialState, { type, payload }) => {
         ...state,
         courses: payload
       }
-      case GET_COURSES_FILTER:
-        return{
-          ...state,
-          courses:payload
-      }
-      case GET_COURSES_ORDER:
-        return {
-          ...state,
-          courses:payload
-        }
+    
         case GET_CATEGORIES:
           return{
             ...state,
             categories:payload
-
-          }
-          case GET_COURSES_NAME:
-          return{
-            ...state,
-            courses:payload
 
           }
       default:

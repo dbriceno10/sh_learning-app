@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import styles from './SearchModificado.module.css'
 import { Icon } from "@iconify/react";
 import { useDispatch } from "react-redux";
-import { getName } from "../../Actions/courses.actions";
+import { getCourses } from "../../Actions/courses.actions";
 
 
 export default function SearchModificado(){
@@ -29,7 +29,7 @@ export default function SearchModificado(){
 
 const handleSubmit = (e) => {
         e.preventDefault()
-        // dispatch(getName(filteredData))
+        // dispatch(getCourses(filteredData))
         // setFilteredData('')
         alert('Hice click')
 

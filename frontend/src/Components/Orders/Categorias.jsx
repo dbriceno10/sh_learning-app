@@ -1,12 +1,19 @@
 import React, { useEffect, useState }from 'react';
 import styles from './Categoria.module.css'
 import { useDispatch,useSelector } from "react-redux";
-import { getCoursesorder } from '../../Actions/courses.actions';
-function Categorias({categoria}) {
+import { getCourses } from '../../Actions/courses.actions';
+function Categorias({categoria, setrenderizado,renderizado}) {
   function HandleCategories(e){
-    e.preventDefault()
-    // dispatch ( getCoursesorder(e.target.value))
-    alert('Hice click')
+  if (e.target.checked){
+
+    setrenderizado({
+      ...renderizado,
+      [e.target.name]:e.target.value
+    })
+    // dispatch ( getCourses(e.target.value))
+   // console.log(renderizado)
+  }
+    
 }
   return <div className={styles.div}>
       <label className={styles.label}>
