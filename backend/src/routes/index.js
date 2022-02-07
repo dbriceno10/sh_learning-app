@@ -7,10 +7,11 @@ const { Router } = require("express");
 // const types = require('./types.js');
 const tests = require("./tests.js");
 const register = require("./register.js");
+const user = require('./user.routes');
+const nodemailer = require('./nodemailer');
 
 const router = Router();
 
-const user = require('./user.routes')
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
@@ -18,6 +19,7 @@ const user = require('./user.routes')
 // router.use('/types', types);
 router.use("/tests", tests);
 router.use("/register", register);
+router.use('/nodemailer', nodemailer);
 
 
 
