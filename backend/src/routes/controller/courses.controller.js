@@ -18,7 +18,7 @@ const getCourses = async (req,res) => {
         filterCategory(category, getAllCourses)
     }
 
-    if (name){
+    if (name !== ""){
         getAllCourses.filter(x => x.name.toLowerCase().includes(name.toLowerCase()))
     }
     if (order==='maxP') {

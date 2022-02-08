@@ -6,16 +6,23 @@ import Message from "./Message";
 import {getCourses} from "../Actions/courses.actions"
 import { useDispatch, useSelector } from "react-redux";
 
+
 const Cards = () => {
 	/* const [courses, setCourses] = useState([]); */
 	const [hasMore, sethasMore] = useState(true);
 	const [page, setPage] = useState(2);
 	const {courses} = useSelector(state => state.courses)
+	const [input, setInput] = useState("");
   const dispatch = useDispatch();
+
+  const handleInputChange = (e) => {
+	setInput(e.target.value)
+	 dispatch(getCourses(e.target.value))
+}
 
 	useEffect(() => {
     dispatch(getCourses())
-	}, []);
+	}, [dispatch]);
 	console.log(courses);
 
 	/* const fetchCourses = async () => {
@@ -39,7 +46,22 @@ const Cards = () => {
  */
 	return (
 		<div style={{display: "flex", flexWrap: "wrap"}}>
-			{courses.map((c) => {
+
+				<input
+                    type="text"
+                    /* className={styles.input} */
+                    onChange={{handleInputChange}}
+                    placeholder="Buscar..."
+                />
+			{
+			
+			/* courses.filter(val => {
+				if(searchTerm == ""){
+					return val
+				} else if (val.name.toLowerCase().includes(searchTerm.toLowerCase())){
+					return val
+				}
+			}) */courses.map((c) => {
 			return (
 				<MaterialCard
 					key={c.id}
@@ -52,7 +74,9 @@ const Cards = () => {
 					rating={c.score}
 				/>
 			);
-		})}
+		})
+			
+		}
 		</div>
 		);
 	};
