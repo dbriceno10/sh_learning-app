@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Formik } from "formik";
 import { useNavigate } from "react-router-dom";
-import { loginLocal } from ""
+import { loginLocal } from "../../Actions/login.actions"
 import "./FormRegister.css";
 
 const FormRegister = () => {
@@ -65,6 +65,7 @@ const FormRegister = () => {
 							dispatch(loginLocal(newUser));
 							resetForm();
 							alert("Felicitaciones! Te has registrado con éxito!");
+							navigate("/profile")
 						}
 
 
