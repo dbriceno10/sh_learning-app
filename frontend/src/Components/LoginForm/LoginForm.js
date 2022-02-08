@@ -4,10 +4,17 @@ import { Link } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 import { loginGoogle} from "../Actions/login.actions";
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './LoginForm.css';
+
+const initialObj = {
+  email: "",
+  password: ""
+}
 
 function LoginForm() {
   const [seePassword, setSeePassword] = useState(false);
+  const [userLogin, setUserLogin] = useState(initialObj);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -31,6 +38,22 @@ function LoginForm() {
     return dispatch(loginGoogle(userData))
   };
 
+  const handleChange = (e) => {
+    setUserLogin({
+      ...setUserLogin,
+      [e.target.name]: e.target.value
+    })
+  }
+  console.log(userLogin);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios.post("http://localhost:3001/login", userLogin);
+    localStorage.setItem("user", JSON.stringify(userLogin));
+    setUserLogin(initialObj);
+    navigate("/profile");
+  }
+
   return (
     <div className="form-container">
       <div className="login-wrapper">
@@ -39,13 +62,13 @@ function LoginForm() {
           Ingresa los datos con los que te has registrado para poder continuar
         </p>
 
-        <form>
-          <input type="email" name="email" placeholder="Correo electrónico" />
+        <form onSubmit={handleSubmit}>
+          <input type="email" name="email" placeholder="Correo electrónico" value={userLogin.email} onChange={handleChange}/>
           <div className="input-group">
             {seePassword ? (
-              <input type="text" name="password" placeholder="Contraseña" />
+              <input type="text" name="password" placeholder="Contraseña" value={userLogin.password} onChange={handleChange}/>
             ) : (
-              <input type="password" name="password" placeholder="Contraseña" />
+              <input type="password" name="password" placeholder="Contraseña" value={userLogin.password} onChange={handleChange}/>
             )}
 
             <button

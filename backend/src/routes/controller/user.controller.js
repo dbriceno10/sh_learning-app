@@ -1,6 +1,8 @@
+require("dotenv").config();
+const { CLIENT_ID } = process.env;
 const { Student } = require("../../db");
 
-clientId = "481476732546-redihub2q7951q72m79sjcgglp0iatsc.apps.googleusercontent.com"
+clientId = CLIENT_ID
 
 const loginGoogle = async (req, res) => {
 
@@ -10,7 +12,7 @@ const loginGoogle = async (req, res) => {
             where: { email }
         })
         if (!student) {
-            student = await Student.create({ name: firstName, lastname: lastName, email, username: email, password: "12345" })
+            student = await Student.create({ name: firstName, lastname: lastName, email, username: email, tokenId })
         }
         res.send(student)
     } catch (err) {

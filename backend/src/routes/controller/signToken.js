@@ -1,3 +1,5 @@
+require("dotenv").config();
+const { SECRET_STRING } = process.env
 const jwt = require("jsonwebtoken");
 
 function signToken(_id) {

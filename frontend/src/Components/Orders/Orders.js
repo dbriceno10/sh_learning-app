@@ -1,6 +1,6 @@
 import React ,  { useEffect, useState }from 'react';
 import { useDispatch,useSelector } from "react-redux";
-import { getCategories } from '../../Actions/courses.actions';
+/* import { getCategories } from '../../Actions/courses.actions'; */
 import Categorias from './Categorias';
 import styles from './Orders.module.css'
 
@@ -8,7 +8,7 @@ const array=['Programacion','Matematica','Ingles','Español','UI/UX','React','Ja
 function Orders({ setrenderizado,renderizado}) {
    const dispatch=useDispatch();
    useEffect(()=>{
-    dispatch(getCategories())
+   /*  dispatch(getCategories()) */
    })
  const categorias=useSelector(state=>state.categories)
 
