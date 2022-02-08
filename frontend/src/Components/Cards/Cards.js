@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import MaterialCard from "./Card";
 import InfiniteScroll from "react-infinite-scroll-component";
-import Loader from "./Loader";
-import Message from "./Message";
-import {getCourses} from "../Actions/courses.actions"
+import Loader from "../Loader/Loader";
+import Message from "../Message/Message";
+import {getCourses} from "../../Actions/courses.actions"
 import { useDispatch, useSelector } from "react-redux";
 
 

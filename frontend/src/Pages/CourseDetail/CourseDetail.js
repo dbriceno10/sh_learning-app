@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link } from "react-router-dom";
-import { clearPage, getCourseDetail } from "../Actions/courses.actions";
+import { clearPage, getCourseDetail } from "../../Actions/courses.actions";
 import Rating from "@mui/material/Rating";
 import Navbar from "../Components/Navbar";
 import "./CourseDetail.css";
