@@ -15,7 +15,7 @@ const review = require("./review.js");
 const video = require("./video.js");
 const buyCourse = require("./buyCourse.js");
 const home = require("./home.js");
-
+const admin = require('./admin.js')
 
 
 // Configurar los routers
@@ -37,5 +37,9 @@ router.use("/login", login);
 
 /////////////////USER////////////////
 router.use("/user", user);
+
+
+//////////ADMIN///////77
+router.use("/admin", admin);
 
 module.exports = router;
