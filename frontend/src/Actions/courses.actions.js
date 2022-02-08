@@ -11,9 +11,6 @@ export const getCourses = (order) => async (dispatch) => {
 
 
     const courses = await axios.get(`/courses/all?order=${order}`)
-
-   
-
     return  dispatch({
       type: GET_COURSES,
       payload: courses.data

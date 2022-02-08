@@ -17,7 +17,7 @@ const [renderizado,setrenderizado]=useState({
       <section className={styles.search}>
   <div className={styles.div1}>
 
-  <SearchModificado/>
+  {/* <SearchModificado/> */}
   </div>
   <div className={styles.div2}>
    
