@@ -3,17 +3,17 @@ import MaterialCard from "./Card";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loader from "./Loader";
 import Message from "./Message";
-import {getCourses} from "../Actions/courses.actions"
+import { getCourses } from "../Actions/courses.actions"
 import { useDispatch } from "react-redux";
 
 const Cards = () => {
 	const [courses, setCourses] = useState([]);
 	const [hasMore, sethasMore] = useState(true);
 	const [page, setPage] = useState(2);
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
 	useEffect(() => {
-    dispatch(getCourses())
+		dispatch(getCourses())
 		const getData = async () => {
 			const res = await fetch(`http://localhost:3001/cursos?_page=1&_limit=10`);
 			const data = await res.json();
@@ -66,7 +66,7 @@ const Cards = () => {
 						image={c.image}
 						teacher="Instructor del curso"
 						price={c.price}
-            rating={c.rating}
+						rating={c.rating}
 					/>
 				);
 			})}
