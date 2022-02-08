@@ -1,10 +1,6 @@
 import React from "react";
-import './Navbar.css';
-
-import { Link } from "react-router-dom";
-import SearchBar from "./SearchBar";
-
-import Button from './Button.js';
+import './Navbars.css';
+import Button from './Buttons';
 
 
 export default function Navbar({ isUser }) {
@@ -45,15 +41,17 @@ export default function Navbar({ isUser }) {
                     !isUser
                         ? <section className="nav-bar_cta">
                             <li className="nav-bar_item">
-                                <Button className='nav-bar_cta_login'
-                                    link={'/landing'}
-                                    type={'raised'}
-                                    text={'Login'}
-                                ></Button>
+                                <div className="nav-bar_cta_login">
+                                    <Button
+                                        link={'/login'}
+                                        type={'raised'}
+                                        text={'Login'}
+                                    ></Button>
+                                </div>
                             </li>
                             <li className="nav-bar_item">
                                 <Button className='nav-bar_cta_sign-up'
-                                    link={'/landing'}
+                                    link={'/register'}
                                     type={'raised'}
                                     text={'Sign up'}
                                 ></Button>
@@ -62,10 +60,18 @@ export default function Navbar({ isUser }) {
                         : <section className="nav-bar_user-controls">
                             <li className="nav-bar_item">
                                 <Button className='user-controls_settings_btn'
-                                    link={'/landing'}
+                                    link={'/settings'}
                                     type={'round'}
                                     text={'hello'}
                                     icon={'ci:settings-filled'}
+                                ></Button>
+                            </li>
+                            <li className="nav-bar_item">
+                                <Button className='user-controls_logout_btn'
+                                    link={'/logout'}
+                                    type={'round'}
+                                    text={'hello'}
+                                    icon={'ph:sign-out-bold'}
                                 ></Button>
                             </li>
                             <li className="nav-bar_item">
