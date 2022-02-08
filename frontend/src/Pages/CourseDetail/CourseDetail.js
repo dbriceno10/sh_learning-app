@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 import { clearPage, getCourseDetail } from "../../Actions/courses.actions";
 import Rating from "@mui/material/Rating";
-import Navbar from "../Components/Navbar";
+import Navbar from "../../Components/NavBar/Navbar";
 import "./CourseDetail.css";
 import { Typography } from "@mui/material";
-import Loader from "../Components/Loader";
+import Loader from "../../Components/Loader/Loader";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 

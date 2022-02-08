@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
-import { loginGoogle} from "../Actions/login.actions";
+import { loginGoogle} from "../../Actions/login.actions";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './LoginForm.css';

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import MaterialCard from "./Card";
+import MaterialCard from "../Card/Card";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loader from "../Loader/Loader";
 import Message from "../Message/Message";

@@ -4,7 +4,7 @@ import styles from './SearchModificado.module.css'
  import { Icon } from "@iconify/react";
 import { useDispatch } from "react-redux";
 import { getCourses } from "../../Actions/courses.actions"; 
-import Cards from "../Cards";
+import Cards from "../Cards/Cards";
 
 
 export default function SearchModificado(curso){
