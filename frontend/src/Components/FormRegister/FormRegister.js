@@ -1,10 +1,12 @@
 import React from "react";
-import axios from "axios";
+import { useDispatch } from "react-redux";
 import { Formik } from "formik";
 import { useNavigate } from "react-router-dom";
+import { loginLocal } from ""
 import "./FormRegister.css";
 
 const FormRegister = () => {
+	const dispatch = useDispatch();
 	let navigate = useNavigate();
 	return (
 		<>
@@ -47,7 +49,7 @@ const FormRegister = () => {
 						}
 						return errores;
 					}}
-					onSubmit={ async (valores, { resetForm }) => {
+					onSubmit={  (valores, { resetForm }) => {
             if(!valores.role) {
               alert("Por favor, elige un rol")
               return;
@@ -60,7 +62,7 @@ const FormRegister = () => {
 								password: password,
 								role: role,
 							}
-							await axios.post("http://localhost:3001/register", newUser)
+							dispatch(loginLocal(newUser));
 							resetForm();
 							alert("Felicitaciones! Te has registrado con éxito!");
 						}
