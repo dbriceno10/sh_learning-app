@@ -16,9 +16,7 @@ const video = require("./video.js");
 const buyCourse = require("./buyCourse.js");
 const home = require("./home.js");
 
-const router = Router();
 
-const user = require("./user.routes");
 
 // Configurar los routers
 router.use("/register", register);

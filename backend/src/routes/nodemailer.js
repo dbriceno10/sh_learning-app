@@ -9,6 +9,53 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: true}));
 router.use(cors());
 
+router.post('/register', async (req, res) => {
+  
+  let {name, lastName, email, password, salt} = req.body;
+try{
+  
+  const user = await Student.create({
+
+    name,
+    lastName,
+    email,
+    password,
+    salt
+  });
+  res.json(user);
+
+  // let Transport = nodemailer.createTransport({
+  //   host: "smtp.gmail.com",
+  //   port: 465,
+  //   secure: true, // true for 465, false for other ports
+  //   auth: {
+  //     user: 'davidpatejo@gmail.com', // generated ethereal user
+  //     pass: 'gtnhexomenxgaujz', // generated ethereal password
+  //   },
+  // }); 
+  // let info = await Transport.sendMail({
+  //     from: '<confirmpassword@learnzilla.com>', // sender address
+  //     to: email, // list of receivers
+  //      subject: "Confirmar cuenta", // Subject line
+  //     html: `
+  //     <h1>Hola ${name}</h1>
+  //     <h2>Entra al link para confirmar tu cuenta http://localhost:3001/nodemailer/confirm?search=${email}</h2>
+  //     `, 
+  //   });
+  // Transport.sendMail(info, (error, response) => {
+  //   if(error){
+  //     res.send(error);
+  //    }else{
+  //     res.sendStatus(200).send('Email sent succesfully');
+  //   }
+  // });
+
+  // Transport.close();
+}catch(error){
+  res.send(`ERROR ${error}`);
+}
+});
+
 
 router.post('/confirmed', async (req, res) => {
   
@@ -23,7 +70,6 @@ router.post('/confirmed', async (req, res) => {
     }
     return password;
   }
-  const codeForuser = codeGmail;
 
   if(!code){
     
@@ -66,16 +112,17 @@ router.post('/confirmed', async (req, res) => {
       }
   }
   if(code){
-    if(code === codeForuser){
-      try{let user = await Student.create({
-        name,
-        lastName,
-        email,
-        password
+    if(code === codeGmail){
+      try{
+        let user = await Student.create({
+          name,
+          lastName,
+          email,
+          password
       });
       res.json(user);
     }catch(err){
-      res.sendStatus(500).send(err);
+      res.sendStatus(500).send(code, codeGmail);
     }
     }else{
       res.status(500).send('No se pudo rey')
@@ -83,9 +130,15 @@ router.post('/confirmed', async (req, res) => {
   }
 });
 
-router.get('/email', async (req, res) => {
+router.get('/email?email=', async (req, res) => {
+  const email = req.query;
     try {
-        res.sendStatus(200);
+      const user = Student.finOne({
+        where: {
+          email: email
+        }
+      })
+      res.json(user);
     } catch (error) {
         res.send(error);
     }
