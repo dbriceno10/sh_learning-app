@@ -6,7 +6,6 @@ const { Course, Student } = require("../db");
 router.post("/", async (req, res, next) => {
   const { nameCourse, emailStudent } = req.body;
   try {
-    console.log("holi");
     const course = await Course.findOne({
       where: {
         name: nameCourse,
