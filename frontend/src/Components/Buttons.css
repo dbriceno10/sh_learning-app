@@ -1,0 +1,55 @@
+.button-flat {
+    border          : none;
+    border-radius   : 0.2em;
+    padding         : .5em 1em;
+    background-color: var(--ash-gray);
+    color           : var(--dark-purple);
+    display         : flex;
+    justify-content : space-between;
+    align-items     : center;
+    cursor          : pointer;
+}
+
+.button-raised {
+    all             : unset;
+    border-radius   : 0.4em;
+    padding         : .5em 1em;
+    background-color: var(--dark-purple);
+    color           : var(--honeydew);
+    text-transform  : uppercase;
+    display         : flex;
+    justify-content : space-between;
+    align-items     : center;
+    cursor          : pointer;
+}
+
+.button-flat span,
+.button-raised span {
+    margin: 0 auto;
+}
+
+.button-raised.icon>svg {
+    color         : var(--honeydew);
+    font-size     : 2.5rem;
+    vertical-align: middle;
+}
+
+.button-flat.icon>svg {
+    color         : var(--dark-purple);
+    font-size     : 2.5rem;
+    vertical-align: middle;
+}
+
+.button-round {
+    all             : unset;
+    border-radius   : 7rem;
+    background-color: var(--ash-gray);
+    padding         : 1rem 1rem;
+    cursor          : pointer;
+}
+
+.button-round>svg {
+    font-size     : 2rem;
+    color         : var(--dark-purple);
+    vertical-align: middle;
+}
