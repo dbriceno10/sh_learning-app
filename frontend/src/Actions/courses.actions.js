@@ -9,7 +9,7 @@ export const SET_ORDER = 'SET_ORDER'
 
 export const getCourses = (order) => async (dispatch) => {
 
-    const courses = await axios.get(`http://localhost:3001/courses/all?order=${order ? order : ""}`)
+    const courses = await axios.get(`http://localhost:3001/courses/all?order=${order}`)
     return  dispatch({
       type: GET_COURSES,
       payload: courses.data
