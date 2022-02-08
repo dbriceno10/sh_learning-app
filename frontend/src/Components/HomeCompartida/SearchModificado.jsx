@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
-
+import { useSelector } from "react-redux";
 import styles from './SearchModificado.module.css'
 import { Icon } from "@iconify/react";
 import { useDispatch } from "react-redux";
@@ -9,21 +9,16 @@ import { getCourses } from "../../Actions/courses.actions";
 
 export default function SearchModificado(){
     const dispatch = useDispatch();
-    const [courses, setCourses] = useState([]);
+    const {courses} = useSelector(state => state.courses)
+	console.log(courses)
+    const [input, setInput] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
     /* const [input, setInput] = useState("") */
 
     useEffect(() => {
         dispatch(getCourses())
-            const getData = async () => {
-                const res = await fetch(`http://localhost:3001/cursos?_page=1&_limit=10`);
-                const data = await res.json();
-                setCourses(data);
-            };
-            getData();
-        }, [dispatch]);
-        console.log(courses);
-
+         },[]);
+         
     const handleFilter = (e) => {
         const newFilter = courses.filter((c) =>{
            return c.name.toLowerCase().includes(e.target.value.toLowerCase()) 

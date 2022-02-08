@@ -12,7 +12,7 @@ const loginGoogle = async (req, res) => {
             where: { email }
         })
         if (!student) {
-            student = await Student.create({ name: firstName, lastname: lastName, email, username: email, password: "12345" })
+            student = await Student.create({ name: firstName, lastname: lastName, email, username: email, tokenId })
         }
         res.send(student)
     } catch (err) {
