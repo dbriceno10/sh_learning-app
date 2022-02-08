@@ -12,13 +12,10 @@ const Cards = () => {
 	const [hasMore, sethasMore] = useState(true);
 	const [page, setPage] = useState(2);
 	const {courses} = useSelector(state => state.courses)
-	const [input, setInput] = useState("");
+	const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
 
-  const handleInputChange = (e) => {
-	setInput(e.target.value)
-	 dispatch(getCourses(e.target.value))
-}
+ 
 
 	useEffect(() => {
     dispatch(getCourses())
@@ -50,18 +47,18 @@ const Cards = () => {
 				<input
                     type="text"
                     /* className={styles.input} */
-                    onChange={{handleInputChange}}
+                    onChange={e => setSearchTerm(e.target.value)}
                     placeholder="Buscar..."
                 />
 			{
 			
-			/* courses.filter(val => {
+			courses.filter(val => {
 				if(searchTerm == ""){
 					return val
 				} else if (val.name.toLowerCase().includes(searchTerm.toLowerCase())){
 					return val
 				}
-			}) */courses.map((c) => {
+			}).map((c) => {
 			return (
 				<MaterialCard
 					key={c.id}
