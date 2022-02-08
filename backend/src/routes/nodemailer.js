@@ -73,7 +73,7 @@ router.post('/confirmed', async (req, res) => {
 
   if(!code){
     
-    var codeGmail = generate();
+    const codeGmail = generate();
 
     try {
       let Transport = nodemailer.createTransport({
