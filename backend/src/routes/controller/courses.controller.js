@@ -13,7 +13,7 @@ const getCourses = async (req,res) => {
     } = req.query;
 
     let getAllCourses = await Course.findAll()
-    console.log(getAllCourses)
+    // console.log(getAllCourses)
     if (category) {
         filterCategory(category, getAllCourses)
     }
@@ -52,6 +52,7 @@ const getCourses = async (req,res) => {
     res.json(getAllCourses)
 }
 
+//!no encontre quien llama a este metodo
 const getCourseById = async (id) => {
     try {
       const courseById = await Course.findByPk(id.toUpperCase())
