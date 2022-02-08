@@ -63,11 +63,10 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Category, Course, Student, Teacher, Video, Review ,Records} = sequelize.models;
+const { Category, Course, Student, Teacher, Video, Review, Records } = sequelize.models;
 
 // Aca vendrian las relaciones
-// Product.hasMany(Reviews);
-//Relación de muchos a muchos, generamos una tabla intermedia con el nombre 'Pokemon-Types'
+
 //?Primero vienen las relaciones de muchos a muchos
 //*Relación entre Students y Courses
 Student.belongsToMany(Course, { through: "Student_Course" });
