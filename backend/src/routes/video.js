@@ -19,6 +19,7 @@ router.post("/", async (req, res, next) => {
       duration,
       FKcourseID: FK.id,
     });
+    console.log('llegue  a video create',FK);
     res.status(200).send(video);
   } catch (error) {
     console.error(error)
@@ -60,11 +61,5 @@ router.get("/", async (req, res, next) => {
     res.status(404).send(error);
   }
 });
-
-
-
-
-
-
 
 module.exports = router;
