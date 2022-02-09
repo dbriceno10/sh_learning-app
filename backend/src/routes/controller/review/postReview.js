@@ -16,6 +16,7 @@ const postReview = async (req,res) => {
     const flag = await Review.findOne({
       where: {
         FKstudentID: FKStudent.id,
+        FKCourseID: FKCourse.id,
       },
       attributes: ["flag"],
     });

@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const router = Router();
-const {getCourses} = require('./controller/courses.controller')
-const {postCourses} = require('./controller/post.courses')
+const {getCourses} = require('./controller/courses/courses.controller.js')
+const {postCourses} = require('./controller/courses/post.courses.js')
 
 
 router.post("/", postCourses);//create a course

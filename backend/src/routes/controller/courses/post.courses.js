@@ -1,6 +1,6 @@
 
-const { Course,Teacher } = require("../../db.js");
-const { getCategoryId } = require('./getCategoryId.js')
+const { Course,Teacher } = require("../../../db.js");
+const { getCategoryId } = require('../getCategoryId.js')
 
 const postCourses = async (req,res) => {
 
@@ -20,7 +20,7 @@ const postCourses = async (req,res) => {
         price,
         img,
         FKteacherID: FK.id,
-        score: "5",
+
       });
       const categoryID = await getCategoryId(category); //Busca el id de las categorias
       // console.log('category id in post course:',categoryID);
