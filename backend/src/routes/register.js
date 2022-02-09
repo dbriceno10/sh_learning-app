@@ -8,12 +8,13 @@ const { Student, Teacher } = require("../db");
 
 router.post("/", async (req, res, next) => {
   let { name, lastName, email, password, role, avatar } = req.body; //recibimos por body
+  console.log(req.body);
   try {
     let user; //creamos una variable para guardar el usuario
     if (!avatar)
       //Asignamos avatar por defecto en caso de no venir
       avatar =
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png";
+        "../assets/defaultUser.png";
     //vamos a utilizar la libería cryto de node para encriptar la contraseña
     crypto.randomBytes(parseInt(BYTES), (error, salt) => {
       //recibimos una base numérica en bytes una función callback

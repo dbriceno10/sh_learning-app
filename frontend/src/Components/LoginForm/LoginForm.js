@@ -2,19 +2,17 @@ import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
-import { loginGoogle} from "../../Actions/login.actions";
+import { loginGoogle } from "../../Actions/login.actions";
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import './LoginForm.css';
-
-const initialObj = {
-  email: "",
-  password: ""
-}
+import axios from 'axios';
 
 function LoginForm() {
   const [seePassword, setSeePassword] = useState(false);
-  const [userLogin, setUserLogin] = useState(initialObj);
+  const [userLogin, setUserLogin] = useState({
+    email: "",
+    password: ""
+  });
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -40,18 +38,22 @@ function LoginForm() {
 
   const handleChange = (e) => {
     setUserLogin({
-      ...setUserLogin,
+      ...userLogin,
       [e.target.name]: e.target.value
     })
   }
   console.log(userLogin);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios.post("http://localhost:3001/login", userLogin);
-    localStorage.setItem("user", JSON.stringify(userLogin));
-    setUserLogin(initialObj);
-    navigate("/profile");
+    console.log(userLogin);
+    const response = await axios.post("/login", userLogin);
+    console.log(response);
+    setUserLogin({
+      email: "",
+      password: ""
+    });
+    // navigate("/profile");
   }
 
   return (
