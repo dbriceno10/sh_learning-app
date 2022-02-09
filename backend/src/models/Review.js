@@ -15,7 +15,7 @@ module.exports = (sequelize) => {
       score: {
         type: DataTypes.ENUM("1", "2", "3", "4", "5"),
         // type: DataTypes.INTEGER,
-        // defaultValue: 0,
+        // defaultValue: "0",
         allowNull: false,
       },
       flag: {
