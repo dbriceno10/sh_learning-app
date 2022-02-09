@@ -1,11 +1,11 @@
 const { Category } = require("../../db.js");
 
-async function getCategoryId(arrayCategory) {
+async function getCategoryId(arrayCategory) { //Recibe un array de categorias
   let categories = [];
-  for (let i = 0; i < arrayCategory.length; i++) {
-    categories.push(
+  for (let i = 0; i < arrayCategory.length; i++) { //Recorre el array de categorias
+    categories.push( //Agrega el id de la categoria
       await Category.findOne({
-        where: { name: arrayCategory[i] },
+        where: { name: arrayCategory[i] }, //Busca la categoria
         attributes: ["id"], //saco el atributo id
       })
     );
