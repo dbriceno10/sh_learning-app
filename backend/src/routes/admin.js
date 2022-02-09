@@ -4,7 +4,7 @@ const {Op} = require('sequelize');
 const { Category, Course, Student, Teacher, Video, Review ,Records} = require("../db");
 
 
-router.get('/courses?name', async (req, res) => {
+router.get('/courses?name=', async (req, res) => {
     const name = req.query;
     if(name){
         try{           
@@ -25,7 +25,7 @@ router.get('/courses?name', async (req, res) => {
     }
 });
 
-router.get('/students?name', async (req, res) => {
+router.get('/students?name=', async (req, res) => {
     const name = req.query;
     if(name){
         try{           

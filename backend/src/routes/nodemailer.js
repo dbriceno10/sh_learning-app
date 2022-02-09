@@ -37,7 +37,7 @@ try{
        subject: "Confirmar cuenta", // Subject line
       html: `
       <h1>Hola ${name}</h1>
-      <h2>Entra al link para confirmar tu cuenta http://localhost:3001/nodemailer/confirm?search=${email}</h2>
+      <h2>Entra al link para confirmar tu cuenta http://localhost:3001/nodemailer/confirm?email=${email}</h2>
       `, 
     });
   Transport.sendMail(info, (error, response) => {
@@ -54,14 +54,18 @@ try{
 }
 });
 
-router.put('confirm?search=', async (req, res) => {
-  const search = req.query;
-
-  let user = await Student.findOne({
-    where: {
-      email: search
-    }
-  })
+router.put('confirm?email=', async (req, res) => {
+  const email = req.query;
+  try{
+    let user = await Student.update({confirmed: true}, {
+      where: {
+        email
+      }
+    })
+    res.send(user)
+  }catch(error){
+    res.sendStatus(500).send('No se pudo rey');
+  }
 });
 
 
