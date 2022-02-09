@@ -54,20 +54,49 @@ try{
 }
 });
 
-router.put('confirm?email=', async (req, res) => {
-  const email = req.query;
+router.put('/confirm', async (req, res) => {
+  const email = req.query.email;  
   try{
-    let user = await Student.update({confirmed: true}, {
-      where: {
-        email
-      }
-    })
-    res.send(user)
+      await Student.update({
+      authorization: true
+    },
+      {
+        where: {
+          email
+        }
+      });
+    res.send('Authorization = true!');
   }catch(error){
     res.sendStatus(500).send('No se pudo rey');
   }
 });
 
+router.put('/forgotpassword', async (req, res) => {
+  const email = req.query.email;
+  const {password} = req.body;
+  try {
+    await Student.update({
+      password
+    },
+    {
+      where: {
+        email
+      }
+    });
+    res.sendStatus(200);
+  } catch (error) {
+    res.sendStatus(500).send(error);
+  }
+});
+
+router.get('/student', async (req, res) => {
+  try {
+    let student = await Student.findAll();
+    res.send(student);
+  } catch (error) {
+    res.sendStatus(500).send(error);
+  }
+});
 
 
 module.exports = router;

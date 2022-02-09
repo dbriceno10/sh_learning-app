@@ -41,6 +41,11 @@ module.exports = (sequelize) => {
       avatar: {
         type: DataTypes.TEXT,
       },
+      authorization: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      }
     },
     {
       timestamps: true,

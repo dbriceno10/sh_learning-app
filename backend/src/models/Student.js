@@ -44,7 +44,7 @@ module.exports = (sequelize) => {
       lastVideos:{
         type: DataTypes.UUID    
       },
-      confirmed: {
+      authorization: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: false
