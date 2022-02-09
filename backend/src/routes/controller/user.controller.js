@@ -2,7 +2,7 @@ require("dotenv").config();
 const { CLIENT_ID } = process.env;
 const { Student } = require("../../db");
 
-clientId = CLIENT_ID
+const clientId = CLIENT_ID
 
 const loginGoogle = async (req, res) => {
 
