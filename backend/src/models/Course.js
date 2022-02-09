@@ -30,12 +30,12 @@ module.exports = (sequelize) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      score: { //Propiedad temporal
-        type: DataTypes.ENUM("1", "2", "3", "4", "5"),
-        // type: DataTypes.INTEGER,
-        // defaultValue: 0,
-        allowNull: false,
-      },
+      // score: { //Propiedad temporal
+      //   type: DataTypes.ENUM("1", "2", "3", "4", "5"),
+      //   // type: DataTypes.INTEGER,
+      //   // defaultValue: 0,
+      //   allowNull: false,
+      // },
     },
     {
       timestamps: true,

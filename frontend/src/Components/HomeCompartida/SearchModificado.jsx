@@ -18,7 +18,7 @@ export default function SearchModificado(curso){
 
     const handleInputChange = (e) => {
         setInput(e.target.value)
-         dispatch(getCourses(e.target.value))
+         dispatch(getCourses({name: e.target.value}))
     }
     return (
         <div className={styles.search}>

@@ -1,20 +1,17 @@
+const { Student, Teacher } = require("../../../db.js");
 require("dotenv").config();
-const { Router } = require("express");
-const axios = require("axios");
-const { BYTES, BASE, ITERATIONS, LONG_ENCRYPTION, ENCRYPT_ALGORITHM } = process.env;
+const { BYTES, BASE, ITERATIONS, LONG_ENCRYPTION, ENCRYPT_ALGORITHM } =
+  process.env;
 const crypto = require("crypto");
-const router = Router();
-const { Student, Teacher } = require("../db");
 
-router.post("/", async (req, res, next) => {
+const postUser = async (req, res) => {
   let { name, lastName, email, password, role, avatar } = req.body; //recibimos por body
-  console.log(req.body);
   try {
     let user; //creamos una variable para guardar el usuario
     if (!avatar)
       //Asignamos avatar por defecto en caso de no venir
       avatar =
-        "../assets/defaultUser.png";
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png";
     //vamos a utilizar la libería cryto de node para encriptar la contraseña
     crypto.randomBytes(parseInt(BYTES), (error, salt) => {
       //recibimos una base numérica en bytes una función callback
@@ -30,6 +27,12 @@ router.post("/", async (req, res, next) => {
           //nuevamente pasamos una función de callback
           const encryptedPassword = key.toString(BASE); //encriptamos la contraseña
           if (role === "alumno") {
+            const verifyEmail = await Student.findOne({ where: { email } }); //buscamos el usuario en la tabla de estudiantes
+            if (verifyEmail) {
+              return res
+                .status(404)
+                .send({ message: "El correo ya esta registrado" });
+            }
             const student = await Student.create({
               name,
               lastName,
@@ -37,9 +40,17 @@ router.post("/", async (req, res, next) => {
               password: encryptedPassword,
               avatar,
               salt: newSalt,
+              authorization: false,
             });
             user = student; //guardamos el usuario en la variable
-          } else { //si es profesor
+          } else {
+            //si es profesor
+            const verifyEmail = await Teacher.findOne({ where: { email } }); //buscamos el usuario en la tabla de profesores
+            if (verifyEmail) {
+              return res
+                .status(404)
+                .send({ message: "El correo ya esta registrado" });
+            }
             const teacher = await Teacher.create({
               name,
               lastName,
@@ -47,10 +58,11 @@ router.post("/", async (req, res, next) => {
               password: encryptedPassword,
               avatar,
               salt: newSalt,
+              authorization: false,
             });
             user = teacher; //guardamos el usuario en la variable
           }
-          res.status(200).send("Usuario Registrado con Éxito");
+          res.status(200).send({ message: "Usuario Registrado con Éxito" });
         }
       );
     });
@@ -58,6 +70,8 @@ router.post("/", async (req, res, next) => {
     console.error(error);
     res.status(404).send(error);
   }
-});
+};
 
-module.exports = router;
+module.exports = {
+  postUser,
+};

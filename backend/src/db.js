@@ -78,8 +78,6 @@ Category.belongsToMany(Course, { through: "Course_Category" });
 // Student.belongsToMany(Records, { through: "Student_Records" });
 // Records.belongsToMany(Student, { through: "Student_Records" });
 
-
-
 //?Ahora vienen las relaciones de uno a muchos
 //?Relación entre Teachers y Courses
 // Course.belongsTo(Teacher, { as: "profesor" });
