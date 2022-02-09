@@ -44,7 +44,11 @@ module.exports = (sequelize) => {
       lastVideos:{
         type: DataTypes.UUID,
         allowNull: true,
-        
+      },
+      authorization: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
       }
     },
     {

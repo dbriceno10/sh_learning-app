@@ -2,7 +2,7 @@ import React,{ useEffect, useState } from 'react';
 import SearchModificado from './SearchModificado';
 import './SearchBar.css'
 import Orders from '../Orders/Orders'
-import Cards from '../Cards';
+import Cards from '../Cards/Cards';
 import styles from './HomeShare.module.css'
 import Sort from '../Orders/Sort'
 
@@ -17,7 +17,7 @@ const [renderizado,setrenderizado]=useState({
       <section className={styles.search}>
   <div className={styles.div1}>
 
-  <SearchModificado/>
+  {/* <SearchModificado/> */}
   </div>
   <div className={styles.div2}>
    

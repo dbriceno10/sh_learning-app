@@ -1,6 +1,6 @@
 import React from "react";
-import Button from "../Components/Button";
-import Navbar from "../Components/Navbar";
+import Button from "../../Components/Button/Button";
+import Navbar from "../../Components/NavBar/Navbar";
 import "./LandingPage.css";
 
 export default function LandingPage() {
