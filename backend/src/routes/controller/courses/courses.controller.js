@@ -2,9 +2,23 @@ const { Category, Course, Review } = require("../../../db.js");
 
 const { filterCategory } = require("../middleware");
 
-const getAllCourses = async (req, res) => {
+
+const getCourses = async (req, res) => {
+  const { name, category, order } = req.query;
+  if (!name && !category && !order) {
+    getAllCourses(req, res);
+  } else {
+    getCoursesByQuery(req, res, name, category, order);
+  }
+};
+
+const getInfoCourse = async (name)=>{
+
   try {
-    let courses = await Course.findAll({ //Busca toddos los cursos
+    let course = await Course.findOne({
+      where:{
+        name:name 
+      },
       include: [
         {
           model: Category, //Incluye las categorias
@@ -23,9 +37,55 @@ const getAllCourses = async (req, res) => {
         },
       ],
       attributes: ["id", "name", "description", "price", "img", "FKteacherID"], //Envía solo estos atributos
-    });
-    res.status(200).send(courses);
-  } catch (error) {
+    })
+    let arrayCategories =[]
+    //extract all categories names 
+    for (const category of course.categories) {
+      arrayCategories.push(category.name)
+    }
+    // console.log('type of course.review in getinfo', typeof course.reviews);
+    if (typeof course.review === 'array' ){
+      let sumatoryReview= course.reviews.reduce( (prev,next)=>parseInt(prev.score) + parseInt(next.score));
+      var meanReview = sumatoryReview / course.reviews.length;
+    } else{
+      var meanReview =0
+    }
+    
+    let objectCourse ={
+      id:course.id,
+      name:course.name,
+      description:course.description,
+      price:course.price,
+      img:course.img,
+      teacherID:course.FKteacherID,
+      category : arrayCategories,
+      meanReview ,
+    }
+    return objectCourse;
+
+  } catch (err) {
+    console.error(err);
+    console.log('Error in getInfoCourse');
+  }
+}
+
+const getAllCourses = async (req, res) => {
+  try{
+    let getAllCourses = await Course.findAll({ 
+          attributes: ["name"],
+    }
+     
+    );
+    let arrayAllCoursesInfo = [];
+    // console.log(getAllCourses);
+    for (const courseName of getAllCourses) {
+      // console.log('courseName',courseName.dataValues.name); 
+      let temporaryInfo = await getInfoCourse(courseName.dataValues.name);
+      arrayAllCoursesInfo.push(temporaryInfo);
+    }
+    res.json(arrayAllCoursesInfo); 
+    // getInfoCourse(name)
+  }  catch (error) {
     console.error(error);
     res.status(404).send(error);
   }
@@ -74,20 +134,12 @@ const getCoursesByQuery = async (req, res, name, category, order) => { //name, c
   res.json(getAllCourses);
 };
 
-const getCourses = async (req, res) => {
-  const { name, category, order } = req.query;
-  if (!name && !category && !order) {
-    getAllCourses(req, res);
-  } else {
-    getCoursesByQuery(req, res, name, category, order);
-  }
-};
 
 //!no encontre quien llama a este metodo
 const getCourseById = async (id) => {
   try {
     const courseById = await Course.findByPk(id.toUpperCase());
-    console.log(courseById);
+    // console.log(courseById);
     return courseById;
   } catch (error) {
     console.log(error);
@@ -97,4 +149,5 @@ const getCourseById = async (id) => {
 module.exports = {
   getCourses,
   getCourseById,
+  getInfoCourse,
 };
