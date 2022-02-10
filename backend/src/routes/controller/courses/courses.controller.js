@@ -104,7 +104,9 @@ const getAllCourses = async (req, res) => {
 
 const getCoursesByQuery = async (req, res, name, category, order) => {
   //name, category, order
-  let getAllCourses = await Course.findAll(); //Busca todos los cursos
+  let getAllCourses = await Course.findAll();
+  /* let getAllCategories = await Category.findAll() */
+  //Busca todos los cursos
   // console.log(getAllCourses)
   if (category) {
     filterCategory(category, getAllCourses); //Filtra por categoria
