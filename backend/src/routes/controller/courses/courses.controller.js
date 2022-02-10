@@ -102,7 +102,9 @@ const getCoursesByQuery = async (req, res, name, category, order) => {
 
   // console.log(getAllCourses)
   if (category) {
+    console.log("CATEGORYYYYYYYYYYYYYYYYYYYYYY", category)
     filterCategory(category, getAllCourses); //Filtra por categoria
+    console.log(getAllCourses);
   }
 
   if (name) {

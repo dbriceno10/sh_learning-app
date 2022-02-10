@@ -10,8 +10,8 @@ function FilterCategories() {
   console.log(categories)
 
 
-  const handleClick = (e) => {
-    dispatch(getCourses({ category: e.target.value }))
+  const onChange =  (e)  =>  {
+     dispatch(getCourses({ category: e.target.value }))
   }
   useEffect(e => {
     dispatch(getCategories({}))
@@ -26,12 +26,12 @@ function FilterCategories() {
         categories?.map((c) => {
 
           return (
-            <button
+            <select
               value={c.name}
-              onClick={handleClick}
+              onChange={onChange}
             >
-              {c.name.toUpperCase()}
-            </button>
+             <option>{c.name.toUpperCase()} </option>
+            </select>
           )
         })
       }

@@ -4,8 +4,9 @@
 
 const filterCategory = async (name, array) =>{
     try{
-
-        let filterCat = await array.filter(c => c.name === name)
+        console.log("ARRAYYYYYYYYYYYYYYYYYYYYYYYYYYYYY", array)
+        let filterCat = await array.filter(e => e.category.includes(name))//name es la categoria que llega por query
+        console.log("FILTERACACASDRTASERTSDCACDSACQQQQQQ", filterCat) 
         return filterCat
 
     } catch (error) {
