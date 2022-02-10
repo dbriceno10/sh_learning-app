@@ -7,7 +7,6 @@ const Order = () =>{
   const dispatch = useDispatch();
 
   const handleOrder = (e) =>{
-    dispatch(setOrder(e.target.value))
     dispatch(getCourses({order: e.target.value}))
   }
   return (

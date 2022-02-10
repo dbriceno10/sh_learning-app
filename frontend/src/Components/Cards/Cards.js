@@ -5,6 +5,7 @@ import Loader from "../Loader/Loader";
 import Message from "../Message/Message";
 import {getCourses} from "../../Actions/courses.actions"
 import { useDispatch, useSelector } from "react-redux";
+import FilterCategories from "../Orders/filterCategories";
 
 
 const Cards = () => {
