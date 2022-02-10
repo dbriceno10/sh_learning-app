@@ -11,7 +11,7 @@ const coursesReducer = (state = initialState, { type, payload }) => {
     case GET_COURSES:
       return {
         ...state,
-        courses: payload
+        courses: payload,
       }
     case GET_CATEGORIES:
       return{
