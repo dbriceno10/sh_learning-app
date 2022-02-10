@@ -24,15 +24,21 @@ const postUser = async (req, res) => {
         parseInt(LONG_ENCRYPTION), //longitud de la contraseña encriptada
         ENCRYPT_ALGORITHM, //algoritmo de encriptación
         async (error, key) => {
-          //nuevamente pasamos una función de callback
-          const encryptedPassword = key.toString(BASE); //encriptamos la contraseña
-          if (role === "alumno") {
-            const verifyEmail = await Student.findOne({ where: { email } }); //buscamos el usuario en la tabla de estudiantes
-            if (verifyEmail) {
+          //Verificamos si alguno e los email está ya en la base de datos
+          const verifyEmailStudent = await Student.findOne({ where: { email } }); //buscamos el usuario en la tabla de estudiantes
+            if (verifyEmailStudent) {
               return res
                 .status(404)
                 .send({ message: "El correo ya esta registrado" });
             }
+            const verifyEmailTeacher = await Teacher.findOne({ where: { email } }); //buscamos el usuario en la tabla de profesores
+            if (verifyEmailTeacher) {
+              return res
+                .status(404)
+                .send({ message: "El correo ya esta registrado" });
+            }
+          const encryptedPassword = key.toString(BASE); //encriptamos la contraseña
+          if (role === "alumno") {
             const student = await Student.create({
               name,
               lastName,
@@ -45,12 +51,6 @@ const postUser = async (req, res) => {
             user = student; //guardamos el usuario en la variable
           } else {
             //si es profesor
-            const verifyEmail = await Teacher.findOne({ where: { email } }); //buscamos el usuario en la tabla de profesores
-            if (verifyEmail) {
-              return res
-                .status(404)
-                .send({ message: "El correo ya esta registrado" });
-            }
             const teacher = await Teacher.create({
               name,
               lastName,
