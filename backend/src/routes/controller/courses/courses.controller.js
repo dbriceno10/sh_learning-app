@@ -100,7 +100,7 @@ const getCoursesByQuery = async (req, res, name, category, order) => {
   //Busca todos los cursos
 
   let getAllCourses = await getAllDataCourses(); //Busca todos los cursos
-  console.log("asdafsdASDFASFASDF123123123123131231", getAllCourses)
+  
 
   
   // console.log(getAllCourses)
@@ -144,9 +144,9 @@ const getCoursesByQuery = async (req, res, name, category, order) => {
     }
     if (category) {
       let filteredCourse = getAllCourses.filter(e => e.category.includes(category))
-      console.log("filtrado", filteredCourse)
+      
       } 
-    console.log("" ,getAllCourses)
+   
     res.json(getAllCourses);
   };
   
