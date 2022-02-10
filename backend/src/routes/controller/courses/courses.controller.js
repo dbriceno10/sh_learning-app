@@ -2,27 +2,25 @@ const { Category, Course, Review } = require("../../../db.js");
 
 const { filterCategory } = require("../middleware");
 
-const getCourses = async (req, res) => {
-  const { name, category, order } = req.query;
-  if (!name && !category && !order) {
-    getAllCourses(req, res);
-  } else {
-    getCoursesByQuery(req, res, name, category, order);
-  }
-};
-
-const getCourseDetail = async (req, res) => {
-  const { name } = req.query;
+const getAllDataCourses = async()=>{
   try {
-    const detail = await getInfoCourse(name);
-    if (!detail) {
-      res.status(404).send({ message: "Curso no encontrado" });
+    let getAllCourses = await Course.findAll({ //Busca todos los cursos
+      attributes: ["name"],
+    });
+    let arrayAllCoursesInfo = []; //Array que contendrá todos los cursos
+    // console.log(getAllCourses);
+    for (const courseName of getAllCourses) { //Recorre todos los cursos
+      // console.log('courseName',courseName.dataValues.name);
+      let temporaryInfo = await getInfoCourse(courseName.dataValues.name); //Obtiene la información del curso
+      arrayAllCoursesInfo.push(temporaryInfo); //Agrega la información del curso al array
     }
-    res.json(detail);
+    return arrayAllCoursesInfo; //Envía el array con todos los cursos
+    // getInfoCourse(name)
   } catch (error) {
-    res.status(404).send(error);
+    console.error(error);
+    return {message: 'Error al obtener los cursos'}
   }
-};
+}
 
 const getInfoCourse = async (name) => {
   try {
@@ -56,16 +54,17 @@ const getInfoCourse = async (name) => {
       arrayCategories.push(category.name);
     }
     // console.log('type of course.review in getinfo', typeof course.reviews);
+    let meanReview = 0; //promedio de reviews
     if (course.reviews.length !== 0) {
       let sumatoryReview = course.reviews.reduce(
         (prev, next) => parseInt(prev.score) + parseInt(next.score)
       );
-      var meanReview = sumatoryReview / course.reviews.length;
+      meanReview = Math.round(sumatoryReview / course.reviews.length); //Calcula el promedio de reviews, usamos Math.round para redondear al valor entero más cercano
     } else {
-      var meanReview = 0;
+      meanReview = 0; //Si no hay reviews, el promedio es 0
     }
 
-    let objectCourse = {
+    let objectCourse = { //Objeto que se enviará
       id: course.id,
       name: course.name,
       description: course.description,
@@ -84,17 +83,8 @@ const getInfoCourse = async (name) => {
 
 const getAllCourses = async (req, res) => {
   try {
-    let getAllCourses = await Course.findAll({
-      attributes: ["name"],
-    });
-    let arrayAllCoursesInfo = [];
-    // console.log(getAllCourses);
-    for (const courseName of getAllCourses) {
-      // console.log('courseName',courseName.dataValues.name);
-      let temporaryInfo = await getInfoCourse(courseName.dataValues.name);
-      arrayAllCoursesInfo.push(temporaryInfo);
-    }
-    res.json(arrayAllCoursesInfo);
+    let getAllCourses = await getAllDataCourses(); //Busca todos los cursos
+    res.json(getAllCourses); //Envía el array con todos los cursos
     // getInfoCourse(name)
   } catch (error) {
     console.error(error);
@@ -104,9 +94,12 @@ const getAllCourses = async (req, res) => {
 
 const getCoursesByQuery = async (req, res, name, category, order) => {
   //name, category, order
-  let getAllCourses = await Course.findAll();
+
   /* let getAllCategories = await Category.findAll() */
   //Busca todos los cursos
+
+  let getAllCourses = await getAllDataCourses(); //Busca todos los cursos
+
   // console.log(getAllCourses)
   if (category) {
     filterCategory(category, getAllCourses); //Filtra por categoria
@@ -136,20 +129,52 @@ const getCoursesByQuery = async (req, res, name, category, order) => {
   if (order === "maxR") {
     //Ordena por review de mayor a menor
     getAllCourses = getAllCourses.sort(function (a, b) {
-      if (a.rating > b.rating) return -1;
-      if (b.rating > a.rating) return 1;
+      if (a.meanReview > b.meanReview) return -1;
+      if (b.meanReview > a.meanReview) return 1;
       return 0;
     });
   }
   if (order === "minR") {
     //Ordena por review de menor a mayor
     getAllCourses = getAllCourses.sort(function (a, b) {
-      if (a.rating > b.rating) return 1;
-      if (b.rating > a.rating) return -1;
+      if (a.meanReview > b.meanReview) return 1;
+      if (b.meanReview > a.meanReview) return -1;
       return 0;
     });
   }
   res.json(getAllCourses);
+};
+
+const getCourses = async (req, res) => {
+  const { name, category, order } = req.query;
+  if (!name && !category && !order) {
+    getAllCourses(req, res);
+  } else {
+    getCoursesByQuery(req, res, name, category, order);
+  }
+};
+
+const getCourseDetail = async (req, res) => { //Obtiene el detalle de un curso
+  const { id } = req.params;
+  try {
+    let name;
+    try {
+      name = await Course.findOne({ //Busca el curso por id
+        where: {
+          id: id,
+        },
+      });
+    } catch (error) {
+      return res.status(404).send({ message: "Curso no encontrado" }); //Si no encuentra el curso, retorna un error
+    }
+    const detail = await getInfoCourse(name.name); //Obtiene el detalle del curso
+    if (!detail) {
+      return res.status(404).send({ message: "Curso no encontrado" }); //Si no encuentra el curso, retorna un error
+    }
+    res.json(detail); //Envía el detalle del curso
+  } catch (error) {
+    res.status(404).send(error);
+  }
 };
 
 //!no encontre quien llama a este metodo
