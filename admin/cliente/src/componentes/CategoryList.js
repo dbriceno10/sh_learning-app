@@ -6,8 +6,7 @@ import {List, Datagrid, TextField, EditButton, DeleteButton, Edit, TextInput, Si
         <List {...props}>
             <Datagrid rowClick="edit">
                 <TextField source="id"/>
-                <TextField source="name"/>
-                  
+                <TextField source="name"/>   
                 <EditButton basePath="category"/>
                 <DeleteButton basePath="category"/>
             </Datagrid>
@@ -21,8 +20,6 @@ export const CategoryEdit =(props)=>{
             <SimpleForm rowClick="edit">
                 <TextField disabled source="id"/>
                 <TextInput source="name"/>
-                <EditButton basePath="category"/>
-                <DeleteButton basePath="category"/>
             </SimpleForm>
         </Edit>
 
@@ -33,7 +30,6 @@ export const CategoryCreate =(props)=>{
         <Create {...props}>
             <SimpleForm rowClick="edit">
                 <TextInput source="name"/>
-
             </SimpleForm>
         </Create>
 

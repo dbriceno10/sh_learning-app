@@ -26,6 +26,9 @@ server.use((req, res, next) => {
     'Origin, X-Requested-With, Content-Type, Accept'
   );
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  res.header('Access-Control-Expose-Headers', 'Content-Range');
+  res.header('Content-Range', 'bytes:0-9/100');
+ 
   next();
 });
 

@@ -1,8 +1,17 @@
 const { Category} = require("../../../db.js");
 
 const postCategory = async (req, res, next) => {
-    const { categories } = req.body; //categories es un array de categorias
-    try {
+    const { categories , name} = req.body; //categories es un array de categorias
+      try {
+        if (name){
+          await Category.findOrCreate({ //Busca o crea la categoria
+            where: {
+              name: name,
+            },
+          });
+
+      }
+      
       for (const category of categories) { //Recorre el array de categorias
         await Category.findOrCreate({ //Busca o crea la categoria
           where: {

@@ -38,22 +38,42 @@ const provi={
       },
     
     create: (resource, params) =>
-            {if(resource ==="stundets"){
 
-                params.data.role ="alumno"
-            }else if(resource==="teachers"){
-                params.data.role="profesor"
-            }
-            console.log(params)
+    {          
+                 console.log(params)
+        httpClient(`${apiUrl}/${resource}`, {
+            method: 'POST',
+            body: JSON.stringify(params.data),
+        }).then(({ json }) => ({
+            data: { ...params.data, id: json.id },
+        }))
+                 
+        if(resource ==='students'){
+             params.data.role ="alumno"
 
-      httpClient(`${apiUrl}/${'register'}`, {
+            httpClient(`${apiUrl}/${'register'}`, {
           
-        method: 'POST',
-        body: JSON.stringify(params.data),
+            method: 'POST',
+            body: JSON.stringify(params.data),
+            
+            }).then(({ json }) => ({
+                 data: { ...params.data, id: json.id },
+            }))
 
-      }).then(({ json }) => ({
-        data: { ...params.data, id: json.id },
-    }))},
+        }else if(resource==='teachers'){
+            params.data.role="profesor"
+            httpClient(`${apiUrl}/${'register'}`, {
+          
+                 method: 'POST',
+                body: JSON.stringify(params.data),
+            
+            }).then(({ json }) => ({
+                data: { ...params.data, id: json.id },
+            }))
+            }
+
+
+    },
 
     delete: (resource, params) =>
         httpClient(`${apiUrl}/${resource}/${params.id}`, {

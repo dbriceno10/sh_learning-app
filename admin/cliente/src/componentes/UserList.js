@@ -8,7 +8,6 @@ import {List, Datagrid, TextField, EditButton, DeleteButton, Edit, TextInput, Si
                 <TextField source="id"/>
                 <TextField source="name"/>
                 <TextField source="lastName"/>
-                <TextField source="role"/>
                 <TextField source="email"/>          
                 <EditButton basePath="students"/>
                 <DeleteButton basePath="students"/>
@@ -34,11 +33,11 @@ export const UserCreate =(props)=>{
     return(
         <Create {...props}>
             <SimpleForm rowClick="edit">
+            <TextInput  disabled source="id"/>
                 <TextInput source="name"/>
                 <TextInput source="lastName"/>
                 <TextInput source="email"/>   
                 <TextInput source="password"/>  
-                <TextInput source="role"/>
 
 
             </SimpleForm>
