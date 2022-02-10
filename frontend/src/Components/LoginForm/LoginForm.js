@@ -47,13 +47,22 @@ function LoginForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(userLogin);
-    const response = await axios.post("/login", userLogin);
-    console.log(response);
+    try {
+      const res = await axios.post("/login", userLogin);
+      // console.log(res);
+      if(res.data.authorization) {
+        alert("Iniciaste sesion!")
+      } else {
+        alert("Ha ocurrido un error")
+      }
+    } catch (error) {
+      alert("Usuario o Contraseña incorrectos")
+    }
     setUserLogin({
       email: "",
       password: ""
     });
-    // navigate("/profile");
+    // navigate("/home");
   }
 
   return (
