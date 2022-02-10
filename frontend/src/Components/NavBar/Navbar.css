@@ -1,6 +1,10 @@
 .nav-bar {
     margin: .5rem;
 }
+.nav-bar_logo{
+       
+    width: 100%;
+}
 
 .nav-bar .nav-bar_items {
     display        : flex;
@@ -42,25 +46,35 @@
 }
 
 @media screen and (max-width: 67rem) {
-
-    .nav-bar .nav-bar_middle-btns,
-    .nav-bar .nav-bar_cta {
-        display: none;
-    }
-
-    .nav-bar .nav-bar_menu {
-        display: flex;
-    }
-
     
 
-    .nav-bar .nav-bar_menu svg {
-        color         : var(--honeydew);
-        font-size     : 1.5rem;
-        vertical-align: middle;
-    }
+    
 }
 
 @media screen and (max-width: 480px){
-
+    .nav-bar_logo{
+        width: 200px;
+        position: relative;
+        right: 30px;
+    }
+    .nav-bar_item{
+        padding-bottom: 20px;
+    }
+    .login-sign-btns{ 
+        font-size: small;
+        text-align: left;
+        width: 111px;
+        display: inline-block;
+        margin: -10px;
+        position: relative;
+        right: 175%;
+    }
+    .button-flat{
+        display: inline-block;
+        width: 110px;
+        position: relative;
+        top: 100px;
+        right: 180px;
+        text-align: center;
+    }
 }

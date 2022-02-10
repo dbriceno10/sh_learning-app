@@ -33,7 +33,7 @@ export default function Navbar({ isUser }) {
 					</li>
 				</section>
 				<section className="nav-bar_cta">
-					<li className="nav-bar_item">
+					<li className="nav-bar_item" className='login-sign-btns'>
 						<Link
 							to="/login"
 							className="button-raised nav-bar_cta_login"
@@ -41,7 +41,7 @@ export default function Navbar({ isUser }) {
 							Login
 						</Link>
 					</li>
-					<li className="nav-bar_item">
+					<li className="nav-bar_item" className='login-sign-btns'>
 						<Link to="/signUp" className="button-raised" >
 							Sign up
 						</Link>

@@ -1,14 +1,15 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import './Button.css';
+import { Icon } from '@iconify/react';
+import './Buttons.css';
 
+//Button returns a button with two possible types: flat, raised or round
 export default function Button({
     text, link, type, icon
 }) {
+    //link, text and type are passed through props to this component
     if ((typeof link === 'string' && typeof type === 'string')) {
-        console.log('here');
         if (icon && typeof icon === 'string') {
-            console.log('here');
             if (type === 'flat-icon') {
                 if (link.startsWith('/')) {
                     return (
@@ -19,9 +20,9 @@ export default function Button({
                     )
                 } else if (link.startsWith('http', 0)) {
                     return (
-                        <a className="button-flat icon" href={link} target='_blank'>
+                        <a className="button-flat icon" href={link} target="_blank" rel="noreferrer">
                             {text ? <span>{text}</span> : null}
-                            <span className="iconify" data-icon={icon}></span>
+                            <Icon icon={icon} />
                         </a>
                     )
                 }
@@ -35,16 +36,16 @@ export default function Button({
                     )
                 } else if (link.startsWith('http', 0)) {
                     return (
-                        <a className="button-raised icon" href={link} target='_blank'>
+                        <a className="button-raised icon" href={link} target="_blank" rel="noreferrer">
                             {text ? <span>{text}</span> : null}
-                            <span className="iconify" data-icon={icon}></span>
+                            <Icon icon={icon} />
                         </a>
                     )
                 }
             } else if (type === 'round') {
                 return (
                     <Link className="button-round" to={link}>
-                        <span className="iconify" data-icon={icon}></span>
+                        <Icon icon={icon} />
                     </Link>
                 )
             } else {

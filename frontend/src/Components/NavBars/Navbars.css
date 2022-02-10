@@ -12,12 +12,11 @@
 .nav-bar .nav-bar_middle-btns,
 .nav-bar .nav-bar_cta,
 .nav-bar .nav-bar_user-controls {
-
     display: flex;
     gap    : 1rem;
 }
 
-.nav-bar_items .nav-bar_cta .nav-bar_cta_login {
+.nav-bar_items .nav-bar_cta .nav-bar_cta_login a {
     background-color: var(--crayola-yellow);
     color           : var(--dark-purple);
 }

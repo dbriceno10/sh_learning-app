@@ -3,7 +3,7 @@ import {Routes, Route} from 'react-router-dom';
 
 import HomeUser from './Components/HomeUser/HomeUser';
 import LoginForm from './Components/LoginForm/LoginForm';
-import Profile from './Pages/Profile/Profile.js';
+import Profile from './Pages/Profile/Profile';
 import FormRegister from './Components/FormRegister/FormRegister';
 import LandingPage from './Pages/LandingPage/LandingPage';
 import HomeUnlogin from './Components/Home/HomeUnlogin';

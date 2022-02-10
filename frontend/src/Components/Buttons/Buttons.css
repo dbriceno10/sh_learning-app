@@ -23,6 +23,20 @@
     cursor          : pointer;
 }
 
+.button-flat:hover,
+.button-flat:focus,
+.button-flat:focus-visible {
+    background-color: var(--ash-gray);
+    color           : var(--dark-purple);
+}
+
+.button-raised:hover,
+.button-raised:focus,
+.button-raised:focus-visible {
+    background-color: var(--lighter-purple);
+    color           : var(--honeydew);
+}
+
 .button-flat span,
 .button-raised span {
     margin: 0 auto;
@@ -44,6 +58,16 @@
     all             : unset;
     border-radius   : 7rem;
     background-color: var(--ash-gray);
+    padding         : 1rem 1rem;
+    cursor          : pointer;
+}
+
+.button-round:hover,
+.button-round:focus,
+.button-round:focus-visible {
+    all             : unset;
+    border-radius   : 7rem;
+    background-color: var(--ash-gray-lighter);
     padding         : 1rem 1rem;
     cursor          : pointer;
 }

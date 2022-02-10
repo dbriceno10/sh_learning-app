@@ -18,7 +18,7 @@ const Cards = () => {
  
 
 	useEffect(() => {
-    dispatch(getCourses())
+    dispatch(getCourses({}))
 	}, [dispatch]);
 	console.log(courses);
 
