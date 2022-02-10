@@ -61,11 +61,25 @@ const FormRegister = () => {
 								password: password,
 								role: role,
 							};
-							await axios.post("/register", newUser);
-							alert("Felicitaciones! Te has registrado con éxito!");
-							resetForm();
-							navigate("/login");
+							const res = await axios.post("/register", newUser);
+							console.log(res);
+							if (res.statusText === "OK") {
+								alert("Felicitaciones! Te has registrado con éxito!");
+								// setForm({
+								// 	name: "",
+								// 	lastName: "",
+								// 	email: "",
+								// 	password: "",
+								// 	confirmPassword: "",
+								// 	role: "",
+								// });
+								resetForm();
+							} else {
+								alert("Ya existe un usuario registrado con ese email.");
+							}
+							// navigate("/login");
 						}
+
 						//enviar datos
 						// console.log(valores); //estan todos los datos en un objeto
 					}}
