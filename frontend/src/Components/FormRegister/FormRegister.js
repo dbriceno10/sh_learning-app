@@ -1,13 +1,14 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import { loginLocal } from "../../Actions/login.actions"
 import "./FormRegister.css";
+import axios from "axios";
 
 const FormRegister = () => {
 	const dispatch = useDispatch();
 	let navigate = useNavigate();
+
 	return (
 		<>
 			<div className="contenedor">
@@ -18,7 +19,7 @@ const FormRegister = () => {
 						email: "",
 						password: "",
 						confirmPassword: "",
-            role: ""
+						role: "",
 					}}
 					validate={(valores) => {
 						let errores = {};
@@ -49,28 +50,36 @@ const FormRegister = () => {
 						}
 						return errores;
 					}}
-					onSubmit={  (valores, { resetForm }) => {
-            if(!valores.role) {
-              alert("Por favor, elige un rol")
-              return;
-            } else {
-							let { name, lastName, email, password, role } = valores
+					onSubmit={async (valores, { resetForm }) => {
+						if (!valores.role) {
+							alert("Por favor, elige un rol");
+							return;
+						} else {
+							let { name, lastName, email, password, role } = valores;
 							let newUser = {
 								name: name,
 								lastName: lastName,
 								email: email,
 								password: password,
 								role: role,
+							};
+							try {
+								const res = await axios.post("/register", newUser);
+								console.log(res);
+								if (res.statusText === "OK") {
+									alert("Felicitaciones! Te has registrado con éxito!");
+									resetForm();
+									navigate("/login");
+								} else {
+									alert("Ha ocurrido un error");
+								}
+							} catch (error) {
+								alert("Ya existe un usuario registrado con ese email.");
 							}
-							dispatch(loginLocal(newUser));
-							resetForm();
-							alert("Felicitaciones! Te has registrado con éxito!");
-							navigate("/profile")
 						}
 
-
 						//enviar datos
-						console.log(valores); //estan todos los datos en un objeto
+						// console.log(valores); //estan todos los datos en un objeto
 					}}
 				>
 					{({
@@ -154,9 +163,10 @@ const FormRegister = () => {
 									<div className="error">{errors.confirmPassword}</div>
 								)}
 							</div>
-              <h4 className="text-center text-primary h4-role">Registrarse como:</h4>
+							<h4 className="text-center text-primary h4-role">
+								Registrarse como:
+							</h4>
 							<div className="role-container">
-
 								<div>
 									<label name="alumno">Alumno</label>
 									<input

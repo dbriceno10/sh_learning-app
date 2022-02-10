@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express();
-const cors = require('cors');
-const nodemailer = require('nodemailer');
-const bodyParser = require("body-parser");
 const { Student, Teacher } = require("../db");
+const nodemailer = require('nodemailer');
+const cors = require('cors');
+const bodyParser = require("body-parser");
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: true}));

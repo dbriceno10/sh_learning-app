@@ -1,11 +1,8 @@
-import {LOGIN_GOOGLE, LOGIN_LOCAL} from '../Actions/login.actions'
-
+import { LOGIN_GOOGLE } from '../Actions/login.actions'
 
 const initialState = {
-    userGoogleData: [],
-    userLocalData: [],
+    userGoogleData: []
 }
-
 
 function loginReducer(state = initialState, {type, payload}){
     switch(type){
