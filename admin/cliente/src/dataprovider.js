@@ -74,6 +74,13 @@ const provi={
 
 
     },
+    getMany: (resource, params) => {
+        const query = {
+            filter: JSON.stringify({ ids: params.ids }),
+        };
+        const url = `${apiUrl}/${resource}?${stringify(query)}`;
+        return httpClient(url).then(({ json }) => ({ data: json }));
+    },
 
     delete: (resource, params) =>
         httpClient(`${apiUrl}/${resource}/${params.id}`, {

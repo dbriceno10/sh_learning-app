@@ -7,6 +7,7 @@ import {List, Datagrid, TextField, EditButton, DeleteButton, Edit, TextInput, Si
             <Datagrid rowClick="edit">
                 <TextField source="id"/>
                 <TextField source="name"/>
+                <TextField source="avatar"/>
                 <TextField source="lastName"/>
                 <TextField source="email"/>          
                 <EditButton basePath="students"/>
@@ -23,7 +24,9 @@ export const UserEdit =(props)=>{
                 <TextInput  disabled source="id"/>
                 <TextInput source="name"/>
                 <TextInput source="lastName"/>
-                <TextInput source="email"/>          
+                <TextInput source="email"/>  
+                <TextInput source="avatar"/>
+
             </SimpleForm>
         </Edit>
 
@@ -36,6 +39,7 @@ export const UserCreate =(props)=>{
             <TextInput  disabled source="id"/>
                 <TextInput source="name"/>
                 <TextInput source="lastName"/>
+                <TextInput source="avatar"/>
                 <TextInput source="email"/>   
                 <TextInput source="password"/>  
 

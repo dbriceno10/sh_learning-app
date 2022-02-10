@@ -6,7 +6,7 @@ import {Admin,Resource } from 'react-admin';
 import {UserList, UserEdit, UserCreate} from './componentes/UserList';
 import {CoursesList, CoursesEdit, CoursesCreate} from './componentes/CoursesList';
 import {TeachertsList, TeachertsEdit, TeachertsCreate} from './componentes/Teacherts';
-import { CategoryList, CategoryEdit, CategoryCreate } from './componentes/CategoryList';
+import { CategoryList ,CategoryEdit,CategoryCreate} from './componentes/CategoryList';
 import provi from './dataprovider';
 
 
@@ -21,21 +21,21 @@ function App() {
       edit={UserEdit}
       create={UserCreate}/>
  
-     <Resource 
-     name='courses'
-     list={CoursesList}
-     edit={CoursesEdit}
-     create={CoursesCreate}/>
-    <Resource 
-     name='teachers'
-     list={TeachertsList}
-     edit={TeachertsEdit}
-     create={TeachertsCreate}/>
-     <Resource 
-     name='category'
-     list={CategoryList}
-     edit={CategoryEdit}
-     create={CategoryCreate}
+      <Resource 
+      name='courses'
+      list={CoursesList}
+      edit={CoursesEdit}
+      create={CoursesCreate}/>
+      <Resource 
+      name='teachers'
+      list={TeachertsList}
+      edit={TeachertsEdit}
+      create={TeachertsCreate}/>
+      <Resource 
+      name='category'
+      list={CategoryList}
+      edit={CategoryEdit}
+      create={CategoryCreate}
     />
    </Admin>
    
