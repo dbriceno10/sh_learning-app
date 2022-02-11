@@ -8,6 +8,7 @@ import Rating from '@mui/material/Rating';
 import "./Card.css";
 
 const MaterialCard = ({ id, name, image, price, teacher, rating }) => {
+	// console.log(id);
 
   let navigate = useNavigate();
 

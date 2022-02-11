@@ -1,24 +1,41 @@
-:root{
-  --font-title: 'Playfair Display', serif;
-  --crayola-yellow: #EFCB68;
-  --rich-black: #000411;
-  --just-black: #000000;
-  --dark-purple: #160C28;
-  --ash-gray: #AEB7B3;
-  --honeydew: #E1EFE6;
+:root {
+  --font-title           : 'Playfair Display', serif;
+  --crayola-yellow       : #EFCB68;
+  --crayola-yellow-darker: #eabb39;
+  --rich-black           : #000411;
+  --just-black           : #000000;
+  --dark-purple          : #160C28;
+  --lighter-purple       : #2b174f;
+  --ash-gray             : #AEB7B3;
+  --ash-gray-lighter     : #c9cfcc;
+  --honeydew             : #E1EFE6;
+  --honeydew-darker      : hsl(141, 30%, 81%);
+  --nice-gray            : #C4C4C4;
 }
 
 html {
-  box-sizing: border-box;
-  font-family: 'Mukta', sans-serif;
+  box-sizing     : border-box;
+  font-family    : 'Mukta', sans-serif;
+  scroll-behavior: smooth;
 }
 
 *,
 *:before,
 *:after {
   box-sizing: inherit;
-  margin: 0;
-  padding: 0;
+  margin    : 0;
+  padding   : 0;
+}
+
+.title {
+  font-family: var(--font-title);
+}
+
+.page-container {
+  height   : 100%;
+  width    : 90%;
+  max-width: 1800px;
+  margin   : 0 auto;
 }
 
 .dark {

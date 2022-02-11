@@ -1,10 +1,9 @@
-import { GET_COURSES,GET_CATEGORIES, GET_COURSE_DETAIL, CLEAR_PAGE, SET_ORDER} from "../Actions/courses.actions";
+import { GET_COURSES,GET_CATEGORIES, GET_COURSE_DETAIL, CLEAR_PAGE} from "../Actions/courses.actions";
 
 const initialState = {
   courses: [],
   categories:[],
   courseDetail: undefined,
-  order: ""
 }
 
 const coursesReducer = (state = initialState, { type, payload }) => {
@@ -12,7 +11,7 @@ const coursesReducer = (state = initialState, { type, payload }) => {
     case GET_COURSES:
       return {
         ...state,
-        courses: payload
+        courses: payload,
       }
     case GET_CATEGORIES:
       return{
@@ -28,11 +27,6 @@ const coursesReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         courseDetail: undefined
-      }
-    case SET_ORDER:
-      return{
-        ...state,
-        order: payload
       }
       default:
        return state

@@ -1,0 +1,9 @@
+.user-homepage {
+    font-weight: 600;
+    overflow-x : hidden;
+}
+
+.user-homepage .user-homepage_header {
+    margin-top: 2rem;
+    font-size : 3ch;
+}

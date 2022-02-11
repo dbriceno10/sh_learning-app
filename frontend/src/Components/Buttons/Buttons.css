@@ -1,19 +1,27 @@
+.button {
+    all: unset;
+}
+
 .button-flat {
+    width           : 100%;
     border          : none;
-    border-radius   : 0.2em;
-    padding         : .5em 1em;
-    background-color: var(--ash-gray);
+    border-radius   : 0.4rem;
+    padding         : .6rem 1rem;
+    background-color: hsla(260, 40%, 78%, 0.2);
     color           : var(--dark-purple);
+    border          : .125rem solid var(--dark-purple);
     display         : flex;
     justify-content : space-between;
     align-items     : center;
     cursor          : pointer;
+    font-weight     : 600;
+    transition      : all ease-in-out .5s;
 }
 
 .button-raised {
-    all             : unset;
-    border-radius   : 0.4em;
-    padding         : .5em 1em;
+    width           : 100%;
+    border-radius   : 0.6rem;
+    padding         : .8rem 1rem;
     background-color: var(--dark-purple);
     color           : var(--honeydew);
     text-transform  : uppercase;
@@ -21,20 +29,26 @@
     justify-content : space-between;
     align-items     : center;
     cursor          : pointer;
+    font-weight     : 600;
+    transition      : all ease-in-out .5s;
 }
 
 .button-flat:hover,
-.button-flat:focus,
 .button-flat:focus-visible {
-    background-color: var(--ash-gray);
-    color           : var(--dark-purple);
+    background-color   : var(--dark-purple);
+    color              : var(--honeydew);
+    /* border          : .2rem solid var(--dark-purple); */
+    font-weight        : 700;
+    transform          : scale(.9);
+    transition         : all ease-in-out .3s;
 }
 
 .button-raised:hover,
-.button-raised:focus,
 .button-raised:focus-visible {
     background-color: var(--lighter-purple);
     color           : var(--honeydew);
+    transform       : scale(.9);
+    transition      : all ease-out .3s;
 }
 
 .button-flat span,
@@ -55,17 +69,15 @@
 }
 
 .button-round {
-    all             : unset;
     border-radius   : 7rem;
     background-color: var(--ash-gray);
     padding         : 1rem 1rem;
     cursor          : pointer;
+    font-weight     : 600;
 }
 
 .button-round:hover,
-.button-round:focus,
 .button-round:focus-visible {
-    all             : unset;
     border-radius   : 7rem;
     background-color: var(--ash-gray-lighter);
     padding         : 1rem 1rem;
@@ -76,4 +88,30 @@
     font-size     : 2rem;
     color         : var(--dark-purple);
     vertical-align: middle;
+}
+
+.button .tooltip {
+    position: relative;
+}
+
+.button .tooltip .tooltip_text {
+    visibility      : hidden;
+    height          : -moz-fit-content;
+    height          : fit-content;
+    width           : 100%;
+    background-color: black;
+    color           : #fff;
+    text-align      : center;
+    border-radius   : 0.4rem;
+    padding         : 0.5rem;
+    position        : absolute;
+    z-index         : 1;
+    bottom          : -2.5rem;
+    left            : -1rem;
+    margin          : 0 0.5rem;
+    font-size       : 1.2ch;
+}
+
+.button .tooltip:hover .tooltip_text {
+    visibility: visible;
 }
