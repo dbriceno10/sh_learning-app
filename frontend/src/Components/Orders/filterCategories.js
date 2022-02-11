@@ -2,16 +2,19 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories, getCourses } from '../../Actions/courses.actions';
 import styles from './Orders.module.css'
+import { setFilterCategory } from '../../Actions/filter.actions';
 
 
 function FilterCategories() {
   const dispatch = useDispatch();
   const {categories} = useSelector(state => state.courses)
+    const {order} = useSelector(state => state.filters)  
   console.log(categories)
 
 
   const handleClick = (e)  =>  {
-    dispatch(getCourses({ category: e.target.value }))
+    dispatch(setFilterCategory(e.target.value))
+    dispatch(getCourses({ category: e.target.value, order}))
   }
   useEffect(e => {
     dispatch(getCategories({}))
