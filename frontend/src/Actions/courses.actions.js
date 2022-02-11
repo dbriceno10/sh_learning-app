@@ -7,10 +7,11 @@ export const GET_CATEGORIES='GET_CATEGORIES'
 export const SET_ORDER = 'SET_ORDER'
 
 
-export const getCourses = ({order, name, category}) => async (dispatch) => {
+export const getCourses = ({order,category}) => async (dispatch) => {
 
 
-    const courses = await axios.get(`/courses?order=${order}&name=${name}&category=${category}`)
+    const courses = await axios.get(`/courses?order=${order? order : ""}&category=${category? category: ""}`)
+    console.log(courses.data)
     return  dispatch({
       type: GET_COURSES,
       payload: courses.data

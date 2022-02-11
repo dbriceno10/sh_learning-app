@@ -21,7 +21,7 @@ const Cards = () => {
 	useEffect(() => {
     dispatch(getCourses({}))
 	}, [dispatch]);
-	console.log(courses);
+	console.log(courses); 
 
 	/* const fetchCourses = async () => {
 		const res = await fetch(
@@ -53,7 +53,7 @@ const Cards = () => {
                 />
 			{
 			
-			courses.filter(val => {
+			 courses.filter(val => {
 				if(searchTerm == ""){
 					return val
 				} else if (val.name.toLowerCase().includes(searchTerm.toLowerCase())){
