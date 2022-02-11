@@ -47,22 +47,27 @@ function LoginForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(userLogin);
+    if(!userLogin.email || !userLogin.password) {
+      alert("Completa los campos");
+      return;
+    }
     try {
       const res = await axios.post("/login", userLogin);
       // console.log(res);
       if(res.data.authorization) {
+        window.localStorage.setItem("userCredentials", JSON.stringify(res.data));
         alert("Iniciaste sesion!")
+        setUserLogin({
+          email: "",
+          password: ""
+        });
+        navigate("/home");
       } else {
         alert("Ha ocurrido un error")
       }
     } catch (error) {
-      alert("Usuario o Contraseña incorrectos")
+      alert("Usuario o contraseña incorrectos")
     }
-    setUserLogin({
-      email: "",
-      password: ""
-    });
-    // navigate("/home");
   }
 
   return (
