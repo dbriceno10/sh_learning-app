@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getCourses } from '../../Actions/courses.actions';
+import { setFilterCategory } from '../../Actions/filter.actions';
 import './CategoryFiltering.css';
 
 function CategoryFiltering({ category, setrenderizado, renderizado }) {
   const dispatch = useDispatch();
+  const { order } = useSelector(state => state.filters)
   function handleCategories(e) {
     if (e.target.checked) {
       // setrenderizado({
@@ -13,7 +15,8 @@ function CategoryFiltering({ category, setrenderizado, renderizado }) {
       // })
       // dispatch ( getCourses(e.target.value))
       // console.log(renderizado)
-      dispatch(getCourses({ category: e.target.value }));
+      dispatch(setFilterCategory(e.target.value))
+      dispatch(getCourses({ category: e.target.value, order }))
       console.log('I dispatched it')
       console.log(e.target.value)
     }

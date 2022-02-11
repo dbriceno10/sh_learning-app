@@ -35,6 +35,10 @@ const Cards = ({ searchTerm }) => {
 	}, [dispatch]);
 	console.log(courses);
 
+	const handleClick = (e) => {
+		dispatch(getCourses({}))
+	}
+
 
 	// const fetchCourses = async () => {
 	// 	const res = await fetch(
@@ -57,6 +61,7 @@ const Cards = ({ searchTerm }) => {
  */
 	return (
 		<section className="cards">
+			<button type="button" onClick={handleClick}>Reset</button>
 			{/* <input
 				type="text"
 				className='input'
@@ -92,6 +97,46 @@ const Cards = ({ searchTerm }) => {
 };
 
 export default Cards;
+
+// {/* <InfiniteScroll
+// 		<div style={{display: "flex", flexWrap: "wrap"}}>
+
+// 				<input
+//                     type="text"
+//                     /* className={styles.input} */
+//                     onChange={e => setSearchTerm(e.target.value)}
+//                     placeholder="Buscar..."
+//                 />
+// 				<button type="button" onClick={handleClick}>Reset</button>
+// 			{
+
+// 			 courses.filter(val => {
+// 				if(searchTerm == ""){
+// 					return val
+// 				} else if (val.name.toLowerCase().includes(searchTerm.toLowerCase())){
+// 					return val
+// 				}
+// 			}).map((c) => {
+// 			return (
+// 				<MaterialCard
+// 					key={c.id}
+// 					id={c.id}
+// 					name={c.name}
+// 					description={c.description}
+// 					image={c.img}
+// 					teacher="Instructor del curso"
+// 					price={c.price}
+// 					rating={c.score}
+// 				/>
+// 			);
+// 		})
+
+// 		}
+// 		</div>
+// 		);
+// 	};
+
+// 	export default Cards;
 
 {/* <InfiniteScroll
 		className="cards-container"

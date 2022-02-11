@@ -1,14 +1,16 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getCourses } from "../../Actions/courses.actions";
 import './Sorting.css';
 
 const Sorting = () => {
     const dispatch = useDispatch();
+    const { category } = useSelector(state => state.filters)
 
     const handleOrder = (e) => {
         // dispatch(setOrder(e.target.value))
-        dispatch(getCourses({ order: e.target.value }))
+        dispatch(setOrder(e.target.value))
+        dispatch(getCourses({ order: e.target.value, category }))
     }
     return (
         <section className="sorting">
