@@ -47,6 +47,7 @@ const postUser = async (req, res) => {
               avatar,
               salt: newSalt,
               authorization: false,
+              role: "alumno",
             });
             user = student; //guardamos el usuario en la variable
           } else {
@@ -59,6 +60,7 @@ const postUser = async (req, res) => {
               avatar,
               salt: newSalt,
               authorization: false,
+              role: "profesor",
             });
             user = teacher; //guardamos el usuario en la variable
           }

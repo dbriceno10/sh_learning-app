@@ -9,7 +9,6 @@ const { Student, Teacher } = require("../db");
 router.post("/", async (req, res, next) => {
   const { email, password } = req.body;
   try {
-    let user; //creamos una variable para guardar el usuario
     let role;
     let DbUser = await Student.findOne({ where: { email } }); //buscamos el usuario en la tabla de estudiantes
     role = "alumno";
@@ -19,19 +18,20 @@ router.post("/", async (req, res, next) => {
       role = "profesor";
       if (!DbUser) return res.status(404).send("usuario invalido");
     }
-    user = DbUser; //guardamos el usuario en la variable
     crypto.pbkdf2(
       //utilizamos la libreria crypto para encriptar la contraseña
       password, //contraseña a encriptar
-      user.salt, //salt guardado en base de datos
+      DbUser.salt, //salt guardado en base de datos
       parseInt(ITERATIONS), //iteraciones
       parseInt(LONG_ENCRYPTION), //longitud de la contraseña encriptada
       ENCRYPT_ALGORITHM, //algoritmo de encriptación
       async (error, key) => {
         const encryptedPassword = key.toString(BASE); //encriptamos la contraseña
-        if (user.password === encryptedPassword) {
+        if (DbUser.password === encryptedPassword) {
           //comparamos la contraseña encriptada con la guardada en la base de datos
-          return res.status(200).send({ authorization: true, role });
+          return res
+            .status(200)
+            .send({ authorization: true, role: role, id: DbUser.id });
         }
         return res.status(404).send({ authorization: false });
       }

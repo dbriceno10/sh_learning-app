@@ -81,7 +81,9 @@ const getInfoCourse = async (name) => {
   }
 };
 
+
  const getAllCourses = async (req, res) => {
+
   try {
     let getAllCourses = await getAllDataCourses(); //Busca todos los cursos
     console.log("GET ALL COURSES", getAllCourses)
@@ -91,7 +93,9 @@ const getInfoCourse = async (name) => {
     console.error(error);
     res.status(404).send(error);
   }
+
 }; 
+
 
 const getCoursesByQuery = async (req, res, category, order) => {
   //name, category, order

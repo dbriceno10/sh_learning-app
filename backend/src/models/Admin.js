@@ -4,7 +4,7 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define(
-    "teacher",
+    "admin",
     {
       id: {
         type: DataTypes.UUID, //genera un identidicador numérico único
@@ -49,7 +49,7 @@ module.exports = (sequelize) => {
       role: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: "profesor",
+        defaultValue: "admin",
       },
     },
     {
