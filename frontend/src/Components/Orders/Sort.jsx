@@ -1,14 +1,15 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setOrder } from "../../Actions/courses.actions";
 import { getCourses } from "../../Actions/courses.actions";
 
 const Order = () =>{
   const dispatch = useDispatch();
 
+  const {category} = useSelector(state => state.filters)
   const handleOrder = (e) =>{
-    dispatch(setOrder(e.target.value))
-    dispatch(getCourses({order: e.target.value}))
+      dispatch(setOrder(e.target.value))
+    dispatch(getCourses({order: e.target.value, category }))
   }
   return (
     <div>

@@ -5,6 +5,7 @@ import Loader from "../Loader/Loader";
 import Message from "../Message/Message";
 import {getCourses} from "../../Actions/courses.actions"
 import { useDispatch, useSelector } from "react-redux";
+import FilterCategories from "../Orders/filterCategories";
 
 
 const Cards = () => {
@@ -20,7 +21,7 @@ const Cards = () => {
 	useEffect(() => {
     dispatch(getCourses({}))
 	}, [dispatch]);
-	console.log(courses);
+	console.log(courses); 
 
 	/* const fetchCourses = async () => {
 		const res = await fetch(
@@ -52,7 +53,7 @@ const Cards = () => {
                 />
 			{
 			
-			courses.filter(val => {
+			 courses.filter(val => {
 				if(searchTerm == ""){
 					return val
 				} else if (val.name.toLowerCase().includes(searchTerm.toLowerCase())){
