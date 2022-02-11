@@ -70,7 +70,7 @@ export default function Navbar({ isUser }) {
                             <li className="nav-bar_item">
                                 <div className="nav-bar_cta_login">
                                     <Button
-                                        link={'#why-section'}
+                                        link={'/login'}
                                         type={'raised'}
                                         text={'Login'}
                                     ></Button>

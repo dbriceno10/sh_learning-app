@@ -3,19 +3,19 @@ import axios from "axios";
 export const GET_COURSES = "GET_COURSES";
 export const GET_COURSE_DETAIL = 'GET_COURSE_DETAIL';
 export const CLEAR_PAGE = 'CLEAR_PAGE';
-export const GET_CATEGORIES='GET_CATEGORIES'
+export const GET_CATEGORIES = 'GET_CATEGORIES'
 export const SET_ORDER = 'SET_ORDER'
 
 
-export const getCourses = ({order, name, category}) => async (dispatch) => {
+export const getCourses = ({ order, name, category }) => async (dispatch) => {
 
 
-    const courses = await axios.get(`/courses?order=${order}&name=${name}&category=${category}`)
-    return  dispatch({
-      type: GET_COURSES,
-      payload: courses.data
-    })
-  }
+  const courses = await axios.get(`/courses?order=${order}&name=${name}&category=${category}`)
+  return dispatch({
+    type: GET_COURSES,
+    payload: courses.data
+  })
+}
 
 export const getCategories = () => {
   return async (dispatch) => {
@@ -30,9 +30,9 @@ export const getCategories = () => {
 export const getCourseDetail = (id) => {
   return async (dispatch) => {
 
- 
 
-    const course = await axios.get(`/cursos/${id}`)
+
+    const course = await axios.get(`/courses/${id}`)
 
     dispatch({
       type: GET_COURSE_DETAIL,
@@ -49,7 +49,7 @@ export const clearPage = () => {
 }
 
 export const setOrder = (payload) => {
-  return{
+  return {
     type: SET_ORDER,
     payload: payload
   }

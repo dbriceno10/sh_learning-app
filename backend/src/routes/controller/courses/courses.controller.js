@@ -100,63 +100,63 @@ const getCoursesByQuery = async (req, res, name, category, order) => {
   //Busca todos los cursos
 
   let getAllCourses = await getAllDataCourses(); //Busca todos los cursos
-  
 
-  
+
+
   // console.log(getAllCourses)
-  
+
   /* if (name) {
     getAllCourses.filter(
       (x) => x.name.toLowerCase().includes(name.toLowerCase()) //Filtra por nombre
       );
     } */
-    if (order === "maxP") {
-      //Ordena por precio de mayor a menor
-      getAllCourses = getAllCourses.sort(function (a, b) {
-        if (a.price > b.price) return -1;
-        if (b.price > a.price) return 1;
-        return 0;
-      });
-    }
-    if (order === "minP") {
-      //Ordena por precio de menor a mayor
-      getAllCourses = getAllCourses.sort(function (a, b) {
-        if (a.price > b.price) return 1;
-        if (b.price > a.price) return -1;
-        return 0;
-      });
-    }
-    if (order === "maxR") {
-      //Ordena por review de mayor a menor
-      getAllCourses = getAllCourses.sort(function (a, b) {
-        if (a.meanReview > b.meanReview) return -1;
-        if (b.meanReview > a.meanReview) return 1;
-        return 0;
-      });
-    }
-    if (order === "minR") {
-      //Ordena por review de menor a mayor
-      getAllCourses = getAllCourses.sort(function (a, b) {
-        if (a.meanReview > b.meanReview) return 1;
-        if (b.meanReview > a.meanReview) return -1;
-        return 0;
-      });
-    }
-    if (category) {
-      let filteredCourse = getAllCourses.filter(e => e.category.includes(category))
-      
-      } 
-   
-    res.json(getAllCourses);
-  };
-  
-  const getCourses = async (req, res) => {
-    const { name, category, order } = req.query;
-    if (!name && !category && !order) {
-      getAllCourses(req, res);
-    } else {
-      getCoursesByQuery(req, res, name, category, order);
-    }
+  if (order === "maxP") {
+    //Ordena por precio de mayor a menor
+    getAllCourses = getAllCourses.sort(function (a, b) {
+      if (a.price > b.price) return -1;
+      if (b.price > a.price) return 1;
+      return 0;
+    });
+  }
+  if (order === "minP") {
+    //Ordena por precio de menor a mayor
+    getAllCourses = getAllCourses.sort(function (a, b) {
+      if (a.price > b.price) return 1;
+      if (b.price > a.price) return -1;
+      return 0;
+    });
+  }
+  if (order === "maxR") {
+    //Ordena por review de mayor a menor
+    getAllCourses = getAllCourses.sort(function (a, b) {
+      if (a.meanReview > b.meanReview) return -1;
+      if (b.meanReview > a.meanReview) return 1;
+      return 0;
+    });
+  }
+  if (order === "minR") {
+    //Ordena por review de menor a mayor
+    getAllCourses = getAllCourses.sort(function (a, b) {
+      if (a.meanReview > b.meanReview) return 1;
+      if (b.meanReview > a.meanReview) return -1;
+      return 0;
+    });
+  }
+  if (category) {
+    let filteredCourse = getAllCourses.filter(e => e.category.includes(category))
+
+  }
+
+  res.json(getAllCourses);
+};
+
+const getCourses = async (req, res) => {
+  const { name, category, order } = req.query;
+  if (!name && !category && !order) {
+    getAllCourses(req, res);
+  } else {
+    getCoursesByQuery(req, res, name, category, order);
+  }
 };
 
 const getCourseDetail = async (req, res) => { //Obtiene el detalle de un curso
