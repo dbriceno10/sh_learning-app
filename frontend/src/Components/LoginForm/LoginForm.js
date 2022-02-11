@@ -9,11 +9,6 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
-const initialObj = {
-  email: "",
-  password: ""
-}
-
 function LoginForm() {
 	const [seePassword, setSeePassword] = useState(false);
 	const [userLogin, setUserLogin] = useState({
@@ -153,7 +148,6 @@ function LoginForm() {
 							<Link
 								to="/changepassword"
 								className="formLinks"
-								onClick={() => alert("Redirigir a reseteo de contraseña")}
 							>
 								¿Olvidaste tu contraseña?
 							</Link>

@@ -10,7 +10,7 @@ router.use(cors());
 
 
 router.put('/confirm', async (req, res) => {
-  const email = req.query.email;  
+  const { email } = req.body;  
   try{
     const verifyEmailStudent = await Student.findOne({ where: { email } }); 
     if (verifyEmailStudent) {
@@ -58,7 +58,11 @@ router.put('/forgotpassword', async (req, res) => {
           email
         }
       });
+      res.send('Contraseña cambiada');
+    } else {
+      res.status(400).send("Email incorrecto")
     }
+    
     let verifyEmailTeacher = await Teacher.findOne({ where: { email } }); 
     if (verifyEmailTeacher) {
       await Teacher.update({
@@ -69,9 +73,9 @@ router.put('/forgotpassword', async (req, res) => {
           email
         }
       });
-    }
-    else{
-      res.send('Email incorrecto o inexistente.');
+      res.send('Contraseña cambiada');
+    } else {
+      res.status(400).send("Email incorrecto")
     }
   }catch (error){
     res.sendStatus(500).send(error);

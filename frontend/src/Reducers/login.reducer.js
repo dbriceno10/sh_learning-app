@@ -11,11 +11,6 @@ function loginReducer(state = initialState, {type, payload}){
             ...state,
             userGoogleData: [...state.userGoogleData, payload]
         }
-        case LOGIN_LOCAL:
-            return {
-                ...state,
-                userLocalData: [...state.userLocalData, payload]
-            }
         default:
         return state;
     }

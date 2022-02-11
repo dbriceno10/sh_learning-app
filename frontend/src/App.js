@@ -9,6 +9,7 @@ import HomeUnlogin from "./Components/Home/HomeUnlogin";
 import CourseDetail from "./Pages/CourseDetail/CourseDetail";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import Forgotpassword from './Components/LoginForm/Forgotpassword';
+import ConfirmForm from "./Components/FormRegister/ConfirmForm";
 
 function App() {
 	// copy and paste for new component route ⬇⬇⬇⬇⬇
@@ -27,6 +28,7 @@ function App() {
 			<Route path="/unlogin" element={<HomeUnlogin />} />
 			<Route exact path="/courses/:id" element={<CourseDetail />} />
 			<Route path = '/changepassword' element = {<Forgotpassword/>}/>
+			<Route path = '/confirmUser' element = {<ConfirmForm/>}/>
 		</Routes>
 	);
 }

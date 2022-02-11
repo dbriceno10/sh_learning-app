@@ -66,7 +66,7 @@ const postUser = async (req, res) => {
                  subject: "Confirmar cuenta", // Subject line
                 html: `
                 <h1>Hola ${name}</h1>
-                <h2>Entra al link para confirmar tu cuenta http://localhost:3001/confirmput/confirm?email=${email}</h2>
+                <h2>Entra al siguiente link para confirmar tu cuenta <a href="http://localhost:3000/confirmUser" target="_blank" rel="noreferrer">Confirmar mi cuenta</a></h2>
                 `, 
               });
             Transport.sendMail(info, (error, response) => {
@@ -106,7 +106,7 @@ const postUser = async (req, res) => {
                  subject: "Confirmar cuenta", // Subject line
                 html: `
                 <h1>Hola ${name}</h1>
-                <h2>Entra al link para confirmar tu cuenta http://localhost:3001/confirmput/confirm?email=${email}</h2>
+                <h2>Entra al siguiente link para confirmar tu cuenta <a href="http://localhost:3000/confirmUser" target="_blank" rel="noreferrer">Confirmar mi cuenta</a></h2>
                 `, 
               });
             Transport.sendMail(info, (error, response) => {
