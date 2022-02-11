@@ -1,83 +1,85 @@
-/* #160c28 violeta
-efcb68 amarillo
-e1efe6 gris claro
-aeb7b3 gris oscurito
-000411 negro */ 
-
-.detailContainer {
-  display: flex;
-  flex-direction: column;
+.course-details {
+  font-weight: 600;
 }
 
-.courseDetails {
-  display: flex;
-  flex-direction: column;
-  margin: 1rem;
+.course-details_card {
+  height               : 100%;
+  width                : 100%;
+  display              : grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin               : 2rem 0;
+  align-items          : flex-start;
+  justify-content      : space-between;
+  background-color     : white;
+  border-radius        : 1.5rem;
+  /* inset | offset-x | offset-y | color */
+  box-shadow           : 2.3px 16.9px 6.4px hsla(0, 0%, 0%, 0.03), 18px 135px 51px hsla(0, 0%, 49%, 0.37);
 }
 
-.goBackBtn {
-  padding: .5rem;
-  margin: 1rem;
-  background-color: #efcb68;
-  border-radius: 4px;
-  border: none;
-  transition: .2s;
+.course-details_card .course-details_image {
+  width        : 100%;
+  height       : 100%;
+  border-radius: 1.5rem 0 0 1.5rem;
+}
+
+.course-details_card .course-details_info {
+  height         : 100%;
+  width          : 100%;
+  display        : flex;
+  flex-direction : column;
+  justify-content: space-between;
+  gap            : 1rem;
+  padding        : 2rem;
+}
+
+.course-details_card .course-details_info_header {
+  font-size      : 3.5ch;
+  display        : flex;
+  justify-content: space-between;
+  align-items    : flex-start;
+}
+
+.course-details_card .course-details_info_header .favorite-btn {
+  font-size : 2ch;
+  margin-top: 1rem;
+  cursor    : pointer;
+}
+
+.course-details_card .course-details_info_author {
+  color      : var(--ash-gray);
+  font-weight: 400;
+}
+
+.course-details .page-container .course-details_back-btn a {
+  background-color: var(--crayola-yellow);
+  color           : var(--dark-purple);
+}
+
+.course-details .page-container .course-details_back-btn a:hover {
+  background-color: var(--crayola-yellow-darker);
+  color           : var(--lighter-purple);
 }
 
 .goBackBtn:hover {
-  cursor: pointer;
+  cursor            : pointer;
   -webkit-box-shadow: 0px 5px 10px 0px rgba(128, 128, 128, 0.45);
-	-moz-box-shadow: 0px 5px 10px 0px rgba(128, 128, 128, 0.45);
-	box-shadow: 0px 5px 10px 0px rgba(128, 128, 128, 0.45);
-  transition: .2s;
+  -moz-box-shadow   : 0px 5px 10px 0px rgba(128, 128, 128, 0.45);
+  box-shadow        : 0px 5px 10px 0px rgba(128, 128, 128, 0.45);
+  transition        : .2s;
 }
 
 a:hover {
   background-color: transparent;
-  cursor: default;
+  cursor          : default;
 }
 
 .actionsButtons {
-  display: flex;
-  justify-content: space-evenly;
+  display        : flex;
+  justify-content: space-between;
 }
 
 .favouriteIcon {
   cursor: pointer;
 }
 
-.buyBtn {
-  background-color: transparent;
-  border: .5px solid #aeb7b3;
-  border-radius: 4px;
-  padding: .25rem;
-  color: #160c28;
-  cursor: pointer;
-  transition: .3s;
-}
-
-.buyBtn:hover {
-  background-color: #160c28;
-  color: #fff;
-  transition: .3s;
-}
-
-@media (min-width: 700px) {
-  .detailContainer {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .imgDetail {
-    width: 100%;
-    height: 100%;
-  }
-
-  .courseDetails {
-    border-top: 1px solid #160c28;
-    border-bottom: 1px solid #160c28;
-    margin: 0 1rem;
-    padding-top: 1rem;
-    padding-bottom: .5rem;
-  }
-}
+@media screen and (max-width: 72rem) {}
