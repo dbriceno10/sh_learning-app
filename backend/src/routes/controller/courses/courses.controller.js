@@ -8,13 +8,12 @@ const getAllDataCourses = async () => {
       attributes: ["name"],
     });
     let arrayAllCoursesInfo = []; //Array que contendrá todos los cursos
-    // console.log(getAllCourses);
+     console.log("aaaaAAAA", getAllCourses);
     for (const courseName of getAllCourses) { //Recorre todos los cursos
       // console.log('courseName',courseName.dataValues.name);
       let temporaryInfo = await getInfoCourse(courseName.dataValues.name); //Obtiene la información del curso
       arrayAllCoursesInfo.push(temporaryInfo); //Agrega la información del curso al array
-    }
-    console.log("AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII", arrayAllCoursesInfo)//Envía el array con todos los cursos
+    }//Envía el array con todos los cursos
     return arrayAllCoursesInfo;
     // getInfoCourse(name)
   } catch (error) {
@@ -82,24 +81,26 @@ const getInfoCourse = async (name) => {
   }
 };
 
-/* const getAllCourses = async (req, res) => {
+ const getAllCourses = async (req, res) => {
   try {
     let getAllCourses = await getAllDataCourses(); //Busca todos los cursos
+    console.log("GET ALL COURSES", getAllCourses)
     res.json(getAllCourses); //Envía el array con todos los cursos
     // getInfoCourse(name)
   } catch (error) {
     console.error(error);
     res.status(404).send(error);
   }
-}; */
+}; 
 
-const getCoursesByQuery = async (req, res, name, category, order) => {
+const getCoursesByQuery = async (req, res, category, order) => {
   //name, category, order
 
   /* let getAllCategories = await Category.findAll() */
   //Busca todos los cursos
 
-  let getAllCourses = await getAllDataCourses(); //Busca todos los cursos
+  let getAllCourses = await getAllDataCourses();
+  console.log("000000000000000",getAllCourses); //Busca todos los cursos
   
 
   
@@ -143,19 +144,20 @@ const getCoursesByQuery = async (req, res, name, category, order) => {
       });
     }
     if (category) {
-      let filteredCourse = getAllCourses.filter(e => e.category.includes(category))
-      
+      getAllCourses = await getAllCourses.filter(e => e.category.includes(category))
+      console.log("filtro o no filtro? caralhoooo")
       } 
    
+      console.log("111111111111", getAllCourses);
     res.json(getAllCourses);
   };
   
   const getCourses = async (req, res) => {
-    const { name, category, order } = req.query;
-    if (!name && !category && !order) {
+    const {category, order } = req.query;
+    if (category === undefined && order === undefined) {
       getAllCourses(req, res);
     } else {
-      getCoursesByQuery(req, res, name, category, order);
+      getCoursesByQuery(req, res, category, order);
     }
 };
 
