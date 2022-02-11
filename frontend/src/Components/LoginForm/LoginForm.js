@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from 'react-router-dom';
-import GoogleLogin from 'react-google-login';
+import { Link } from "react-router-dom";
+import GoogleLogin from "react-google-login";
 import { loginGoogle } from "../../Actions/login.actions";
+<<<<<<< HEAD
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './LoginForm.css';
 import axios from 'axios';
+=======
+import { useNavigate } from "react-router-dom";
+import "./LoginForm.css";
+import axios from "axios";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+>>>>>>> f801a2600bb7ddb0cdfe66e32b9782ec379c563e
 
 const initialObj = {
   email: "",
@@ -14,143 +22,187 @@ const initialObj = {
 }
 
 function LoginForm() {
-  const [seePassword, setSeePassword] = useState(false);
-  const [userLogin, setUserLogin] = useState({
-    email: "",
-    password: ""
-  });
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+	const [seePassword, setSeePassword] = useState(false);
+	const [userLogin, setUserLogin] = useState({
+		email: "",
+		password: "",
+	});
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
-  const onClick = () => {
-    setSeePassword(!seePassword);
-  };
+	const onClick = () => {
+		setSeePassword(!seePassword);
+	};
 
-  const respuestaGoogle = (respuesta) => {
-    console.log(respuesta);
-    console.log(respuesta.profileObj);
-    let userData = {
-      firstName: respuesta.profileObj.givenName,
-      lastName: respuesta.profileObj.familyName,
-      image: respuesta.profileObj.imageUrl,
-      email: respuesta.profileObj.email,
-      tokenId: respuesta.tokenId
-    }
-    console.log(userData)
-    localStorage.setItem("user", JSON.stringify(userData));
-    navigate('/profile')
-    return dispatch(loginGoogle(userData))
-  };
+	const respuestaGoogle = (respuesta) => {
+		console.log(respuesta);
+		console.log(respuesta.profileObj);
+		let userData = {
+			firstName: respuesta.profileObj.givenName,
+			lastName: respuesta.profileObj.familyName,
+			image: respuesta.profileObj.imageUrl,
+			email: respuesta.profileObj.email,
+			tokenId: respuesta.tokenId,
+		};
+		console.log(userData);
+		localStorage.setItem("user", JSON.stringify(userData));
+		navigate("/profile");
+		return dispatch(loginGoogle(userData));
+	};
 
-  const handleChange = (e) => {
-    setUserLogin({
-      ...userLogin,
-      [e.target.name]: e.target.value
-    })
-  }
-  console.log(userLogin);
+	const handleChange = (e) => {
+		setUserLogin({
+			...userLogin,
+			[e.target.name]: e.target.value,
+		});
+	};
+	console.log(userLogin);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log(userLogin);
-    if(!userLogin.email || !userLogin.password) {
-      alert("Completa los campos");
-      return;
-    }
-    try {
-      const res = await axios.post("/login", userLogin);
-      // console.log(res);
-      if(res.data.authorization) {
-        window.localStorage.setItem("userCredentials", JSON.stringify(res.data));
-        alert("Iniciaste sesion!")
-        setUserLogin({
-          email: "",
-          password: ""
-        });
-        navigate("/home");
-      } else {
-        alert("Ha ocurrido un error")
-      }
-    } catch (error) {
-      alert("Usuario o contraseña incorrectos")
-    }
-  }
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		console.log(userLogin);
+		if (!userLogin.email || !userLogin.password) {
+			alert("Completa los campos");
+			return;
+		}
+		try {
+			const res = await axios.post("/login", userLogin);
+			// console.log(res);
+			if (res.data.authorization) {
+				window.localStorage.setItem(
+					"userCredentials",
+					JSON.stringify(res.data)
+				);
+				MySwal.fire({
+					position: "center-center",
+					icon: "success",
+					title: "Has iniciado sesión correctamente",
+					showConfirmButton: false,
+					timer: 2500,
+				});
+				setUserLogin({
+					email: "",
+					password: "",
+				});
+				navigate("/home");
+			} else {
+				alert("Ha ocurrido un error");
+			}
+		} catch (error) {
+      MySwal.fire({
+        position: "center-center",
+        icon: "error",
+        title: "Usuario o contraseña incorrectos",
+        showConfirmButton: false,
+        timer: 2500,
+      });
+		}
+	};
 
-  return (
-    <div className="form-container">
-      <div className="login-wrapper">
-        <h1 className="text-center text-primary">Iniciar Sesión</h1>
-        <p className="text-center">
-          Ingresa los datos con los que te has registrado para poder continuar
-        </p>
+	const MySwal = withReactContent(Swal);
 
-        <form onSubmit={handleSubmit}>
-          <input type="email" name="email" placeholder="Correo electrónico" value={userLogin.email} onChange={handleChange}/>
-          <div className="input-group">
-            {seePassword ? (
-              <input type="text" name="password" placeholder="Contraseña" value={userLogin.password} onChange={handleChange}/>
-            ) : (
-              <input type="password" name="password" placeholder="Contraseña" value={userLogin.password} onChange={handleChange}/>
-            )}
+	return (
+		<div className="form-container">
+			<div className="login-wrapper">
+				<h1 className="text-center text-primary">Iniciar Sesión</h1>
+				<p className="text-center">
+					Ingresa los datos con los que te has registrado para poder continuar
+				</p>
 
-            <button
-              onClick={onClick}
-              type="button"
-              className={
-                seePassword ? 'active password-button' : 'password-button'
-              }
-            >
-              <span
-                className="iconify"
-                data-inline="false"
-                data-icon="akar-icons:eye-open"
-              />
-            </button>
-          </div>
+				<form onSubmit={handleSubmit}>
+					<input
+						type="email"
+						name="email"
+						placeholder="Correo electrónico"
+						value={userLogin.email}
+						onChange={handleChange}
+					/>
+					<div className="input-group">
+						{seePassword ? (
+							<input
+								type="text"
+								name="password"
+								placeholder="Contraseña"
+								value={userLogin.password}
+								onChange={handleChange}
+							/>
+						) : (
+							<input
+								type="password"
+								name="password"
+								placeholder="Contraseña"
+								value={userLogin.password}
+								onChange={handleChange}
+							/>
+						)}
 
-          <button type="submit" className="btn btn-primary">
-            INICIAR SESIÓN
-          </button>
+						<button
+							onClick={onClick}
+							type="button"
+							className={
+								seePassword ? "active password-button" : "password-button"
+							}
+						>
+							<span
+								className="iconify"
+								data-inline="false"
+								data-icon="akar-icons:eye-open"
+							/>
+						</button>
+					</div>
 
-          <div className="text-center">
-            <small>
-              <Link to="/login" className='formLinks' onClick={() => alert("Redirigir a reseteo de contraseña")}>¿Olvidaste tu contraseña?</Link>
-            </small>
-          </div>
-        </form>
+					<button type="submit" className="btn btn-primary">
+						INICIAR SESIÓN
+					</button>
 
-        <div className="divider">O</div>
-        <GoogleLogin
-          clientId="481476732546-redihub2q7951q72m79sjcgglp0iatsc.apps.googleusercontent.com"
-          // buttonText="Login"
-          render={(renderProps) => (
-            <button
-              type="button"
-              onClick={renderProps.onClick}
-              disabled={renderProps.disabled}
-              className="btn btn-google"
-            >
-              <span
-                className="iconify"
-                data-inline="false"
-                data-icon="grommet-icons:google"
-              />
-              Iniciar sesión con Google
-            </button>
-          )}
-          onSuccess={respuestaGoogle}
-          onFailure={respuestaGoogle}
-          cookiePolicy="single_host_origin"
-        />
+					<div className="text-center">
+						<small>
+							<Link
+								to="/login"
+								className="formLinks"
+								onClick={() => alert("Redirigir a reseteo de contraseña")}
+							>
+								¿Olvidaste tu contraseña?
+							</Link>
+						</small>
+					</div>
+				</form>
 
-        <div className="text-center">
-          <small>
-            ¿Aún no tienes una cuenta? <Link to="/signUp" className='formLinks'>Regístrate</Link>
-          </small>
-        </div>
-      </div>
-    </div>
-  );
+				<div className="divider">O</div>
+				<GoogleLogin
+					clientId="481476732546-redihub2q7951q72m79sjcgglp0iatsc.apps.googleusercontent.com"
+					// buttonText="Login"
+					render={(renderProps) => (
+						<button
+							type="button"
+							onClick={renderProps.onClick}
+							disabled={renderProps.disabled}
+							className="btn btn-google"
+						>
+							<span
+								className="iconify"
+								data-inline="false"
+								data-icon="grommet-icons:google"
+							/>
+							Iniciar sesión con Google
+						</button>
+					)}
+					onSuccess={respuestaGoogle}
+					onFailure={respuestaGoogle}
+					cookiePolicy="single_host_origin"
+				/>
+
+				<div className="text-center">
+					<small>
+						¿Aún no tienes una cuenta?{" "}
+						<Link to="/signUp" className="formLinks">
+							Regístrate
+						</Link>
+					</small>
+				</div>
+			</div>
+		</div>
+	);
 }
 
 export default LoginForm;
