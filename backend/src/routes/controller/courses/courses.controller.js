@@ -8,7 +8,7 @@ const getAllDataCourses = async () => {
       attributes: ["name"],
     });
     let arrayAllCoursesInfo = []; //Array que contendrá todos los cursos
-     console.log("aaaaAAAA", getAllCourses);
+    console.log("aaaaAAAA", getAllCourses);
     for (const courseName of getAllCourses) { //Recorre todos los cursos
       // console.log('courseName',courseName.dataValues.name);
       let temporaryInfo = await getInfoCourse(courseName.dataValues.name); //Obtiene la información del curso
@@ -82,7 +82,7 @@ const getInfoCourse = async (name) => {
 };
 
 
- const getAllCourses = async (req, res) => {
+const getAllCourses = async (req, res) => {
 
   try {
     let getAllCourses = await getAllDataCourses(); //Busca todos los cursos
@@ -94,7 +94,7 @@ const getInfoCourse = async (name) => {
     res.status(404).send(error);
   }
 
-}; 
+};
 
 
 const getCoursesByQuery = async (req, res, category, order) => {
@@ -104,65 +104,66 @@ const getCoursesByQuery = async (req, res, category, order) => {
   //Busca todos los cursos
 
   let getAllCourses = await getAllDataCourses();
-  console.log("000000000000000",getAllCourses); //Busca todos los cursos
-  
+  console.log("000000000000000", getAllCourses); //Busca todos los cursos
 
-  
+
+
+
   // console.log(getAllCourses)
-  
+
   /* if (name) {
     getAllCourses.filter(
       (x) => x.name.toLowerCase().includes(name.toLowerCase()) //Filtra por nombre
       );
     } */
-    if (order === "maxP") {
-      //Ordena por precio de mayor a menor
-      getAllCourses = getAllCourses.sort(function (a, b) {
-        if (a.price > b.price) return -1;
-        if (b.price > a.price) return 1;
-        return 0;
-      });
-    }
-    if (order === "minP") {
-      //Ordena por precio de menor a mayor
-      getAllCourses = getAllCourses.sort(function (a, b) {
-        if (a.price > b.price) return 1;
-        if (b.price > a.price) return -1;
-        return 0;
-      });
-    }
-    if (order === "maxR") {
-      //Ordena por review de mayor a menor
-      getAllCourses = getAllCourses.sort(function (a, b) {
-        if (a.meanReview > b.meanReview) return -1;
-        if (b.meanReview > a.meanReview) return 1;
-        return 0;
-      });
-    }
-    if (order === "minR") {
-      //Ordena por review de menor a mayor
-      getAllCourses = getAllCourses.sort(function (a, b) {
-        if (a.meanReview > b.meanReview) return 1;
-        if (b.meanReview > a.meanReview) return -1;
-        return 0;
-      });
-    }
-    if (category) {
-      getAllCourses = await getAllCourses.filter(e => e.category.includes(category))
-      console.log("filtro o no filtro? caralhoooo")
-      } 
-   
-      console.log("111111111111", getAllCourses);
-    res.json(getAllCourses);
-  };
-  
-  const getCourses = async (req, res) => {
-    const {category, order } = req.query;
-    if (category === undefined && order === undefined) {
-      getAllCourses(req, res);
-    } else {
-      getCoursesByQuery(req, res, category, order);
-    }
+  if (order === "maxP") {
+    //Ordena por precio de mayor a menor
+    getAllCourses = getAllCourses.sort(function (a, b) {
+      if (a.price > b.price) return -1;
+      if (b.price > a.price) return 1;
+      return 0;
+    });
+  }
+  if (order === "minP") {
+    //Ordena por precio de menor a mayor
+    getAllCourses = getAllCourses.sort(function (a, b) {
+      if (a.price > b.price) return 1;
+      if (b.price > a.price) return -1;
+      return 0;
+    });
+  }
+  if (order === "maxR") {
+    //Ordena por review de mayor a menor
+    getAllCourses = getAllCourses.sort(function (a, b) {
+      if (a.meanReview > b.meanReview) return -1;
+      if (b.meanReview > a.meanReview) return 1;
+      return 0;
+    });
+  }
+  if (order === "minR") {
+    //Ordena por review de menor a mayor
+    getAllCourses = getAllCourses.sort(function (a, b) {
+      if (a.meanReview > b.meanReview) return 1;
+      if (b.meanReview > a.meanReview) return -1;
+      return 0;
+    });
+  }
+  if (category) {
+    getAllCourses = await getAllCourses.filter(e => e.category.includes(category))
+    console.log("filtro o no filtro? caralhoooo")
+  }
+
+  console.log("111111111111", getAllCourses);
+  res.json(getAllCourses);
+};
+
+const getCourses = async (req, res) => {
+  const { category, order } = req.query;
+  if (category === undefined && order === undefined) {
+    getAllCourses(req, res);
+  } else {
+    getCoursesByQuery(req, res, category, order);
+  }
 };
 
 const getCourseDetail = async (req, res) => { //Obtiene el detalle de un curso

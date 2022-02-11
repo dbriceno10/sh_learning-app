@@ -1,7 +1,6 @@
 import "./App.css";
-import { Routes, Route, useNavigate } from "react-router-dom";
-
-import HomeUser from "./Components/HomeUser/HomeUser";
+import { Routes, Route } from "react-router-dom";
+import UserHome from "./Pages/UserHome/UserHome";
 import LoginForm from "./Components/LoginForm/LoginForm";
 import Profile from "./Pages/Profile/Profile";
 import FormRegister from "./Components/FormRegister/FormRegister";
@@ -14,33 +13,18 @@ function App() {
 	// copy and paste for new component route ⬇⬇⬇⬇⬇
 	//     <Route path = '' element = {</>}></Route>
 	//    or <Route path = '/' element = {</>}/>
-	
 
 	return (
 		<Routes>
 			<Route exact path="/" element={<LandingPage />} />
-			<Route
-				path="/home"
-				element={<PrivateRoute />}
-			>
-				<Route index element={<HomeUser />} />
-			</Route>
-			<Route
-				path="/profile"
-				element={<PrivateRoute />}
-			>
-				<Route index element={<HomeUser />} />
-			</Route>
-				<Route exact path="/profile" element={<Profile />} />
+			<Route exact path="/home" element={<UserHome />} />
 			<Route exact path="/login" element={<LoginForm />} />
+			<Route path="/profile" element={<PrivateRoute />}>
+				<Route index element={<Profile />} />
+			</Route>
 			<Route exact path="/signUp" element={<FormRegister />} />
 			<Route path="/unlogin" element={<HomeUnlogin />} />
-			<Route
-				path="/courses/:id"
-				element={<PrivateRoute />}
-			>
-				<Route index element={<CourseDetail />} />
-			</Route>
+			<Route exact path="/courses/:id" element={<CourseDetail />} />
 		</Routes>
 	);
 }
