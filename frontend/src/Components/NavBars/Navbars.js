@@ -27,6 +27,10 @@ export default function Navbar({ isUser }) {
             ctas.classList.add('menu-visible');
         }
     }
+    const handleLogout = () => {
+        window.localStorage.removeItem("userCredentials");
+        alert("Has cerrado sesión")
+    }
     /* isUser is either false or true; true means is a logged-in user */
     return (
         <nav className="nav-bar">
@@ -97,11 +101,12 @@ export default function Navbar({ isUser }) {
                             </li>
                             <li className="nav-bar_item">
                                 <Button className='user-controls_logout_btn'
-                                    link={'/logout'}
+                                    link={'/'}
                                     type={'round'}
                                     text={'hello'}
                                     icon={'ph:sign-out-bold'}
                                     tooltip={'Log out'}
+                                    onClick={handleLogout}
                                 ></Button>
                             </li>
                             <li className="nav-bar_item">
