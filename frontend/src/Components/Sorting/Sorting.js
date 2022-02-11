@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCourses } from "../../Actions/courses.actions";
+import { getCourses, setOrder } from "../../Actions/courses.actions";
 import './Sorting.css';
 
 const Sorting = () => {

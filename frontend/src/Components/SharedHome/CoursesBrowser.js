@@ -4,9 +4,13 @@ import Filterings from '../Filtering/Filterings'
 import Cards from '../Cards/Cards';
 import './SearchModificado.css';
 import './CoursesBrowser.css';
+import Button from '../Buttons/Buttons';
 import Sorting from '../Sorting/Sorting';
+import { getCourses } from "../../Actions/courses.actions"
+import { useDispatch, useSelector } from "react-redux";
 
 function CoursesBrowser() {
+  const dispatch = useDispatch();
   const [renderizado, setrenderizado] = useState({
     name: '',
     category: '',

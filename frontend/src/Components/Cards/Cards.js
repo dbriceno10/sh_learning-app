@@ -4,6 +4,7 @@ import MaterialCard from "../Card/Card";
 // import Loader from "../Loader/Loader";
 // import Message from "../Message/Message";
 // import FilterCategories from "../Orders/filterCategories";
+import Button from '../Buttons/Buttons';
 import { getCourses } from "../../Actions/courses.actions"
 import { useDispatch, useSelector } from "react-redux";
 import './Cards.css';
@@ -30,14 +31,14 @@ const Cards = ({ searchTerm }) => {
 	// 	getData();
 	// }, []);
 
+	const handleClick = (e) => {
+		dispatch(getCourses({}))
+	}
+
 	useEffect(() => {
 		dispatch(getCourses({}))
 	}, [dispatch]);
 	console.log(courses);
-
-	const handleClick = (e) => {
-		dispatch(getCourses({}))
-	}
 
 
 	// const fetchCourses = async () => {
@@ -61,7 +62,6 @@ const Cards = ({ searchTerm }) => {
  */
 	return (
 		<section className="cards">
-			<button type="button" onClick={handleClick}>Reset</button>
 			{/* <input
 				type="text"
 				className='input'
@@ -92,6 +92,14 @@ const Cards = ({ searchTerm }) => {
 					);
 				})
 			}
+			<Button
+				type={'flat'}
+				text={'Reset'}
+				onClick={handleClick}
+				link={''}
+			>
+			</Button>
+			{console.log('card')}
 		</section>
 	);
 };
