@@ -7,9 +7,9 @@ export default function Button({
 }) {
     if ((text && link && type) &&
         (typeof text === 'string' && typeof link === 'string' && typeof type === 'string')) {
-        console.log('here');
+        // console.log('here');
         if (icon && typeof icon === 'string') {
-            console.log('here');
+            // console.log('here');
             if (type === 'flat-icon') {
                 return (
                     <Link className="button-flat icon" to={link}>

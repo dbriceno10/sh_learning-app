@@ -33,7 +33,7 @@ export const getCourseDetail = (id) => {
 
  
 
-    const course = await axios.get(`/cursos/${id}`)
+    const course = await axios.get(`/courses/${id}`)
 
     dispatch({
       type: GET_COURSE_DETAIL,

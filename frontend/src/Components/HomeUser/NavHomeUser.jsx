@@ -14,7 +14,7 @@ export default function NavHomeUser() {
                </section>
                 
                 <section className={styles.seccion1}>
-                    <li className={styles.circulo}>
+                     <li className={styles.circulo}>
                         <a className={styles.icono} href="/settings"><Icon icon="ci:settings-filled" width="60%" height="40%" /></a>
                     </li>
                     <li className={styles.circulo}>
@@ -22,7 +22,7 @@ export default function NavHomeUser() {
                     </li>
                     <li className={styles.circulo}>
                         <a className={styles.icono} href="">Foto</a>
-                    </li>
+                    </li> 
                 </section>
                 
             </ul>
