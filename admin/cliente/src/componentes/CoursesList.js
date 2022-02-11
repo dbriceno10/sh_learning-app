@@ -33,7 +33,7 @@ export const CoursesEdit =(props)=>{
                  <ReferenceArrayInput source="teachers" reference="id">
                         <SelectArrayInput optionText="email" />
                  </ReferenceArrayInput>
-                <TextInput source="teacherID" label="profesor" />
+                {/* <TextInput source="teacherID" label="profesor" /> */}
                 <TextInput multiline source="description"/>   
             </SimpleForm>
         </Edit>
@@ -43,14 +43,19 @@ export const CoursesEdit =(props)=>{
 export const CoursesCreate =(props)=>{
     return(
         <Create {...props}>
-            <SimpleForm rowClick="edit">
-            <TextInput  disabled source="id"/>
+           <SimpleForm rowClick="edit">
+            <TextInput disabled source="id"/>
                 <TextInput source="name"/>
                 <TextInput source="price"/>
-                <TextInput source="img" label="url imagen"/>
-                <TextInput source="email" label="email profesor"/>
-                <TextInput source="category"/>
-                <TextInput multiline source="description"/>
+                <TextInput source="img"/>
+                <ReferenceArrayInput source="category" reference="category">
+                        <SelectArrayInput optionText="name" />
+                 </ReferenceArrayInput>
+                 <ReferenceArrayInput source="teachers" reference="id">
+                        <SelectArrayInput optionText="email" />
+                 </ReferenceArrayInput>
+                {/* <TextInput source="teacherID" label="profesor" /> */}
+                <TextInput multiline source="description"/>   
             </SimpleForm>
         </Create>
 
