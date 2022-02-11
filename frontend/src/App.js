@@ -1,7 +1,6 @@
 import './App.css';
-import {Routes, Route} from 'react-router-dom';
-
-import HomeUser from './Components/HomeUser/HomeUser';
+import { Routes, Route } from 'react-router-dom';
+import UserHome from './Pages/UserHome/UserHome';
 import LoginForm from './Components/LoginForm/LoginForm';
 import Profile from './Pages/Profile/Profile';
 import FormRegister from './Components/FormRegister/FormRegister';
@@ -20,15 +19,13 @@ function App() {
 
   return (
     <Routes>
-
-
-       <Route exact path = '/' element = {<LandingPage />}/> 
-       <Route exact path='/home' element={<HomeUser />} />
-       <Route exact path = '/login' element = {<LoginForm/>} />
-       <Route exact path = '/profile' element = {<Profile/>} />
-       <Route exact path = '/signUp' element = {<FormRegister/>}/> 
-       <Route path = '/unlogin' element = {<HomeUnlogin/>}/> 
-       <Route exact path='/courses/:id' element={<CourseDetail />} />
+      <Route exact path='/' element={<LandingPage />} />
+      <Route exact path='/home' element={<UserHome />} />
+      <Route exact path='/login' element={<LoginForm />} />
+      <Route exact path='/profile' element={<Profile />} />
+      <Route exact path='/signUp' element={<FormRegister />} />
+      <Route path='/unlogin' element={<HomeUnlogin />} />
+      <Route exact path='/courses/:id' element={<CourseDetail />} />
 
 
     </Routes>
