@@ -8,6 +8,7 @@ import FormRegister from './Components/FormRegister/FormRegister';
 import LandingPage from './Pages/LandingPage/LandingPage';
 import HomeUnlogin from './Components/Home/HomeUnlogin';
 import CourseDetail from './Pages/CourseDetail/CourseDetail';
+import Forgotpassword from './Components/LoginForm/Forgotpassword';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
        <Route exact path = '/signUp' element = {<FormRegister/>}/> 
        <Route path = '/unlogin' element = {<HomeUnlogin/>}/> 
        <Route exact path='/courses/:id' element={<CourseDetail />} />
+       <Route exact path = '/changepassword' element = {<Forgotpassword/>}/>
 
 
     </Routes>

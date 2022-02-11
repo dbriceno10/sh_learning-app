@@ -2,7 +2,7 @@ const { Router } = require("express");
 // Importar todos los routers;
 const register = require("./register.js");
 const user = require('./user.routes');
-const nodemailer = require('./nodemailer');
+const confirmput = require('./confirm_put.js');
 
 const router = Router();
 
@@ -19,7 +19,7 @@ const teachers = require("./teachers.js");
 
 
 // Configurar los routers
-router.use('/nodemailer', nodemailer);
+router.use('/confirmput', confirmput);
 router.use("/buy", buyCourse);
 router.use("/fakecourses", fakeCourses);
 router.use("/category", category);
