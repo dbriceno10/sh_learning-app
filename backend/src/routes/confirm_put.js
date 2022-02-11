@@ -45,6 +45,7 @@ router.put('/confirm', async (req, res) => {
 });
 
 router.put('/forgotpassword', async (req, res) => {
+  
   const {email, password} = req.body;
   try {
     let verifyEmailStudent = await Student.findOne({ where: { email } }); 
@@ -79,14 +80,15 @@ router.put('/forgotpassword', async (req, res) => {
 
 router.post('/register', async (req, res) => {
   
-  let {name, lastName, email, password, salt} = req.body;
+  let {name, lastName, email, password, salt, role} = req.body;
 try{
   const user = await Student.create({
     name,
     lastName,
     email,
     password,
-    salt
+    salt,
+    role
   });
   res.json(user);
 }catch(error){
