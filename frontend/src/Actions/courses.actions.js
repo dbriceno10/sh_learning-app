@@ -7,25 +7,25 @@ export const GET_CATEGORIES='GET_CATEGORIES'
 export const SET_ORDER = 'SET_ORDER'
 
 
-export const getCourses = ({order, name}) => async (dispatch) => {
+export const getCourses = ({order, name, category}) => async (dispatch) => {
 
 
-    const courses = await axios.get(`/courses?order=${order}&name=${name}`)
+    const courses = await axios.get(`/courses?order=${order}&name=${name}&category=${category}`)
     return  dispatch({
       type: GET_COURSES,
       payload: courses.data
     })
   }
 
-/* export const getCategories = () => {
+export const getCategories = () => {
   return async (dispatch) => {
-    const courses = await axios.get(`/category?_page=1_limit=10`)
+    const courses = await axios.get(`/category`)
     dispatch({
       type: GET_CATEGORIES,
       payload: courses.data
     })
   }
-} */
+}
 
 export const getCourseDetail = (id) => {
   return async (dispatch) => {

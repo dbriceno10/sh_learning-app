@@ -1,8 +1,9 @@
 .imageName-container {
   margin: 2rem;
+  margin-top: 5rem;
 }
 
 .profileImage {
-  width: 100px;
+  width: 125px;
   border-radius: 50%;
 }
