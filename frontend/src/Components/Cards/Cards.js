@@ -23,6 +23,10 @@ const Cards = () => {
 	}, [dispatch]);
 	console.log(courses); 
 
+	const handleClick = (e) => {
+		dispatch(getCourses({}))
+	}
+
 	/* const fetchCourses = async () => {
 		const res = await fetch(
 			`http://localhost:3001/cursos?_page=${page}&_limit=10`
@@ -51,6 +55,7 @@ const Cards = () => {
                     onChange={e => setSearchTerm(e.target.value)}
                     placeholder="Buscar..."
                 />
+				<button type="button" onClick={handleClick}>Reset</button>
 			{
 			
 			 courses.filter(val => {
