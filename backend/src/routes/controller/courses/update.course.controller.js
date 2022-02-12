@@ -1,5 +1,5 @@
 const { Course, Category } = require("../../../db");
-const { getInfoCourse } = require("./get.courses.controller.js");
+const { getInfoCourse } = require("./getInfoCourse");
 const { getCategoryId } = require("../getCategoryId");
 const updateCourse = async (req, res) => {
   const { id } = req.params;

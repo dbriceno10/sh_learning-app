@@ -6,7 +6,7 @@ const deleteCategory = async (req, res) => {
     const category = await Category.findOne({
       //buscamos la categoria
       where: {
-        name: name,
+        name: name.trim().toLowerCase(),
       },
     });
     if (!category) {
@@ -15,7 +15,7 @@ const deleteCategory = async (req, res) => {
     await category.destroy({
       //eliminamos la categoria
       where: {
-        name: name,
+        name: name.trim().toLowerCase(),
       },
     });
     res
