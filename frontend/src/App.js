@@ -2,12 +2,14 @@ import './App.css';
 import {Routes, Route} from 'react-router-dom';
 
 import HomeUser from './Components/HomeUser/HomeUser';
-import LoginForm from './Components/LoginForm/LoginForm';
-import Profile from './Pages/Profile/Profile';
-import FormRegister from './Components/FormRegister/FormRegister';
-import LandingPage from './Pages/LandingPage/LandingPage';
-import HomeUnlogin from './Components/Home/HomeUnlogin';
-import CourseDetail from './Pages/CourseDetail/CourseDetail';
+import Navbar from './Components/Navbar';
+import LoginForm from './Components/LoginForm';
+import Profile from './Components/Profile';
+import Cards from './Components/Cards';
+import FormRegister from './Components/FormRegister';
+import LandingPage from './Pages/LandingPage';
+import HomeUnlogin from './Components/Home/HomeUnlogin'
+import CourseDetail from './Views/CourseDetail';
 
 
 function App() {
