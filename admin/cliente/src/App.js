@@ -10,7 +10,7 @@ import { CategoryList ,CategoryCreate} from './componentes/CategoryList';
 import provi from './dataprovider';
 
 
-function App() {
+function Adm() {
   return ( 
     <Admin dataProvider={provi}>
       
@@ -45,4 +45,4 @@ function App() {
   );
 }
 
-export default App;
+export default Adm;

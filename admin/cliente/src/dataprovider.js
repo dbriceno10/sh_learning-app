@@ -40,6 +40,7 @@ const provi={
     create: (resource, params) =>
 
     {          
+        console.log(params)
                  console.log(params)
         httpClient(`${apiUrl}/${resource}`, {
             method: 'POST',
