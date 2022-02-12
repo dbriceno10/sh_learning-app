@@ -2,9 +2,13 @@ import { React, useState } from "react";
 import { Link } from "react-router-dom";
 import Button from '../Buttons/Buttons';
 import './Navbars.css';
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 export default function Navbar({ isUser }) {
     const [toggleMenuIcon, setToggleMenuIcon] = useState('ci:menu-alt-02');
+	const MySwal = withReactContent(Swal);
+
     function toggleMenuOverlay(e) {
         console.log('toggle');
         setToggleMenuIcon('eva:close-outline');
@@ -29,7 +33,13 @@ export default function Navbar({ isUser }) {
     }
     const handleLogout = () => {
         window.localStorage.removeItem("userCredentials");
-        alert("Has cerrado sesión")
+        MySwal.fire({
+            position: "center-center",
+            icon: "success",
+            title: "Has cerrado sesión correctamente",
+            showConfirmButton: false,
+            timer: 2500,
+        });
     }
     /* isUser is either false or true; true means is a logged-in user */
     return (
