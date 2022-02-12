@@ -1,5 +1,4 @@
 //Fución para los filtros de los cursos
-const { Category, Course, Review } = require("../../../db.js");
 const { getAllDataCourses } = require("./getAllDataCourses");
 
 const getCoursesByQuery = async (req, res, category, order) => {
