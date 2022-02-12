@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import './Cards.css';
 
 
-const Cards = ({ searchTerm, isUser }) => {
+const Cards = ({ searchTerm }) => {
 	const [totalCourses, setTotalCourses] = useState([]);
 	const [hasMore, sethasMore] = useState(true);
 	const [page, setPage] = useState(2);

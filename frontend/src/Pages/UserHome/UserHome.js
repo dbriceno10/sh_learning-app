@@ -1,6 +1,4 @@
-// import NavHomeUser from "./NavHomeUser"
 import { useState, useEffect } from "react";
-// import Button from "../../Components/Buttons/Buttons";
 import { useDispatch } from "react-redux";
 import { getUserCredentials } from "../../Actions/login.actions";
 import Navbar from "../../Components/NavBars/Navbars";
