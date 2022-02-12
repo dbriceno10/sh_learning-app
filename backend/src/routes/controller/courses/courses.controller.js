@@ -8,7 +8,7 @@ const getAllDataCourses = async () => {
       attributes: ["name"],
     });
     let arrayAllCoursesInfo = []; //Array que contendrá todos los cursos
-    console.log("aaaaAAAA", getAllCourses);
+    // console.log("aaaaAAAA", getAllCourses);
     for (const courseName of getAllCourses) { //Recorre todos los cursos
       // console.log('courseName',courseName.dataValues.name);
       let temporaryInfo = await getInfoCourse(courseName.dataValues.name); //Obtiene la información del curso
@@ -86,7 +86,7 @@ const getAllCourses = async (req, res) => {
 
   try {
     let getAllCourses = await getAllDataCourses(); //Busca todos los cursos
-    console.log("GET ALL COURSES", getAllCourses)
+    // console.log("GET ALL COURSES", getAllCourses)
     res.json(getAllCourses); //Envía el array con todos los cursos
     // getInfoCourse(name)
   } catch (error) {
@@ -104,7 +104,7 @@ const getCoursesByQuery = async (req, res, category, order) => {
   //Busca todos los cursos
 
   let getAllCourses = await getAllDataCourses();
-  console.log("000000000000000", getAllCourses); //Busca todos los cursos
+  // console.log("000000000000000", getAllCourses); //Busca todos los cursos
 
 
 
@@ -150,10 +150,10 @@ const getCoursesByQuery = async (req, res, category, order) => {
   }
   if (category) {
     getAllCourses = await getAllCourses.filter(e => e.category.includes(category))
-    console.log("filtro o no filtro? caralhoooo")
+    // console.log("filtro o no filtro? caralhoooo")
   }
 
-  console.log("111111111111", getAllCourses);
+  // console.log("111111111111", getAllCourses);
   res.json(getAllCourses);
 };
 
