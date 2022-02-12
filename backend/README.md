@@ -13,7 +13,7 @@ Ruta fake de Cursos, endpoind http://localhost:3001/fakecourses
 Ruta de categorias, recibe name que puede ser una sola categoría o un array de categorías
 El endpoind es http://localhost:3001/category/create ---> recibe name por nombre para crear categorias
 El endpoind es http://localhost:3001/category se puede hacer un get para trater todas las categorías creadas
-El endpoind es http://localhost:3001/category/delete/name ---> recibe el nombre de una categoría por body para borrarla de la base de datos
+El endpoind es http://localhost:3001/category/delete ---> recibe el nombre de una categoría por body para borrarla de la base de datos
 
 Ruta de Cursos recibe name, description, email(Del teacher), img, price, category
 El endpoind es http://localhost:3001/courses/create ---> para crear un curso
