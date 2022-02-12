@@ -1,5 +1,7 @@
 const { Category } = require("../../db.js");
 
+//Esta función busca las recibe una o más categorías y va a la base de datos a buscar sus id
+
 async function getCategoryId(arrayCategory) { //Recibe un array de categorias
   let categories = [];
   for (let i = 0; i < arrayCategory.length; i++) { //Recorre el array de categorias
