@@ -1,30 +1,20 @@
-* {
-    margin : 0;
-    padding: 0;
-}
-
-body {
-    font-weight     : 600;
-    background-color: whitesmoke;
-    overflow-x      : hidden;
-}
-
 html {
     scroll-behavior: smooth;
 }
 
-.landing_container .title {
-    font-family: var(--font-title);
+.landing {
+    font-weight: 600;
+    overflow-x : hidden;
 }
 
-.landing_container .section-title {
+.page-container .section-title {
     font-family: var(--font-title);
     font-size  : 6.5ch;
     margin     : 0 0 10rem 0;
     text-align : center;
 }
 
-.landing_container .bg-section {
+.page-container .bg-section {
     height                  : 100%;
     width                   : 100%;
     display                 : grid;
@@ -35,15 +25,8 @@ html {
     /* margin               : 0 0 0 3rem; */
 }
 
-.landing_container {
-    height   : 100%;
-    width    : 90%;
-    max-width: 1800px;
-    margin   : 0 auto;
-}
-
 .landing_scroll-btn {
-    /* all             : unset; */
+    all             : unset;
     position        : sticky;
     bottom          : 1rem;
     left            : 50%;
@@ -58,6 +41,14 @@ html {
     vertical-align: super;
     animation     : pulse 2s ease-out 1s infinite;
     transition    : all 1s ease-out;
+}
+
+.landing_scroll-btn:hover,
+.landing_scroll-btn:focus,
+.landing_scroll-btn:focus-visible {
+    background-color: var(--honeydew-darker);
+    transform       : scale(.9);
+    transition      : transform ease-out 5ms;
 }
 
 @keyframes pulse {
@@ -146,8 +137,20 @@ html {
     margin-bottom: 3rem;
 }
 
-.landing_hero .hero_col1_body .hero_col1_cta>a {
+.landing_hero .hero_col1_body .hero_col1_ctas {
+    width          : 100%;
+    display        : flex;
+    gap            : 1.5rem;
+    flex-wrap      : wrap;
+    justify-content: flex-start;
+}
+
+.landing_hero .hero_col1_body .hero_col1_ctas button:first-of-type a {
     width: 20rem;
+}
+
+.landing_hero .hero_col1_body .hero_col1_ctas button:nth-of-type(2) a {
+    width: 15rem;
 }
 
 .landing_hero .hero_col2 {
@@ -489,7 +492,11 @@ html {
     font-size      : 2.5ch;
 }
 
-.landing_footer-section .footer-section_col3_body>a {
+.landing_footer-section .footer-section_col3_body .footer-section_col3_cta {
+    all: unset;
+}
+
+.landing_footer-section .footer-section_col3_body .footer-section_col3_cta>a {
     width: 18rem;
 }
 
@@ -518,7 +525,6 @@ html {
 }
 
 @media screen and (max-width: 72rem) {
-
     .landing_hero .landing_hero_cols {
         height                  : 100%;
         grid-template-columns   : repeat(auto-fit, minmax(8rem, 40rem));

@@ -3,9 +3,13 @@ import { Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import "./FormRegister.css";
 import axios from "axios";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const FormRegister = () => {
 	let navigate = useNavigate();
+
+	const MySwal = withReactContent(Swal);
 
 	return (
 		<>
@@ -50,7 +54,13 @@ const FormRegister = () => {
 					}}
 					onSubmit={async (valores, { resetForm }) => {
 						if (!valores.role) {
-							alert("Por favor, elige un rol");
+							MySwal.fire({
+								position: "center-center",
+								icon: "warning",
+								title: "Por favor, elige un rol.",
+								showConfirmButton: false,
+								timer: 2500,
+							});
 							return;
 						} else {
 							let { name, lastName, email, password, role } = valores;
@@ -65,14 +75,32 @@ const FormRegister = () => {
 								const res = await axios.post("/register", newUser);
 								console.log(res);
 								if (res.statusText === "OK") {
-									alert("Felicitaciones! Te has registrado con éxito!");
+									MySwal.fire({
+										position: "center-center",
+										icon: "success",
+										title: "Felicitaciones! Te has registrado con éxito!",
+										showConfirmButton: false,
+										timer: 2500,
+									});
 									resetForm();
 									navigate("/login");
 								} else {
-									alert("Ha ocurrido un error");
+									MySwal.fire({
+										position: "center-center",
+										icon: "error",
+										title: "Ha ocurrido un error, por favor vuelve a intentarlo.",
+										showConfirmButton: false,
+										timer: 2500,
+									});
 								}
 							} catch (error) {
-								alert("Ya existe un usuario registrado con ese email.");
+								MySwal.fire({
+									position: "center-center",
+									icon: "error",
+									title: "Ya existe un usuario registrado con ese email.",
+									showConfirmButton: false,
+									timer: 2500,
+								});
 							}
 						}
 

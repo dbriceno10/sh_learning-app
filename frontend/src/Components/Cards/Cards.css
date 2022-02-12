@@ -1,0 +1,16 @@
+.cards {
+    display        : flex;
+    flex-wrap      : wrap;
+    justify-content: flex-end;
+    gap            : 2rem;
+}
+
+.cards div {
+    margin-inline: 0;
+    flex         : 1 1 auto;
+}
+
+.cards.search-result-cards {
+    justify-content: flex-start;
+    width          : 100%;
+}

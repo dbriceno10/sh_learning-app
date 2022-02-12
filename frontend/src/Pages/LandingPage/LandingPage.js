@@ -1,16 +1,17 @@
 import React from "react";
-import Button from "../../Components/Button/Button";
-import Navbar from "../../Components/NavBar/Navbar";
+import Button from "../../Components/Buttons/Buttons";
+import Navbar from "../../Components/NavBars/Navbars";
+import { Icon } from "@iconify/react";
 import "./LandingPage.css";
 
 export default function LandingPage() {
 	return (
-		<main>
+		<main className="landing">
 			{/* isUser is either false or true; true means is a logged-in user */}
-			{/* <div className="landing_container">
+			{/* <div className="page-container">
             </div> */}
 			<section className="landing_hero" id="hero-section">
-				<div className="landing_container">
+				<div className="page-container">
 					<Navbar isUser={false}></Navbar>
 					<div className="landing_hero_cols">
 						<div className="hero_col1">
@@ -26,15 +27,19 @@ export default function LandingPage() {
 									volutpat, vel habitant tristique. Montes, tellus dui, dis
 									neque egestas nibh. Curabitur etiam pulvinar cras proin nec.
 								</p>
-								<a href="" className="hero_col1_cta">
+								<div className="hero_col1_ctas">
 									<Button
-										className="hero_col1_cta"
-										link={"/login"}
+										link={"/signUp"}
 										text={"Get started"}
 										icon={"bi:arrow-right-circle"}
 										type={"raised-icon"}
 									></Button>
-								</a>
+									<Button
+										link={"/home"}
+										text={"Browse courses"}
+										type={"flat"}
+									></Button>
+								</div>
 							</div>
 						</div>
 						<div className="hero_col2">
@@ -47,16 +52,13 @@ export default function LandingPage() {
 					</div>
 				</div>
 				<a className="landing_scroll-btn" href="#why-section">
-					<span
-						className="iconify"
-						data-icon="eva:arrow-ios-downward-outline"
-					></span>
+					<Icon icon={'eva:arrow-ios-downward-outline'}></Icon>
 				</a>
 				<div className="landing_hero_bg"></div>
 			</section>
 
-			<section className="landing_why-section" id="why--us-ection">
-				<div className="landing_container">
+			<section className="landing_why-section" id="why-section">
+				<div className="page-container">
 					<h2 className="landing_why-section_title section-title">Why us?</h2>
 					<div className="landing_why-section_cards">
 						<article className="why_section_cards_card1 why-section-card">
@@ -106,7 +108,7 @@ export default function LandingPage() {
 			</section>
 
 			<section className="landing_teach-section" id="teach-section">
-				<div className="landing_container">
+				<div className="page-container">
 					<h2 className="landing_teach-section_title section-title">
 						Start teaching today
 					</h2>
@@ -146,13 +148,13 @@ export default function LandingPage() {
 			</section>
 
 			<section className="landing_about-section" id="about-section">
-				<div className="landing_container">
+				<div className="page-container">
 					<h2 className="landing_about-section_title section-title">
 						Learn about the team
 					</h2>
 					<div className="about-section_cols bg-section">
 						<div className="about-section_col1">
-							<picture className="about-section_col1_member">
+							<article className="about-section_col1_member">
 								<div className="about-section_col1_member-photo">
 									<a
 										href="https://www.linkedin.com/in/samuel-cantos-perez-4811a1208/"
@@ -162,11 +164,11 @@ export default function LandingPage() {
 										<span className="iconify" data-icon="bi:linkedin"></span>
 									</a>
 								</div>
-								<caption className="about_section_col1_member-name">
+								<span className="about_section_col1_member-name">
 									Lorem ipsum
-								</caption>
-							</picture>
-							<picture className="about-section_col1_member">
+								</span>
+							</article>
+							<article className="about-section_col1_member">
 								<div className="about-section_col1_member-photo">
 									<a
 										href="https://www.linkedin.com/in/dbriceno10/"
@@ -176,11 +178,11 @@ export default function LandingPage() {
 										<span className="iconify" data-icon="bi:linkedin"></span>
 									</a>
 								</div>
-								<caption className="about_section_col1_member-name">
+								<span className="about_section_col1_member-name">
 									Lorem ipsum
-								</caption>
-							</picture>
-							<picture className="about-section_col1_member">
+								</span>
+							</article>
+							<article className="about-section_col1_member">
 								<div className="about-section_col1_member-photo">
 									<a
 										href="https://www.linkedin.com/in/marcelo-malacalza/"
@@ -190,11 +192,11 @@ export default function LandingPage() {
 										<span className="iconify" data-icon="bi:linkedin"></span>
 									</a>
 								</div>
-								<caption className="about_section_col1_member-name">
+								<span className="about_section_col1_member-name">
 									Lorem ipsum
-								</caption>
-							</picture>
-							<picture className="about-section_col1_member">
+								</span>
+							</article>
+							<article className="about-section_col1_member">
 								<div className="about-section_col1_member-photo">
 									<a
 										href="https://www.linkedin.com/in/romina-acevedo-98515920a/"
@@ -204,11 +206,11 @@ export default function LandingPage() {
 										<span className="iconify" data-icon="bi:linkedin"></span>
 									</a>
 								</div>
-								<caption className="about_section_col1_member-name">
+								<span className="about_section_col1_member-name">
 									Lorem ipsum
-								</caption>
-							</picture>
-							<picture className="about-section_col1_member">
+								</span>
+							</article>
+							<article className="about-section_col1_member">
 								<div className="about-section_col1_member-photo">
 									<a
 										href="https://www.linkedin.com/in/david-murga-pereyra-5a3254216/"
@@ -218,11 +220,11 @@ export default function LandingPage() {
 										<span className="iconify" data-icon="bi:linkedin"></span>
 									</a>
 								</div>
-								<caption className="about_section_col1_member-name">
+								<span className="about_section_col1_member-name">
 									Lorem ipsum
-								</caption>
-							</picture>
-							<picture className="about-section_col1_member">
+								</span>
+							</article>
+							<article className="about-section_col1_member">
 								<div className="about-section_col1_member-photo">
 									<a
 										href="https://www.linkedin.com/in/nestoralons/"
@@ -232,11 +234,11 @@ export default function LandingPage() {
 										<span className="iconify" data-icon="bi:linkedin"></span>
 									</a>
 								</div>
-								<caption className="about_section_col1_member-name">
+								<span className="about_section_col1_member-name">
 									Lorem ipsum
-								</caption>
-							</picture>
-							<picture className="about-section_col1_member">
+								</span>
+							</article>
+							<article className="about-section_col1_member">
 								<div className="about-section_col1_member-photo">
 									<a
 										href="https://www.linkedin.com/in/santiago-herrera-dev/"
@@ -246,11 +248,11 @@ export default function LandingPage() {
 										<span className="iconify" data-icon="bi:linkedin"></span>
 									</a>
 								</div>
-								<caption className="about_section_col1_member-name">
+								<span className="about_section_col1_member-name">
 									Lorem ipsum
-								</caption>
-							</picture>
-							<picture className="about-section_col1_member">
+								</span>
+							</article>
+							<article className="about-section_col1_member">
 								<div className="about-section_col1_member-photo">
 									<a
 										href="https://www.linkedin.com/in/alejandroml1/"
@@ -260,10 +262,10 @@ export default function LandingPage() {
 										<span className="iconify" data-icon="bi:linkedin"></span>
 									</a>
 								</div>
-								<caption className="about_section_col1_member-name">
+								<span className="about_section_col1_member-name">
 									Lorem ipsum
-								</caption>
-							</picture>
+								</span>
+							</article>
 						</div>
 						<div className="about-section_col2">
 							<h1 className="about-section_col2_title title">Lorem ipsum</h1>
@@ -283,38 +285,51 @@ export default function LandingPage() {
 				<div className="landing_about-section_bg"></div>
 			</section>
 
-			<section className="landing_footer-section" id="footer-section">
-				<div className="landing_container">
+			<footer className="landing_footer-section" id="footer-section">
+				<div className="page-container">
 					<div className="footer-section_cols bg-section">
 						<div className="footer-section_col1">
 							<h1 className="footer-section_col1_title title">Lorem ipsum</h1>
 							<div className="footer-section_col1_body">
-								<a className="footer-section_col1_text">Lorem ipsum</a>
-								<a className="footer-section_col1_text">Lorem ipsum</a>
-								<a className="footer-section_col1_text">Lorem ipsum</a>
+								<a
+									href="/landing"
+									className="footer-section_col1_text">Lorem ipsum</a>
+								<a
+									href="/landing"
+									className="footer-section_col1_text">Lorem ipsum</a>
+								<a
+									href="/landing"
+									className="footer-section_col1_text">Lorem ipsum</a>
 							</div>
 						</div>
 						<div className="footer-section_col2">
 							<h1 className="footer-section_col2_title title">Lorem ipsum</h1>
 							<div className="footer-section_col2_body">
-								<a className="footer-section_col2_text">Lorem ipsum</a>
-								<a className="footer-section_col2_text">Lorem ipsum</a>
-								<a className="footer-section_col2_text">Lorem ipsum</a>
+								<a
+									href="/landing"
+									className="footer-section_col2_text">Lorem ipsum</a>
+								<a
+									href="/landing"
+									className="footer-section_col2_text">Lorem ipsum</a>
+								<a
+									href="/landing"
+									className="footer-section_col2_text">Lorem ipsum</a>
 							</div>
 						</div>
 						<div className="footer-section_col3">
 							<h1 className="footer-section_col3_title title">
 								Lorem ipsum
-								<div className="footer-section_col3_body">
+							</h1>
+							<div className="footer-section_col3_body">
+								<button className="footer-section_col3_cta">
 									<Button
-										className="footer-section_col3_cta"
 										link={"https://github.com/dbriceno10/sh_learning-app"}
 										text={"See the project"}
 										icon={"ant-design:github-outlined"}
 										type={"flat-icon"}
 									></Button>
-								</div>{" "}
-							</h1>
+								</button>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -322,7 +337,7 @@ export default function LandingPage() {
 					Ut tempor non posuere porta pentesque ut blandit massa.
 				</h3>
 				<div className="landing_footer-section_bg"></div>
-			</section>
+			</footer>
 		</main>
 	);
 }
