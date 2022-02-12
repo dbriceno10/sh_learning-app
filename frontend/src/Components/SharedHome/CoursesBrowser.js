@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { React, useState } from 'react';
 import SearchModificado from './SearchModificado';
 import Filterings from '../Filtering/Filterings'
 import Cards from '../Cards/Cards';
@@ -6,30 +6,36 @@ import './SearchModificado.css';
 import './CoursesBrowser.css';
 import Button from '../Buttons/Buttons';
 import Sorting from '../Sorting/Sorting';
-import { getCourses } from "../../Actions/courses.actions"
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { getCourses } from '../../Actions/courses.actions';
 
 function CoursesBrowser() {
   const dispatch = useDispatch();
-  const [renderizado, setrenderizado] = useState({
-    name: '',
-    category: '',
-    order: ''
-  });
   const [searchTerm, setSearchTerm] = useState("");
+
+  const handleReset = (e) => {
+    dispatch(getCourses({}))
+  }
 
   return (
     <section className='courses-browser'>
       <header className='courses-browser_header title'>
         <h1>Explora entre muchos cursos disponibles</h1>
       </header>
+      <Button
+        type={'flat'}
+        text={'Reset'}
+        onClick={handleReset}
+        link={''}
+      >
+      </Button>
       <section className='courses-browser_top-panel'>
         <SearchModificado
           onChange={e => setSearchTerm(e.target.value)}
           value={searchTerm}
         >
         </SearchModificado>
-        <Sorting setrenderizado={setrenderizado} renderizado={renderizado} />
+        <Sorting />
       </section>
       <aside className='courses-browser_filter-controls'>
         <Filterings />
