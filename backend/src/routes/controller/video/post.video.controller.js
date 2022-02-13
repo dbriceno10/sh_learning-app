@@ -1,8 +1,8 @@
-const { Course, Video } = require("../db");
+const { Course, Video } = require("../../../db");
 
 const postVideo = async (req, res) => {
   // const { title, description, url, duration, courseName } = req.body;
-  const { title, description, duration, url, cursoId } = req.body;
+  const { title, description,  url, cursoId } = req.body;
   try {
     const FK = await Course.findByPk(cursoId);
     if (!FK) {
@@ -12,7 +12,6 @@ const postVideo = async (req, res) => {
       title,
       description,
       url,
-      duration,
       FKcourseID: FK.id,
     });
     // console.log('llegue  a video create',FK);

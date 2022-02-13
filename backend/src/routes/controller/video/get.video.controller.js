@@ -2,7 +2,10 @@ const { Video } = require("../../../db");
 
 const getAllVideos = async (req, res) => {
   try {
-    const videos = await Video.findAll({});
+    const videos = await Video.findAll({
+      where: {},
+      attributes: ["id", "title", "description", "url", "FKcourseID"],
+    });
     res.status(200).send(videos);
   } catch (error) {
     console.error(error);
@@ -15,7 +18,7 @@ const getVideoDetail = async (req, res) => {
   try {
     const video = await Video.findOne({
       where: { id },
-      attribute: ["id", "title", "description", "url", "FKcourseID"],
+      attributes: ["id", "title", "description", "url", "FKcourseID"],
     });
     if (!video) {
       return res.status(404).send({ message: "El video no existe" });

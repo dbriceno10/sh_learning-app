@@ -4,13 +4,13 @@ const deleteVideo = async (req, res) => {
   const { id } = req.params;
   try {
     const video = await Video.findOne({
-      where: { id },
+      where: { id: id },
       attributes: ["title", "description", "url", "FKcourseID"],
     });
     if (!video) {
       return res.status(404).send({ message: "El video no existe" });
     }
-    await video.destroy({
+    await Video.destroy({
       where: { id },
     });
     res
