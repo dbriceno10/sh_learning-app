@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import MaterialCard from "../Card/Card";
 import './RecentCourses.css';
 
-export default function RecentCourses({ isUser, hasRecents }) {
+export default function RecentCourses({ isStudent, hasRecents }) {
   const [courses, setCourses] = useState([]);
   // const { courses } = useSelector(state => state.courses);
   const dispatch = useDispatch();
@@ -13,17 +13,17 @@ export default function RecentCourses({ isUser, hasRecents }) {
     const res = await fetch(`http://localhost:3001/fakecourses`);
     const data = await res.json();
     setCourses(data.slice(0, 5));
-  }, [courses]);
+  }, []);
 
   useEffect(() => {
     // dispatch(getCourses())
-    console.log(courses);
     getData();
-  }, []);
+  }, [getData]);
+  console.log(courses);
 
   return (
     <section className='recent-courses'>
-      {(isUser && hasRecents)
+      {(isStudent)
         ? (
           <div>
             <header className='recent-courses_header title'>

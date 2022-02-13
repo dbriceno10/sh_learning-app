@@ -1,8 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { Icon } from "@iconify/react";
-import { useDispatch } from "react-redux";
-import { getCourses } from "../../Actions/courses.actions";
+import { React } from "react";
 import './SearchModificado.css'
 
 export default function SearchModificado({ onChange, value }) {

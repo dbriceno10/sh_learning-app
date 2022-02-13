@@ -6,10 +6,10 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Rating from '@mui/material/Rating';
 import "./Card.css";
+import { useSelector } from 'react-redux';
 
 const MaterialCard = ({ id, name, image, price, teacher, rating }) => {
 	// console.log(id);
-
 	let navigate = useNavigate();
 
 	const handleClickCard = () => {
