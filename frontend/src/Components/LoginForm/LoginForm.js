@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { React, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import GoogleLogin from "react-google-login";
@@ -8,6 +8,7 @@ import "./LoginForm.css";
 import axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import { getUserCredentials } from "../../Actions/login.actions";
 
 function LoginForm() {
 	const [seePassword, setSeePassword] = useState(false);
@@ -17,6 +18,7 @@ function LoginForm() {
 	});
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const MySwal = withReactContent(Swal);
 
 	const onClick = () => {
 		setSeePassword(!seePassword);
@@ -62,12 +64,13 @@ function LoginForm() {
 					JSON.stringify(res.data)
 				);
 				MySwal.fire({
-					position: "center-center",
+					position: "center",
 					icon: "success",
 					title: "Has iniciado sesión correctamente",
 					showConfirmButton: false,
 					timer: 2500,
 				});
+				dispatch(getUserCredentials());
 				setUserLogin({
 					email: "",
 					password: "",
@@ -77,17 +80,22 @@ function LoginForm() {
 				alert("Ha ocurrido un error");
 			}
 		} catch (error) {
-      MySwal.fire({
-        position: "center-center",
-        icon: "error",
-        title: "Usuario o contraseña incorrectos",
-        showConfirmButton: false,
-        timer: 2500,
-      });
+			MySwal.fire({
+				position: "center",
+				icon: "error",
+				title: "Usuario o contraseña incorrectos",
+				showConfirmButton: false,
+				timer: 2500,
+			});
 		}
 	};
 
-	const MySwal = withReactContent(Swal);
+
+	useEffect(() => {
+		dispatch(getUserCredentials())
+	}, [dispatch])
+
+
 
 	return (
 		<div className="form-container">

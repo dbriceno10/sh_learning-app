@@ -43,7 +43,7 @@ const postUser = async (req, res) => {
             const student = await Student.create({
               name,
               lastName,
-              email,
+              email: email.trim().toLowerCase(),
               password: encryptedPassword,
               avatar,
               salt: newSalt,
@@ -83,7 +83,7 @@ const postUser = async (req, res) => {
             const teacher = await Teacher.create({
               name,
               lastName,
-              email,
+              email: email.trim().toLowerCase(),
               password: encryptedPassword,
               avatar,
               salt: newSalt,

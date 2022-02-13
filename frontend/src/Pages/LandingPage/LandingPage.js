@@ -1,10 +1,11 @@
-import React from "react";
+import { React } from "react";
 import Button from "../../Components/Buttons/Buttons";
 import Navbar from "../../Components/NavBars/Navbars";
 import { Icon } from "@iconify/react";
 import "./LandingPage.css";
 
-export default function LandingPage() {
+export default function LandingPage({ isStudent }) {
+
 	return (
 		<main className="landing">
 			{/* isUser is either false or true; true means is a logged-in user */}
@@ -12,7 +13,7 @@ export default function LandingPage() {
             </div> */}
 			<section className="landing_hero" id="hero-section">
 				<div className="page-container">
-					<Navbar isUser={false}></Navbar>
+					<Navbar isStudent={isStudent}></Navbar>
 					<div className="landing_hero_cols">
 						<div className="hero_col1">
 							<h1 className="hero_col1_title title">
