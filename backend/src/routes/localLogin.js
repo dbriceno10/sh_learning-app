@@ -1,6 +1,5 @@
 require("dotenv").config();
 const { Router } = require("express");
-const axios = require("axios");
 const { BASE, ITERATIONS, LONG_ENCRYPTION, ENCRYPT_ALGORITHM } = process.env;
 const crypto = require("crypto");
 const router = Router();
