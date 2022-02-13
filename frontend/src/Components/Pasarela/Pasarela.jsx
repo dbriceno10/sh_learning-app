@@ -5,6 +5,7 @@ import { Form, Field } from "react-final-form";
 import {BrowserRouter, useNavigate, Routes, Route } from 'react-router-dom'
 import Card from "./Card";
 import {
+
   formatCreditCardNumber,
   formatCVC,
   formatExpirationDate,
@@ -17,7 +18,7 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 function retorno (req,res){
  return  res.redirect('/home')
 }
-function App() {
+export default function Pasarela() {
   const valor=347;
   const navigate=useNavigate();
   

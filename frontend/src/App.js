@@ -8,6 +8,7 @@ import LandingPage from "./Pages/LandingPage/LandingPage";
 import HomeUnlogin from "./Components/Home/HomeUnlogin";
 import CourseDetail from "./Pages/CourseDetail/CourseDetail";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
+import Pasarela from './Components/Pasarela/Pasarela.jsx'
 
 function App() {
 	// copy and paste for new component route ⬇⬇⬇⬇⬇
@@ -25,6 +26,7 @@ function App() {
 			<Route exact path="/signUp" element={<FormRegister />} />
 			<Route path="/unlogin" element={<HomeUnlogin />} />
 			<Route exact path="/courses/:id" element={<CourseDetail />} />
+			<Route path='/payment' element={<Pasarela/>}/>
 		</Routes>
 	);
 }
