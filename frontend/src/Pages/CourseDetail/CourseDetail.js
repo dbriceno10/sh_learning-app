@@ -90,7 +90,7 @@ export default function CourseDetail({ isStudent }) {
 							</h3>
 							<Rating
 								name="read-only"
-								value={courseDetail?.score}
+								value={courseDetail?.meanReview}
 								readOnly
 							/>
 							<p>

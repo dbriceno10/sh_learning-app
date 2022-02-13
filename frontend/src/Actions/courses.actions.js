@@ -30,7 +30,7 @@ export const getCategories = () => {
 
 export const getCourseDetail = (id) => {
   return async (dispatch) => {
-    const course = await axios.get(`/courses/${id}`)
+    const course = await axios.get(`/courses/detail/${id}`)
 
     dispatch({
       type: GET_COURSE_DETAIL,
