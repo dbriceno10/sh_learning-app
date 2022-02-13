@@ -12,6 +12,7 @@ import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserCredentials } from "./Actions/login.actions";
 
+
 function App() {
 	// copy and paste for new component route ⬇⬇⬇⬇⬇
 	//     <Route path = '' element = {</>}></Route>
@@ -53,6 +54,8 @@ function App() {
 			</Route>
 			<Route exact path="/signUp" element={<FormRegister />} />
 			<Route path="/unlogin" element={<HomeUnlogin />} />
+			<Route path = '/changepassword' element = {<Forgotpassword/>}/>
+			<Route path = '/confirmUser' element = {<ConfirmForm/>}/>
 			<Route
 				exact path="/courses/:id"
 				element={<CourseDetail isStudent={isStudent} />}

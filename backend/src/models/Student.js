@@ -45,11 +45,11 @@ module.exports = (sequelize) => {
         type: DataTypes.UUID,
         allowNull: true,
       },
-      role: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: "alumno",
-      },
+      // role: {
+      //   type: DataTypes.STRING,
+      //   allowNull: false,
+      //   defaultValue: "alumno",
+      // },
       authorization: {
         type: DataTypes.BOOLEAN,
         allowNull: false,

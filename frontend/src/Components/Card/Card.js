@@ -10,34 +10,35 @@ import { useSelector } from 'react-redux';
 
 const MaterialCard = ({ id, name, image, price, teacher, rating }) => {
 	// console.log(id);
-	let navigate = useNavigate();
 
-	const handleClickCard = () => {
-		navigate(`/courses/${id}`)
-	}
+  let navigate = useNavigate();
 
-	return (
-		<Card sx={{ width: 270 }} onClick={handleClickCard}>
-			<CardMedia
-				component="img"
-				height="140"
-				image={image}
-				alt={name}
-			/>
-			<CardContent>
-				<Typography gutterBottom variant="body2" component="div" sx={{ fontSize: 15, fontWeight: 700, lineHeight: 1.2 }}>
-					{name}
-				</Typography>
-				<Typography gutterBottom variant="body2" color="text.secondary" >
-					{teacher}
-				</Typography>
-				<Rating name="read-only" value={rating} readOnly />
-				<Typography variant="body1" color="text.secondary" >
-					$ {price}
-				</Typography>
-			</CardContent>
-		</Card>
-	)
+  const handleClickCard = () => {
+    navigate(`/courses/${id}`)
+  }
+
+  return (
+						<Card sx={{ width: 270 }} onClick={handleClickCard}>
+								<CardMedia
+									component="img"
+									height="140"
+									image={image}
+									alt={name}
+								/>
+								<CardContent>
+									<Typography gutterBottom variant="body2" component="div" sx={{fontSize: 15, fontWeight: 700, lineHeight: 1.2}}>
+										{name}
+									</Typography>
+									<Typography gutterBottom variant="body2" color="text.secondary" >
+										{teacher}
+									</Typography>
+                  <Rating name="read-only" value={rating} readOnly />
+									<Typography variant="body1" color="text.secondary" >
+										$ {price}
+									</Typography>
+								</CardContent>
+						</Card>
+  ) 
 };
 
 export default MaterialCard;

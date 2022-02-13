@@ -1,6 +1,11 @@
 const { Router } = require("express");
 // Importar todos los routers;
 const register = require("./register.js");
+const user = require('./user.routes');
+const confirmput = require('./confirm_put.js');
+
+const router = Router();
+
 const login = require("./localLogin.js");
 const fakeCourses = require("./mocksCourses.js");
 const courses = require("./courses.js");
@@ -12,11 +17,9 @@ const home = require("./home.js");
 const students = require("./students.js");
 const teachers = require("./teachers.js");
 
-const router = Router();
-
-const user = require("./user.routes");
 
 // Configurar los routers
+router.use('/confirmput', confirmput);
 router.use("/buy", buyCourse);
 router.use("/fakecourses", fakeCourses);
 router.use("/category", category);
@@ -32,5 +35,7 @@ router.use("/video", video);
 
 /////////////////USER////////////////
 router.use("/user", user);
+
+
 
 module.exports = router;
