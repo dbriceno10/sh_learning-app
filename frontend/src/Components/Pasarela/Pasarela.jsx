@@ -1,8 +1,11 @@
 import React, { useEffect,useState} from "react";
 import { render } from "react-dom";
 import Styles from "./Styles";
+import {useSelector,useDispatch} from 'react-redux'
+
 import { Form, Field } from "react-final-form";
-import {BrowserRouter, useNavigate, Routes, Route } from 'react-router-dom'
+import {useSearchParams, useNavigate } from 'react-router-dom'
+import {getCourseDetail} from '../../Actions/courses.actions'
 import Card from "./Card";
 import {
 
@@ -19,11 +22,14 @@ function retorno (req,res){
  return  res.redirect('/home')
 }
 export default function Pasarela() {
-  const valor=347;
+  const valor=2507;
+  const [query, setquery]=useSearchParams()
+  const idd=query.get('id')
   const navigate=useNavigate();
-  
+  const dispatch=useDispatch();
   
   useEffect(() => {
+    dispatch(getCourseDetail(idd))
     if (!window.document.getElementById("stripe-script")) {
       var s = window.document.createElement("script");
       s.id = "stripe-script";
@@ -32,12 +38,15 @@ export default function Pasarela() {
       s.onload = () => {
         window["Stripe"].setPublishableKey(
           "pk_test_51KRO5jAHGoDWCP4Rov2etBG70oz1TPbmhQB5VrWaYzwrQZibQkmI7lVvEHBysvFqC5FguniyK77hJN1NtJJYXuTa00fvsNgG6I"
-        );
+          );
       };
       window.document.body.appendChild(s);
     }
   }, []);
-
+  
+  const { courseDetail } = useSelector((state) => state.courses);
+  courseDetail? console.log(courseDetail.price):console.log(0)
+  
   const onSubmit = async (values) => {
      await sleep(100);
     
@@ -58,7 +67,8 @@ export default function Pasarela() {
               .post("/payment", {
                 token: response,
                 email: values.email,
-                amount:valor,
+                amount:courseDetail.price,
+                
               })
               .then(() =>
                 
@@ -162,7 +172,7 @@ export default function Pasarela() {
               </div>
               <div className="buttons">
                 <button type="submit" disabled={submitting}>
-                 Pagar {valor} $
+                 Pagar {courseDetail? courseDetail.price: ''} $
                 </button>
                 <button
                   type="button"

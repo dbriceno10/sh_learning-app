@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { clearPage, getCourseDetail } from "../../Actions/courses.actions";
 import Rating from "@mui/material/Rating";
 import Navbar from "../../Components/NavBars/Navbars";
@@ -100,7 +100,7 @@ export default function CourseDetail() {
 										type={'raised-icon'}
 										text={'Comprar ahora'}
 										onClick={() => alert("Redirigir a compra")}
-										link={''}
+										link={`/payment?id=${id}`}
 									>
 									</Button>
 								</div>
