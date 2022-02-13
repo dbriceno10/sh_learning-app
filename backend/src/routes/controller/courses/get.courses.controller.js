@@ -1,4 +1,4 @@
-const { Category, Course, Review } = require("../../../db.js");
+const { Course } = require("../../../db.js");
 
 const { filterCategory } = require("../middleware");
 const { getCoursesByQuery } = require("./getCoursesByQuery");

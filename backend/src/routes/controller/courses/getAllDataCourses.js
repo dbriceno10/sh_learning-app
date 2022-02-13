@@ -1,5 +1,5 @@
 //Función para obtener la data de todos los cursos
-const { Category, Course, Review } = require("../../../db.js");
+const { Course } = require("../../../db.js");
 const { getInfoCourse } = require("./getInfoCourse");
 
 const getAllDataCourses = async () => {
