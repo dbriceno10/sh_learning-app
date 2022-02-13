@@ -24,12 +24,12 @@ http://localhost:3001/courses/delete/id ---> recibe el id del curso por params p
 Ruta de videos  Post : recibe title, description, url, courseId(id del curso) por body
 El endpoind es http://localhost:3001/video/create
 
-Ruta de videos GET : 
+Ruta de videos GET :
 El endpoind es http://localhost:3001/video ---> Trae todos los videos
 http://localhost:3001/video/detail/id ---> recibe el id de un curso por params, trae la info de ese curso
-http://localhost:3001/course/courseId ---> recibe por params el courseId de un curso, trae todos los videos de ese curso
-http://localhost:3001/video/update ---> recibe por body el title, description, url e id de un video para actualizar
-http://localhost:3001/delete ---> recibe por params el id de un curso para borrarlo de la base de datos
+http://localhost:3001/video/course/courseId ---> recibe por params el courseId de un curso, trae todos los videos de ese curso
+http://localhost:3001/video/update/od ---> recibe por body el title, description, url. El id de un video por params, para actualizar
+http://localhost:3001/delete/id ---> recibe por params el id de un video por params para borrarlo de la base de datos
 
 
 Ruta de compra de curso, de momento solo hace la relación en la tabla intermedia Course-Student, recibe nameCourse, emailStudent
