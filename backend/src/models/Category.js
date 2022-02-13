@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
       timestamps: false,
       // createdAt: true,
       // updatedAt: true,
-      // freezeTableName: true,
+      freezeTableName: true,
     }
   );
 };

@@ -154,9 +154,8 @@ function LoginForm() {
 					<div className="text-center">
 						<small>
 							<Link
-								to="/login"
+								to="/changepassword"
 								className="formLinks"
-								onClick={() => alert("Redirigir a reseteo de contraseña")}
 							>
 								¿Olvidaste tu contraseña?
 							</Link>

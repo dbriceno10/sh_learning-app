@@ -1,7 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import Navbar from '../NavBar/Navbar'
 
 import './home.css';
+
 
 
 export default function Home(){
@@ -16,12 +18,7 @@ export default function Home(){
 
     return(
         <div id='all-home'>
-            <h2 id="titulo-home">Godzilla en prueba</h2>
-            <button className="header-btns">Why s?</button>
-            <button className="header-btns">Teach</button>
-            <button className="header-btns">About us</button>
-            <button className="header-btns">LOGIN</button>
-            <button className="header-btns">SIGN UP</button>
+            <Navbar isUser={true}/>
             <input id="search-home" placeholder="Search for courses..."/>
             <button id="btn-search-home" onClick={e => alertButton(e)}>🔍️</button>
             <select id='sortBy'>
