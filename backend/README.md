@@ -1,7 +1,7 @@
 # BACKEND
 
 Ruta de registro recibe  name, lastName, email, password, role, avatar.
-El endpoind es http://localhost:3001/register
+POST: El endpoind es http://localhost:3001/register
 
 Ruta de Login Local recibe email y password
 POST: El endpoind es http://localhost:3001/login
