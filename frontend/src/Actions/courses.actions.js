@@ -18,6 +18,12 @@ export const getCourses = ({ order, category }) => async (dispatch) => {
   })
 }
 
+export const courseCreate = (form) => async (dispatch) =>{
+await axios.post(`/courses/create`, form)
+console.log(form);
+return dispatch(getCourses({}))
+}
+
 export const getCategories = () => {
   return async (dispatch) => {
     const courses = await axios.get(`/category`)
