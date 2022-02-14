@@ -17,6 +17,7 @@ html {
   box-sizing     : border-box;
   font-family    : 'Mukta', sans-serif;
   scroll-behavior: smooth;
+  font-size      : 1.5ch;
 }
 
 *,
