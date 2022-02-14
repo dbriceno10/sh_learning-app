@@ -17,9 +17,6 @@ import axios from "axios";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-function retorno (req,res){
- return  res.redirect('/home')
-}
 export default function Pasarela() {
   const valor=2507;
   const [query, setquery]=useSearchParams()
