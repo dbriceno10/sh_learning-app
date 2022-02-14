@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Link } from "react-router-dom";
+
+import { useNavigate, useParams } from "react-router-dom";
+
 import { clearPage, getCourseDetail } from "../../Actions/courses.actions";
 import Rating from "@mui/material/Rating";
 import Navbar from "../../Components/NavBars/Navbars";
@@ -11,40 +13,46 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Button from "../../Components/Buttons/Buttons";
 
-export default function CourseDetail() {
+export default function CourseDetail({ isStudent }) {
 	const { id } = useParams();
 	const dispatch = useDispatch();
-	console.log(id);
+	const navigate = useNavigate();
 	const { courseDetail } = useSelector((state) => state.courses);
-	console.log(courseDetail);
-
 	const [favourite, setFavourite] = useState(false);
-	// const [courseDetail, setCourseDetail] = useState([]);
 
 	const handleFavouriteClick = () => {
-		setFavourite(!favourite);
-		if (!favourite) {
-			alert("Curso agregado a Favoritos");
+		if (isStudent) {
+			setFavourite(!favourite);
+			if (!favourite) {
+				alert("Curso agregado a Favoritos");
+			} else {
+				alert("Curso eliminado de favoritos");
+			}
 		} else {
-			alert("Curso eliminado de favoritos");
+			navigate('/login');
 		}
 	};
 
+	function handlePurchase() {
+		if (isStudent) {
+			navigate(`/pay?courseId=${id}`)
+		} else {
+			navigate('/login');
+		}
+	}
+
 	useEffect(() => {
+		// dispatch(getUserCredentials());
 		dispatch(getCourseDetail(id));
 		console.log("llegue dispatch");
 		dispatch(clearPage());
-		// const getData = async () => {
-		// 	const res = await fetch(`http://localhost:3001/fakecourses/${id}`);
-		// 	const data = await res.json();
-		// 	setCourseDetail(data);
-		// };
-		// getData();
 	}, [dispatch, id]);
+	console.log(isStudent);
+
 	return (
 		<section className="course-details">
 			<div className="page-container">
-				<Navbar />
+				<Navbar isStudent={isStudent} />
 				{courseDetail &&
 					(<div className="course-details_back-btn">
 						<Button
@@ -84,7 +92,7 @@ export default function CourseDetail() {
 							</h3>
 							<Rating
 								name="read-only"
-								value={courseDetail?.score}
+								value={courseDetail?.meanReview}
 								readOnly
 							/>
 							<p>
@@ -99,8 +107,10 @@ export default function CourseDetail() {
 										icon={'icon-park-outline:buy'}
 										type={'raised-icon'}
 										text={'Comprar ahora'}
-										onClick={() => alert("Redirigir a compra")}
-										link={`/payment?id=${id}`}
+
+										onClick={handlePurchase}
+										link={''}
+
 									>
 									</Button>
 								</div>

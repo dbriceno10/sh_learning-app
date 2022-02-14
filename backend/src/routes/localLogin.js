@@ -1,6 +1,5 @@
 require("dotenv").config();
 const { Router } = require("express");
-const axios = require("axios");
 const { BASE, ITERATIONS, LONG_ENCRYPTION, ENCRYPT_ALGORITHM } = process.env;
 const crypto = require("crypto");
 const router = Router();
@@ -10,11 +9,15 @@ router.post("/", async (req, res, next) => {
   const { email, password } = req.body;
   try {
     let role;
-    let DbUser = await Student.findOne({ where: { email } }); //buscamos el usuario en la tabla de estudiantes
+    let DbUser = await Student.findOne({
+      where: { email: email.trim().toLowerCase() },
+    }); //buscamos el usuario en la tabla de estudiantes
     role = "alumno";
     if (!DbUser) {
       //si no existe el usuario en la base de datos
-      DbUser = await Teacher.findOne({ where: { email } }); //buscamos el usuario en la tabla de profesores
+      DbUser = await Teacher.findOne({
+        where: { email: email.trim().toLowerCase() },
+      }); //buscamos el usuario en la tabla de profesores
       role = "profesor";
       if (!DbUser) return res.status(404).send("usuario invalido");
     }
