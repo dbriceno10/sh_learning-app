@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { useNavigate, useParams } from "react-router-dom";
+
 import { clearPage, getCourseDetail } from "../../Actions/courses.actions";
 import Rating from "@mui/material/Rating";
 import Navbar from "../../Components/NavBars/Navbars";
@@ -33,7 +35,7 @@ export default function CourseDetail({ isStudent }) {
 
 	function handlePurchase() {
 		if (isStudent) {
-			navigate('/compra')
+			navigate(`/pay?courseId=${id}`)
 		} else {
 			navigate('/login');
 		}
@@ -105,8 +107,10 @@ export default function CourseDetail({ isStudent }) {
 										icon={'icon-park-outline:buy'}
 										type={'raised-icon'}
 										text={'Comprar ahora'}
+
 										onClick={handlePurchase}
 										link={''}
+
 									>
 									</Button>
 								</div>

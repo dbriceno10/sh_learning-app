@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { useEffect, useMemo } from "react";
 import UserHome from "./Pages/UserHome/UserHome";
 import LoginForm from "./Components/LoginForm/LoginForm";
-import ForgotPassword from "./Components/LoginForm/ForgotPassword";
+// import ForgotPassword from "./Components/LoginForm/ForgotPassword";
 import Profile from "./Pages/Profile/Profile";
 import FormRegister from "./Components/FormRegister/FormRegister";
 import LandingPage from "./Pages/LandingPage/LandingPage";
@@ -14,6 +14,7 @@ import ConfirmForm from "./Components/FormRegister/ConfirmForm";
 import CreateForm from "./Pages/FormCreate/FormCreate";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserCredentials } from "./Actions/login.actions";
+import Pasarela from './Components/Pasarela/Pasarela.jsx'
 
 
 function App() {
@@ -57,13 +58,16 @@ function App() {
 			</Route>
 			<Route exact path="/signUp" element={<FormRegister />} />
 			<Route path="/unlogin" element={<HomeUnlogin />} />
-			<Route path='/changepassword' element={<ForgotPassword />} />
+
+			{/* <Route path='/changepassword' element={<ForgotPassword />} /> */}
 			<Route path='/confirmUser' element={<ConfirmForm />} />
 			<Route
 				exact path="/courses/:id"
 				element={<CourseDetail isStudent={isStudent} />}
 			/>
 			<Route exact path="/home/create" element={<CreateForm/>}/>
+			<Route path='/payment' element={<Pasarela/>}/>
+
 		</Routes>
 	);
 }
