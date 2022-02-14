@@ -76,7 +76,12 @@ const provi={
                 data: { ...params.data, id: json.id },
             }))
             }
-
+            httpClient(`${apiUrl}/${resource}/create`, {
+                method: 'POST',
+                body: JSON.stringify(params.data),
+            }).then(({ json }) => ({
+                data: { ...params.data, id: json.id },
+            }))
 
     },
     update: (resource, params) =>
@@ -89,7 +94,7 @@ const provi={
         
         const query = {
             filter: JSON.stringify({ ids: params.ids }),
-            role:"admin"
+          
         };
         const url = `${apiUrl}/${resource}?${stringify(query)}`;
         return httpClient(url).then(({ json }) => ({ data: json }));

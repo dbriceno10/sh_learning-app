@@ -9,6 +9,6 @@ router.post("/create",postCategory );
 
 router.get("/", getCategory);
 
-router.delete("/delete", deleteCategory);
+router.delete("/delete/:id", deleteCategory);
 
 module.exports = router;
