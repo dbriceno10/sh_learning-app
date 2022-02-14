@@ -25,7 +25,7 @@ const provi={
     },
     getOne: (resource, params) => {
         
-        return httpClient(`${apiUrl}/${resource}/${params.id}`).then(({ json }) => {
+        return httpClient(`${apiUrl}/${resource}/detail/${params.id}`).then(({ json }) => {
            
     
           let data = json
@@ -39,15 +39,19 @@ const provi={
     
     create: (resource, params) =>
 
-    { console.log(params)         
-        console.log(params)
-                 console.log(params)
+    { console.log(params)  
+        
+        if(resource=== 'courses'){
+            params.data.role= "admin"    
         httpClient(`${apiUrl}/${resource}/create`, {
             method: 'POST',
             body: JSON.stringify(params.data),
         }).then(({ json }) => ({
             data: { ...params.data, id: json.id },
         }))
+
+        }
+        
                  
         if(resource ==='students'){
              params.data.role ="alumno"
@@ -76,14 +80,16 @@ const provi={
 
     },
     update: (resource, params) =>
-        httpClient(`${apiUrl}/${resource}/${params.id}`, {
+        httpClient(`${apiUrl}/${resource}/update/${params.id}`, {
             method: 'PUT',
             body: JSON.stringify(params.data),
         }).then(({ json }) => ({ data: json })),
 
     getMany: (resource, params) => {
+        
         const query = {
             filter: JSON.stringify({ ids: params.ids }),
+            role:"admin"
         };
         const url = `${apiUrl}/${resource}?${stringify(query)}`;
         return httpClient(url).then(({ json }) => ({ data: json }));

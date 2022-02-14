@@ -31,9 +31,9 @@ export const CoursesEdit =(props)=>{
                         <SelectArrayInput optionText="name" />
                  </ReferenceArrayInput>
                  {/* <ReferenceArrayInput source="teachers" reference="email">
-                        <SelectArrayInput optionText="name" />
+                        <SelectArrayInput optionText="email" />
                  </ReferenceArrayInput> */}
-                <TextInput source="email" label="email profesor" />
+                <TextInput disabled source="teacherID" label="profesor" />
                 <TextInput multiline source="description"/>   
             </SimpleForm>
         </Edit>
