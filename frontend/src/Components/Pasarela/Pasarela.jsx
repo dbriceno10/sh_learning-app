@@ -14,7 +14,6 @@ import {
   formatExpirationDate,
 } from "./cardUtils";
 import axios from "axios";
-axios.defaults.baseURL = "/api";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
