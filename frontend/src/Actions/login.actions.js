@@ -6,7 +6,6 @@ export const GET_CREDENTIALS = 'GET_CREDENTIALS';
 export const getUserCredentials = () => {
 	return async (dispatch) => {
 		const credentials = JSON.parse(localStorage.getItem("userCredentials"))
-
 		dispatch({
 			type: GET_CREDENTIALS,
 			payload: credentials
