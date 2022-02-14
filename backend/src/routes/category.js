@@ -1,14 +1,14 @@
 const { Router } = require("express");
 const router = Router();
-const { postCategory } = require('./controller/category/postCategory')
-const { getCategory } = require('./controller/category/getCategory')
-const { deleteCategory } = require('./controller/category/deleteCategory')
+const { postCategory } = require('./controller/category/post.category.controller')
+const { getCategory } = require('./controller/category/get.category.controller')
+const { deleteCategory } = require('./controller/category/delete.category.controller')
 
 //*Create the categories , the input is an array of categories
-router.post("/",postCategory );
+router.post("/create",postCategory );
 
 router.get("/", getCategory);
 
-router.delete("/", deleteCategory);
+router.delete("/delete", deleteCategory);
 
 module.exports = router;

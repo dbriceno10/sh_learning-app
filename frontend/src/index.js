@@ -11,11 +11,13 @@ const API = process.env.REACT_APP_API //Obtengo la variable de entorno con el ap
 axios.defaults.baseURL = API || "http://localhost:3001" //Configuración base para conectarse al backend desde local o desde la nube
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Provider store ={store}>
-      <App />
-    </Provider>
-  </BrowserRouter>,
+  <React.StrictMode>
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>
+  </React.StrictMode>,
   document.getElementById('root')
 );
 
