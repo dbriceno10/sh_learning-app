@@ -3,8 +3,10 @@ const { Student } = require("../../../db.js");
 const getStudents = async (req, res) => {
   try {
     let students = await Student.findAll({
+
       // attributes: ["id", "name", "lastName", "email", "avatar", "role"], //solo vamos a enviar estos atributos al front
       attributes: ["id", "name", "lastName", "email", "avatar"],
+
     });
     res.status(200).json(students);
   } catch (err) {

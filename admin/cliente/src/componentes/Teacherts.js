@@ -38,8 +38,6 @@ export const TeachertsCreate =(props)=>{
                 <TextInput source="lastName"/>
                 <TextInput source="email"/>  
                 <TextInput source="password"/>  
-
-
             </SimpleForm>
         </Create>
 

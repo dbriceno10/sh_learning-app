@@ -1,5 +1,5 @@
 import React from "react";
-import {List, Datagrid, TextField, EditButton, DeleteButton, Edit, TextInput, SimpleForm, Create} from 'react-admin';
+import {List, Datagrid, TextField, DeleteButton,  TextInput, SimpleForm, Create} from 'react-admin';
 
  export const CategoryList =(props)=>{
     return(
@@ -7,24 +7,23 @@ import {List, Datagrid, TextField, EditButton, DeleteButton, Edit, TextInput, Si
             <Datagrid rowClick="edit">
                 <TextField source="id"/>
                 <TextField source="name"/>   
-                <EditButton basePath="category"/>
                 <DeleteButton basePath="category"/>
             </Datagrid>
         </List>
 
     )
 }
-export const CategoryEdit =(props)=>{
-    return(
-        <Edit {...props}>
-            <SimpleForm rowClick="edit">
-                <TextField disabled source="id"/>
-                <TextInput source="name"/>
-            </SimpleForm>
-        </Edit>
+// export const CategoryEdit =(props)=>{
+//     return(
+//         <Edit {...props}>
+//             <SimpleForm rowClick="edit">
+//                 <TextField disabled source="id"/>
+//                 <TextInput source="name"/>
+//             </SimpleForm>
+//         </Edit>
 
-    )
-}
+//     )
+// }
 export const CategoryCreate =(props)=>{
     return(
         <Create {...props}>
