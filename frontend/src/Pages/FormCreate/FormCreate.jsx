@@ -14,7 +14,7 @@ function CreateForm() {
         email: "",
         img: "",
         price: "",
-        category: ["css"]
+        category: []
     });
     const handleChange = (e) => {
         setForm({
@@ -25,7 +25,7 @@ function CreateForm() {
     const selectCategoria = (e) => {
         setForm({
           ...form,
-          category: e.target.value
+          category: [e.target.value]
         });
       };
 
