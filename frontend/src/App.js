@@ -17,6 +17,7 @@ import { getUserCredentials } from "./Actions/login.actions";
 import Pasarela from './Components/Pasarela/Pasarela.jsx'
 
 
+
 function App() {
 	// copy and paste for new component route ⬇⬇⬇⬇⬇
 	//     <Route path = '' element = {</>}></Route>
@@ -66,7 +67,7 @@ function App() {
 				element={<CourseDetail isStudent={isStudent} />}
 			/>
 			<Route exact path="/home/create" element={<CreateForm/>}/>
-			<Route path='/payment' element={<Pasarela/>}/>
+			<Route path='/pay' element={<Pasarela/>}/>
 
 		</Routes>
 	);
