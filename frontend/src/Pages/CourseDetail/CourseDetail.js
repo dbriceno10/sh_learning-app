@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { useNavigate, useParams } from "react-router-dom";
+import {getUserCredentials} from '../../Actions/login.actions'
+
 import { clearPage, getCourseDetail } from "../../Actions/courses.actions";
 import Rating from "@mui/material/Rating";
 import Navbar from "../../Components/NavBars/Navbars";
@@ -17,6 +20,7 @@ export default function CourseDetail({ isStudent }) {
 	const navigate = useNavigate();
 	const { courseDetail } = useSelector((state) => state.courses);
 	const [favourite, setFavourite] = useState(false);
+	const { userCredentials } = useSelector(state => state.login);
 
 	const handleFavouriteClick = () => {
 		if (isStudent) {
@@ -33,14 +37,14 @@ export default function CourseDetail({ isStudent }) {
 
 	function handlePurchase() {
 		if (isStudent) {
-			navigate('/compra')
+			navigate(`/pay?courseId=${id}&&studentId=${userCredentials.id}`)
 		} else {
 			navigate('/login');
 		}
 	}
 
 	useEffect(() => {
-		// dispatch(getUserCredentials());
+		 dispatch(getUserCredentials());
 		dispatch(getCourseDetail(id));
 		console.log("llegue dispatch");
 		dispatch(clearPage());
@@ -105,8 +109,10 @@ export default function CourseDetail({ isStudent }) {
 										icon={'icon-park-outline:buy'}
 										type={'raised-icon'}
 										text={'Comprar ahora'}
+
 										onClick={handlePurchase}
 										link={''}
+
 									>
 									</Button>
 								</div>
