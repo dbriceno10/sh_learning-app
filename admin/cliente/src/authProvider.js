@@ -1,6 +1,7 @@
 
 import { fetchUtils } from 'react-admin';
-const apiUrl = 'http://localhost:3001';
+const API = process.env.REACT_APP_API;
+const apiUrl = API || 'http://localhost:3001';
 
 const authProvider = {
     login: ({ username, password }) =>  {
