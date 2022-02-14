@@ -21,6 +21,7 @@ export default function Pasarela() {
   const valor=2507;
   const [query, setquery]=useSearchParams()
   const courseId=query.get('courseId')
+  const studentId=query.get('studentId')
   const navigate=useNavigate();
   const dispatch=useDispatch();
   
@@ -60,11 +61,12 @@ export default function Pasarela() {
           if (status === 200) {
             
             axios
-              .post("/payment", {
+              .post("/stripe/pay", {
                 token: response,
                 email: values.email,
                 amount:courseDetail.price,
-                studentId:courseId
+                courseId:courseId,
+                studentId:studentId
                 
               })
               .then(() =>
