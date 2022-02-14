@@ -8,14 +8,14 @@ const postVideo = async (req, res) => {
     if (!FK) {
       return res.status(404).send({ message: "El curso es inválido" });
     }
-    const urlVideo = await Video.findOne({
-      where: {
-        url: url
-      }
-    })
-    if(urlVideo.url === url) {
-      return res.status(404).send({ message: "Est video ya se encuentra agregado a la plataforma "})
-    }
+    // const urlVideo = await Video.findOne({
+    //   where: {
+    //     url: url
+    //   }
+    // })
+    // if(urlVideo.url === url) {
+    //   return res.status(404).send({ message: "Est video ya se encuentra agregado a la plataforma "})
+    // }
     const video = await Video.create({
       title,
       description,
