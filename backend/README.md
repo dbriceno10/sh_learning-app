@@ -31,8 +31,8 @@ GET: http://localhost:3001/video/course/courseId ---> recibe por params el cours
 PUT: http://localhost:3001/video/update/od ---> recibe por body el title, description, url. El id de un video por params, para actualizar
 DELETE: http://localhost:3001/delete/id ---> recibe por params el id de un video por params para borrarlo de la base de datos
 
-Ruta de review, recibe nameCourse, emailStudent, score
-POST: El endpoind es http://localhost:3001/review/create ---> para crear el curso
+Ruta de review
+POST: El endpoind es http://localhost:3001/review/create ---> para crear el curso recibe recibe courseId, studentId, score por body
 GET: http://localhost:3001/review/detail/id ---> recibe el id del curso por params para buscar los detalles de una review
 GET: http://localhost:3001/review/ ---> para obtener todas las reviews
 

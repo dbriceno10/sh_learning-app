@@ -3,7 +3,7 @@ const { Teacher } = require("../../../db.js");
 const getTeachers = async (req, res) => {
   try {
     let teachers = await Teacher.findAll({
-      attributes: ["id", "name", "lastName", "email", "avatar"], //solo vamos a enviar estos atributos al front
+      attributes: ["id", "name", "lastName", "email", "avatar", "role"], //solo vamos a enviar estos atributos al front
     });
     res.status(200).json(teachers);
   } catch (err) {
@@ -19,7 +19,7 @@ const getTeacher = async (req, res) => {
       where: {
         id: id,
       },
-      attributes: ["id", "name", "lastName", "email", "avatar"], //solo vamos a enviar estos atributos al front
+      attributes: ["id", "name", "lastName", "email", "avatar", "role"], //solo vamos a enviar estos atributos al front
     });
     res.status(200).json(teacher);
   } catch (err) {
