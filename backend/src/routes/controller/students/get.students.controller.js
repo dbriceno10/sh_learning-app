@@ -6,8 +6,7 @@ const getStudents = async (req, res) => {
       // attributes: ["id", "name", "lastName", "email", "avatar", "role"], //solo vamos a enviar estos atributos al front
       attributes: ["id", "name", "lastName", "email", "avatar"],
     });
-    // res.status(200).json(students);
-    res.status(200).send({id: student.id, name: student.name, lastName: student.lastName, email: student.email, avatar: student.avatar, role: "alumno"})
+    res.status(200).json(students);
   } catch (err) {
     console.error(err);
     res.status(404).send({ message: "Error al obtener los estudiantes" });
