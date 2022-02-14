@@ -11,7 +11,7 @@ import './Cards.css';
 const Cards = ({ searchTerm }) => {
 	// const [courses, setCourses] = useState([]);
 	const [hasMore, sethasMore] = useState(true);
-	const [page, setPage] = useState(1);
+	const [page, setPage] = useState(2);
 	const { courses } = useSelector(state => state.courses);
 	const dispatch = useDispatch();
 
@@ -19,19 +19,20 @@ const Cards = ({ searchTerm }) => {
 	// 	const res = await fetch(`http://localhost:3001/fakecourses`);
 	// 	const data = await res.json();
 	// 	setCourses(data);
-	// }, [courses]);
+	// }, []);
 
 	const fetchMoreCourses = async () => {
-		if (courses.length === 0 || courses.length < 5) {
+		if (courses.length === 0 || courses.length <= 12) {
 			sethasMore(false);
 		}
 		setPage(prevPage => page + 1);
 	};
 
 	useEffect(() => {
-		dispatch(getCourses({}))
+		dispatch(getCourses({}));
 		// getData();
 	}, [dispatch]);
+	console.log(hasMore)
 
 	// return (
 	// 	<section className="cards">
