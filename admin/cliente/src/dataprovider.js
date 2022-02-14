@@ -39,10 +39,10 @@ const provi={
     
     create: (resource, params) =>
 
-    {          
+    { console.log(params)         
         console.log(params)
                  console.log(params)
-        httpClient(`${apiUrl}/${resource}`, {
+        httpClient(`${apiUrl}/${resource}/create`, {
             method: 'POST',
             body: JSON.stringify(params.data),
         }).then(({ json }) => ({
@@ -90,7 +90,7 @@ const provi={
     },
 
     delete: (resource, params) =>
-        httpClient(`${apiUrl}/${resource}/${params.id}`, {
+        httpClient(`${apiUrl}/${resource}/delete/${params.id}`, {
             method: 'DELETE',
         }).then(({ json }) => ({ data: json })),
 
