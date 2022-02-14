@@ -47,7 +47,7 @@ export default function Pasarela() {
   courseDetail? console.log(courseDetail.price):console.log(0)
   
   const onSubmit = async (values) => {
-     await sleep(100);
+     await sleep(0);
     
     try {
       
