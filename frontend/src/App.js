@@ -3,12 +3,14 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { useEffect, useMemo } from "react";
 import UserHome from "./Pages/UserHome/UserHome";
 import LoginForm from "./Components/LoginForm/LoginForm";
+import ForgotPassword from "./Components/LoginForm/ForgotPassword";
 import Profile from "./Pages/Profile/Profile";
 import FormRegister from "./Components/FormRegister/FormRegister";
 import LandingPage from "./Pages/LandingPage/LandingPage";
 import HomeUnlogin from "./Components/Home/HomeUnlogin";
 import CourseDetail from "./Pages/CourseDetail/CourseDetail";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
+import ConfirmForm from "./Components/FormRegister/ConfirmForm";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserCredentials } from "./Actions/login.actions";
 
@@ -54,8 +56,8 @@ function App() {
 			</Route>
 			<Route exact path="/signUp" element={<FormRegister />} />
 			<Route path="/unlogin" element={<HomeUnlogin />} />
-			<Route path = '/changepassword' element = {<Forgotpassword/>}/>
-			<Route path = '/confirmUser' element = {<ConfirmForm/>}/>
+			<Route path='/changepassword' element={<ForgotPassword />} />
+			<Route path='/confirmUser' element={<ConfirmForm />} />
 			<Route
 				exact path="/courses/:id"
 				element={<CourseDetail isStudent={isStudent} />}

@@ -3,8 +3,6 @@ import MaterialCard from "../Card/Card";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loader from "../Loader/Loader";
 import Message from "../Message/Message";
-// import FilterCategories from "../Orders/filterCategories";
-import Button from '../Buttons/Buttons';
 import { getCourses } from "../../Actions/courses.actions"
 import { useDispatch, useSelector } from "react-redux";
 import './Cards.css';
@@ -20,10 +18,6 @@ const Cards = ({ searchTerm }) => {
 	// const userCredentials = JSON.parse(
 	// 	window.localStorage.getItem("userCredentials")
 	// );
-
-	useEffect(() => {
-		dispatch(getCourses({}))
-	}, [dispatch]);
 
 	// const getData = useCallback(async () => {
 	// 	const res = await fetch(`http://localhost:3001/fakecourses`);
@@ -46,6 +40,11 @@ const Cards = ({ searchTerm }) => {
 		}
 		setPage(prevPage => page + 1);
 	};
+
+	useEffect(() => {
+		dispatch(getCourses({}))
+	}, [dispatch]);
+	console.log(searchTerm)
 
 	// return (
 	// 	<section className="cards">
@@ -94,10 +93,11 @@ const Cards = ({ searchTerm }) => {
 					courses.filter(val => {
 						if (searchTerm === "") {
 							document.querySelector('.cards')?.classList?.remove('search-result-cards');
+							return val;
 						} else if (val.name.toLowerCase().includes(searchTerm.toLowerCase())) {
 							document.querySelector('.cards')?.classList?.add('search-result-cards');
+							return val;
 						}
-						return val;
 					}).map((c) => {
 						return (
 							<MaterialCard
