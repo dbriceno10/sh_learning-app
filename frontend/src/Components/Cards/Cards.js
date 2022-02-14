@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import MaterialCard from "../Card/Card";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loader from "../Loader/Loader";
@@ -9,15 +9,11 @@ import './Cards.css';
 
 
 const Cards = ({ searchTerm }) => {
-	const [totalCourses, setTotalCourses] = useState([]);
+	// const [courses, setCourses] = useState([]);
 	const [hasMore, sethasMore] = useState(true);
-	const [page, setPage] = useState(2);
-	const { courses } = useSelector(state => state.courses)
+	const [page, setPage] = useState(1);
+	const { courses } = useSelector(state => state.courses);
 	const dispatch = useDispatch();
-	// const [isStudent, setIsStudent] = useState(false);
-	// const userCredentials = JSON.parse(
-	// 	window.localStorage.getItem("userCredentials")
-	// );
 
 	// const getData = useCallback(async () => {
 	// 	const res = await fetch(`http://localhost:3001/fakecourses`);
@@ -25,16 +21,7 @@ const Cards = ({ searchTerm }) => {
 	// 	setCourses(data);
 	// }, [courses]);
 
-	// const fetchCourses = async () => {
-	// 	const res = await fetch(
-	// 		`http://localhost:3001/cursos?_page=${page}&_limit=10`
-	// 	);
-	// 	const data = await res.json();
-	// 	return data;
-	// };
-
 	const fetchMoreCourses = async () => {
-		setTotalCourses([...totalCourses, ...courses]);
 		if (courses.length === 0 || courses.length < 5) {
 			sethasMore(false);
 		}
@@ -43,8 +30,8 @@ const Cards = ({ searchTerm }) => {
 
 	useEffect(() => {
 		dispatch(getCourses({}))
+		// getData();
 	}, [dispatch]);
-	console.log(searchTerm)
 
 	// return (
 	// 	<section className="cards">
@@ -81,6 +68,7 @@ const Cards = ({ searchTerm }) => {
 
 	return (
 		<InfiniteScroll
+			style={{ overflowX: 'hidden' }}
 			className="cards"
 			dataLength={courses.length} //This is important field to render the next data
 			next={fetchMoreCourses}
