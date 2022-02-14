@@ -51,6 +51,7 @@ const postUser = async (req, res) => {
               role: "alumno",
             });
             user = student; //guardamos el usuario en la variable
+            /*
             let Transport = nodemailer.createTransport({
               host: "smtp.gmail.com",
               port: 465,
@@ -78,6 +79,7 @@ const postUser = async (req, res) => {
             });
           
             Transport.close();
+            */
           } else {
             //si es profesor
             const teacher = await Teacher.create({
@@ -91,6 +93,7 @@ const postUser = async (req, res) => {
               role: "profesor",
             });
             user = teacher; //guardamos el usuario en la variable
+            /*
             let Transport =  nodemailer.createTransport({
               host: "smtp.gmail.com",
               port: 465,
@@ -118,6 +121,7 @@ const postUser = async (req, res) => {
             });
           
             Transport.close();
+            */
           }
           res.status(200).send({ message: "Usuario Registrado con Éxito" });
         }
