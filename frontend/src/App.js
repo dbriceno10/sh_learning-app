@@ -11,6 +11,7 @@ import HomeUnlogin from "./Components/Home/HomeUnlogin";
 import CourseDetail from "./Pages/CourseDetail/CourseDetail";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import ConfirmForm from "./Components/FormRegister/ConfirmForm";
+import CreateForm from "./Pages/FormCreate/FormCreate";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserCredentials } from "./Actions/login.actions";
 
@@ -62,6 +63,7 @@ function App() {
 				exact path="/courses/:id"
 				element={<CourseDetail isStudent={isStudent} />}
 			/>
+			<Route exact path="/home/create" element={<CreateForm/>}/>
 		</Routes>
 	);
 }
