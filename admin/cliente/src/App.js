@@ -36,7 +36,7 @@ function Adm() {
       edit={TeachertsEdit}
       create={TeachertsCreate}/>
       <Resource 
-      name='category'
+      name="category"
       list={CategoryList}
       // edit={CategoryEdit}
       create={CategoryCreate}
