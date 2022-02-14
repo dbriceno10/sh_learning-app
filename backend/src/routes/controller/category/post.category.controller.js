@@ -7,7 +7,7 @@ const postCategory = async (req, res, next) => {
       await Category.findOrCreate({
         //Busca o crea la categoria
         where: {
-          name: name,
+          name: name.trim().toLowerCase(),
         },
       });
     } else {
@@ -16,7 +16,7 @@ const postCategory = async (req, res, next) => {
         aux = await Category.findOrCreate({
           //Busca o crea la categoria
           where: {
-            name: category,
+            name: category.trim().toLowerCase(),
           },
         });
       }

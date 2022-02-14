@@ -78,10 +78,14 @@ const FormRegister = () => {
 									MySwal.fire({
 										position: "center-center",
 										icon: "success",
-										title: "Felicitaciones! Te has registrado con éxito!",
-										showConfirmButton: false,
+										title: "Felicitaciones! Te has registrado con éxito! Revisa tu email para confirmar tu cuenta!",
+										showConfirmButton: true,
 										timer: 2500,
 									});
+									// MySwal.fire(
+									// 	"Felicitaciones! Te has registrado con éxito!",
+									// 	"Por favor, revisa tu email para confirmar tu cuenta."
+									// )
 									resetForm();
 									navigate("/login");
 								} else {
