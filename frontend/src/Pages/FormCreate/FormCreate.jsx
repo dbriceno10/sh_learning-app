@@ -1,12 +1,13 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories, courseCreate } from "../../Actions/courses.actions";
+import Button from "../../Components/Buttons/Buttons";
 
 function CreateForm() {
 
     const dispatch = useDispatch();
-    const {categories} = useSelector(state => state.courses);
+    const { categories } = useSelector(state => state.courses);
     console.log(categories)
     const [form, setForm] = useState({
         name: "",
@@ -24,10 +25,10 @@ function CreateForm() {
     };
     const selectCategoria = (e) => {
         setForm({
-          ...form,
-          category: [e.target.value]
+            ...form,
+            category: [e.target.value]
         });
-      };
+    };
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -95,23 +96,31 @@ function CreateForm() {
                         />
                     </div>
                     <div >
-          <select  onChange={selectCategoria}>
-            <option selected value="">
-              Selecciona la Categoria
-            </option>
-            {categories?.map((e) => {
-              return (
-                <option name="categories" value={e.name}>
-                  {e.name}
-                 { console.log(e.category)}
-                </option>
-              );
-            })}
-          </select>
-          
-        </div>
+                        <select onChange={selectCategoria}>
+                            <option selected value="">
+                                Selecciona la Categoria
+                            </option>
+                            {categories?.map((e) => {
+                                return (
+                                    <option name="categories" value={e.name}>
+                                        {e.name}
+                                        {console.log(e.category)}
+                                    </option>
+                                );
+                            })}
+                        </select>
+
+                    </div>
                 </div>
                 <button type="button" onClick={handleClick}>CREATE</button>
+                        <div>
+                            <Button
+                                type={'raised'}
+                                text={'Volver a cursos'}
+                                link={'/home'}
+                            >
+                            </Button>
+                        </div>
             </form>
         </div>
     )
