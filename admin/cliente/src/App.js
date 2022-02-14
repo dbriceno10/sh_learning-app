@@ -7,12 +7,16 @@ import {UserList, UserEdit, UserCreate} from './componentes/UserList';
 import {CoursesList, CoursesEdit, CoursesCreate} from './componentes/CoursesList';
 import {TeachertsList, TeachertsEdit, TeachertsCreate} from './componentes/Teacherts';
 import { CategoryList ,CategoryCreate} from './componentes/CategoryList';
-import provi from './dataprovider';
+import dataProvider from './dataprovider';
+import authProvider from './authProvider';
 
 
 function Adm() {
   return ( 
-    <Admin dataProvider={provi}>
+    <Admin
+      dataProvider={dataProvider}
+      authProvider={authProvider}
+    >
       
 
       <Resource 
