@@ -24,12 +24,12 @@ function retorno (req,res){
 export default function Pasarela() {
   const valor=2507;
   const [query, setquery]=useSearchParams()
-  const idd=query.get('id')
+  const courseId=query.get('courseId')
   const navigate=useNavigate();
   const dispatch=useDispatch();
   
   useEffect(() => {
-    dispatch(getCourseDetail(idd))
+    dispatch(getCourseDetail(courseId))
     if (!window.document.getElementById("stripe-script")) {
       var s = window.document.createElement("script");
       s.id = "stripe-script";
@@ -68,6 +68,7 @@ export default function Pasarela() {
                 token: response,
                 email: values.email,
                 amount:courseDetail.price,
+                studentId:courseId
                 
               })
               .then(() =>
