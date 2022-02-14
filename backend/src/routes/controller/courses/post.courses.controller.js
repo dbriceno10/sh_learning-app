@@ -1,10 +1,14 @@
 const { Course, Teacher } = require("../../../db.js");
-const { getCategoryId } = require("../getCategoryId");
+const { getCategoryId, getCategoryNames } = require("../getCategoryId");
 
 const postCourses = async (req, res) => {
   //*email is of the teacher, category must be an array
-  const { name, description, email, img, price, category } = req.body;
+  let { name, description, email, img, price, category, role } = req.body;
   try {
+    if (role && role === "admin") {
+      console.log("admin");
+      category = await getCategoryNames(category);
+    }
     let findCourse = await Course.findOne({
       where: { name },
     });
