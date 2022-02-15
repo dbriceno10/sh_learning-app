@@ -13,6 +13,9 @@ import Loader from "../../Components/Loader/Loader";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Button from "../../Components/Buttons/Buttons";
+import { addToCart } from "../../Actions/cart.actions";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 export default function CourseDetail({ isStudent }) {
 	const { id } = useParams();
@@ -22,24 +25,71 @@ export default function CourseDetail({ isStudent }) {
 	const [favourite, setFavourite] = useState(false);
 	const { userCredentials } = useSelector(state => state.login);
 
+	const MySwal = withReactContent(Swal);
+
 	const handleFavouriteClick = () => {
 		if (isStudent) {
 			setFavourite(!favourite);
 			if (!favourite) {
-				alert("Curso agregado a Favoritos");
+				MySwal.fire({
+					position: "center-center",
+					icon: "success",
+					title: "Curso agregado a Favoritos",
+					showConfirmButton: false,
+					timer: 2500,
+				});
 			} else {
-				alert("Curso eliminado de favoritos");
+				MySwal.fire({
+					position: "center-center",
+					icon: "error",
+					title: "Curso eliminado de Favoritos",
+					showConfirmButton: false,
+					timer: 2500,
+				});
 			}
 		} else {
-			navigate('/login');
+			MySwal.fire({
+				position: "center-center",
+				icon: "warning",
+				title: "Por favor, inicia sesión para continuar",
+				showConfirmButton: false,
+				timer: 2500,
+			});
+			setTimeout(() => {
+				navigate('/login');
+			}, 1000);
 		}
 	};
 
-	function handlePurchase() {
+	// function handlePurchase() {
+	// 	if (isStudent) {
+	// 		navigate(`/pay?courseId=${id}&&studentId=${userCredentials.id}`)
+	// 	} else {
+	// 		navigate('/login');
+	// 	}
+	// }
+
+	function handleAddCart() {
 		if (isStudent) {
-			navigate(`/pay?courseId=${id}&&studentId=${userCredentials.id}`)
+			dispatch(addToCart(id));
+			MySwal.fire({
+				position: "center-center",
+				icon: "success",
+				title: "Curso agregado correctamente",
+				showConfirmButton: false,
+				timer: 2500,
+			});
 		} else {
-			navigate('/login');
+			MySwal.fire({
+				position: "center-center",
+				icon: "warning",
+				title: "Por favor, inicia sesión para continuar",
+				showConfirmButton: false,
+				timer: 2500,
+			});
+			setTimeout(() => {
+				navigate('/login');
+			}, 1000);
 		}
 	}
 
@@ -90,7 +140,7 @@ export default function CourseDetail({ isStudent }) {
 								)}
 							</header>
 							<h3 className="course-details_info_author">
-								Author: Instructor del curso
+								Autor: {`${courseDetail?.teacherName} ${courseDetail?.teacherLastName}`}
 							</h3>
 							<Rating
 								name="read-only"
@@ -108,9 +158,9 @@ export default function CourseDetail({ isStudent }) {
 									<Button
 										icon={'icon-park-outline:buy'}
 										type={'raised-icon'}
-										text={'Comprar ahora'}
+										text={'Agregar al carrito'}
 
-										onClick={handlePurchase}
+										onClick={handleAddCart}
 										link={''}
 
 									>

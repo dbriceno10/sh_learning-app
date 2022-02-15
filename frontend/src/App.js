@@ -15,6 +15,7 @@ import CreateForm from "./Pages/FormCreate/FormCreate";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserCredentials } from "./Actions/login.actions";
 import Pasarela from './Components/Pasarela/Pasarela.jsx'
+import ShoppingCart from "./Pages/ShoppingCart/ShoppingCart";
 
 
 
@@ -68,7 +69,9 @@ function App() {
 			/>
 			<Route exact path="/home/create" element={<CreateForm/>}/>
 			<Route path='/pay' element={<Pasarela/>}/>
-
+			<Route path="/carrito" element={<PrivateRoute />}>
+				<Route index element={<ShoppingCart />} />
+			</Route>
 		</Routes>
 	);
 }
