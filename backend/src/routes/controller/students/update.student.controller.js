@@ -4,13 +4,18 @@ const updateStudent = async (req, res) => {
   const { id } = req.params;
   const { name, lastName, email, avatar } = req.body;
   try {
-    const student = await Student.findOne({ //buscamos el estudiante
+    const student = await Student.findOne({
+      //buscamos el estudiante
       where: {
         id: id,
       },
       attributes: ["name", "lastName", "email", "avatar"], //sacamos solo los atributos a comparar
     });
-    await Student.update( //actualizamos el estudiante, solo si el atributo que se quiere actualizar no esta vacio
+    if (!student) {
+      return res.status(404).send({ message: "Estudiante no encontrado" });
+    }
+    await Student.update(
+      //actualizamos el estudiante, solo si el atributo que se quiere actualizar no esta vacio
       {
         name: name ? name : student.name,
         lastName: lastName ? lastName : student.lastName,
@@ -31,5 +36,5 @@ const updateStudent = async (req, res) => {
 };
 
 module.exports = {
-  updateStudent
-}
+  updateStudent,
+};

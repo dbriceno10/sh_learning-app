@@ -23,6 +23,9 @@ const getStudent = async (req, res) => {
       },
       attributes: ["id", "name", "lastName", "email", "avatar", "role"], //solo vamos a enviar estos atributos al front
     });
+    if (!student) {
+      return res.status(404).send({ message: "Estudiante no encontrado" });
+    }
     res.status(200).json(student);
   } catch (err) {
     console.error(err);
