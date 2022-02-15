@@ -11,8 +11,7 @@ const postUser = async (req, res) => {
     let user; //creamos una variable para guardar el usuario
     if (!avatar)
       //Asignamos avatar por defecto en caso de no venir
-      avatar =
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png";
+      avatar = "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200";
     //vamos a utilizar la libería cryto de node para encriptar la contraseña
     crypto.randomBytes(parseInt(BYTES), (error, salt) => {
       //recibimos una base numérica en bytes una función callback
@@ -48,7 +47,7 @@ const postUser = async (req, res) => {
               avatar,
               salt: newSalt,
               authorization: false,
-              // role: "alumno",
+              role: "alumno",
             });
             user = student; //guardamos el usuario en la variable
             let Transport = nodemailer.createTransport({
@@ -56,8 +55,8 @@ const postUser = async (req, res) => {
               port: 465,
               secure: true, // true for 465, false for other ports
               auth: {
-                user: 'davidpatejo@gmail.com', // generated ethereal user
-                pass: 'gtnhexomenxgaujz', // generated ethereal password
+                user: EMAIL_USER, // generated ethereal user
+                pass: PASSWORD_USER, // generated ethereal password
               },
             }); 
             let info = await Transport.sendMail({

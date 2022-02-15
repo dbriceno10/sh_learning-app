@@ -13,11 +13,12 @@ GET: Ruta fake de Cursos, endpoind http://localhost:3001/fakecourses
 Ruta de categorias, recibe name que puede ser una sola categoría o un array de categorías
 POST: El endpoind es http://localhost:3001/category/create ---> recibe name por nombre para crear categorias
 GET: El endpoind es http://localhost:3001/category se puede hacer un get para trater todas las categorías creadas
-DELETE: El endpoind es http://localhost:3001/category/delete ---> recibe el nombre de una categoría por body para borrarla de la base de datos
+DELETE: El endpoind es http://localhost:3001/category/delete/id ---> recibe el id de una categoría por params para borrarla de la base de datos
 
 Ruta de Cursos recibe name, description, email(Del teacher), img, price, category
 POST: El endpoind es http://localhost:3001/courses/create ---> para crear un curso
 GET: http://localhost:3001/courses/detail/id ---> para obtener los detalles de un curso, recibe el id del curso por params
+GET: http://localhost:3001/courses/teacher/teacterId --->Recibe el id de un teacher por params para trater todos los cursos de ese teacher
 PUT: http://localelhost:3001/courses/update/id ---> recibe el id del curso por params, y el name, description, price e img por body para actualizar
 DELETE: http://localhost:3001/courses/delete/id ---> recibe el id del curso por params para eliminarlo de la base de datos
 
