@@ -3,6 +3,7 @@ import Button from "../../Components/Buttons/Buttons";
 import Navbar from "../../Components/NavBars/Navbars";
 import { Icon } from "@iconify/react";
 import "./LandingPage.css";
+import ScrollTopButton from "../../Components/ScrollTopButton/ScrollTopButton";
 
 export default function LandingPage({ isStudent }) {
 
@@ -284,6 +285,7 @@ export default function LandingPage({ isStudent }) {
 					</div>
 				</div>
 				<div className="landing_about-section_bg"></div>
+				<ScrollTopButton />
 			</section>
 
 			<footer className="landing_footer-section" id="footer-section">
