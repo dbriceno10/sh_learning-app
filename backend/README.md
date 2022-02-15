@@ -53,6 +53,13 @@ GET: http://localhost:3001/teachers/details/id ---> recibe por params  el id de 
 PUT: http://localhost:3001/teachers/update/id ---> recibe por params el id del profesor y por body el name, lastName, email y avatar para actualizar los datos del profesor
 DELETE: http://localhost:3001/teachers/delete/id ---> recibe por params el id del profesor para eliminarlo de la base de datos
 
+Ruta de administradores
+GET: http://localhost:3001/admins devuelve todos los administradores, para buscar un solo administrador, actualizar o eliminar debemos pasar el id del administrador por params
+La actualización recibe por body name, lastName, email y avatar como atributos que se pueden actualizar
+GET: http://localhost:3001/admins/details/id ---> recibe por params  el id de un administrador para cargar sus datos
+PUT: http://localhost:3001/admins/update/id ---> recibe por params el id del administrador y por body el name, lastName, email y avatar para actualizar los datos del profesor
+DELETE: http://localhost:3001/admins/delete/id ---> recibe por params el id del administrador para eliminarlo de la base de datos
+
 Ruta de pasarela de pago con Stripe
 POST: http://localhost:3001/stripe/pay ---> Ruta para utilizar la pasarela de pagos de stripe, recibe por body amount(monto), email(un email válido cualquiera), token, studentId, courseId. Procesa el pago, y guarda en la base de datos el id del estudiante y del curso.
 
@@ -73,3 +80,5 @@ CLIENT_ID=
 EMAIL_USER=
 PASSWORD_USER=
 STRIPE_KEY=
+EMAIL_ADMIN=
+PASSWORD_ADMIN=
