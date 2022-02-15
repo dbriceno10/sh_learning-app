@@ -13,6 +13,7 @@ const category = require("./category.js");
 const review = require("./review.js");
 const video = require("./video.js");
 const home = require("./home.js");
+const admins = require("./admins.js");
 const students = require("./students.js");
 const teachers = require("./teachers.js");
 const stripe = require("./stripe.js");
@@ -26,6 +27,7 @@ router.use("/home", home); //In this route the front will send the id of the stu
 router.use("/login", login);
 router.use("/register", register);
 router.use("/review", review);
+router.use("/admins", admins);
 router.use("/students", students);
 router.use("/teachers", teachers);
 router.use("/video", video);
