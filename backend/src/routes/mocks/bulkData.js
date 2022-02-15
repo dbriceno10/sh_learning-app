@@ -19,48 +19,7 @@ const {
   FAKE_PASSWORD,
 } = process.env;
 
-const { courseMocks } = require("./mocksDataCourses");
-let categories = [
-  "React",
-  "JavaScript",
-  "HTML",
-  "CSS",
-  "Node",
-  "Express",
-  "Angular",
-  "PHP",
-  "Firebase",
-  "Google",
-  "Java",
-  "TypeScript",
-  "Adobe",
-  "UX/UI",
-  "Web Design",
-  "Responsive",
-  "Metasploit",
-  "Hacking",
-  "Python",
-  "C++",
-  "C",
-  "WordPress",
-  "VPS",
-  "SEO",
-  "Golang",
-  "MongoDB",
-  "Microfrontends",
-  "Power BI",
-  "Marketing",
-  "Digital",
-  "Facebook",
-  "Instagarm",
-  "Linkedin",
-  "Excel",
-  "Macross",
-  "Visual Basic",
-  "Flutter",
-  "IOS",
-  "Android",
-];
+const { courseMocks, categories } = require("./mocksDataCourses");
 
 const { getCategoryId } = require("../controller/getCategoryId");
 
@@ -181,6 +140,82 @@ const studentMaker2 = async () => {
   }
 };
 
+const reviewMaker1 = async (studentId) => {
+  const course = await Course.findOne({
+    where: {
+      name: "React: De cero a experto",
+    },
+  });
+  await Review.create({
+    score: 5,
+    flag: true,
+    FKstudentID: studentId,
+    FKcourseID: course.id,
+  });
+  console.log("Review 1 creado con éxito");
+};
+const reviewMaker2 = async (studentId) => {
+  const course = await Course.findOne({
+    where: {
+      name: "Node: De cero a experto",
+    },
+  });
+  await Review.create({
+    score: 3,
+    flag: true,
+    FKstudentID: studentId,
+    FKcourseID: course.id,
+  });
+  console.log("Review 2 creado con éxito");
+};
+
+const reviewMaker3 = async (studentId) => {
+  const course = await Course.findOne({
+    where: {
+      name: "Angular: De cero a experto",
+    },
+  });
+  await Review.create({
+    score: 1,
+    flag: true,
+    FKstudentID: studentId,
+    FKcourseID: course.id,
+  });
+  console.log("Review 3 creado con éxito");
+};
+
+const videoMaker1 = async () => {
+  const course = await Course.findOne({
+    where: {
+      name: "React: De cero a experto",
+    },
+  });
+  await Video.create({
+    title: "Git y Github | Curso Práctico de Git y Github Desde Cero",
+    description:
+      "Aprende a Dominar una de las herramienta más utilizadas por todos los desarrolladores web, programadores y expertos en código profesionales, llamada Git, un sistema de Control de versiones open source, creado por Linus Torvalds",
+    url: "https://www.youtube.com/watch?v=HiXLkL42tMU",
+    FKcourseID: course.id,
+  });
+  console.log("video 1 creado con éxito");
+};
+
+const videoMaker2 = async () => {
+  const course = await Course.findOne({
+    where: {
+      name: "React: De cero a experto",
+    },
+  });
+  await Video.create({
+    title: "React: De cero a experto | Curso Práctico de React Desde Cero",
+    description:
+      "Aprende a crear una aplicación web con React, una de las librerías más utilizadas en el desarrollo de aplicaciones web, creada por Facebook.",
+    url: "https://www.youtube.com/watch?v=MPLN1ahXgcs",
+    FKcourseID: course.id,
+  });
+  console.log("video 2 creado con éxito");
+};
+
 const courseMaker = async (teacherId) => {
   console.log(teacherId);
   try {
@@ -210,6 +245,11 @@ const dataMaker = async (req, res) => {
     await courseMaker(teacherId);
     await StudentMaker();
     const studentId = await studentMaker2();
+    await reviewMaker1(studentId);
+    await reviewMaker2(studentId);
+    await reviewMaker3(studentId);
+    await videoMaker1();
+    await videoMaker2();
     res.status(200).send({ message: "Data creada" });
   } catch (error) {
     console.log(error);
