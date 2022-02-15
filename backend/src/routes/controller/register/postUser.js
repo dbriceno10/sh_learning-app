@@ -1,4 +1,4 @@
-const { Student, Teacher } = require("../../../db.js");
+const { Student, Teacher, Admin } = require("../../../db.js");
 require("dotenv").config();
 const { BYTES, BASE, ITERATIONS, LONG_ENCRYPTION, ENCRYPT_ALGORITHM, EMAIL_USER, PASSWORD_USER } =
   process.env;
@@ -37,6 +37,12 @@ const postUser = async (req, res) => {
                 .status(404)
                 .send({ message: "El correo ya esta registrado" });
             }
+            const verifyEmailAdmin = await Admin.findOne({ where: { email } }); //buscamos el usuario en la tabla de administradores
+            if (verifyEmailAdmin) {
+              return res
+                .status(404)
+                .send({ message: "El correo ya esta registrado" });
+            }
           const encryptedPassword = key.toString(BASE); //encriptamos la contraseña
           if (role === "alumno") {
             const student = await Student.create({
@@ -70,8 +76,7 @@ const postUser = async (req, res) => {
               });
           
             Transport.close();
-          } else {
-            //si es profesor
+          } else if (role === "profesor") { //si es profesor
             const teacher = await Teacher.create({
               name,
               lastName,
@@ -104,6 +109,20 @@ const postUser = async (req, res) => {
             
           
             Transport.close();
+          } else if (role === "admin") { //si es admin
+            const admin = await Admin.create({
+              name,
+              lastName,
+              email: email.trim().toLowerCase(),
+              password: encryptedPassword,
+              avatar,
+              salt: newSalt,
+              authorization: false,
+              role: "admin",
+            });
+            user = admin; //guardamos el usuario en la variable
+          } else{
+            res.status(404).send({ message: "El rol no es valido" });
           }
           res.status(200).send({ message: "Usuario Registrado con Éxito" });
         }
