@@ -52,7 +52,19 @@ const provi={
 
         }
         
-                 
+        if(resource ==='admins'){
+            params.data.role ="admin"
+
+           httpClient(`${apiUrl}/${'register'}`, {
+         
+           method: 'POST',
+           body: JSON.stringify(params.data),
+           
+           }).then(({ json }) => ({
+                data: { ...params.data, id: json.id },
+           }))
+
+       }   
         if(resource ==='students'){
              params.data.role ="alumno"
 
