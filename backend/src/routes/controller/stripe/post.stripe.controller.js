@@ -6,7 +6,7 @@ const stripe = require("stripe")(STRIPE_KEY);
 const stripePay = async (req, res) => {
   const { amount, email, token, studentId, courseId } = req.body;
   try {
-    const course = Course.findOne({ //Busca el curso
+    const course = await Course.findOne({ //Busca el curso
       where: {
         id: courseId,
       },
@@ -14,15 +14,15 @@ const stripePay = async (req, res) => {
     if (!course) { //Si no existe el curso
       return res.status(404).send({ message: "No se encontro el curso" });
     }
-    const student = Student.findOne({ //Busca el estudiante
+    const student = await Student.findOne({ //Busca el estudiante
       where: {
         id: studentId,
       },
     });
     if (!student) { //Si no existe el estudiante
+      console.log("student")
       return res.status(404).send({ message: "No se encontro el estudiante" });
     }
-
     let customer = await stripe.customers.create({ //Crea el cliente
       email: email,
       source: token.id,
@@ -36,8 +36,8 @@ const stripePay = async (req, res) => {
       customer: customer.id,
     });
     if (charge) { //Si se creo el cargo
-      student.addCourse(course.id); //Agrega el curso al estudiante
       // return res.status(200).send(charge);
+      student.addCourse(courseId); //Agrega el curso al estudiante
       return res.status(200).send({ message: "Pago realizado con exito" });
     } else {
       return res.status(404).send({ message: "Ha ocurrido un error" });

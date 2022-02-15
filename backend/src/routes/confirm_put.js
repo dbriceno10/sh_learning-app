@@ -84,15 +84,14 @@ router.put('/forgotpassword', async (req, res) => {
 
 router.post('/register', async (req, res) => {
   
-  let {name, lastName, email, password, salt, role} = req.body;
+  let {name, lastName, email, password, salt} = req.body;
 try{
   const user = await Student.create({
     name,
     lastName,
     email,
     password,
-    salt,
-    role
+    salt
   });
   res.json(user);
 }catch(error){
