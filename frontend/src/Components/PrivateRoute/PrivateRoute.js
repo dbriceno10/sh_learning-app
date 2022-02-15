@@ -6,7 +6,7 @@ const PrivateRoute = () => {
   const userCredentials = JSON.parse(
 		window.localStorage.getItem("userCredentials")
 	);
-  console.log(userCredentials);
+  // console.log(userCredentials);
 	return userCredentials ? <Outlet/> : <Navigate to="/login" />
 };
 

@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useNavigate, useParams } from "react-router-dom";
-import {getUserCredentials} from '../../Actions/login.actions'
+import { getUserCredentials } from "../../Actions/login.actions";
 
 import { clearPage, getCourseDetail } from "../../Actions/courses.actions";
 import Rating from "@mui/material/Rating";
 import Navbar from "../../Components/NavBars/Navbars";
 import "./CourseDetail.css";
-// import { Typography } from "@mui/material";
 import Loader from "../../Components/Loader/Loader";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -22,8 +21,15 @@ export default function CourseDetail({ isStudent }) {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const { courseDetail } = useSelector((state) => state.courses);
+	console.log(courseDetail);
 	const [favourite, setFavourite] = useState(false);
-	const { userCredentials } = useSelector(state => state.login);
+	const { userCredentials } = useSelector((state) => state.login);
+	// const [courseCart, setCourseCart] = useState({
+	// 	id: "",
+	// 	name: "",
+	// 	price: "",
+	// 	img: "",
+	// });
 
 	const MySwal = withReactContent(Swal);
 
@@ -56,7 +62,7 @@ export default function CourseDetail({ isStudent }) {
 				timer: 2500,
 			});
 			setTimeout(() => {
-				navigate('/login');
+				navigate("/login");
 			}, 1000);
 		}
 	};
@@ -71,7 +77,7 @@ export default function CourseDetail({ isStudent }) {
 
 	function handleAddCart() {
 		if (isStudent) {
-			dispatch(addToCart(id));
+			dispatch(addToCart(courseDetail));
 			MySwal.fire({
 				position: "center-center",
 				icon: "success",
@@ -79,6 +85,7 @@ export default function CourseDetail({ isStudent }) {
 				showConfirmButton: false,
 				timer: 2500,
 			});
+			navigate("/carrito");
 		} else {
 			MySwal.fire({
 				position: "center-center",
@@ -88,33 +95,30 @@ export default function CourseDetail({ isStudent }) {
 				timer: 2500,
 			});
 			setTimeout(() => {
-				navigate('/login');
+				navigate("/login");
 			}, 1000);
 		}
 	}
 
 	useEffect(() => {
-		 dispatch(getUserCredentials());
+		dispatch(getUserCredentials());
 		dispatch(getCourseDetail(id));
-		console.log("llegue dispatch");
 		dispatch(clearPage());
 	}, [dispatch, id]);
-	console.log(isStudent);
 
 	return (
 		<section className="course-details">
 			<div className="page-container">
 				<Navbar isStudent={isStudent} />
-				{courseDetail &&
-					(<div className="course-details_back-btn">
+				{courseDetail && (
+					<div className="course-details_back-btn">
 						<Button
-							type={'raised'}
-							text={'Volver a cursos'}
-							link={'/home'}
-						>
-						</Button>
-					</div>)
-				}
+							type={"raised"}
+							text={"Volver a cursos"}
+							link={"/home"}
+						></Button>
+					</div>
+				)}
 				{courseDetail ? (
 					<main className="course-details_card">
 						<img
@@ -124,9 +128,7 @@ export default function CourseDetail({ isStudent }) {
 						/>
 						<div className="course-details_info">
 							<header className="course-details_info_header">
-								<h1 className="title">
-									{courseDetail?.name}
-								</h1>
+								<h1 className="title">{courseDetail?.name}</h1>
 								{favourite ? (
 									<FavoriteIcon
 										className="favorite-btn"
@@ -140,31 +142,25 @@ export default function CourseDetail({ isStudent }) {
 								)}
 							</header>
 							<h3 className="course-details_info_author">
-								Autor: {`${courseDetail?.teacherName} ${courseDetail?.teacherLastName}`}
+								Autor:{" "}
+								{`${courseDetail?.teacherName} ${courseDetail?.teacherLastName}`}
 							</h3>
 							<Rating
 								name="read-only"
 								value={courseDetail?.meanReview}
 								readOnly
 							/>
-							<p>
-								{courseDetail?.description}
-							</p>
-							<h2>
-								$ {courseDetail?.price}
-							</h2>
+							<p>{courseDetail?.description}</p>
+							<h2>$ {courseDetail?.price}</h2>
 							<div className="actionsButtons">
 								<div className="buyBtn">
 									<Button
-										icon={'icon-park-outline:buy'}
-										type={'raised-icon'}
-										text={'Agregar al carrito'}
-
+										icon={"icon-park-outline:buy"}
+										type={"raised-icon"}
+										text={"Agregar al carrito"}
 										onClick={handleAddCart}
-										link={''}
-
-									>
-									</Button>
+										link={""}
+									></Button>
 								</div>
 							</div>
 						</div>
@@ -175,4 +171,4 @@ export default function CourseDetail({ isStudent }) {
 			</div>
 		</section>
 	);
-};
+}
