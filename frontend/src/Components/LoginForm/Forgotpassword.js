@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-import React {useState} from "react";
-
-import { changePassword } from './../../Actions/puts';
-=======
 import axios from "axios";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
@@ -12,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 export default function ForgotPassword() {
     const [forgotForm, setForgotForm] = useState({ email: "", password: "" })
     let navigate = useNavigate();
->>>>>>> mirror
 
     const handleChange = (e) => {
         setForgotForm({
@@ -21,27 +15,6 @@ export default function ForgotPassword() {
         })
     }
 
-<<<<<<< HEAD
-export default function Forgotpassword(){
-
-    const [input, setInput] = useState({
-        email: '',
-        password: ''
-    });
-
-    
-
-
-    return(
-        <div>
-            <form>
-                <input
-                placeholder='Your email..'
-                />
-                <input
-                placeholder='Your password'
-                />
-=======
     const MySwal = withReactContent(Swal);
 
     const handleSubmit = async (e) => {
@@ -74,7 +47,6 @@ export default function Forgotpassword(){
                 <input type="email" placeholder="Ingresa tu email" name="email" value={forgotForm.email} onChange={handleChange} />
                 <input type="password" placeholder="Ingresa tu nueva contraseña" name="password" value={forgotForm.password} onChange={handleChange} />
                 <input type="submit" value="Cambiar contraseña" />
->>>>>>> mirror
             </form>
         </div>
     );

@@ -59,7 +59,7 @@ const postUser = async (req, res) => {
                 pass: PASSWORD_USER, // generated ethereal password
               },
             }); 
-            let info = await Transport.sendMail({
+              await Transport.sendMail({
                 from: '<confirmpassword@learnzilla.com>', // sender address
                 to: email, // list of receivers
                  subject: "Confirmar cuenta", // Subject line
@@ -68,13 +68,6 @@ const postUser = async (req, res) => {
                 <h2>Entra al siguiente link para confirmar tu cuenta <a href="https://learnzilla-app.vercel.app/confirmUser" target="_blank" rel="noreferrer">Confirmar mi cuenta</a></h2>
                 `, 
               });
-            Transport.sendMail(info, (error, response) => {
-              if(error){
-                res.send(error);
-               }else{
-                res.sendStatus(200).send('Email sent succesfully');
-              }
-            });
           
             Transport.close();
           } else {
@@ -99,7 +92,7 @@ const postUser = async (req, res) => {
                 pass: PASSWORD_USER, // generated ethereal password
               },
             }); 
-            let info = await Transport.sendMail({
+              await Transport.sendMail({
                 from: '<confirmpassword@learnzilla.com>', // sender address
                 to: email, // list of receivers
                  subject: "Confirmar cuenta", // Subject line
@@ -108,13 +101,7 @@ const postUser = async (req, res) => {
                 <h2>Entra al siguiente link para confirmar tu cuenta <a href="https://learnzilla-app.vercel.app/confirmUser" target="_blank" rel="noreferrer">Confirmar mi cuenta</a></h2>
                 `, 
               });
-            Transport.sendMail(info, (error, response) => {
-              if(error){
-                res.send(error);
-               }else{
-                res.sendStatus(200).send('Email sent succesfully');
-              }
-            });
+            
           
             Transport.close();
           }
