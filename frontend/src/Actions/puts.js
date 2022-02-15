@@ -1,11 +1,19 @@
 import axios from "axios";
 
+<<<<<<< HEAD
+export const CHANGE_PASSWORD = "CHANGE_PASSWORD";
+=======
 export const CONFIRM_USER = "CONFIRM_USER"
+>>>>>>> mirror
 
 
 export const changePassword = (payload) => {
     return async (dispatch) => {
         const user = axios.put('/confirmput/forgotpassword', payload);
+        return dispatch({
+            type: CHANGE_PASSWORD,
+            payload
+        })
     }
 }
 
