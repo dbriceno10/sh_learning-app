@@ -6,11 +6,12 @@ import LoginForm from "./Components/LoginForm/LoginForm";
 import Profile from "./Pages/Profile/Profile";
 import FormRegister from "./Components/FormRegister/FormRegister";
 import LandingPage from "./Pages/LandingPage/LandingPage";
-import HomeUnlogin from "./Components/Home/HomeUnlogin";
 import CourseDetail from "./Pages/CourseDetail/CourseDetail";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserCredentials } from "./Actions/login.actions";
+import Forgotpassword from './Components/LoginForm/Forgotpassword.js';
+import ConfirmForm from './Components/FormRegister/ConfirmForm.js'
 
 
 function App() {
@@ -53,7 +54,6 @@ function App() {
 				<Route index element={<Profile />} />
 			</Route>
 			<Route exact path="/signUp" element={<FormRegister />} />
-			<Route path="/unlogin" element={<HomeUnlogin />} />
 			<Route path = '/changepassword' element = {<Forgotpassword/>}/>
 			<Route path = '/confirmUser' element = {<ConfirmForm/>}/>
 			<Route
