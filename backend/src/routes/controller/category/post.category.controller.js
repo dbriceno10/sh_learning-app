@@ -13,7 +13,7 @@ const postCategory = async (req, res, next) => {
     } else {
       for (const category of name) {
         //Recorre el array de categorias
-        aux = await Category.findOrCreate({
+        await Category.findOrCreate({
           //Busca o crea la categoria
           where: {
             name: category.trim().toLowerCase(),

@@ -8,7 +8,8 @@ import {List, Datagrid, TextField, EditButton, DeleteButton, Edit, TextInput, Si
                 <TextField source="id"/>
                 <TextField source="name"/>
                 <TextField source="lastName"/>
-                <TextField source="email"/>          
+                <TextField source="email"/>   
+                <TextField source="role"/>          
                 <EditButton basePath="teachers"/>
                 <DeleteButton basePath="teachers"/>
             </Datagrid>

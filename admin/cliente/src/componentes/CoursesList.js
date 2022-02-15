@@ -51,7 +51,7 @@ export const CoursesCreate =(props)=>{
                 <ReferenceArrayInput source="category" reference="category">
                         <SelectArrayInput optionText="name" />
                  </ReferenceArrayInput>
-                 {/* <ReferenceArrayInput source="teachers" reference="email">
+                 {/* <ReferenceArrayInput source="email" reference="teachers" label="email profesor">
                         <SelectArrayInput optionText="email" />
                  </ReferenceArrayInput> */}
                 <TextInput source="email" label="email profesor" />

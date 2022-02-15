@@ -9,7 +9,7 @@ module.exports = {
       description:
         "Aenean ut ipsum vehicula, rutrum orci eget, sollicitudin tellus. Sed sit amet mi ligula. Vestibulum ac risus et elit accumsan semper. Vestibulum sodales sollicitudin nulla, eget faucibus velit euismod in",
       category: ["React", "JavaScript", "HTML", "CSS"],
-      FKteacherID: "41afa1f4-fc57-470b-b309-843df9ce0703"
+      FKteacherID: "06928b61-df07-444a-b8a9-6a30399b0728",
     },
     {
       id: 2,
@@ -20,7 +20,7 @@ module.exports = {
       description:
         "Aenean ut ipsum vehicula, rutrum orci eget, sollicitudin tellus. Sed sit amet mi ligula. Vestibulum ac risus et elit accumsan semper. Vestibulum sodales sollicitudin nulla, eget faucibus velit euismod in",
       category: ["Node", "JavaScript", "HTML", "Express"],
-      FKteacherID: "41afa1f4-fc57-470b-b309-843df9ce0703"
+      FKteacherID: "06928b61-df07-444a-b8a9-6a30399b0728",
     },
     {
       id: 3,
@@ -31,7 +31,7 @@ module.exports = {
       description:
         "Aenean ut ipsum vehicula, rutrum orci eget, sollicitudin tellus. Sed sit amet mi ligula. Vestibulum ac risus et elit accumsan semper. Vestibulum sodales sollicitudin nulla, eget faucibus velit euismod in",
       category: ["Angular", "JavaScript", "HTML", "CSS"],
-      FKteacherID: "41afa1f4-fc57-470b-b309-843df9ce0703"
+      FKteacherID: "06928b61-df07-444a-b8a9-6a30399b0728",
     },
     {
       id: 4,
@@ -42,7 +42,7 @@ module.exports = {
       description:
         "Aenean ut ipsum vehicula, rutrum orci eget, sollicitudin tellus. Sed sit amet mi ligula. Vestibulum ac risus et elit accumsan semper. Vestibulum sodales sollicitudin nulla, eget faucibus velit euismod in",
       category: ["PHP", "JavaScript", "HTML", "CSS"],
-      FKteacherID: "41afa1f4-fc57-470b-b309-843df9ce0703"
+      FKteacherID: "06928b61-df07-444a-b8a9-6a30399b0728",
     },
     {
       id: 5,
@@ -53,7 +53,7 @@ module.exports = {
       description:
         "Aenean ut ipsum vehicula, rutrum orci eget, sollicitudin tellus. Sed sit amet mi ligula. Vestibulum ac risus et elit accumsan semper. Vestibulum sodales sollicitudin nulla, eget faucibus velit euismod in",
       category: ["Firebase", "JavaScript", "Google", "React"],
-      FKteacherID: "41afa1f4-fc57-470b-b309-843df9ce0703"
+      FKteacherID: "06928b61-df07-444a-b8a9-6a30399b0728",
     },
     {
       id: 6,
@@ -64,7 +64,7 @@ module.exports = {
       description:
         "Aenean ut ipsum vehicula, rutrum orci eget, sollicitudin tellus. Sed sit amet mi ligula. Vestibulum ac risus et elit accumsan semper. Vestibulum sodales sollicitudin nulla, eget faucibus velit euismod in",
       category: ["Java", "JavaScript", "HTML", "CSS"],
-      FKteacherID: "41afa1f4-fc57-470b-b309-843df9ce0703"
+      FKteacherID: "06928b61-df07-444a-b8a9-6a30399b0728",
     },
     {
       id: 7,
@@ -83,7 +83,7 @@ module.exports = {
         "Node",
         "Express",
       ],
-      FKteacherID: "41afa1f4-fc57-470b-b309-843df9ce0703"
+      FKteacherID: "06928b61-df07-444a-b8a9-6a30399b0728",
     },
     {
       id: 8,
@@ -94,7 +94,7 @@ module.exports = {
       description:
         "Aenean ut ipsum vehicula, rutrum orci eget, sollicitudin tellus. Sed sit amet mi ligula. Vestibulum ac risus et elit accumsan semper. Vestibulum sodales sollicitudin nulla, eget faucibus velit euismod in",
       category: ["Adobe", "UX/UI", "Web Design"],
-      FKteacherID: "41afa1f4-fc57-470b-b309-843df9ce0703"
+      FKteacherID: "06928b61-df07-444a-b8a9-6a30399b0728",
     },
     {
       id: 9,
@@ -105,7 +105,7 @@ module.exports = {
       description:
         "Aenean ut ipsum vehicula, rutrum orci eget, sollicitudin tellus. Sed sit amet mi ligula. Vestibulum ac risus et elit accumsan semper. Vestibulum sodales sollicitudin nulla, eget faucibus velit euismod in",
       category: ["UX/UI", "Web Design"],
-      FKteacherID: "41afa1f4-fc57-470b-b309-843df9ce0703"
+      FKteacherID: "06928b61-df07-444a-b8a9-6a30399b0728",
     },
     {
       id: 10,
@@ -116,7 +116,7 @@ module.exports = {
       description:
         "Aenean ut ipsum vehicula, rutrum orci eget, sollicitudin tellus. Sed sit amet mi ligula. Vestibulum ac risus et elit accumsan semper. Vestibulum sodales sollicitudin nulla, eget faucibus velit euismod in",
       category: ["HTML", "CSS", "JavaScript", "Responsive"],
-      FKteacherID: "41afa1f4-fc57-470b-b309-843df9ce0703"
+      FKteacherID: "06928b61-df07-444a-b8a9-6a30399b0728",
     },
     {
       id: 11,
@@ -127,7 +127,7 @@ module.exports = {
       description:
         "Aenean ut ipsum vehicula, rutrum orci eget, sollicitudin tellus. Sed sit amet mi ligula. Vestibulum ac risus et elit accumsan semper. Vestibulum sodales sollicitudin nulla, eget faucibus velit euismod in",
       category: ["Metasploit", "Hacking", "Python"],
-      FKteacherID: "41afa1f4-fc57-470b-b309-843df9ce0703"
+      FKteacherID: "06928b61-df07-444a-b8a9-6a30399b0728",
     },
     {
       id: 12,
@@ -138,7 +138,7 @@ module.exports = {
       description:
         "Aenean ut ipsum vehicula, rutrum orci eget, sollicitudin tellus. Sed sit amet mi ligula. Vestibulum ac risus et elit accumsan semper. Vestibulum sodales sollicitudin nulla, eget faucibus velit euismod in",
       category: ["C++", "C", "JavaScript", "HTML", "CSS"],
-      FKteacherID: "41afa1f4-fc57-470b-b309-843df9ce0703"
+      FKteacherID: "06928b61-df07-444a-b8a9-6a30399b0728",
     },
     {
       id: 13,
@@ -149,7 +149,7 @@ module.exports = {
       description:
         "Aenean ut ipsum vehicula, rutrum orci eget, sollicitudin tellus. Sed sit amet mi ligula. Vestibulum ac risus et elit accumsan semper. Vestibulum sodales sollicitudin nulla, eget faucibus velit euismod in",
       category: ["WordPress", "VPS", "HTML", "CSS"],
-      FKteacherID: "41afa1f4-fc57-470b-b309-843df9ce0703"
+      FKteacherID: "06928b61-df07-444a-b8a9-6a30399b0728",
     },
     {
       id: 14,
@@ -160,7 +160,7 @@ module.exports = {
       description:
         "Aenean ut ipsum vehicula, rutrum orci eget, sollicitudin tellus. Sed sit amet mi ligula. Vestibulum ac risus et elit accumsan semper. Vestibulum sodales sollicitudin nulla, eget faucibus velit euismod in",
       category: ["SEO", "WordPress", "HTML", "CSS"],
-      FKteacherID: "41afa1f4-fc57-470b-b309-843df9ce0703"
+      FKteacherID: "06928b61-df07-444a-b8a9-6a30399b0728",
     },
     {
       id: 15,
@@ -171,7 +171,7 @@ module.exports = {
       description:
         "Aenean ut ipsum vehicula, rutrum orci eget, sollicitudin tellus. Sed sit amet mi ligula. Vestibulum ac risus et elit accumsan semper. Vestibulum sodales sollicitudin nulla, eget faucibus velit euismod in",
       category: ["React", "Golang", "MongoDB", "HTML", "CSS"],
-      FKteacherID: "41afa1f4-fc57-470b-b309-843df9ce0703"
+      FKteacherID: "06928b61-df07-444a-b8a9-6a30399b0728",
     },
     {
       id: 16,
@@ -182,7 +182,7 @@ module.exports = {
       description:
         "Aenean ut ipsum vehicula, rutrum orci eget, sollicitudin tellus. Sed sit amet mi ligula. Vestibulum ac risus et elit accumsan semper. Vestibulum sodales sollicitudin nulla, eget faucibus velit euismod in",
       category: ["React", "Microfrontends", "HTML", "CSS"],
-      FKteacherID: "41afa1f4-fc57-470b-b309-843df9ce0703"
+      FKteacherID: "06928b61-df07-444a-b8a9-6a30399b0728",
     },
     {
       id: 17,
@@ -193,7 +193,7 @@ module.exports = {
       description:
         "Aenean ut ipsum vehicula, rutrum orci eget, sollicitudin tellus. Sed sit amet mi ligula. Vestibulum ac risus et elit accumsan semper. Vestibulum sodales sollicitudin nulla, eget faucibus velit euismod in",
       category: ["Power BI", "HTML", "CSS"],
-      FKteacherID: "41afa1f4-fc57-470b-b309-843df9ce0703"
+      FKteacherID: "06928b61-df07-444a-b8a9-6a30399b0728",
     },
     {
       id: 18,
@@ -204,7 +204,7 @@ module.exports = {
       description:
         "Aenean ut ipsum vehicula, rutrum orci eget, sollicitudin tellus. Sed sit amet mi ligula. Vestibulum ac risus et elit accumsan semper. Vestibulum sodales sollicitudin nulla, eget faucibus velit euismod in",
       category: ["Marketing", "Digital", "Facebook", "Instagarm", "Linkedin"],
-      FKteacherID: "41afa1f4-fc57-470b-b309-843df9ce0703"
+      FKteacherID: "06928b61-df07-444a-b8a9-6a30399b0728",
     },
     {
       id: 19,
@@ -215,7 +215,7 @@ module.exports = {
       description:
         "Aenean ut ipsum vehicula, rutrum orci eget, sollicitudin tellus. Sed sit amet mi ligula. Vestibulum ac risus et elit accumsan semper. Vestibulum sodales sollicitudin nulla, eget faucibus velit euismod in",
       category: ["Excel", "Macross", "Visual Basic"],
-      FKteacherID: "41afa1f4-fc57-470b-b309-843df9ce0703"
+      FKteacherID: "06928b61-df07-444a-b8a9-6a30399b0728",
     },
     {
       id: 20,
@@ -226,7 +226,48 @@ module.exports = {
       description:
         "Aenean ut ipsum vehicula, rutrum orci eget, sollicitudin tellus. Sed sit amet mi ligula. Vestibulum ac risus et elit accumsan semper. Vestibulum sodales sollicitudin nulla, eget faucibus velit euismod in",
       category: ["Flutter", "IOS", "Android"],
-      FKteacherID: "41afa1f4-fc57-470b-b309-843df9ce0703"
+      FKteacherID: "06928b61-df07-444a-b8a9-6a30399b0728",
     },
+  ],
+  categories: [
+    "React",
+    "JavaScript",
+    "HTML",
+    "CSS",
+    "Node",
+    "Express",
+    "Angular",
+    "PHP",
+    "Firebase",
+    "Google",
+    "Java",
+    "TypeScript",
+    "Adobe",
+    "UX/UI",
+    "Web Design",
+    "Responsive",
+    "Metasploit",
+    "Hacking",
+    "Python",
+    "C++",
+    "C",
+    "WordPress",
+    "VPS",
+    "SEO",
+    "Golang",
+    "MongoDB",
+    "Microfrontends",
+    "Power BI",
+    "Marketing",
+    "Digital",
+    "Facebook",
+    "Instagarm",
+    "Linkedin",
+    "Excel",
+    "Macross",
+    "Visual Basic",
+    "Flutter",
+    "IOS",
+    "Android",
   ],
 };
