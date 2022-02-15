@@ -1,5 +1,5 @@
 //Función para obtener la infomación de un curso
-const { Category, Course, Review } = require("../../../db.js");
+const { Category, Course, Review, Teacher } = require("../../../db.js");
 
 const getInfoCourse = async (name) => {
   try {
@@ -42,6 +42,12 @@ const getInfoCourse = async (name) => {
     } else {
       meanReview = 0; //Si no hay reviews, el promedio es 0
     }
+    //Obtener el nombre del Teacher
+    const teacher = await Teacher.findOne({
+      where:{
+        id: course.FKteacherID
+      }
+    })
     let objectCourse = { //Objeto que se enviará
       id: course.id,
       name: course.name,
@@ -49,8 +55,10 @@ const getInfoCourse = async (name) => {
       price: course.price,
       img: course.img,
       teacherID: course.FKteacherID,
+      teacherName: teacher.name,
+      teacherLastName: teacher.lastName,
       category: arrayCategories,
-      meanReview,
+      meanReview: meanReview,
     };
     return objectCourse;
   } catch (err) {

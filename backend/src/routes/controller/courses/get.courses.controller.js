@@ -2,7 +2,10 @@ const { Course } = require("../../../db.js");
 
 const { filterCategory } = require("../middleware");
 const { getCoursesByQuery } = require("./getCoursesByQuery");
-const { getAllDataCourses } = require("./getAllDataCourses");
+const {
+  getAllDataCourses,
+  getAllDataCoursesOfOneTeacher,
+} = require("./getAllDataCourses");
 const { getInfoCourse } = require("./getInfoCourse");
 
 const getAllCourses = async (req, res) => {
@@ -51,6 +54,17 @@ const getCourseDetail = async (req, res) => {
   }
 };
 
+const getCoursesTeacher = async (req, res) => {
+  const { teacherId } = req.params;
+  try {
+    const courses = await getAllDataCoursesOfOneTeacher(teacherId);
+    res.json(courses);
+  } catch (error) {
+    console.error(error);
+    res.status(404).send(error);
+  }
+};
+
 //!no encontre quien llama a este metodo
 // const getCourseById = async (id) => {
 //   try {
@@ -65,4 +79,5 @@ const getCourseDetail = async (req, res) => {
 module.exports = {
   getCourses,
   getCourseDetail,
+  getCoursesTeacher,
 };
