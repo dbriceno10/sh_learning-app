@@ -35,8 +35,12 @@ const getInfoCourse = async (name) => {
     // console.log('type of course.review in getinfo', typeof course.reviews);
     let meanReview = 0; //promedio de reviews
     if (course.reviews.length !== 0) {
-      let sumatoryReview = course.reviews.reduce(
-        (prev, next) => parseInt(prev.score) + parseInt(next.score)
+      let arrayScore = [];
+      course.reviews.forEach((review) => {
+        arrayScore.push(review.score);
+      });
+      let sumatoryReview = arrayScore.reduce(
+        (prev, next) => parseInt(prev) + parseInt(next)
       );
       meanReview = Math.round(sumatoryReview / course.reviews.length); //Calcula el promedio de reviews, usamos Math.round para redondear al valor entero más cercano
     } else {
@@ -44,11 +48,12 @@ const getInfoCourse = async (name) => {
     }
     //Obtener el nombre del Teacher
     const teacher = await Teacher.findOne({
-      where:{
-        id: course.FKteacherID
-      }
-    })
-    let objectCourse = { //Objeto que se enviará
+      where: {
+        id: course.FKteacherID,
+      },
+    });
+    let objectCourse = {
+      //Objeto que se enviará
       id: course.id,
       name: course.name,
       description: course.description,
@@ -69,4 +74,4 @@ const getInfoCourse = async (name) => {
 
 module.exports = {
   getInfoCourse,
-}
+};
