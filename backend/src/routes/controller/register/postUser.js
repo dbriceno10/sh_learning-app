@@ -1,4 +1,4 @@
-const { Student, Teacher } = require("../../../db.js");
+const { Student, Teacher, Admin } = require("../../../db.js");
 require("dotenv").config();
 const { BYTES, BASE, ITERATIONS, LONG_ENCRYPTION, ENCRYPT_ALGORITHM, EMAIL_USER, PASSWORD_USER } =
   process.env;
@@ -11,8 +11,7 @@ const postUser = async (req, res) => {
     let user; //creamos una variable para guardar el usuario
     if (!avatar)
       //Asignamos avatar por defecto en caso de no venir
-      avatar =
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png";
+      avatar = "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200";
     //vamos a utilizar la libería cryto de node para encriptar la contraseña
     crypto.randomBytes(parseInt(BYTES), (error, salt) => {
       //recibimos una base numérica en bytes una función callback
@@ -38,6 +37,12 @@ const postUser = async (req, res) => {
                 .status(404)
                 .send({ message: "El correo ya esta registrado" });
             }
+            const verifyEmailAdmin = await Admin.findOne({ where: { email } }); //buscamos el usuario en la tabla de administradores
+            if (verifyEmailAdmin) {
+              return res
+                .status(404)
+                .send({ message: "El correo ya esta registrado" });
+            }
           const encryptedPassword = key.toString(BASE); //encriptamos la contraseña
           if (role === "alumno") {
             const student = await Student.create({
@@ -48,7 +53,7 @@ const postUser = async (req, res) => {
               avatar,
               salt: newSalt,
               authorization: false,
-              // role: "alumno",
+              role: "alumno",
             });
             user = student; //guardamos el usuario en la variable
             let Transport = nodemailer.createTransport({
@@ -56,8 +61,8 @@ const postUser = async (req, res) => {
               port: 465,
               secure: true, // true for 465, false for other ports
               auth: {
-                user: 'davidpatejo@gmail.com', // generated ethereal user
-                pass: 'gtnhexomenxgaujz', // generated ethereal password
+                user: EMAIL_USER, // generated ethereal user
+                pass: PASSWORD_USER, // generated ethereal password
               },
             }); 
             let info = await Transport.sendMail({
@@ -78,8 +83,7 @@ const postUser = async (req, res) => {
             });
           
             Transport.close();
-          } else {
-            //si es profesor
+          } else if (role === "profesor") { //si es profesor
             const teacher = await Teacher.create({
               name,
               lastName,
@@ -118,6 +122,20 @@ const postUser = async (req, res) => {
             });
           
             Transport.close();
+          } else if (role === "admin") { //si es admin
+            const admin = await Admin.create({
+              name,
+              lastName,
+              email: email.trim().toLowerCase(),
+              password: encryptedPassword,
+              avatar,
+              salt: newSalt,
+              authorization: false,
+              role: "admin",
+            });
+            user = admin; //guardamos el usuario en la variable
+          } else{
+            res.status(404).send({ message: "El rol no es valido" });
           }
           res.status(200).send({ message: "Usuario Registrado con Éxito" });
         }

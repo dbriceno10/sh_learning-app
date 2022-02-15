@@ -1,12 +1,12 @@
 const { Category } = require("../../../db.js");
 
 const deleteCategory = async (req, res) => {
-  const { name } = req.body;
+  const { id } = req.params;
   try {
     const category = await Category.findOne({
       //buscamos la categoria
       where: {
-        name: name.trim().toLowerCase(),
+        id: id,
       },
     });
     if (!category) {
@@ -15,7 +15,7 @@ const deleteCategory = async (req, res) => {
     await category.destroy({
       //eliminamos la categoria
       where: {
-        name: name.trim().toLowerCase(),
+        id: id,
       },
     });
     res

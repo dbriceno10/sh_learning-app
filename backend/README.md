@@ -13,11 +13,12 @@ GET: Ruta fake de Cursos, endpoind http://localhost:3001/fakecourses
 Ruta de categorias, recibe name que puede ser una sola categoría o un array de categorías
 POST: El endpoind es http://localhost:3001/category/create ---> recibe name por nombre para crear categorias
 GET: El endpoind es http://localhost:3001/category se puede hacer un get para trater todas las categorías creadas
-DELETE: El endpoind es http://localhost:3001/category/delete ---> recibe el nombre de una categoría por body para borrarla de la base de datos
+DELETE: El endpoind es http://localhost:3001/category/delete/id ---> recibe el id de una categoría por params para borrarla de la base de datos
 
 Ruta de Cursos recibe name, description, email(Del teacher), img, price, category
 POST: El endpoind es http://localhost:3001/courses/create ---> para crear un curso
 GET: http://localhost:3001/courses/detail/id ---> para obtener los detalles de un curso, recibe el id del curso por params
+GET: http://localhost:3001/courses/teacher/teacterId --->Recibe el id de un teacher por params para trater todos los cursos de ese teacher
 PUT: http://localelhost:3001/courses/update/id ---> recibe el id del curso por params, y el name, description, price e img por body para actualizar
 DELETE: http://localhost:3001/courses/delete/id ---> recibe el id del curso por params para eliminarlo de la base de datos
 
@@ -52,6 +53,13 @@ GET: http://localhost:3001/teachers/details/id ---> recibe por params  el id de 
 PUT: http://localhost:3001/teachers/update/id ---> recibe por params el id del profesor y por body el name, lastName, email y avatar para actualizar los datos del profesor
 DELETE: http://localhost:3001/teachers/delete/id ---> recibe por params el id del profesor para eliminarlo de la base de datos
 
+Ruta de administradores
+GET: http://localhost:3001/admins devuelve todos los administradores, para buscar un solo administrador, actualizar o eliminar debemos pasar el id del administrador por params
+La actualización recibe por body name, lastName, email y avatar como atributos que se pueden actualizar
+GET: http://localhost:3001/admins/details/id ---> recibe por params  el id de un administrador para cargar sus datos
+PUT: http://localhost:3001/admins/update/id ---> recibe por params el id del administrador y por body el name, lastName, email y avatar para actualizar los datos del profesor
+DELETE: http://localhost:3001/admins/delete/id ---> recibe por params el id del administrador para eliminarlo de la base de datos
+
 Ruta de pasarela de pago con Stripe
 POST: http://localhost:3001/stripe/pay ---> Ruta para utilizar la pasarela de pagos de stripe, recibe por body amount(monto), email(un email válido cualquiera), token, studentId, courseId. Procesa el pago, y guarda en la base de datos el id del estudiante y del curso.
 
@@ -72,3 +80,5 @@ CLIENT_ID=
 EMAIL_USER=
 PASSWORD_USER=
 STRIPE_KEY=
+EMAIL_ADMIN=
+PASSWORD_ADMIN=

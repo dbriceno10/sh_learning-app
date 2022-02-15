@@ -34,7 +34,7 @@ const postReview = async (req, res) => {
           FKstudentID: FKStudent.id,
           FKcourseID: FKCourse.id,
         });
-        res.status(200).send(review);
+        res.status(200).send({ message: "La review se ha creado correctamente" });
       } catch (error) {
         res.status(404).send(error);
       }
