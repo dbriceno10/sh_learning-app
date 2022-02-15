@@ -21,11 +21,18 @@ const authProvider = {
         let authorization= response.json.authorization;
         let role= response.json.role;
         console.log(response)
-        localStorage.setItem('authorization', JSON.stringify(authorization));
-        localStorage.setItem('role', JSON.stringify(role));
+        if (role ==="admin"){
+          localStorage.setItem('authorization', JSON.stringify(authorization));
+          localStorage.setItem('role', JSON.stringify(role));
 
                 //return response.json();
-                return {id:"id"}
+              }
+              return {id:"id"}
+        // localStorage.setItem('authorization', JSON.stringify(authorization));
+        // localStorage.setItem('role', JSON.stringify(role));
+
+        //         //return response.json();
+        //         return {id:"id"}
     })
             // .then(auth => {
             //     localStorage.setItem('auth', JSON.stringify(auth));
