@@ -1,11 +1,11 @@
 const { Course, Student, Review } = require("../../../db.js");
 
 const postReview = async (req, res) => {
-  const { nameCourse, emailStudent, score } = req.body;
+  const { courseId, studentId, score } = req.body;
   try {
     const FKCourse = await Course.findOne({
       where: {
-        name: nameCourse,
+        id: courseId,
       },
     });
     if (!FKCourse) {
@@ -13,7 +13,7 @@ const postReview = async (req, res) => {
     }
     const FKStudent = await Student.findOne({
       where: {
-        email: emailStudent,
+        id: studentId,
       },
     });
     if (!FKStudent) {
@@ -34,7 +34,7 @@ const postReview = async (req, res) => {
           FKstudentID: FKStudent.id,
           FKcourseID: FKCourse.id,
         });
-        res.status(200).send(review);
+        res.status(200).send({ message: "La review se ha creado correctamente" });
       } catch (error) {
         res.status(404).send(error);
       }

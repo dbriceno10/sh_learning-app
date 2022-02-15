@@ -6,13 +6,17 @@ import {Admin,Resource } from 'react-admin';
 import {UserList, UserEdit, UserCreate} from './componentes/UserList';
 import {CoursesList, CoursesEdit, CoursesCreate} from './componentes/CoursesList';
 import {TeachertsList, TeachertsEdit, TeachertsCreate} from './componentes/Teacherts';
-import { CategoryList ,CategoryEdit,CategoryCreate} from './componentes/CategoryList';
-import provi from './dataprovider';
+import { CategoryList ,CategoryCreate} from './componentes/CategoryList';
+import dataProvider from './dataprovider';
+import authProvider from './authProvider';
 
 
-function App() {
+function Adm() {
   return ( 
-    <Admin dataProvider={provi}>
+    <Admin
+      dataProvider={dataProvider}
+      authProvider={authProvider}
+    >
       
 
       <Resource 
@@ -32,9 +36,9 @@ function App() {
       edit={TeachertsEdit}
       create={TeachertsCreate}/>
       <Resource 
-      name='category'
+      name="category"
       list={CategoryList}
-      edit={CategoryEdit}
+      // edit={CategoryEdit}
       create={CategoryCreate}
     />
    </Admin>
@@ -45,4 +49,4 @@ function App() {
   );
 }
 
-export default App;
+export default Adm;

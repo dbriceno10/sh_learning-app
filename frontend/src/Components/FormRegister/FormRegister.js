@@ -1,14 +1,12 @@
 import React from "react";
 import { Formik } from "formik";
 import { useNavigate } from "react-router-dom";
-import { loginLocal } from "../../Actions/login.actions"
 import "./FormRegister.css";
 import axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
 const FormRegister = () => {
-	const dispatch = useDispatch();
 	let navigate = useNavigate();
 
 	const MySwal = withReactContent(Swal);
@@ -80,10 +78,14 @@ const FormRegister = () => {
 									MySwal.fire({
 										position: "center-center",
 										icon: "success",
-										title: "Felicitaciones! Te has registrado con éxito!",
-										showConfirmButton: false,
+										title: "Felicitaciones! Te has registrado con éxito! Revisa tu email para confirmar tu cuenta!",
+										showConfirmButton: true,
 										timer: 2500,
 									});
+									// MySwal.fire(
+									// 	"Felicitaciones! Te has registrado con éxito!",
+									// 	"Por favor, revisa tu email para confirmar tu cuenta."
+									// )
 									resetForm();
 									navigate("/login");
 								} else {

@@ -23,19 +23,13 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       price: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       img: {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      // score: { //Propiedad temporal
-      //   type: DataTypes.ENUM("1", "2", "3", "4", "5"),
-      //   // type: DataTypes.INTEGER,
-      //   // defaultValue: 0,
-      //   allowNull: false,
-      // },
     },
     {
       timestamps: true,

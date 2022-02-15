@@ -1,16 +1,17 @@
 .cards {
-    display        : flex;
-    flex-wrap      : wrap;
-    justify-content: flex-end;
-    gap            : 2rem;
+    display                                   : inline-grid;
+    /* justify-items                          : flex-start; */
+    justify-content                           : space-between;
+    grid-template-columns                     : repeat(auto-fit, minmax(16rem, 1fr));
+    /* align-items                            : center; */
+    /* height                                 : auto; */
+    width                                     : 100%;
+    gap                                       : 1rem;
+    overflow-x                                : hidden;
 }
 
 .cards div {
+    width        : auto;
     margin-inline: 0;
-    flex         : 1 1 auto;
-}
-
-.cards.search-result-cards {
-    justify-content: flex-start;
-    width          : 100%;
+    grid-column  : span 1;
 }
