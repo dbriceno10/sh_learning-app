@@ -63,6 +63,9 @@ DELETE: http://localhost:3001/admins/delete/id ---> recibe por params el id del 
 Ruta de pasarela de pago con Stripe
 POST: http://localhost:3001/stripe/pay ---> Ruta para utilizar la pasarela de pagos de stripe, recibe por body amount(monto), email(un email válido cualquiera), token, studentId, courseId. Procesa el pago, y guarda en la base de datos el id del estudiante y del curso.
 
+Ruta Para Crear data en base de datos
+Get: http://localhost:3001/datamaker ----> hacer get a esta ruta solo una si no hay nada de data en base de datos o se puede romper todo
+
 #Variables de entorno necesarias
 
 DB_USER=
