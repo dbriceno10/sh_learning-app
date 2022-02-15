@@ -1,13 +1,19 @@
 require("dotenv").config();
 const { Router } = require("express");
-const axios = require("axios");
-const { BASE, ITERATIONS, LONG_ENCRYPTION, ENCRYPT_ALGORITHM } = process.env;
+const { BASE, ITERATIONS, LONG_ENCRYPTION, ENCRYPT_ALGORITHM, EMAIL_ADMIN, PASSWORD_ADMIN} = process.env;
 const crypto = require("crypto");
 const router = Router();
 const { Student, Teacher } = require("../db");
 
 router.post("/", async (req, res, next) => {
   const { email, password } = req.body;
+
+  if(email === EMAIL_ADMIN && password === PASSWORD_ADMIN) {
+    return res
+      .status(200)
+      .send({ authorization: true, role: "admin", id: 0001 });
+  }
+
   try {
     let role;
     let DbUser = await Student.findOne({

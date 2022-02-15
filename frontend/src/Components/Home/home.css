@@ -1,0 +1,79 @@
+/* CARDS */
+#div-all-cards{
+    width: 920px;
+}
+#cards-div{
+    background-color: rgba(212, 212, 212, 0.822);
+    border-radius: 10px;
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    margin: 10px;
+    position: relative;
+    left: 60%;
+    top: 200px;
+}
+#card-img{
+    height: 130px;
+    width: 200px;
+    border-radius: 10px; 
+}
+#card-name{
+    text-align: center;
+    position: relative;
+    bottom: 10%;
+}
+#card-cat{
+    text-align: center;
+    position: relative;
+    bottom: 20%;
+}
+#card-rating{
+    position: relative;
+    left: 10%;
+    bottom: 100px;
+}
+#card-price{
+    position: relative;
+    left: 75%;
+    bottom: 65px;
+}
+
+/* HEADER */
+#search-home{
+    background-color: rgba(212, 212, 212, 0.637);
+    border-radius: 6px;
+    width: 60%;
+    height: 40px;
+    position: relative;
+    left: 5%;
+    top: 150px;
+}
+#btn-search-home{
+    height: 40px;
+    width: 50px;
+    background-color: rgba(255, 217, 0, 0.698);
+    border-radius: 6px;
+    position: relative;
+    top: 150px;
+    left: 1.9%;
+}
+.header-btns{
+    background-color: rgba(212, 212, 212, 0.637);
+    border-radius: 6px;
+    height: 40px;
+    width: 100px;
+    position: relative;
+    bottom: 100px;
+    left: 30%;
+    margin: 50px;
+}
+#sortBy{
+    background-color: rgba(212, 212, 212, 0.637);
+    border-radius: 6px;
+    height: 30px;
+    width: 120px;
+    position: relative;
+    left: 10%;
+    top: 150px;
+}

@@ -4,8 +4,8 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useNavigate } from "react-router-dom";
 
-export default function Forgotpassword() {
-    const [forgotForm, setForgotForm] = useState({email: "", password: ""})
+export default function ForgotPassword() {
+    const [forgotForm, setForgotForm] = useState({ email: "", password: "" })
     let navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -15,7 +15,7 @@ export default function Forgotpassword() {
         })
     }
 
-	const MySwal = withReactContent(Swal);
+    const MySwal = withReactContent(Swal);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -28,7 +28,7 @@ export default function Forgotpassword() {
                 title: "Contraseña actualizada correctamente.",
                 showConfirmButton: false,
                 timer: 2500,
-              });
+            });
             navigate("/login")
         } catch (error) {
             MySwal.fire({
@@ -37,17 +37,17 @@ export default function Forgotpassword() {
                 title: "Email incorrecto.",
                 showConfirmButton: false,
                 timer: 2500,
-              });
+            });
         }
     }
 
-	return (
-		<div>
-			<form onSubmit={handleSubmit}>
-				<input type="email" placeholder="Ingresa tu email" name="email" value={forgotForm.email} onChange={handleChange}/>
-				<input type="password" placeholder="Ingresa tu nueva contraseña" name="password" value={forgotForm.password} onChange={handleChange}/>
-                <input type="submit" value="Cambiar contraseña"/>
-			</form>
-		</div>
-	);
+    return (
+        <div>
+            <form onSubmit={handleSubmit}>
+                <input type="email" placeholder="Ingresa tu email" name="email" value={forgotForm.email} onChange={handleChange} />
+                <input type="password" placeholder="Ingresa tu nueva contraseña" name="password" value={forgotForm.password} onChange={handleChange} />
+                <input type="submit" value="Cambiar contraseña" />
+            </form>
+        </div>
+    );
 }

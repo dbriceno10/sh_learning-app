@@ -8,12 +8,13 @@ const Message = ({ msg, bgColor }) => {
     backgroundColor: bgColor,
     color: '#fff',
     fontWeight: 'bold',
-    borderRadius: '0.5rem'
+    borderRadius: '0.5rem',
+    gridColumn: '1/-1'
   }
   return (
     <div style={styles}>
       {/* <p>{msg}</p> */}
-      <p dangerouslySetInnerHTML={{ __html: msg}}/>
+      <p dangerouslySetInnerHTML={{ __html: msg }} />
     </div>
   )
 };

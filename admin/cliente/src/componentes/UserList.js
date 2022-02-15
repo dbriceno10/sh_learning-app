@@ -1,9 +1,17 @@
 import React from "react";
-import {List, Datagrid, TextField, EditButton, DeleteButton, Edit, TextInput, SimpleForm, Create} from 'react-admin';
+import {
+    List, Datagrid, 
+    TextField, EditButton, 
+    DeleteButton, Edit, 
+    TextInput, SimpleForm, 
+    Create, } from 'react-admin';
+
+
+
 
  export const UserList =(props)=>{
     return(
-        <List {...props}>
+        <List {...props} >
             <Datagrid rowClick="edit">
                 <TextField source="id"/>
                 <TextField source="name"/>

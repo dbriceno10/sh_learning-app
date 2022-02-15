@@ -1,51 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import MaterialCard from "../Card/Card";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loader from "../Loader/Loader";
 import Message from "../Message/Message";
-// import FilterCategories from "../Orders/filterCategories";
-import Button from '../Buttons/Buttons';
 import { getCourses } from "../../Actions/courses.actions"
 import { useDispatch, useSelector } from "react-redux";
 import './Cards.css';
 
 
 const Cards = ({ searchTerm }) => {
-	const [totalCourses, setTotalCourses] = useState([]);
+	// const [courses, setCourses] = useState([]);
 	const [hasMore, sethasMore] = useState(true);
 	const [page, setPage] = useState(2);
-	const { courses } = useSelector(state => state.courses)
+	const { courses } = useSelector(state => state.courses);
 	const dispatch = useDispatch();
-	// const [isStudent, setIsStudent] = useState(false);
-	// const userCredentials = JSON.parse(
-	// 	window.localStorage.getItem("userCredentials")
-	// );
-
-	useEffect(() => {
-		dispatch(getCourses({}))
-	}, [dispatch]);
 
 	// const getData = useCallback(async () => {
 	// 	const res = await fetch(`http://localhost:3001/fakecourses`);
 	// 	const data = await res.json();
 	// 	setCourses(data);
-	// }, [courses]);
-
-	// const fetchCourses = async () => {
-	// 	const res = await fetch(
-	// 		`http://localhost:3001/cursos?_page=${page}&_limit=10`
-	// 	);
-	// 	const data = await res.json();
-	// 	return data;
-	// };
+	// }, []);
 
 	const fetchMoreCourses = async () => {
-		setTotalCourses([...totalCourses, ...courses]);
-		if (courses.length === 0 || courses.length < 5) {
+		if (courses.length === 0 || courses.length <= 12) {
 			sethasMore(false);
 		}
 		setPage(prevPage => page + 1);
 	};
+
+	useEffect(() => {
+		dispatch(getCourses({}));
+		// getData();
+	}, [dispatch]);
+	console.log(hasMore)
 
 	// return (
 	// 	<section className="cards">
@@ -82,6 +69,7 @@ const Cards = ({ searchTerm }) => {
 
 	return (
 		<InfiniteScroll
+			style={{ overflowX: 'hidden' }}
 			className="cards"
 			dataLength={courses.length} //This is important field to render the next data
 			next={fetchMoreCourses}
@@ -94,10 +82,11 @@ const Cards = ({ searchTerm }) => {
 					courses.filter(val => {
 						if (searchTerm === "") {
 							document.querySelector('.cards')?.classList?.remove('search-result-cards');
+							return val;
 						} else if (val.name.toLowerCase().includes(searchTerm.toLowerCase())) {
 							document.querySelector('.cards')?.classList?.add('search-result-cards');
+							return val;
 						}
-						return val;
 					}).map((c) => {
 						return (
 							<MaterialCard
