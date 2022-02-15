@@ -1,58 +1,44 @@
 import React from "react";
-import {
-    List, Datagrid, 
-    TextField, EditButton, 
-    DeleteButton, Edit, 
-    TextInput, SimpleForm, 
-    Create, } from 'react-admin';
+import {List, Datagrid, TextField, EditButton, DeleteButton, Edit, TextInput, SimpleForm, Create} from 'react-admin';
 
-
-
-
- export const UserList =(props)=>{
+ export const AdminList =(props)=>{
     return(
-        <List {...props} >
+        <List {...props}>
             <Datagrid rowClick="edit">
                 <TextField source="id"/>
                 <TextField source="name"/>
-                <TextField source="avatar"/>
                 <TextField source="lastName"/>
-                <TextField source="id"/>
+                <TextField source="email"/>   
                 <TextField source="role"/>          
-                <EditButton basePath="students"/>
-                <DeleteButton basePath="students"/>
+                <EditButton basePath="admins"/>
+                <DeleteButton basePath="admins"/>
             </Datagrid>
         </List>
 
     )
 }
-export const UserEdit =(props)=>{
+export const AdminEdit =(props)=>{
     return(
         <Edit {...props}>
             <SimpleForm rowClick="edit">
                 <TextInput  disabled source="id"/>
                 <TextInput source="name"/>
                 <TextInput source="lastName"/>
-                <TextInput source="email"/>  
-                <TextInput source="avatar"/>
-
+                <TextInput source="email"/>          
             </SimpleForm>
         </Edit>
 
     )
 }
-export const UserCreate =(props)=>{
+export const AdminCreate =(props)=>{
     return(
         <Create {...props}>
             <SimpleForm rowClick="edit">
             <TextInput  disabled source="id"/>
                 <TextInput source="name"/>
                 <TextInput source="lastName"/>
-                <TextInput source="avatar"/>
-                <TextInput source="email"/>   
+                <TextInput source="email"/>  
                 <TextInput source="password"/>  
-
-
             </SimpleForm>
         </Create>
 

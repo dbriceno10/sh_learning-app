@@ -6,6 +6,7 @@ import {Admin,Resource } from 'react-admin';
 import {UserList, UserEdit, UserCreate} from './componentes/UserList';
 import {CoursesList, CoursesEdit, CoursesCreate} from './componentes/CoursesList';
 import {TeachertsList, TeachertsEdit, TeachertsCreate} from './componentes/Teacherts';
+import{AdminList, AdminEdit, AdminCreate} from './componentes/Admin'
 import { CategoryList ,CategoryCreate} from './componentes/CategoryList';
 import dataProvider from './dataprovider';
 import authProvider from './authProvider';
@@ -15,16 +16,12 @@ function Adm() {
   return ( 
     <Admin
       dataProvider={dataProvider}
-      authProvider={authProvider}
-    >
-      
-
+      authProvider={authProvider}>
       <Resource 
       name='students'
       list={UserList}
       edit={UserEdit}
       create={UserCreate}/>
- 
       <Resource 
       name='courses'
       list={CoursesList}
@@ -35,6 +32,11 @@ function Adm() {
       list={TeachertsList}
       edit={TeachertsEdit}
       create={TeachertsCreate}/>
+      <Resource 
+      name='admins'
+      list={AdminList}
+      edit={AdminEdit}
+      create={AdminCreate}/>
       <Resource 
       name="category"
       list={CategoryList}
