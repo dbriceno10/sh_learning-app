@@ -7,7 +7,7 @@ import './Navbars.css';
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
-export default function Navbar({ isStudent }) {
+export default function Navbar({ isLoggedIn }) {
     const dispatch = useDispatch();
     const location = useLocation();
     const [toggleMenuIcon, setToggleMenuIcon] = useState('ci:menu-alt-02');
@@ -51,20 +51,20 @@ export default function Navbar({ isStudent }) {
         dispatch(getUserCredentials());
     }, [dispatch])
 
-    /* isStudent is either false or true; true means is a logged-in student */
-    /* isStudent is either false or true; true means is a logged-in student */
+    /* isLoggedIn is either false or true; true means is a logged-in student */
+    /* isLoggedIn is either false or true; true means is a logged-in student */
     return (
         <nav className="nav-bar">
             <ul className="nav-bar_items">
                 <Link
                     className="nav-bar_logo"
-                    to={!isStudent ? '/' : '/home'}>
+                    to={isLoggedIn === 'none' ? '/' : '/home'}>
                     <img className="nav-bar_logo"
                         src="https://i.imgur.com/sq20yHH.png"
                         alt="Learnzilla online academy logo (with a purple dinosaur)" />
                 </Link>
                 {
-                    (!isStudent || location.pathname === '/') &&
+                    (!isLoggedIn || location.pathname === '/') &&
                     <section className="nav-bar_middle-btns">
                         <li className="nav-bar_item">
                             <Button
@@ -90,13 +90,13 @@ export default function Navbar({ isStudent }) {
                     </section>
                 }
                 {
-                    (!isStudent || location.pathname === '/')
+                    (isLoggedIn === 'none' || location.pathname === '/')
                         ? <section className="nav-bar_cta">
                             <li className="nav-bar_item">
                                 <div className="nav-bar_cta_login">
                                     <Button
                                         link={
-                                            !isStudent
+                                            isLoggedIn === 'none'
                                                 ? '/login'
                                                 : '/home'
                                         }
@@ -108,7 +108,7 @@ export default function Navbar({ isStudent }) {
                             <li className="nav-bar_item">
                                 <Button className='nav-bar_cta_sign-up'
                                     link={
-                                        !isStudent
+                                        isLoggedIn === 'none'
                                             ? '/signUp'
                                             : '/home'
                                     }
@@ -119,36 +119,28 @@ export default function Navbar({ isStudent }) {
                         </section>
                         : <section className="nav-bar_user-controls">
                             <li className="nav-bar_item">
-                                <Button className='user-controls_settings_btn'
-                                    link={'/settings'}
-                                    type={'round'}
-                                    text={'hello'}
-                                    icon={'ci:settings-filled'}
-                                    tooltip={'Settings'}
-                                >
-                                </Button>
-                            </li>
-                            <li className="nav-bar_item">
                                 <Button className='user-controls_logout_btn'
                                     link={'/'}
                                     type={'round'}
                                     text={''}
                                     icon={'ph:sign-out-bold'}
-                                    tooltip={'Log out'}
+                                    tooltip={'Cerrar sesión'}
                                     onClick={handleLogout}
                                 ></Button>
                             </li>
                             <li className="nav-bar_item">
-                                <div className="user-controls-profile-pic tooltip" >
-                                    <span className="tooltip_text">
-                                        My profile
-                                    </span>
-                                </div>
+                                <Link to={'/profile'}>
+                                    <div className="user-controls-profile-pic tooltip" >
+                                        <span className="tooltip_text">
+                                            Mi perfil
+                                        </span>
+                                    </div>
+                                </Link>
                             </li>
                         </section>
                 }
                 {
-                    !isStudent &&
+                    isLoggedIn === 'none' &&
                     <section className="nav-bar_menu">
                         <Button
                             link={''}

@@ -13,7 +13,7 @@
   background-color     : white;
   border-radius        : 1.5rem;
   /* inset | offset-x | offset-y | color */
-  box-shadow           : 2.3px 16.9px 6.4px hsla(0, 0%, 0%, 0.03), 18px 135px 51px hsla(0, 0%, 49%, 0.37);
+  box-shadow           : 10rem 1rem 2rem hsla(0, 0%, 49%, 0.37);
 }
 
 .course-details_card .course-details_image {
@@ -61,11 +61,8 @@
 }
 
 .goBackBtn:hover {
-  cursor            : pointer;
-  -webkit-box-shadow: 0px 5px 10px 0px rgba(128, 128, 128, 0.45);
-  -moz-box-shadow   : 0px 5px 10px 0px rgba(128, 128, 128, 0.45);
-  box-shadow        : 0px 5px 10px 0px rgba(128, 128, 128, 0.45);
-  transition        : .2s;
+  cursor    : pointer;
+  transition: .2s;
 }
 
 a:hover {
