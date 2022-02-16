@@ -12,7 +12,7 @@ import Loader from "../../Components/Loader/Loader";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Button from "../../Components/Buttons/Buttons";
-import { addToCart } from "../../Actions/cart.actions";
+import { addToCart, getLocalStorage } from "../../Actions/cart.actions";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
@@ -21,6 +21,7 @@ export default function CourseDetail({ isStudent }) {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const { courseDetail } = useSelector((state) => state.courses);
+	const { localStorageCart } = useSelector((state) => state.cart);
 	console.log(courseDetail);
 	const [favourite, setFavourite] = useState(false);
 	const { userCredentials } = useSelector((state) => state.login);
@@ -74,9 +75,27 @@ export default function CourseDetail({ isStudent }) {
 	// 		navigate('/login');
 	// 	}
 	// }
+	const getCoursesNames = () => {
+		if(localStorageCart) {
+			const coursesNames = localStorageCart.map(course => course.name)
+			const yaHayCurso = coursesNames.includes(courseDetail.name);
+			return yaHayCurso
+		}
+	}
+
 
 	function handleAddCart() {
 		if (isStudent) {
+			if(getCoursesNames()) {
+				MySwal.fire({
+					position: "center-center",
+					icon: "error",
+					title: "Ya tienes este curso en tu carrito",
+					showConfirmButton: false,
+					timer: 2500,
+				});
+				return
+			}
 			dispatch(addToCart(courseDetail));
 			MySwal.fire({
 				position: "center-center",
@@ -104,6 +123,7 @@ export default function CourseDetail({ isStudent }) {
 		dispatch(getUserCredentials());
 		dispatch(getCourseDetail(id));
 		dispatch(clearPage());
+		dispatch(getLocalStorage())
 	}, [dispatch, id]);
 
 	return (

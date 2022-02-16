@@ -16,16 +16,14 @@ export default function shoppingReducer(
 ) {
 	switch (type) {
 		case ADD_TO_CART: {
-      console.log(payload);
+      // console.log(payload);
       let myCourses = JSON.parse(localStorage.getItem("cart"));
-      console.log(myCourses);
+      // console.log(myCourses);
 			if (myCourses) {
-        const yaHayCurso = myCourses.filter(course => course.id === payload.id)
-        console.log("coincide el id",yaHayCurso);
 				myCourses.push(payload);
 				localStorage.setItem("cart", JSON.stringify(myCourses));
 			} else {
-				localStorage.setItem("cart", JSON.stringify(payload));
+				localStorage.setItem("cart", JSON.stringify([payload]));
 			}
 			return {
 				...state,
@@ -39,11 +37,11 @@ export default function shoppingReducer(
 			};
 		}
 		case REMOVE_ONE_FROM_CART: {
-			// let itemToDelete = state.cart.find((item) => item.id === payload);
-
+			let newItems = state.localStorageCart.filter((item) => item.id !== payload);
+      console.log(newItems);
 			return {
 				...state,
-				cart: state.cart.filter((item) => item.id !== payload),
+				localStorageCart: localStorage.setItem("cart", JSON.stringify(newItems)),
 			};
 		}
 		case CLEAR_CART:

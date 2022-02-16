@@ -19,7 +19,7 @@ export const getLocalStorage = () => (dispatch) => {
   })
 }
 
-export const delFromCart = (id) => (dispatch) => {
+export const deleteFromCart = (id) => (dispatch) => {
   return dispatch({
     type: REMOVE_ONE_FROM_CART,
     payload: id 

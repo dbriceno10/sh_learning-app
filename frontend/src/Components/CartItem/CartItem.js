@@ -1,6 +1,6 @@
 import React from "react";
 
-const CartItem = ({ data, delFromCart }) => {
+const CartItem = ({ data, deleteFromCart }) => {
 	const { id, name, price } = data;
 
 	return (
@@ -8,7 +8,7 @@ const CartItem = ({ data, delFromCart }) => {
 			<h4>{name}</h4>
 			<h5>{`${price}.00`}</h5>
 			<>
-				<button onClick={() => delFromCart(id)}>Eliminar</button>
+				<button onClick={() => deleteFromCart(id)}>Eliminar</button>
 				<br />
 				<br />
 			</>
