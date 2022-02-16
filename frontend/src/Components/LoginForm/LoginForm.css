@@ -24,7 +24,8 @@ a {
 
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+input[type="number"] {
   width: 100%;
   height: 40px;
   line-height: 40px;
@@ -39,10 +40,19 @@ input[type="password"] {
 
 input[type="text"]:focus,
 input[type="email"]:focus,
-input[type="password"]:focus {
+input[type="password"]:focus,
+input[type=number] {
   border-color: var(--blue);
   box-shadow: 0px 5px 15px -5px rgba(66, 133, 235, 0.5);
 }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
+input[type=number] { -moz-appearance:textfield; }
 
 .text-primary {
   color: var(--primary);

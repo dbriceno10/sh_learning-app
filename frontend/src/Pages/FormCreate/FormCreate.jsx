@@ -6,6 +6,10 @@ import Button from "../../Components/Buttons/Buttons";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useNavigate } from "react-router-dom";
+import HomeIcon from '@mui/icons-material/Home';
+import AddIcon from '@mui/icons-material/Add';
+import CloseIcon from '@mui/icons-material/Close';
+import './FormCreate.css';
 
 function CreateForm() {
 
@@ -18,6 +22,16 @@ function CreateForm() {
     const { categories } = useSelector(state => state.courses);
     const { courses } = useSelector(state => state.courses);
     console.log(categories)
+
+    const categoriesToOrder = categories.map((category) => {
+		return {
+			id: category.id,
+			name: category.name,
+		};
+	});
+	const orderedCategories = categoriesToOrder.sort((a, b) =>
+		a.name > b.name ? 1 : a.name < b.name ? -1 : 0
+	);
     
 
     const [form, setForm] = useState({
@@ -42,12 +56,12 @@ function CreateForm() {
         if (coursesN.find(e => e === name)) {
             setErrors({
                 ...errors,
-                name: "Ese nombre ya esta asignado a otro curso"
+                name: "Ese nombre ya esta asignado a otro curso*"
             })
         } else if (!name) {
             setErrors({
                 ...errors,
-                name: "Ingrese un nombre",
+                name: "Ingrese un nombre*",
             })
         } else {
             setErrors({
@@ -61,12 +75,12 @@ function CreateForm() {
         if (!email) {
             setErrors({
                 ...errors,
-                email: "Ingrese un Email "
+                email: "Ingrese un Email*"
             })
         } else if (!/^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/.test(email)) {
             setErrors({
                 ...errors,
-                email: "Formato de Email no reconocido"
+                email: "Formato de Email no reconocido*"
             })
         } else {
             setErrors({
@@ -80,12 +94,12 @@ function CreateForm() {
         if (!price) {
             setErrors({
                 ...errors,
-                price: "Debe asignar un precio"
+                price: "Debe asignar un precio*"
             })
         } else if (price < 0) {
             setErrors({
                 ...errors,
-                price: "El precio no puede ser negativo"
+                price: "El precio no puede ser negativo*"
             })
         } else {
             setErrors({
@@ -200,12 +214,23 @@ function CreateForm() {
         }, [dispatch])
 
         return (
-            <div>
-                <form>
+            <div className='formContainer'>
+                <form className="realForm">
                     <h1>Crear Curso</h1>
                     <div>
-                        <div>
-                            <label>Nombre</label>
+                        <div className="inputDiv">
+                            <label>Tu email</label>
+                            <input
+                                name="email"
+                                type="text"
+                                placeholder="Email..."
+                                value={form.email}
+                                onChange={handleChange}
+                            />
+                            {errors.email !== "" ? <p className="danger">{errors.email}</p> : null}
+                        </div>
+                        <div className="inputDiv">
+                            <label>Nombre del curso</label>
                             <input
                                 name="name"
                                 type="text"
@@ -216,7 +241,7 @@ function CreateForm() {
                             />
                             {errors.name !== "" ? <p className="danger">{errors.name}</p> : null}
                         </div>
-                        <div>
+                        <div className="inputDiv">
                             <label>Descripcion</label>
                             <input
                                 name="description"
@@ -226,18 +251,7 @@ function CreateForm() {
                                 onChange={handleChange}
                             />
                         </div>
-                        <div>
-                            <label>Email</label>
-                            <input
-                                name="email"
-                                type="text"
-                                placeholder="Email..."
-                                value={form.email}
-                                onChange={handleChange}
-                            />
-                            {errors.email !== "" ? <p className="danger">{errors.email}</p> : null}
-                        </div>
-                        <div>
+                        <div className="inputDiv">
                             <label>Imagen</label>
                             <input
                                 name="img"
@@ -247,9 +261,10 @@ function CreateForm() {
                                 onChange={handleChange}
                             />
                         </div>
-                        <div>
+                        <div className="inputDiv">
                             <label>Precio</label>
                             <input
+                                className="inputNumber"
                                 name="price"
                                 type="number"
                                 placeholder="Precio..."
@@ -258,12 +273,14 @@ function CreateForm() {
                             />
                             {errors.price !== "" ? <p className="danger">{errors.price}</p> : null}
                         </div>
-                        <div >
-                            <select id="selectCategory">
+                        <div className="selectContainer">
+                            <select id="selectCategory"
+                            className="filterings_category-select selectInput"
+                            >
                                 <option selected value="">
                                     Selecciona la Categoria
                                 </option>
-                                {categories.map((e) => {
+                                {orderedCategories.map((e) => {
                                    return (
                                     <option value={e.name} key={e.id}>
                                     {e.name}
@@ -273,34 +290,34 @@ function CreateForm() {
                                 })}
                             </select>
                             <button className="addCategoryBtn" onClick={onClickCourse}>
-                                Agregar
+                                <AddIcon />
                             </button>
                         </div>
                         <div>
-                            <ul>
+                            <ul className="listContainer">
                                 {form.category.length > 0
                                     ? form.category.map(category => (
-                                        <li key={category}>
+                                        <li key={category} className='categorySelected'>
                                             <button
                                                 className="deleteBtn"
                                                 onClick={() => deleteCategory(category)}
-                                            >X</button>
+                                            ><CloseIcon /></button>
                                             {category}
                                         </li>
                                     )): null}
                             </ul>
                         </div>
                     </div>
-                    <button type="button" onClick={handleClick}>CREATE</button>
-                    <div>
+                    <button type="button" onClick={handleClick} className="createBtn">CREATE</button>
+                </form>
+                    <div className="homeBtn">
                         <Button
                             type={'raised'}
-                            text={'Volver a cursos'}
+                            text={<HomeIcon />}
                             link={'/home'}
                         >
                         </Button>
                     </div>
-                </form>
             </div>
         )
     }
