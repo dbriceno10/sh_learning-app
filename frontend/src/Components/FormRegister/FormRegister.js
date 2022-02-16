@@ -80,7 +80,7 @@ const FormRegister = () => {
 										icon: "success",
 										title: "Felicitaciones! Te has registrado con éxito! Revisa tu email para confirmar tu cuenta!",
 										showConfirmButton: true,
-										timer: 2500,
+										timer: 4000,
 									});
 									// MySwal.fire(
 									// 	"Felicitaciones! Te has registrado con éxito!",

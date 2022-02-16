@@ -1,10 +1,7 @@
 import axios from "axios";
 
-<<<<<<< HEAD
 export const CHANGE_PASSWORD = "CHANGE_PASSWORD";
-=======
 export const CONFIRM_USER = "CONFIRM_USER"
->>>>>>> mirror
 
 
 export const changePassword = (payload) => {
