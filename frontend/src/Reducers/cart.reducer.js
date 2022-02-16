@@ -44,7 +44,7 @@ export default function shoppingReducer(
 
 			return {
 				...state,
-				localStorageCart: localStorage.setItem("cart", JSON.stringify(newItems)),
+				localStorageCart: newItems.length > 0 ? localStorage.setItem("cart", JSON.stringify(newItems)) : localStorage.removeItem('cart'),
 			};
 		}
 		case CLEAR_CART:

@@ -69,7 +69,7 @@ function App() {
 			<Route exact path="/home/create" element={<CreateForm />} />
 			<Route path='/pay' element={<Pasarela />} />
 			<Route path="/carrito" element={<PrivateRoute />}>
-				<Route index element={<ShoppingCart />} />
+				<Route index element={<ShoppingCart isLoggedIn={isLoggedIn}/>} />
 			</Route>
 			<Route
 				exact path="/home/create"
