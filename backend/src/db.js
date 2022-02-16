@@ -63,7 +63,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Category, Course, Student, Teacher, Video, Review, Records, Admin } = sequelize.models;
+const { Category, Course, Student, Teacher, Video, Review, Records, Admin, Order } = sequelize.models;
 
 // Aca vendrian las relaciones
 
@@ -125,6 +125,15 @@ Course.hasMany(Review, {
 });
 Review.belongsTo(Course);
 
+// //? Relación entre Estudiante, y Curso
+// Student.hasMany(Order, {
+//   foreignKey: {
+//     type: DataTypes.UUID,
+//     allowNull: false,
+//     name: "FKstudentID",
+//   },
+// });
+// Order.belongsTo(Student);
 
 
 module.exports = {
