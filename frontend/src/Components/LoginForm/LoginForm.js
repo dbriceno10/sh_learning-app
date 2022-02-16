@@ -70,7 +70,6 @@ function LoginForm() {
 					showConfirmButton: false,
 					timer: 2500,
 				});
-				dispatch(getUserCredentials());
 				setUserLogin({
 					email: "",
 					password: "",
@@ -94,8 +93,6 @@ function LoginForm() {
 	useEffect(() => {
 		dispatch(getUserCredentials())
 	}, [dispatch])
-
-
 
 	return (
 		<div className="form-container">

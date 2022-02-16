@@ -11,10 +11,9 @@
 .search-bar .search-bar_input {
   height          : 80%;
   width           : 50vw;
-  border          : 0;
   padding         : 1rem;
   border-radius   : .6rem;
-  font-size       : 1.5rem;
+  font-size       : 1rem;
   text-align      : left;
   background-color: var(--nice-gray);
   color           : var(--rich-black);

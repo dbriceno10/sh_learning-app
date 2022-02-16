@@ -5,7 +5,7 @@ import { Icon } from "@iconify/react";
 import "./LandingPage.css";
 import ScrollTopButton from "../../Components/ScrollTopButton/ScrollTopButton";
 
-export default function LandingPage({ isStudent }) {
+export default function LandingPage({ isLoggedIn }) {
 
 	return (
 		<main className="landing">
@@ -14,7 +14,7 @@ export default function LandingPage({ isStudent }) {
             </div> */}
 			<section className="landing_hero" id="hero-section">
 				<div className="page-container">
-					<Navbar isStudent={isStudent}></Navbar>
+					<Navbar isLoggedIn={isLoggedIn}></Navbar>
 					<div className="landing_hero_cols">
 						<div className="hero_col1">
 							<h1 className="hero_col1_title title">
