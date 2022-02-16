@@ -13,6 +13,9 @@ import Button from "../../Components/Buttons/Buttons";
 import { addToCart, getLocalStorage } from "../../Actions/cart.actions";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import ReactPlayer from 'react-player';
+
+const video= 'https://www.youtube.com/watch?v=QrDJ9zv0Pwg&ab_channel=ENTERTAIMENTNOW' ///para mostar!!!
 
 export default function CourseDetail({ isLoggedIn }) {
 	const { id } = useParams();
@@ -146,11 +149,19 @@ export default function CourseDetail({ isLoggedIn }) {
 					)}
 				{courseDetail ? (
 					<main className="course-details_card">
-						<img
+						<ReactPlayer
+						className="course-details_image"
+						url={video} //{courseDetail?.img} ---->  url del video!!!
+						width='100%'
+						height='100%'
+						controls
+						volume='0.5'
+						/>
+						{/* <img
 							className="course-details_image"
 							src={courseDetail?.img}
 							alt={courseDetail?.name}
-						/>
+						/> */}
 						<div className="course-details_info">
 							<header className="course-details_info_header">
 								<h1 className="title">{courseDetail?.name}</h1>

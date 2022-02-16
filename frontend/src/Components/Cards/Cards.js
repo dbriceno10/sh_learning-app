@@ -94,7 +94,7 @@ const Cards = ({ searchTerm }) => {
 								id={c.id}
 								name={c.name}
 								description={c.description}
-								image={c.img}
+								image={c.img}// seria la url del video 
 								teacher="Instructor del curso"
 								price={c.price}
 								rating={c.meanReview}
