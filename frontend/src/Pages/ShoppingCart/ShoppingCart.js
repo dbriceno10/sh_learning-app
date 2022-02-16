@@ -24,11 +24,10 @@ const ShoppingCart = () => {
       {localStorageCart.length > 0 ? (
         <button onClick={() => dispatch(clearCart())}>Limpiar carrito</button>
         ) : null}
-      {localStorageCart.map((item, index) => (
+      {localStorageCart.map((item) => (
         <CartItem
-        key={index}
+        key={item.id}
         data={item}
-        deleteFromCart={() => dispatch(deleteFromCart(item.id))}
         />
         ))}
     </article>

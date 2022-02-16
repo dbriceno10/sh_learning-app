@@ -6,7 +6,6 @@ import {
 } from "../Actions/cart.actions";
 
 export const initialState = {
-	cart: null,
 	localStorageCart: null,
 };
 
@@ -17,17 +16,18 @@ export default function shoppingReducer(
 	switch (type) {
 		case ADD_TO_CART: {
       // console.log(payload);
+      // Traigo el item de localStorage 
       let myCourses = JSON.parse(localStorage.getItem("cart"));
       // console.log(myCourses);
-			if (myCourses) {
+			if (myCourses) { // Si existe ese array, le pusheo el nuevo objeto (payload)
 				myCourses.push(payload);
 				localStorage.setItem("cart", JSON.stringify(myCourses));
-			} else {
+			} else { // Si no existe, seteo el localStorage con un array de objetos
 				localStorage.setItem("cart", JSON.stringify([payload]));
 			}
 			return {
 				...state,
-				cart: JSON.parse(localStorage.getItem("cart")),
+				localStorageCart: JSON.parse(localStorage.getItem("cart")),
 			};
 		}
 		case GET_LOCAL_STORAGE: {
@@ -37,8 +37,11 @@ export default function shoppingReducer(
 			};
 		}
 		case REMOVE_ONE_FROM_CART: {
-			let newItems = state.localStorageCart.filter((item) => item.id !== payload);
-      console.log(newItems);
+			// let itemToDelete = state.cart.find((item) => item.id === payload);
+      // console.log(payload);
+      let newItems = state.localStorageCart.filter((item) => item.id !== payload);
+      // console.log(newItems);
+
 			return {
 				...state,
 				localStorageCart: localStorage.setItem("cart", JSON.stringify(newItems)),
@@ -48,7 +51,6 @@ export default function shoppingReducer(
       localStorage.removeItem('cart')
 			return {
         ...state,
-        cart: null,
         localStorageCart: null
       };
 		default:
