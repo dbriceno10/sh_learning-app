@@ -36,6 +36,7 @@ Ruta de review
 POST: El endpoind es http://localhost:3001/review/create ---> para crear el curso recibe recibe courseId, studentId, score por body
 GET: http://localhost:3001/review/detail/id ---> recibe el id del curso por params para buscar los detalles de una review
 GET: http://localhost:3001/review/ ---> para obtener todas las reviews
+GET: http://localhost:3001/review/verify ---> Va a recibir por query la propiedades courseId y studentId, para verificar si existe una review
 
 
 Ruta de estudiantes
