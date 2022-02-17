@@ -5,7 +5,7 @@ import {useSelector,useDispatch} from 'react-redux'
 
 import { Form, Field } from "react-final-form";
 import {useSearchParams, useNavigate } from 'react-router-dom'
-import {getCourseDetail} from '../../Actions/courses.actions'
+
 import Card from "./Card";
 import {
 
@@ -18,15 +18,21 @@ import axios from "axios";
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export default function Pasarela() {
-  const valor=2507;
+
   const [query, setquery]=useSearchParams()
-  const courseId=query.get('courseId')
+  const orderId=query.get('orderId')
   const studentId=query.get('studentId')
+  const total=query.get('total')
   const navigate=useNavigate();
   const dispatch=useDispatch();
+  function validacion(correo){
+    let expReg= /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+   let valido=expReg.test(correo)
+   return valido 
+  }
   
   useEffect(() => {
-    dispatch(getCourseDetail(courseId))
+    
     if (!window.document.getElementById("stripe-script")) {
       var s = window.document.createElement("script");
       s.id = "stripe-script";
@@ -41,11 +47,13 @@ export default function Pasarela() {
     }
   }, []);
   
-  const { courseDetail } = useSelector((state) => state.courses);
-  courseDetail? console.log(courseDetail.price):console.log(0)
+  
   
   const onSubmit = async (values) => {
-     await sleep(0);
+    if(!validacion(values.email)){
+      alert('Introduzca un correo valido')
+    }
+    else{ await sleep(0);
     
     try {
       
@@ -64,17 +72,17 @@ export default function Pasarela() {
               .post("/stripe/pay", {
                 token: response,
                 email: values.email,
-                amount:courseDetail.price,
-                courseId:courseId,
-                studentId:studentId
+                amount:total,
+                courseId:orderId,
+               
                 
               })
-              .then(() =>
+              .then((hola) =>{
                 
-             
+              alert(hola)
                  //window.alert(JSON.stringify(res.data, 0, 2))
                 //alert('Comprado')
-              navigate('/home')
+              navigate('/home')}
                //retorno()
                )
               .catch((err) => console.log(`Error: ${err}`));
@@ -84,7 +92,7 @@ export default function Pasarela() {
           }
         }
       );
-    } catch (error) {}
+    } catch (error) {}}
   };
 
   return (
@@ -171,7 +179,7 @@ export default function Pasarela() {
               </div>
               <div className="buttons">
                 <button type="submit" disabled={submitting}>
-                 Pagar {courseDetail? courseDetail.price: ''} $
+                 Pagar {total} $
                 </button>
                 <button
                   type="button"
