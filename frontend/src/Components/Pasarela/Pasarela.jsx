@@ -18,7 +18,7 @@ import axios from "axios";
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export default function Pasarela() {
-  const valor=2507;
+
   const [query, setquery]=useSearchParams()
   const orderId=query.get('orderId')
   const studentId=query.get('studentId')
@@ -179,7 +179,7 @@ export default function Pasarela() {
               </div>
               <div className="buttons">
                 <button type="submit" disabled={submitting}>
-                 Pagar {valor} $
+                 Pagar {total} $
                 </button>
                 <button
                   type="button"
