@@ -4,26 +4,28 @@ import { useDispatch, useSelector } from "react-redux";
 import MaterialCard from "../Card/Card";
 import './RecentCourses.css';
 
-export default function RecentCourses({ isStudent, hasRecents }) {
+export default function RecentCourses({ isLoggedIn, hasRecents }) {
   const [courses, setCourses] = useState([]);
   // const { courses } = useSelector(state => state.courses);
   const dispatch = useDispatch();
 
   const getData = useCallback(async () => {
-    const res = await fetch(`http://localhost:3001/fakecourses`);
+    const res = await fetch(`https://learnzilla-app.herokuapp.com/fakecourses`);
     const data = await res.json();
     setCourses(data.slice(0, 5));
   }, []);
 
   useEffect(() => {
     // dispatch(getCourses())
-    getData();
-  }, [getData]);
+    if (hasRecents) {
+      getData();
+    }
+  }, [getData, hasRecents]);
   console.log(courses);
 
   return (
     <section className='recent-courses'>
-      {(isStudent)
+      {(isLoggedIn)
         ? (
           <div>
             <header className='recent-courses_header title'>

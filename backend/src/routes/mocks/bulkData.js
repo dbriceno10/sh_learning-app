@@ -19,9 +19,35 @@ const {
   FAKE_PASSWORD,
 } = process.env;
 
-const { courseMocks, categories } = require("./mocksDataCourses");
+const { courseMocks, videos } = require("./mocksDataCourses");
 
 const { getCategoryId } = require("../controller/getCategoryId");
+
+//función que retorna un número aleatorio entero entre 1 y 5
+const randomNumber = () => {
+  let randomNumber = Math.floor(Math.random() * 5) + 1;
+  return randomNumber;
+};
+
+const uniqueCategories = (courses) => {
+  let array = [];
+  //almacena en un objeto cada curso solo una vez
+  courses.forEach((course) => {
+    course.category.forEach((e) => {
+      array.push(e);
+    });
+  });
+  //elimina los elementos que esten repetidos en el array
+  const unique = [...new Set(array)];
+  return unique;
+};
+
+const randomPrice = () => {
+  let randomNumber = Math.floor(Math.random() * 999) + 1;
+  return randomNumber;
+};
+
+const categories = uniqueCategories(courseMocks);
 
 const categoyMaker = async () => {
   for (const category of categories) {
@@ -70,8 +96,8 @@ const teacherMaker = async () => {
 const teacherMaker2 = async () => {
   try {
     const teacher = await Teacher.create({
-      name: "TeacherTest1",
-      lastName: "BulkCreate",
+      name: "Jhon",
+      lastName: "Mircha",
       email: "01teacher@email.com",
       avatar:
         "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200",
@@ -140,90 +166,44 @@ const studentMaker2 = async () => {
   }
 };
 
-const reviewMaker1 = async (studentId) => {
+const reviewMaker = async (studentId) => {
+  const courses = await Course.findAll({});
+  for (const course of courses) {
+    await Review.create({
+      score: randomNumber(),
+      flag: true,
+      FKstudentID: studentId,
+      FKcourseID: course.id,
+    });
+  }
+};
+
+const videoMaker = async () => {
   const course = await Course.findOne({
     where: {
       name: "React: De cero a experto",
     },
   });
-  await Review.create({
-    score: 5,
-    flag: true,
-    FKstudentID: studentId,
-    FKcourseID: course.id,
-  });
-  console.log("Review 1 creado con éxito");
-};
-const reviewMaker2 = async (studentId) => {
-  const course = await Course.findOne({
-    where: {
-      name: "Node: De cero a experto",
-    },
-  });
-  await Review.create({
-    score: 3,
-    flag: true,
-    FKstudentID: studentId,
-    FKcourseID: course.id,
-  });
-  console.log("Review 2 creado con éxito");
-};
-
-const reviewMaker3 = async (studentId) => {
-  const course = await Course.findOne({
-    where: {
-      name: "Angular: De cero a experto",
-    },
-  });
-  await Review.create({
-    score: 1,
-    flag: true,
-    FKstudentID: studentId,
-    FKcourseID: course.id,
-  });
-  console.log("Review 3 creado con éxito");
-};
-
-const videoMaker1 = async () => {
-  const course = await Course.findOne({
-    where: {
-      name: "React: De cero a experto",
-    },
-  });
-  await Video.create({
-    title: "Git y Github | Curso Práctico de Git y Github Desde Cero",
-    description:
-      "Aprende a Dominar una de las herramienta más utilizadas por todos los desarrolladores web, programadores y expertos en código profesionales, llamada Git, un sistema de Control de versiones open source, creado por Linus Torvalds",
-    url: "https://www.youtube.com/watch?v=HiXLkL42tMU",
-    FKcourseID: course.id,
-  });
-  console.log("video 1 creado con éxito");
-};
-
-const videoMaker2 = async () => {
-  const course = await Course.findOne({
-    where: {
-      name: "React: De cero a experto",
-    },
-  });
-  await Video.create({
-    title: "React: De cero a experto | Curso Práctico de React Desde Cero",
-    description:
-      "Aprende a crear una aplicación web con React, una de las librerías más utilizadas en el desarrollo de aplicaciones web, creada por Facebook.",
-    url: "https://www.youtube.com/watch?v=MPLN1ahXgcs",
-    FKcourseID: course.id,
-  });
-  console.log("video 2 creado con éxito");
+  let count = 1;
+  for (const video of videos) {
+    await Video.create({
+      title: `Clase Nro ${count}`,
+      description:
+        "Aprende a Dominar una de las herramienta más utilizadas por todos los desarrolladores web, programadores y expertos en código profesionales.",
+      url: video,
+      FKcourseID: course.id,
+    });
+    count++;
+  }
 };
 
 const courseMaker = async (teacherId) => {
-  console.log(teacherId);
   try {
     for (const course of courseMocks) {
       const courseCreated = await Course.create({
         name: course.name,
         description: course.description,
-        price: course.price,
+        price: randomPrice(),
         img: course.img,
         FKteacherID: teacherId,
       });
@@ -237,6 +217,19 @@ const courseMaker = async (teacherId) => {
   }
 };
 
+const buyMaker = async (studentId) => {
+  const courses = await Course.findAll({});
+  const student = await Student.findOne({
+    //Busca el estudiante
+    where: {
+      id: studentId,
+    },
+  });
+  for (const course of courses) {
+    student.addCourse(course.id);
+  }
+};
+
 const dataMaker = async (req, res) => {
   try {
     await categoyMaker();
@@ -245,11 +238,9 @@ const dataMaker = async (req, res) => {
     await courseMaker(teacherId);
     await StudentMaker();
     const studentId = await studentMaker2();
-    await reviewMaker1(studentId);
-    await reviewMaker2(studentId);
-    await reviewMaker3(studentId);
-    await videoMaker1();
-    await videoMaker2();
+    await reviewMaker(studentId);
+    await videoMaker();
+    await buyMaker(studentId);
     res.status(200).send({ message: "Data creada" });
   } catch (error) {
     console.log(error);

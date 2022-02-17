@@ -52,27 +52,26 @@ export default function Profile({ isLoggedIn }) {
 						<div className="details_inputs_public-info">
 							<label htmlFor='input_nombre' className="profile_label">
 								Nombre
-								<input name='input_nombre' className="profile_inputs" type={'text'} value={user.name} disabled />
+								<input name='input_nombre' className="profile_inputs" type={'text'} placeholder={user.name} />
 							</label>
 							<label htmlFor='input_lastName' className="profile_label">
 								Lastname
-								<input name='input_lastName' className="profile_inputs" type={'text'} value={user.lastName} disabled />
+								<input name='input_lastName' className="profile_inputs" type={'text'} placeholder={user.lastName} />
 							</label>
 							<label htmlFor='input_email' className="profile_label">
 								Email
-								<input name='input_email' className="profile_inputs" type={'text'} value={user.email}
-									disabled />
+								<input name='input_email' className="profile_inputs" type={'text'} placeholder={user.email} />
 							</label>
 
 						</div>
 						<div className="details_inputs_private-info">
 							<label htmlFor='input_contraseña' className="profile_label">
 								Contraseña actual
-								<input name='input_contraseña' className="profile_inputs" type={'text'} value={"******"} disabled />
+								<input name='input_contraseña' className="profile_inputs" type={'text'} placeholder={"******"} />
 							</label>
 							<label htmlFor='confirmpassword' className="profile_label">
 								Contraseña nueva
-								<input name='confirmpassword' className="profile_inputs" type={'text'} value={"******"} disabled />
+								<input name='confirmpassword' className="profile_inputs" type={'text'} placeholder={"******"}  />
 							</label>
 							<Button
 								text={'Editar datos'}
