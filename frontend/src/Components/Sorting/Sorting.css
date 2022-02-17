@@ -10,12 +10,19 @@
 }
 
 .sorting .selector {
-    height             : 2rem;
+    height             : auto;
     border-radius      : .5rem;
     padding            : .5rem;
     /* color           : aqua; */
-    font-size          : 1.5ch;
-    background-color   : var(--nice-gray);
+    outline            : .2rem solid var(--honeydew-darker);
+    border             : none;
+    font-size          : 2ch;
+    background-color   : var(--honeydew);
+}
+
+.sorting .selector:hover,
+.sorting .selector:focus-visible {
+    outline: .4rem solid var(--honeydew-darker);
 }
 
 @media screen and (max-width: 75rem) {
