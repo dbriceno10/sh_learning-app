@@ -13,7 +13,7 @@ export const getProfile = (id) => async (dispatch) => {
 };
 
 export const uptadeProfile = (id, payload) => async (dispatch) => {
-    const data = await axios.put(`http://localhost:3001/students/uptade/${id}`, payload);
+    const data = await axios.put(`http://localhost:3001/students/update/${id}`, payload);
     return dispatch({
         type: UPDATE_PROFILE,
         payload: data,

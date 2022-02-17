@@ -10,8 +10,6 @@ export default function LandingPage({ isLoggedIn }) {
 	return (
 		<main className="landing">
 			{/* isUser is either false or true; true means is a logged-in user */}
-			{/* <div className="page-container">
-            </div> */}
 			<section className="landing_hero" id="hero-section">
 				<div className="page-container">
 					<Navbar isLoggedIn={isLoggedIn}></Navbar>

@@ -1,5 +1,6 @@
 import { ReactChild, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import "./Profile.css";
 import { getProfile } from "../../Actions/profile.action.js";
 import { uptadeProfile } from './../../Actions/profile.action';
@@ -12,17 +13,18 @@ import Button from "../../Components/Buttons/Buttons";
 import { Icon } from "@iconify/react";
 import './Profile.css';
 
+
 export default function Profile({ isLoggedIn }) {
 	const MySwal = withReactContent(Swal);
 
 	const dispatch = useDispatch();
-	const { userCredentials } = useSelector(state => state.login);
-	const student = useSelector(state => state.student);
+	const { userCredentials } = useSelector(state => state?.login);
+	const student = useSelector(state => state?.student?.dataUser);
 	const [input, setInput] = useState({
 		name: '',
 		lastName: '',
 		email: '',
-		password: ''
+		avatar: ''
 	})
 	
 	useEffect(() => {
@@ -42,27 +44,43 @@ export default function Profile({ isLoggedIn }) {
 		})
 		console.log(input)
 	}
-	function handleSumbit(){
-		try {
-			dispatch(uptadeProfile(userCredentials.id,input));
-			Swal.fire(
-				'Cambios aplicados!',
-				'success'
-			  )
-		} catch (error) {
+	function handleSumbit(e){
+		e.preventDefault();
+		if(input.name || input.lastName || input.email || input.avatar){
+			try {
+				dispatch(uptadeProfile(student.id, input))
+				setInput({
+					name: '',
+					lastName: '',
+					email: ''
+				})
+				Swal.fire(
+					'Cambios aplicados!',
+					'Success'
+				)
+			} catch (error) {
+				MySwal.fire({
+					position: "center-center",
+					icon: "error",
+					title: "HA ocurrido un error.",
+					showConfirmButton: false,
+					timer: 2500,
+				});
+			}
+		}if(!input.name && !input.lastName && !input.email && !input.avatar){
 			MySwal.fire({
-                position: "center-center",
-                icon: "error",
-                title: "HA ocurrido un error.",
-                showConfirmButton: false,
-                timer: 2500,
-            });
+				position: "center-center",
+				icon: "error",
+				title: "Complete al menos un campo.",
+				showConfirmButton: true,
+				timer: 7000,
+			});
 		}
 	}
 
 
 	return (
-		<main onSubmit={handleSumbit} className="profile">
+		<form onSubmit={e => handleSumbit(e)} className="profile">
 			<div className="page-container">
 				<Navbar isLoggedIn={isLoggedIn} className='profile_nav-bar'></Navbar>
 				<header className="profile_details_header title">
@@ -87,38 +105,29 @@ export default function Profile({ isLoggedIn }) {
 						</div>
 						<div className="details_inputs_private-info">
 							<label htmlFor='contraseña' className="profile_label">
-								Contraseña actual
+								Contraseña
 								<input name='contraseña' className="profile_inputs" type={'text'} placeholder={"******"} disabled />
 							</label>
-							<label htmlFor='password' className="profile_label">
-								Contraseña nueva
-								<input name='password' className="profile_inputs" type={'text'} placeholder={"******"} onChange={handleChange}/>
-							</label>
-							<Button
-								text={'Editar datos'}
-								type={'raised-icon'}
-								link={''}
-								icon={'ci:edit'}
-							></Button>
+							<Link to='/changepassword'>
+							<button className="changepassword-btn">Cambiar contraseña.</button>
+							</Link>
+							<button type="submit"className='submit-btn-profile'>Subir cambios</button>
 						</div>
 					</section>
 					<div className="profile_divider"></div>
 					<section className="profile_details_profile-pic">
 						<div className="details_profile-container">
-							{/* <img src={user.avatar} alt='' className="details_profile-pic_photo" /> */}
+							
 							<div className="details_profile-pic_photo"
 								style={{
 									backgroundImage: `url(${student.avatar})`
 								}}
 							>
 							</div>
-							<Button
-								text={'Cambiar foto'}
-								type={'raised-icon'}
-								onClick={(e) => alert('Cambiar foto')}
-								link={''}
-								icon={'eva:upload-outline'}
-							></Button>
+							<label htmlFor='avatar' className="profile_label">
+								Cambiar avatar
+								<input name='avatar' className="avatar-url" type={'text'} placeholder={"Ingrese url..."} onChange={handleChange}/>
+							</label>
 						</div>
 					</section>
 				</section>
@@ -129,6 +138,6 @@ export default function Profile({ isLoggedIn }) {
 					<Cards searchTerm={''}></Cards>
 				</section>
 			</div>
-		</main >
+		</form >
 	);
 }

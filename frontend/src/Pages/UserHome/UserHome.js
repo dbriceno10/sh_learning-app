@@ -13,6 +13,7 @@ export default function UserHome({ isLoggedIn }) {
     useEffect(() => {
         dispatch(getUserCredentials());
     }, [dispatch])
+    console.log(isLoggedIn)
 
     return (
         <main className="user-homepage">
@@ -23,7 +24,6 @@ export default function UserHome({ isLoggedIn }) {
                     text={'Mostrar recientes'}
                     type='flat'
                     onClick={() => {
-                        setIsUser(isLoggedIn => !isLoggedIn);
                         setHasRecents(hasRecents => !hasRecents)
                     }}
                 ></Button> */}
@@ -31,8 +31,17 @@ export default function UserHome({ isLoggedIn }) {
                     && <header className="user-homepage_header">
                         <h1 className="title">Bienvenido, Nombre de usuario</h1>
                     </header>}
-                <RecentCourses isLoggedIn={isLoggedIn} hasRecents={hasRecents} />
-                <CoursesBrowser />
+                {(isLoggedIn === 'student' && hasRecents)
+                    ? (
+                        <RecentCourses
+                            isLoggedIn={isLoggedIn}
+                            hasRecents={hasRecents}
+                        />
+                    )
+                    : null}
+                <CoursesBrowser
+                    isLoggedIn={isLoggedIn}
+                />
             </div >
         </main>
     )
