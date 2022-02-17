@@ -13,17 +13,11 @@ import Button from "../../Components/Buttons/Buttons";
 import { addToCart, getLocalStorage } from "../../Actions/cart.actions";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-<<<<<<< HEAD
 import ReactPlayer from 'react-player';
 import CardsVideos from "../../Components/CardsVideos/CardsVideos";
 
 const video= 'https://www.youtube.com/watch?v=QrDJ9zv0Pwg&ab_channel=ENTERTAIMENTNOW'
-=======
-import ReactPlayer from "react-player";
 
-const video =
-	"https://www.youtube.com/watch?v=QrDJ9zv0Pwg&ab_channel=ENTERTAIMENTNOW"; ///para mostar!!!
->>>>>>> mirror
 
 export default function CourseDetail({ isLoggedIn }) {
 	const { id } = useParams();
