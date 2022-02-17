@@ -9,7 +9,7 @@ import Sorting from "../Sorting/Sorting";
 import { useDispatch } from "react-redux";
 import { getCourses } from "../../Actions/courses.actions";
 
-function CoursesBrowser() {
+function CoursesBrowser({ isLoggedIn }) {
 	const dispatch = useDispatch();
 	const [searchTerm, setSearchTerm] = useState("");
 
@@ -19,7 +19,7 @@ function CoursesBrowser() {
 			top: 0,
 			behavior: "smooth",
 			/* you can also use 'auto' behaviour
-           in place of 'smooth' */
+		   in place of 'smooth' */
 		});
 	};
 
@@ -45,7 +45,7 @@ function CoursesBrowser() {
 				<Filterings />
 			</aside>
 			<section className="courses-browser_course-gallery">
-				<Cards searchTerm={searchTerm} />
+				<Cards searchTerm={searchTerm} isLoggedIn={isLoggedIn} />
 			</section>
 		</section>
 	);

@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import './Cards.css';
 
 
-const Cards = ({ searchTerm }) => {
+const Cards = ({ searchTerm, isLoggedIn }) => {
 	// const [courses, setCourses] = useState([]);
 	const [hasMore, sethasMore] = useState(true);
 	const [page, setPage] = useState(2);
@@ -22,7 +22,7 @@ const Cards = ({ searchTerm }) => {
 	// }, []);
 
 	const fetchMoreCourses = async () => {
-		if (courses.length === 0 || courses.length <= 12) {
+		if (courses.length === 0 || courses.length <= 40) {
 			sethasMore(false);
 		}
 		setPage(prevPage => page + 1);
@@ -32,7 +32,8 @@ const Cards = ({ searchTerm }) => {
 		dispatch(getCourses({}));
 		// getData();
 	}, [dispatch]);
-	console.log(hasMore)
+	console.log(courses.length)
+	console.log('has more? ', hasMore)
 
 	// return (
 	// 	<section className="cards">
@@ -98,6 +99,7 @@ const Cards = ({ searchTerm }) => {
 								teacher="Instructor del curso"
 								price={c.price}
 								rating={c.meanReview}
+								isLoggedIn={isLoggedIn}
 							/>
 						);
 					})

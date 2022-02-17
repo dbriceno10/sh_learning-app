@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { getUserCredentials } from "../../Actions/login.actions";
 
-function LoginForm() {
+function LoginForm({ isLoggedIn }) {
 	const [seePassword, setSeePassword] = useState(false);
 	const [userLogin, setUserLogin] = useState({
 		email: "",
@@ -74,7 +74,12 @@ function LoginForm() {
 					email: "",
 					password: "",
 				});
-				navigate("/home");
+				navigate('/home')
+				// if (isLoggedIn === 'student') {
+				// 	navigate("/home");
+				// } else {
+				// 	navigate("/profile");
+				// }
 			} else {
 				alert("Ha ocurrido un error");
 			}
@@ -88,7 +93,6 @@ function LoginForm() {
 			});
 		}
 	};
-
 
 	useEffect(() => {
 		dispatch(getUserCredentials())
