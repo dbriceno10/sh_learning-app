@@ -24,6 +24,11 @@ export default function Pasarela() {
   const studentId=query.get('studentId')
   const navigate=useNavigate();
   const dispatch=useDispatch();
+  function validacion(correo){
+    let expReg= /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+   let valido=expReg.test(correo)
+   return valido 
+  }
   
   useEffect(() => {
     dispatch(getCourseDetail(courseId))
@@ -41,11 +46,13 @@ export default function Pasarela() {
     }
   }, []);
   
-  const { courseDetail } = useSelector((state) => state.courses);
-  courseDetail? console.log(courseDetail.price):console.log(0)
+  
   
   const onSubmit = async (values) => {
-     await sleep(0);
+    if(!validacion(values.email)){
+      alert('Introduzca un correo valido')
+    }
+    else{ await sleep(0);
     
     try {
       
@@ -64,7 +71,7 @@ export default function Pasarela() {
               .post("/stripe/pay", {
                 token: response,
                 email: values.email,
-                amount:courseDetail.price,
+                amount:valor,
                 courseId:courseId,
                 studentId:studentId
                 
@@ -84,7 +91,7 @@ export default function Pasarela() {
           }
         }
       );
-    } catch (error) {}
+    } catch (error) {}}
   };
 
   return (
@@ -171,7 +178,7 @@ export default function Pasarela() {
               </div>
               <div className="buttons">
                 <button type="submit" disabled={submitting}>
-                 Pagar {courseDetail? courseDetail.price: ''} $
+                 Pagar {valor} $
                 </button>
                 <button
                   type="button"
