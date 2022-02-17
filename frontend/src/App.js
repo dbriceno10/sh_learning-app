@@ -15,8 +15,7 @@ import CreateForm from "./Pages/FormCreate/FormCreate";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserCredentials } from "./Actions/login.actions";
 import Pasarela from './Components/Pasarela/Pasarela.jsx'
-
-
+import ShoppingCart from "./Pages/ShoppingCart/ShoppingCart";
 
 function App() {
 	// copy and paste for new component route ⬇⬇⬇⬇⬇
@@ -25,37 +24,38 @@ function App() {
 	const dispatch = useDispatch();
 	const { userCredentials } = useSelector(state => state.login);
 
-	const isStudent = useMemo(() => {
-		if (!userCredentials) return false;
+	const isLoggedIn = useMemo(() => {
+		if (!userCredentials) return 'none';
 		if (userCredentials && userCredentials?.role === 'alumno')
-			return true;
+			return 'student';
+		if (userCredentials && userCredentials?.role === 'profesor')
+			return 'teacher';
 	}, [userCredentials])
 
 	useEffect(() => {
 		dispatch(getUserCredentials());
-
+		console.log(isLoggedIn);
 	}, [dispatch])
-	console.log(isStudent);
 
 
 	return (
 		<Routes>
 			<Route
 				exact path="/"
-				element={<LandingPage isStudent={isStudent} />}
+				element={<LandingPage isLoggedIn={isLoggedIn} />}
 			/>
 			<Route
 				exact path="/home"
-				element={<UserHome isStudent={isStudent} />}
+				element={<UserHome isLoggedIn={isLoggedIn} />}
 			/>
 			<Route
 				exact path="/login"
-				element={isStudent
+				element={(isLoggedIn === 'student' || isLoggedIn === 'teacher')
 					? <Navigate to='/home' />
 					: <LoginForm />}
 			/>
 			<Route path="/profile" element={<PrivateRoute />}>
-				<Route index element={<Profile />} />
+				<Route index element={<Profile isLoggedIn={isLoggedIn} />} />
 			</Route>
 			<Route exact path="/signUp" element={<FormRegister />} />
 			<Route path="/unlogin" element={<HomeUnlogin />} />
@@ -64,11 +64,16 @@ function App() {
 			<Route path='/confirmUser' element={<ConfirmForm />} />
 			<Route
 				exact path="/courses/:id"
-				element={<CourseDetail isStudent={isStudent} />}
+				element={<CourseDetail isLoggedIn={isLoggedIn} />}
 			/>
-			<Route exact path="/home/create" element={<CreateForm/>}/>
-			<Route path='/pay' element={<Pasarela/>}/>
-
+			<Route exact path="/home/create" element={<CreateForm />} />
+			<Route path='/pay' element={<Pasarela />} />
+			<Route path="/carrito" element={<PrivateRoute />}>
+				<Route index element={<ShoppingCart isLoggedIn={isLoggedIn}/>} />
+			</Route>
+			<Route
+				exact path="/home/create"
+				element={<CreateForm />} />
 		</Routes>
 	);
 }

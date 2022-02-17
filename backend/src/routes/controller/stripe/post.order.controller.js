@@ -1,26 +1,17 @@
 require("dotenv").config();
 const { STRIPE_KEY } = process.env;
-const { Student, Course } = require("../../../db.js");
+const { Student, Course, Order } = require("../../../db.js");
 const stripe = require("stripe")(STRIPE_KEY);
 
 const stripePay = async (req, res) => {
-  const { amount, email, token, studentId, courseId } = req.body;
+  const { amount, email, token, studentId, coursesId } = req.body;
   try {
-    const course = await Course.findOne({ //Busca el curso
-      where: {
-        id: courseId,
-      },
-    });
-    if (!course) { //Si no existe el curso
-      return res.status(404).send({ message: "No se encontro el curso" });
-    }
-    const student = await Student.findOne({ //Busca el estudiante
+    const student = await Student.findOne({//Busca el estudiante
       where: {
         id: studentId,
       },
     });
     if (!student) { //Si no existe el estudiante
-      console.log("student")
       return res.status(404).send({ message: "No se encontro el estudiante" });
     }
     let customer = await stripe.customers.create({ //Crea el cliente
@@ -37,8 +28,15 @@ const stripePay = async (req, res) => {
     });
     if (charge) { //Si se creo el cargo
       // return res.status(200).send(charge);
-      student.addCourse(courseId); //Agrega el curso al estudiante
-      return res.status(200).send({ message: "Pago realizado con exito" });
+      student.addCourse(coursesId) //Agrega los cursos al estudiante
+      const order = await Order.create({
+        studentId: studentId,
+        amount: amount,
+        arrayCoursesId: coursesId,
+      });
+      return res
+        .status(200)
+        .send({ message: "Pago realizado con exito", orderId: order.id });
     } else {
       return res.status(404).send({ message: "Ha ocurrido un error" });
     }

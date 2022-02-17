@@ -1,12 +1,10 @@
-const { Student } = require("../../../db.js");
+const { Student, Course } = require("../../../db.js");
+const { getInfoStudent } = require("./getInfoStudent.js");
+const { getAllStudents } = require("./getAllStudents.js");
 
 const getStudents = async (req, res) => {
   try {
-    let students = await Student.findAll({
-
-      attributes: ["id", "name", "lastName", "email", "avatar", "role"], //solo vamos a enviar estos atributos al front
-
-    });
+    let students = await getAllStudents();
     res.status(200).json(students);
   } catch (err) {
     console.error(err);
@@ -17,12 +15,7 @@ const getStudents = async (req, res) => {
 const getStudent = async (req, res) => {
   const { id } = req.params;
   try {
-    let student = await Student.findOne({
-      where: {
-        id: id,
-      },
-      attributes: ["id", "name", "lastName", "email", "avatar", "role"], //solo vamos a enviar estos atributos al front
-    });
+    let student = await getInfoStudent(id);
     if (!student) {
       return res.status(404).send({ message: "Estudiante no encontrado" });
     }

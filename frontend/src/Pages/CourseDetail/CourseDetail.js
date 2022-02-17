@@ -1,82 +1,170 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { useNavigate, useParams } from "react-router-dom";
-import {getUserCredentials} from '../../Actions/login.actions'
-
+import { getUserCredentials } from "../../Actions/login.actions";
 import { clearPage, getCourseDetail } from "../../Actions/courses.actions";
 import Rating from "@mui/material/Rating";
 import Navbar from "../../Components/NavBars/Navbars";
 import "./CourseDetail.css";
-// import { Typography } from "@mui/material";
 import Loader from "../../Components/Loader/Loader";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Button from "../../Components/Buttons/Buttons";
+import { addToCart, getLocalStorage } from "../../Actions/cart.actions";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+import ReactPlayer from 'react-player';
 
-export default function CourseDetail({ isStudent }) {
+const video= 'https://www.youtube.com/watch?v=QrDJ9zv0Pwg&ab_channel=ENTERTAIMENTNOW' ///para mostar!!!
+
+export default function CourseDetail({ isLoggedIn }) {
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const { courseDetail } = useSelector((state) => state.courses);
+	const { localStorageCart } = useSelector((state) => state.cart);
 	const [favourite, setFavourite] = useState(false);
-	const { userCredentials } = useSelector(state => state.login);
+	const { userCredentials } = useSelector((state) => state.login);
+	// const [courseCart, setCourseCart] = useState({
+	// 	id: "",
+	// 	name: "",
+	// 	price: "",
+	// 	img: "",
+	// });
+
+	const MySwal = withReactContent(Swal);
 
 	const handleFavouriteClick = () => {
-		if (isStudent) {
+		if ((isLoggedIn === 'student' || isLoggedIn === 'teacher')) {
 			setFavourite(!favourite);
 			if (!favourite) {
-				alert("Curso agregado a Favoritos");
+				MySwal.fire({
+					position: "center-center",
+					icon: "success",
+					title: "Curso agregado a Favoritos",
+					showConfirmButton: false,
+					timer: 2500,
+				});
 			} else {
-				alert("Curso eliminado de favoritos");
+				MySwal.fire({
+					position: "center-center",
+					icon: "error",
+					title: "Curso eliminado de Favoritos",
+					showConfirmButton: false,
+					timer: 2500,
+				});
 			}
 		} else {
-			navigate('/login');
+			MySwal.fire({
+				position: "center-center",
+				icon: "warning",
+				title: "Por favor, inicia sesión para continuar",
+				showConfirmButton: false,
+				timer: 2500,
+			});
+			setTimeout(() => {
+				navigate("/login");
+			}, 1000);
 		}
 	};
 
+	// function handlePurchase() {
+	// 	if (isStudent) {
+	// 		navigate(`/pay?courseId=${id}&&studentId=${userCredentials.id}`)
+	// 	} else {
+	// 		navigate('/login');
+	// 	}
+	// }
+	const getCoursesNames = () => {
+		if (localStorageCart) {
+			const coursesNames = localStorageCart.map(course => course.name)
+			const yaHayCurso = coursesNames.includes(courseDetail.name);
+			return yaHayCurso
+		}
+	}
+
+
+	function handleAddCart() {
+		if ((isLoggedIn === 'student' || isLoggedIn === 'teacher')) {
+			if (getCoursesNames()) {
+				MySwal.fire({
+					position: "center",
+					icon: "error",
+					title: "Ya tienes este curso en tu carrito",
+					showConfirmButton: false,
+					timer: 2500,
+				});
+				return
+			}
+			dispatch(addToCart(courseDetail));
+			MySwal.fire({
+				position: "center",
+				icon: "success",
+				title: "Curso agregado correctamente",
+				showConfirmButton: false,
+				timer: 2500,
+			});
+			navigate("/carrito");
+		}
+	}
+
 	function handlePurchase() {
-		if (isStudent) {
+		if ((isLoggedIn === 'student' || isLoggedIn === 'teacher')) {
 			navigate(`/pay?courseId=${id}&&studentId=${userCredentials.id}`)
 		} else {
-			navigate('/login');
+			MySwal.fire({
+				position: "center-center",
+				icon: "warning",
+				title: "Por favor, inicia sesión para continuar",
+				showConfirmButton: false,
+				timer: 2500,
+			});
+			setTimeout(() => {
+				navigate("/login");
+			}, 1000);
 		}
 	}
 
 	useEffect(() => {
-		 dispatch(getUserCredentials());
+		dispatch(getUserCredentials());
 		dispatch(getCourseDetail(id));
-		console.log("llegue dispatch");
 		dispatch(clearPage());
+		dispatch(getLocalStorage())
 	}, [dispatch, id]);
-	console.log(isStudent);
+	console.log(isLoggedIn);
+	console.log(courseDetail?.teacherID)
 
 	return (
 		<section className="course-details">
 			<div className="page-container">
-				<Navbar isStudent={isStudent} />
+				<Navbar isLoggedIn={isLoggedIn} />
 				{courseDetail &&
 					(<div className="course-details_back-btn">
 						<Button
-							type={'raised'}
-							text={'Volver a cursos'}
-							link={'/home'}
-						>
-						</Button>
-					</div>)
-				}
+							type={"raised"}
+							text={"Volver a cursos"}
+							link={"/home"}
+						></Button>
+					</div>
+					)}
 				{courseDetail ? (
 					<main className="course-details_card">
-						<img
+						<ReactPlayer
+						className="course-details_image"
+						url={video} //{courseDetail?.img} ---->  url del video!!!
+						width='100%'
+						height='100%'
+						controls
+						volume='0.5'
+						/>
+						{/* <img
 							className="course-details_image"
 							src={courseDetail?.img}
 							alt={courseDetail?.name}
-						/>
+						/> */}
 						<div className="course-details_info">
 							<header className="course-details_info_header">
-								<h1 className="title">
-									{courseDetail?.name}
-								</h1>
+								<h1 className="title">{courseDetail?.name}</h1>
 								{favourite ? (
 									<FavoriteIcon
 										className="favorite-btn"
@@ -90,32 +178,30 @@ export default function CourseDetail({ isStudent }) {
 								)}
 							</header>
 							<h3 className="course-details_info_author">
-								Author: Instructor del curso
+								Autor:{" "}
+								{`${courseDetail?.teacherName} ${courseDetail?.teacherLastName}`}
 							</h3>
 							<Rating
 								name="read-only"
 								value={courseDetail?.meanReview}
 								readOnly
 							/>
-							<p>
-								{courseDetail?.description}
-							</p>
-							<h2>
-								$ {courseDetail?.price}
-							</h2>
+							<p>{courseDetail?.description}</p>
+							<h2>$ {courseDetail?.price}</h2>
 							<div className="actionsButtons">
-								<div className="buyBtn">
-									<Button
-										icon={'icon-park-outline:buy'}
-										type={'raised-icon'}
-										text={'Comprar ahora'}
-
-										onClick={handlePurchase}
-										link={''}
-
-									>
-									</Button>
-								</div>
+								{(isLoggedIn === 'teacher' && userCredentials.id === courseDetail.teacherID)
+									? null
+									: (
+										<div className="buyBtn">
+											<Button
+												icon={"bi:cart-plus"}
+												type={"raised-icon"}
+												text={"Agregar al carrito"}
+												onClick={handleAddCart}
+												link={""}
+											></Button>
+										</div>
+									)}
 							</div>
 						</div>
 					</main>
@@ -123,6 +209,6 @@ export default function CourseDetail({ isStudent }) {
 					<Loader />
 				)}
 			</div>
-		</section>
+		</section >
 	);
-};
+}

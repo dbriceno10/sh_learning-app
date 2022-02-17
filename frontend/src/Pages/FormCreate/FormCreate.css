@@ -1,0 +1,111 @@
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #FFF1CE;
+  height: 100%;
+}
+
+.realForm {
+  margin: 1rem;
+  width: 70%;
+}
+
+.inputDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.selectContainer {
+  display: grid;
+  grid-template-columns: repeat(1, 7fr 1fr);
+  column-gap: .5rem;
+}
+
+.selectInput {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid var(--gray);
+  border-radius: 0.25rem;
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0px 5px 15px -5px rgb(0 0 0 / 15%);
+  transition: all .2s ease-in-out;
+  outline: none;
+}
+
+.addCategoryBtn {
+  height: 40px;
+  background-color: #eabb39;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition         : all ease-in-out .3s;
+}
+
+.addCategoryBtn:hover {
+    font-weight        : 700;
+    transform          : scale(.9);
+    transition         : all ease-in-out .3s;
+}
+
+.listContainer {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+
+.categorySelected {
+  margin-bottom: .3rem;
+}
+
+.deleteBtn {
+  background-color: #FF7777;
+  border: none;
+  padding: .2rem;
+  margin-right: .3rem;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all .5s;
+}
+
+.deleteBtn:hover {
+  background-color: #D83A56;
+  transition: all .5s;
+}
+
+.createBtn {
+  width           : 100%;
+    border          : none;
+    border-radius   : 0.4rem;
+    padding         : .6rem 1rem;
+    background-color: hsla(260, 40%, 78%, 0.2);
+    color           : var(--dark-purple);
+    border          : .125rem solid var(--dark-purple);
+    display         : flex;
+    justify-content : center;
+    cursor          : pointer;
+    font-weight     : 600;
+    transition      : all ease-in-out .5s;
+}
+
+.createBtn:hover {
+  background-color: var(--lighter-purple);
+    color           : var(--honeydew);
+    transform       : scale(.9);
+    transition      : all ease-out .3s;
+}
+
+.homeBtn {
+  align-self: flex-start;
+  margin: 2rem 0 1rem 4rem;
+}
+
+.danger {
+  margin-top: -10px;
+  color: red;
+}
