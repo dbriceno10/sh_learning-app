@@ -13,9 +13,10 @@ import Button from "../../Components/Buttons/Buttons";
 import { addToCart, getLocalStorage } from "../../Actions/cart.actions";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import ReactPlayer from 'react-player';
+import ReactPlayer from "react-player";
 
-const video= 'https://www.youtube.com/watch?v=QrDJ9zv0Pwg&ab_channel=ENTERTAIMENTNOW' ///para mostar!!!
+const video =
+	"https://www.youtube.com/watch?v=QrDJ9zv0Pwg&ab_channel=ENTERTAIMENTNOW"; ///para mostar!!!
 
 export default function CourseDetail({ isLoggedIn }) {
 	const { id } = useParams();
@@ -25,17 +26,11 @@ export default function CourseDetail({ isLoggedIn }) {
 	const { localStorageCart } = useSelector((state) => state.cart);
 	const [favourite, setFavourite] = useState(false);
 	const { userCredentials } = useSelector((state) => state.login);
-	// const [courseCart, setCourseCart] = useState({
-	// 	id: "",
-	// 	name: "",
-	// 	price: "",
-	// 	img: "",
-	// });
 
 	const MySwal = withReactContent(Swal);
 
 	const handleFavouriteClick = () => {
-		if ((isLoggedIn === 'student' || isLoggedIn === 'teacher')) {
+		if (isLoggedIn === "student" || isLoggedIn === "teacher") {
 			setFavourite(!favourite);
 			if (!favourite) {
 				MySwal.fire({
@@ -77,85 +72,105 @@ export default function CourseDetail({ isLoggedIn }) {
 	// }
 	const getCoursesNames = () => {
 		if (localStorageCart) {
-			const coursesNames = localStorageCart.map(course => course.name)
+			const coursesNames = localStorageCart.map((course) => course.name);
 			const yaHayCurso = coursesNames.includes(courseDetail.name);
-			return yaHayCurso
+			return yaHayCurso;
 		}
-	}
-
+	};
 
 	function handleAddCart() {
-		if ((isLoggedIn === 'student' || isLoggedIn === 'teacher')) {
-			if (getCoursesNames()) {
-				MySwal.fire({
-					position: "center",
-					icon: "error",
-					title: "Ya tienes este curso en tu carrito",
-					showConfirmButton: false,
-					timer: 2500,
-				});
-				return
-			}
-			dispatch(addToCart(courseDetail));
+		if (isLoggedIn === "student" || isLoggedIn === "teacher") {
 			MySwal.fire({
-				position: "center",
-				icon: "success",
-				title: "Curso agregado correctamente",
-				showConfirmButton: false,
-				timer: 2500,
+				title: `¿Quieres agregar ${courseDetail.name} al carrito?`,
+				icon: "info",
+				showDenyButton: true,
+				// showCancelButton: true,
+				confirmButtonText: "Aceptar",
+				denyButtonText: "Cancelar",
+			}).then((result) => {
+				/* Read more about isConfirmed, isDenied below */
+				console.log(result);
+				if (result.isConfirmed) {
+					if (getCoursesNames()) {
+						MySwal.fire({
+							position: "center",
+							icon: "error",
+							title: "Ya tienes este curso en tu carrito",
+							showConfirmButton: false,
+							timer: 2000,
+						});
+						return;
+					}
+					dispatch(addToCart(courseDetail));
+					MySwal.fire({
+						position: "center",
+						icon: "success",
+						title: "Curso agregado correctamente",
+						showConfirmButton: false,
+						timer: 2000,
+					}).then(() => {
+						MySwal.fire({
+							// title: `¿Quieres agregar ${name} al carrito?`,
+							icon: "info",
+							showDenyButton: true,
+							// showCancelButton: true,
+							confirmButtonText: "Seguir viendo cursos",
+							confirmButtonColor: "#2b174f",
+							denyButtonText: "Ver mi carrito",
+							denyButtonColor: "#eabb39",
+						}).then((result) => {
+							if (result.isConfirmed) {
+								navigate("/home");
+							} else {
+								navigate("/carrito");
+							}
+						});
+					});
+				}
 			});
-			navigate("/carrito");
-		}
-	}
-
-	function handlePurchase() {
-		if ((isLoggedIn === 'student' || isLoggedIn === 'teacher')) {
-			navigate(`/pay?courseId=${id}&&studentId=${userCredentials.id}`)
 		} else {
 			MySwal.fire({
-				position: "center-center",
+				position: "center",
 				icon: "warning",
 				title: "Por favor, inicia sesión para continuar",
 				showConfirmButton: false,
-				timer: 2500,
+				timer: 2000,
 			});
-			setTimeout(() => {
-				navigate("/login");
-			}, 1000);
+			navigate("/login");
 		}
 	}
 
 	useEffect(() => {
 		dispatch(getUserCredentials());
 		dispatch(getCourseDetail(id));
+		dispatch(getLocalStorage());
 		dispatch(clearPage());
-		dispatch(getLocalStorage())
 	}, [dispatch, id]);
 	console.log(isLoggedIn);
-	console.log(courseDetail?.teacherID)
+	console.log(courseDetail?.teacherID);
 
 	return (
 		<section className="course-details">
 			<div className="page-container">
 				<Navbar isLoggedIn={isLoggedIn} />
-				{courseDetail &&
-					(<div className="course-details_back-btn">
+				{courseDetail && (
+					<div className="course-details_back-btn">
 						<Button
 							type={"raised"}
 							text={"Volver a cursos"}
 							link={"/home"}
 						></Button>
 					</div>
-					)}
+				)}
 				{courseDetail ? (
 					<main className="course-details_card">
 						<ReactPlayer
-						className="course-details_image"
-						url={video} //{courseDetail?.img} ---->  url del video!!!
-						width='100%'
-						height='100%'
-						controls
-						volume='0.5'
+							className="course-details_image"
+							url={video} //{courseDetail?.img} ---->  url del video!!!
+							width="100%"
+							height="100%"
+							controls
+							volume="0.5"
 						/>
 						{/* <img
 							className="course-details_image"
@@ -189,19 +204,18 @@ export default function CourseDetail({ isLoggedIn }) {
 							<p>{courseDetail?.description}</p>
 							<h2>$ {courseDetail?.price}</h2>
 							<div className="actionsButtons">
-								{(isLoggedIn === 'teacher' && userCredentials.id === courseDetail.teacherID)
-									? null
-									: (
-										<div className="buyBtn">
-											<Button
-												icon={"bi:cart-plus"}
-												type={"raised-icon"}
-												text={"Agregar al carrito"}
-												onClick={handleAddCart}
-												link={""}
-											></Button>
-										</div>
-									)}
+								{isLoggedIn === "teacher" &&
+								userCredentials.id === courseDetail.teacherID ? null : (
+									<div className="buyBtn">
+										<Button
+											icon={"bi:cart-plus"}
+											type={"raised-icon"}
+											text={"Agregar al carrito"}
+											onClick={handleAddCart}
+											link={""}
+										></Button>
+									</div>
+								)}
 							</div>
 						</div>
 					</main>
@@ -209,6 +223,6 @@ export default function CourseDetail({ isLoggedIn }) {
 					<Loader />
 				)}
 			</div>
-		</section >
+		</section>
 	);
 }
