@@ -237,6 +237,36 @@ const courseMaker = async (teacherId) => {
   }
 };
 
+const buyMaker1 = async (studentId) => {
+  const course = await Course.findOne({ //Busca el curso
+    where: {
+      name: "React: De cero a experto",
+    },
+  });
+  const student = await Student.findOne({ //Busca el estudiante
+    where: {
+      id: studentId,
+    },
+  });
+  const courseId = course.id;
+  student.addCourse(courseId);
+}
+
+const buyMaker2 = async (studentId) => {
+  const course = await Course.findOne({ //Busca el curso
+    where: {
+      name: "Node: De cero a experto",
+    },
+  });
+  const student = await Student.findOne({ //Busca el estudiante
+    where: {
+      id: studentId,
+    },
+  });
+  const courseId = course.id;
+  student.addCourse(courseId);
+}
+
 const dataMaker = async (req, res) => {
   try {
     await categoyMaker();
@@ -250,6 +280,8 @@ const dataMaker = async (req, res) => {
     await reviewMaker3(studentId);
     await videoMaker1();
     await videoMaker2();
+    await buyMaker1(studentId);
+    await buyMaker2(studentId);
     res.status(200).send({ message: "Data creada" });
   } catch (error) {
     console.log(error);
