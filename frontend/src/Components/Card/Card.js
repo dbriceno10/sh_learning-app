@@ -10,11 +10,9 @@ import ReactPlayer from 'react-player';
 
 const video = 'https://www.youtube.com/watch?v=QrDJ9zv0Pwg&ab_channel=ENTERTAIMENTNOW'//para mostrar solamente!
 
-<<<<<<< HEAD
+
 const MaterialCard = ({ id, name, image, price, teacher, rating , description,onClick}) => {
-=======
-const MaterialCard = ({ id, name, image, price, teacher, rating, isLoggedIn }) => {
->>>>>>> mirror
+
 	// console.log(id);
 
 	let navigate = useNavigate();
@@ -23,21 +21,17 @@ const MaterialCard = ({ id, name, image, price, teacher, rating, isLoggedIn }) =
 		navigate(`/courses/${id}`)
 	}
 
-<<<<<<< HEAD
-  return (
+
+              return (
 						<Card sx={{ width: 270 }} onClick={ onClick? onClick : handleClickCard}>
 								{/* <CardMedia
-=======
-	return (
-		<Card sx={{ width: 270 }} onClick={handleClickCard}>
-			{/* <CardMedia
->>>>>>> mirror
+
 									component="img"
 									height="140"
 									image={image}
 									alt={name}
 								/> */}
-<<<<<<< HEAD
+
 								<ReactPlayer
 								 url={video} //{image} seria la url que esta guardada en la bd
 								 width='100%'
@@ -56,30 +50,8 @@ const MaterialCard = ({ id, name, image, price, teacher, rating, isLoggedIn }) =
 										$ {price? price : description}
 									</Typography>
 								</CardContent>
-						</Card>
-  ) 
-=======
-			<ReactPlayer
-				url={video} //{image} seria la url que esta guardada en la bd
-				width='100%'
-				height='auto'
-				controls
-				volume={0.5} />
-			<CardContent>
-				<Typography gutterBottom variant="body2" component="div" sx={{ fontSize: 15, fontWeight: 700, lineHeight: 1.2 }}>
-					{name}
-				</Typography>
-				{isLoggedIn !== 'teacher'
-					&& (
-						<Typography gutterBottom variant="body2" color="text.secondary" >
-							{teacher}
-						</Typography>
-					)}
-				<Rating name="read-only" value={rating} readOnly />
-				<Typography variant="body1" color="text.secondary" >
-					$ {price}
-				</Typography>
-			</CardContent>
+					
+			
 			{/* {isLoggedIn === 'teacher'
 				&& (
 					<CardActions>
@@ -101,7 +73,7 @@ const MaterialCard = ({ id, name, image, price, teacher, rating, isLoggedIn }) =
 				)} */}
 		</Card>
 	)
->>>>>>> mirror
+
 };
 
 export default MaterialCard;
