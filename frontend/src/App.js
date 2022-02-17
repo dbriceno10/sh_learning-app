@@ -34,8 +34,8 @@ function App() {
 
 	useEffect(() => {
 		dispatch(getUserCredentials());
-		console.log(isLoggedIn);
 	}, [dispatch])
+	console.log(isLoggedIn);
 
 
 	return (
@@ -46,13 +46,23 @@ function App() {
 			/>
 			<Route
 				exact path="/home"
-				element={<UserHome isLoggedIn={isLoggedIn} />}
+				element={
+					(isLoggedIn === 'none' || !isLoggedIn)
+						? <UserHome isLoggedIn={isLoggedIn} />
+						: (isLoggedIn === 'student')
+							? <UserHome isLoggedIn={isLoggedIn} />
+							: <Navigate to='/profile' />
+				}
 			/>
 			<Route
 				exact path="/login"
-				element={(isLoggedIn === 'student' || isLoggedIn === 'teacher')
-					? <Navigate to='/home' />
-					: <LoginForm />}
+				element={
+					(isLoggedIn === 'none' || !isLoggedIn)
+						? <LoginForm />
+						: (isLoggedIn === 'student')
+							? <Navigate to='/home' />
+							: <Navigate to='/profile' />
+				}
 			/>
 			<Route path="/profile" element={<PrivateRoute />}>
 				<Route index element={<Profile isLoggedIn={isLoggedIn} />} />
@@ -66,13 +76,12 @@ function App() {
 				exact path="/courses/:id"
 				element={<CourseDetail isLoggedIn={isLoggedIn} />}
 			/>
-			<Route exact path="/home/create" element={<CreateForm />} />
 			<Route path='/pay' element={<Pasarela />} />
 			<Route path="/carrito" element={<PrivateRoute />}>
-				<Route index element={<ShoppingCart isLoggedIn={isLoggedIn}/>} />
+				<Route index element={<ShoppingCart isLoggedIn={isLoggedIn} />} />
 			</Route>
 			<Route
-				exact path="/home/create"
+				exact path="/profile/create"
 				element={<CreateForm />} />
 		</Routes>
 	);

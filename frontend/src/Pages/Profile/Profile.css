@@ -14,7 +14,7 @@
     padding         : 3rem;
     gap             : 2rem;
     align-items     : center;
-    justify-content : space-around;
+    justify-content : space-evenly;
     background-color: var(--honeydew);
     border-radius   : 1rem;
 }
@@ -88,7 +88,25 @@
     margin-top: 2.5rem;
 }
 
-.profile .profile_courses,
 .profile .profile_details {
     margin-top: 2rem;
+}
+
+.profile .profile_courses {
+    position      : relative;
+    min-height    : fit-content;
+    width         : auto;
+    transform     : translateX(0);
+    display       : flex;
+    flex-direction: column;
+}
+
+.profile .profile_courses .profile_courses_create-btn {
+    position  : sticky;
+    height    : fit-content;
+    width     : fit-content;
+    top       : 90%;
+    right     : 6%;
+    z-index   : 2;
+    align-self: flex-end;
 }
