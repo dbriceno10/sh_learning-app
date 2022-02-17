@@ -14,6 +14,7 @@ module.exports = (sequelize) => {
       },
       amount: {
         type: DataTypes.INTEGER,
+        allowNull: false,
       },
       studentId: {
         type: DataTypes.UUID,
