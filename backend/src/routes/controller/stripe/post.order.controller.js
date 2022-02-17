@@ -32,7 +32,7 @@ const stripePay = async (req, res) => {
 
     let charge = await stripe.charges.create({
       //Crea el cargo
-      amount: parseFloat(amount) * 100,
+      amount: parseFloat(order.amount) * 100,
       description: `Payment for USD ${order.amount}`,
       currency: "USD",
       customer: customer.id,
