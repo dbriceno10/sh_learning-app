@@ -65,7 +65,7 @@ export default function Button({
                 )
                 //An icon was passed as prop but button name is not correct type
             } else {
-                console.log('wrong button name');
+                console.log('Wrong button type was passed to Button component');
                 return null;
             }
             //Same functionality and ckeckings as with icon-included buttons but for only text buttons
@@ -108,13 +108,13 @@ export default function Button({
                 }
                 //Returns null for no rendering of the button
             } else {
-                console.log('Unknown button type!');
+                console.error('Unknown button type or missing icon for icon-type Button!');
                 return null;
             }
         }
         //Returns null for no rendering of the button
     } else {
-        console.log(`Button's link or type should be strings only`);
+        console.error(`Button's link or type should be strings only for Button component`);
         return null;
     }
 }
