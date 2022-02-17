@@ -5,7 +5,7 @@ import {useSelector,useDispatch} from 'react-redux'
 
 import { Form, Field } from "react-final-form";
 import {useSearchParams, useNavigate } from 'react-router-dom'
-import {getCourseDetail} from '../../Actions/courses.actions'
+
 import Card from "./Card";
 import {
 
@@ -20,8 +20,9 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 export default function Pasarela() {
   const valor=2507;
   const [query, setquery]=useSearchParams()
-  const courseId=query.get('courseId')
+  const orderId=query.get('orderId')
   const studentId=query.get('studentId')
+  const total=query.get('total')
   const navigate=useNavigate();
   const dispatch=useDispatch();
   function validacion(correo){
@@ -31,7 +32,7 @@ export default function Pasarela() {
   }
   
   useEffect(() => {
-    dispatch(getCourseDetail(courseId))
+    
     if (!window.document.getElementById("stripe-script")) {
       var s = window.document.createElement("script");
       s.id = "stripe-script";
@@ -71,17 +72,17 @@ export default function Pasarela() {
               .post("/stripe/pay", {
                 token: response,
                 email: values.email,
-                amount:valor,
-                courseId:courseId,
-                studentId:studentId
+                amount:total,
+                courseId:orderId,
+               
                 
               })
-              .then(() =>
+              .then((hola) =>{
                 
-             
+              alert(hola)
                  //window.alert(JSON.stringify(res.data, 0, 2))
                 //alert('Comprado')
-              navigate('/home')
+              navigate('/home')}
                //retorno()
                )
               .catch((err) => console.log(`Error: ${err}`));
