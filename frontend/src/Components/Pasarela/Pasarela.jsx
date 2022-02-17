@@ -23,6 +23,7 @@ export default function Pasarela() {
   const orderId=query.get('orderId')
   const studentId=query.get('studentId')
   const total=query.get('total')
+  console.log(total)
   const navigate=useNavigate();
   const dispatch=useDispatch();
   function validacion(correo){
@@ -73,7 +74,7 @@ export default function Pasarela() {
                 token: response,
                 email: values.email,
                 amount:total,
-                courseId:orderId,
+                orderId:orderId,
                
                 
               })
@@ -92,7 +93,9 @@ export default function Pasarela() {
           }
         }
       );
-    } catch (error) {}}
+    } catch (error) {
+      console.log(error)
+    }}
   };
 
   return (
