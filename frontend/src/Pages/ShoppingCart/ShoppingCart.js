@@ -44,7 +44,7 @@ const ShoppingCart = ({ isLoggedIn }) => {
 			timer: 2000,
 		});
 		setTimeout(() => {
-				navigate(`/pay?orderId=${orderObj.id}&&studentId=${userCredentials.id}`)
+				navigate(`/pay?orderId=${orderObj.id}&studentId=${userCredentials.id}&total=${orderObj.totalAmount}`)
 			}, 1000);
 		dispatch(clearCart());
 	}
