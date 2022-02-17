@@ -230,11 +230,8 @@ export default function CourseDetail({ isLoggedIn }) {
 					<Loader />
 				)}
 			</div>
-<<<<<<< HEAD
 			<CardsVideos id={id}/>
 		</section >
-=======
-		</section>
->>>>>>> mirror
+
 	);
 }
