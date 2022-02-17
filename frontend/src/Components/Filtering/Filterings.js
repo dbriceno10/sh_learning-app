@@ -32,11 +32,12 @@ function Filterings() {
 
   return (
     <main className='filterings'>
-      <section className='filterings_category filter-type'>
+      <section className='filterings_category  filter-type'>
         <label htmlFor="category-select">
           <h2>Categorias:</h2>
         </label>
-        <select name="filterings_category-select" id="category-select" onChange={handleCategories}>
+        <select name="category-select"
+          className="filterings_category-select" id="category-select" onChange={handleCategories}>
           <option
             // className='categories_checkbox'
             name='category'
