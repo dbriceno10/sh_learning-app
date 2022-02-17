@@ -108,15 +108,20 @@ export default function Profile({ isLoggedIn }) {
 						: <h1>Mis cursos creados</h1>}
 				</header>
 				<section className="profile_courses">
-					<div className="profile_courses_create-btn">
-						<Button
-							type={'raised-icon'}
-							text={'Crear nuevo curso'}
-							icon={'eos-icons:content-new'}
-							link={'/profile/create'}
-						>
-						</Button>
-					</div>
+					{
+						isLoggedIn === 'teacher'
+						&& (
+							<div className="profile_courses_create-btn">
+								<Button
+									type={'raised-icon'}
+									text={'Crear nuevo curso'}
+									icon={'eos-icons:content-new'}
+									link={'/profile/create'}
+								>
+								</Button>
+							</div>
+						)
+					}
 					<Cards
 						searchTerm={''}
 						isLoggedIn={isLoggedIn}
