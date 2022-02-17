@@ -10,7 +10,9 @@ import ReactPlayer from 'react-player';
 
 const video = 'https://www.youtube.com/watch?v=QrDJ9zv0Pwg&ab_channel=ENTERTAIMENTNOW'//para mostrar solamente!
 
-const MaterialCard = ({ id, name, image, price, teacher, rating, isLoggedIn }) => {
+
+const MaterialCard = ({ id, name, image, price, teacher, rating , description,onClick}) => {
+
 	// console.log(id);
 
 	let navigate = useNavigate();
@@ -19,35 +21,37 @@ const MaterialCard = ({ id, name, image, price, teacher, rating, isLoggedIn }) =
 		navigate(`/courses/${id}`)
 	}
 
-	return (
-		<Card sx={{ width: 270 }} onClick={handleClickCard}>
-			{/* <CardMedia
+
+              return (
+						<Card sx={{ width: 270 }} onClick={ onClick? onClick : handleClickCard}>
+								{/* <CardMedia
+
 									component="img"
 									height="140"
 									image={image}
 									alt={name}
 								/> */}
-			<ReactPlayer
-				url={video} //{image} seria la url que esta guardada en la bd
-				width='100%'
-				height='auto'
-				controls
-				volume={0.5} />
-			<CardContent>
-				<Typography gutterBottom variant="body2" component="div" sx={{ fontSize: 15, fontWeight: 700, lineHeight: 1.2 }}>
-					{name}
-				</Typography>
-				{isLoggedIn !== 'teacher'
-					&& (
-						<Typography gutterBottom variant="body2" color="text.secondary" >
-							{teacher}
-						</Typography>
-					)}
-				<Rating name="read-only" value={rating} readOnly />
-				<Typography variant="body1" color="text.secondary" >
-					$ {price}
-				</Typography>
-			</CardContent>
+
+								<ReactPlayer
+								 url={video} //{image} seria la url que esta guardada en la bd
+								 width='100%'
+								 height='50%'
+								 controls
+								 volume='0.5'/>
+								<CardContent>
+									<Typography gutterBottom variant="body2" component="div" sx={{fontSize: 15, fontWeight: 700, lineHeight: 1.2}}>
+										{name}
+									</Typography>
+									<Typography gutterBottom variant="body2" color="text.secondary" >
+										{teacher}
+									</Typography>
+        {rating? <Rating name="read-only" value={rating} readOnly />: null}          
+									<Typography variant="body1" color="text.secondary" >
+										$ {price? price : description}
+									</Typography>
+								</CardContent>
+					
+			
 			{/* {isLoggedIn === 'teacher'
 				&& (
 					<CardActions>
@@ -69,6 +73,7 @@ const MaterialCard = ({ id, name, image, price, teacher, rating, isLoggedIn }) =
 				)} */}
 		</Card>
 	)
+
 };
 
 export default MaterialCard;
