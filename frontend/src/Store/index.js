@@ -6,6 +6,7 @@ import thunk from "redux-thunk";
 import filtersReducer from "../Reducers/filters.reducer";
 import shoppingReducer from "../Reducers/cart.reducer";
 import profileReducer from "../Reducers/Profile.reducer.js"
+import videosReducer from "../Reducers/videos.reducer";
 
 
 const store = createStore(
@@ -14,7 +15,8 @@ const store = createStore(
 		courses: coursesReducer,
 		filters: filtersReducer,
 		cart: shoppingReducer,
-		student: profileReducer
+		student: profileReducer,
+		videosCursos:videosReducer
 	}), composeWithDevTools(
 		applyMiddleware(thunk)
 	));

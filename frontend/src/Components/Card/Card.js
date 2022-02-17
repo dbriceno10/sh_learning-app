@@ -12,7 +12,7 @@ import ReactPlayer from 'react-player';
 
 const video= 'https://www.youtube.com/watch?v=QrDJ9zv0Pwg&ab_channel=ENTERTAIMENTNOW'//para mostrar solamente!
 
-const MaterialCard = ({ id, name, image, price, teacher, rating }) => {
+const MaterialCard = ({ id, name, image, price, teacher, rating , description,onClick}) => {
 	// console.log(id);
 
   let navigate = useNavigate();
@@ -22,7 +22,7 @@ const MaterialCard = ({ id, name, image, price, teacher, rating }) => {
   }
 
   return (
-						<Card sx={{ width: 270 }} onClick={handleClickCard}>
+						<Card sx={{ width: 270 }} onClick={ onClick? onClick : handleClickCard}>
 								{/* <CardMedia
 									component="img"
 									height="140"
@@ -42,9 +42,9 @@ const MaterialCard = ({ id, name, image, price, teacher, rating }) => {
 									<Typography gutterBottom variant="body2" color="text.secondary" >
 										{teacher}
 									</Typography>
-                  <Rating name="read-only" value={rating} readOnly />
+        {rating? <Rating name="read-only" value={rating} readOnly />: null}          
 									<Typography variant="body1" color="text.secondary" >
-										$ {price}
+										$ {price? price : description}
 									</Typography>
 								</CardContent>
 						</Card>
