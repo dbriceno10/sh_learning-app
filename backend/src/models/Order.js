@@ -22,6 +22,11 @@ module.exports = (sequelize) => {
       arrayCoursesId: {
         type: DataTypes.ARRAY(DataTypes.UUID),
         allowNull: false,
+      },
+      status: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
       }
     },
     {
