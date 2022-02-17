@@ -18,6 +18,14 @@
     align-items    : flex-start;
 }
 
+.filterings .filterings_category .filterings_category-select {
+    height          : auto;
+    border-radius   : .5rem;
+    padding         : .5rem;
+    font-size       : 2ch;
+    background-color: var(--honeydew);
+}
+
 @media screen and (max-width: 75rem) {
     .filterings {
         flex-direction : row;

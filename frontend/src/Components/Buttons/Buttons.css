@@ -56,6 +56,11 @@
     margin: 0 auto;
 }
 
+.button-raised.icon,
+.button-flat.icon {
+    /* width: auto; */
+}
+
 .button-raised.icon>svg {
     color         : var(--honeydew);
     font-size     : 2.5rem;
