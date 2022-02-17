@@ -5,23 +5,24 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import "./CartItem.css";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import { Link } from "react-router-dom";
 
 const CartItem = ({ data }) => {
 	const dispatch = useDispatch();
-	const { name, price, img } = data;
+	const { name, price, img, id } = data;
 	// console.log(data);
 
 	const MySwal = withReactContent(Swal);
 
-	const handleClick =  (id) => {
+	const handleClick = (id) => {
 		MySwal.fire({
 			title: `¿Quieres borrar ${name} del carrito?`,
-			icon: 'warning',
+			icon: "warning",
 			showDenyButton: true,
 			// showCancelButton: true,
-			confirmButtonText: 'Borrar',
-			denyButtonText: 'Cancelar',
-		}).then( async (result) => {
+			confirmButtonText: "Borrar",
+			denyButtonText: "Cancelar",
+		}).then(async (result) => {
 			/* Read more about isConfirmed, isDenied below */
 			console.log(result);
 			if (result.isConfirmed) {
@@ -35,20 +36,29 @@ const CartItem = ({ data }) => {
 				dispatch(deleteFromCart(data.id));
 				await dispatch(getLocalStorage());
 			} else {
-				return
+				return;
 			}
-		})
+		});
 	};
 
 	return (
 		<div className="cartItemContainer">
 			<div className="imgText">
-				<img src={img} alt={name} className="cartImg" />
+				<Link to={`/courses/${id}`}>
+					<img src={img} alt={name} className="cartImg" />
+				</Link>
+				<Link to={`/courses/${id}`}>
 					<h3 className="itemName">{name}</h3>
+				</Link>
 			</div>
 			<div className="priceAndBtn">
 				<h3 className="itemPrice">{`$${price}.00`}</h3>
-					<DeleteIcon color="error" fontSize="large" onClick={handleClick} className='deleteItem'/>
+				<DeleteIcon
+					color="error"
+					fontSize="large"
+					onClick={handleClick}
+					className="deleteItem"
+				/>
 			</div>
 		</div>
 	);
