@@ -30,7 +30,7 @@ export const deleteFromCart = (id) => (dispatch) => {
 }
 
 export const postPurchaseOrder = (orderObj) => async (dispatch) => {
-  await axios.post('/generate', orderObj);
+  await axios.post('/stripe/generate', orderObj);
 }
 
 export const clearCart = () => ({type: CLEAR_CART});

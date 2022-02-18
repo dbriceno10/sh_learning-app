@@ -23,7 +23,7 @@ export default function UserHome({ isLoggedIn }) {
                 {/* <Button
                     link={''}
                     text={'Mostrar recientes'}
-                    type='flat'
+                    btnVariant='flat'
                     onClick={() => {
 
                         setHasRecents(hasRecents => !hasRecents)

@@ -17,9 +17,6 @@ import ReactPlayer from 'react-player';
 import { newReview } from "../../Actions/review.actions"
 import CardsVideos from "../../Components/CardsVideos/CardsVideos";
 
-
-
-
 const video = 'https://www.youtube.com/watch?v=QrDJ9zv0Pwg&ab_channel=ENTERTAIMENTNOW'
 
 
@@ -201,7 +198,7 @@ export default function CourseDetail({ isLoggedIn }) {
 				{courseDetail && (
 					<div className="course-details_back-btn">
 						<Button
-							type={"raised"}
+							btnVariant={"raised"}
 							text={"Volver a cursos"}
 							link={"/home"}
 						></Button>
@@ -258,18 +255,19 @@ export default function CourseDetail({ isLoggedIn }) {
 							<p>{courseDetail?.description}</p>
 							<h2>$ {courseDetail?.price}</h2>
 							<div className="actionsButtons">
-								{isLoggedIn === "teacher" &&
-									userCredentials.id === courseDetail.teacherID ? null : (
-									<div className="buyBtn">
-										<Button
-											icon={"bi:cart-plus"}
-											type={"raised-icon"}
-											text={"Agregar al carrito"}
-											onClick={handleAddCart}
-											link={""}
-										></Button>
-									</div>
-								)}
+								{(isLoggedIn === 'teacher' && userCredentials.id === courseDetail.teacherID)
+									? null
+									: (
+										<div className="buyBtn">
+											<Button
+												icon={"bi:cart-plus"}
+												btnVariant={"raised-icon"}
+												text={"Agregar al carrito"}
+												onClick={handleAddCart}
+												link={""}
+											></Button>
+										</div>
+									)}
 							</div>
 						</div>
 					</main>
@@ -279,7 +277,6 @@ export default function CourseDetail({ isLoggedIn }) {
 			</div>
 			<CardsVideos id={id} />
 		</section >
-
 	);
 }
 
