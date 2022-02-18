@@ -1,9 +1,10 @@
-import {GET_VIDEOS_CURSES} from "../Actions/videos.actions";
+import {GET_VIDEOS_CURSES, GET_VIDEO_DETAIL} from "../Actions/videos.actions";
 
 
 
 const initialState = {
     videos_curses: [],
+    videodetail:[]
     
   }
 
@@ -13,6 +14,11 @@ const initialState = {
         return {
           ...state,
           videos_curses: payload,
+        } 
+      case GET_VIDEO_DETAIL:
+        return {
+          ...state,
+          videosdetail: payload,
         } 
         default:
             return state;
