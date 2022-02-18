@@ -25,7 +25,7 @@ const ShoppingCart = ({ isLoggedIn }) => {
 	const prices = localStorageCart?.map((el) => el.price);
 	let total = prices?.reduce((a, b) => a + b, 0);
 
-	const idCourses = localStorageCart?.map(el => el.id) 
+	const idCourses = localStorageCart?.map(el => el.id)
 
 	const handlePurchase = () => {
 		const orderObj = {
@@ -44,8 +44,8 @@ const ShoppingCart = ({ isLoggedIn }) => {
 			timer: 2000,
 		});
 		setTimeout(() => {
-				navigate(`/pay?orderId=${orderObj.id}&studentId=${userCredentials.id}&total=${orderObj.totalAmount}`)
-			}, 1000);
+			navigate(`/pay?orderId=${orderObj.id}&studentId=${userCredentials.id}&total=${orderObj.totalAmount}`)
+		}, 1000);
 		dispatch(clearCart());
 	}
 
@@ -60,7 +60,7 @@ const ShoppingCart = ({ isLoggedIn }) => {
 							<h2 style={{ marginRight: "1rem" }}>{`Total: $${total}.00`}</h2>
 							<Button
 								icon={"bi:cart-plus"}
-								type={"raised-icon"}
+								btnVariant={"raised-icon"}
 								text={"Comprar"}
 								link={""}
 								onClick={handlePurchase}
@@ -72,9 +72,9 @@ const ShoppingCart = ({ isLoggedIn }) => {
 							))}
 							{localStorageCart?.length > 0 ? (
 								<Button
-									icon={"bi:cart-dash-fill"}
-									type={"raised-icon"}
-									text={"Vaciar"}
+									icon={"bi:cart-plus"}
+									btnVariant={"raised-icon"}
+									text={"Limpiar"}
 									link={""}
 									onClick={() => dispatch(clearCart())}
 								></Button>
@@ -84,7 +84,7 @@ const ShoppingCart = ({ isLoggedIn }) => {
 							<h2 style={{ marginRight: "1rem" }}>{`Total: $${total}.00`}</h2>
 							<Button
 								icon={"bi:cart-plus"}
-								type={"raised-icon"}
+								btnVariant={"raised-icon"}
 								text={"Comprar"}
 								link={""}
 								onClick={handlePurchase}

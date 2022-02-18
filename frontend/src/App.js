@@ -1,9 +1,9 @@
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useEffect, useMemo } from "react";
+// import ForgotPassword from "./Components/LoginPage/ForgotPassword";
 import UserHome from "./Pages/UserHome/UserHome";
-import LoginForm from "./Components/LoginForm/LoginForm";
-// import ForgotPassword from "./Components/LoginForm/ForgotPassword";
+import LoginPage from "./Pages/LoginPage/LoginPage";
 import Profile from "./Pages/Profile/Profile";
 import FormRegister from "./Components/FormRegister/FormRegister";
 import LandingPage from "./Pages/LandingPage/LandingPage";
@@ -58,7 +58,7 @@ function App() {
 				exact path="/login"
 				element={
 					(isLoggedIn === 'none' || !isLoggedIn)
-						? <LoginForm />
+						? <LoginPage />
 						: (isLoggedIn === 'student')
 							? <Navigate to='/home' />
 							: <Navigate to='/profile' />
@@ -69,8 +69,7 @@ function App() {
 			</Route>
 			<Route exact path="/signUp" element={<FormRegister />} />
 			<Route path="/unlogin" element={<HomeUnlogin />} />
-
-			{/* <Route path='/changepassword' element={<ForgotPassword />} /> */}
+			{/* <Route path='/forgotPassword' element={<ForgotPassword />} /> */}
 			<Route path='/confirmUser' element={<ConfirmForm />} />
 			<Route
 				exact path="/courses/:id"
