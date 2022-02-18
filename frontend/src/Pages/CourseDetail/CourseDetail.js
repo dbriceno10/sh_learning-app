@@ -14,9 +14,13 @@ import { addToCart, getLocalStorage } from "../../Actions/cart.actions";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import ReactPlayer from 'react-player';
+import { newReview, getStudentReview } from "../../Actions/review.actions"
 import CardsVideos from "../../Components/CardsVideos/CardsVideos";
 
-const video= 'https://www.youtube.com/watch?v=QrDJ9zv0Pwg&ab_channel=ENTERTAIMENTNOW'
+
+
+
+const video = 'https://www.youtube.com/watch?v=QrDJ9zv0Pwg&ab_channel=ENTERTAIMENTNOW'
 
 
 export default function CourseDetail({ isLoggedIn }) {
@@ -24,9 +28,22 @@ export default function CourseDetail({ isLoggedIn }) {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const { courseDetail } = useSelector((state) => state.courses);
+	console.log(courseDetail)
 	const { localStorageCart } = useSelector((state) => state.cart);
 	const [favourite, setFavourite] = useState(false);
 	const { userCredentials } = useSelector((state) => state.login);
+	console.log(userCredentials)
+	const [rating, setRating] = useState(0)
+	const { responseReview } = useSelector(state => state.review)
+	const [aux, setAux] = useState(false)
+	console.log(responseReview)
+
+	// const [courseCart, setCourseCart] = useState({
+	// 	id: "",
+	// 	name: "",
+	// 	price: "",
+	// 	img: "",
+	// });
 
 	const MySwal = withReactContent(Swal);
 
@@ -141,14 +158,58 @@ export default function CourseDetail({ isLoggedIn }) {
 		}
 	}
 
-	useEffect(() => {
-		dispatch(getUserCredentials());
-		dispatch(getCourseDetail(id));
-		dispatch(getLocalStorage());
-		dispatch(clearPage());
-	}, [dispatch, id]);
-	console.log(isLoggedIn);
-	console.log(courseDetail?.teacherID);
+	const onChange = (e) => {
+		e.preventDefault()
+		setRating(e.target.value)
+	}
+	console.log(rating)
+	/* console.log(courseDetail.id) */
+
+
+
+	const handleSubmit = (e) => {
+		e.preventDefault()
+		dispatch(newReview({
+			score: rating,
+			courseId: courseDetail.id,
+			studentId: userCredentials.id
+		}))
+		MySwal.fire({
+			position: "center-center",
+			icon: "success",
+			title: "Gracias por dejar tu review!",
+			showConfirmButton: false,
+			timer: 2000,
+		});
+		setAux({
+			...aux,
+			aux: true
+		})
+
+	}
+	/* 
+		let courseId = courseDetail.id
+	j
+		let studentId = userCredentials.id */
+		
+		useEffect(() => {
+			dispatch(getUserCredentials());
+			dispatch(getCourseDetail(id));
+			dispatch(getLocalStorage());
+			dispatch(clearPage());
+			/* dispatch(getStudentReview({
+				courseId: courseDetail.id,
+				studentId: userCredentials.id
+			})) */
+		}, [dispatch, id]);
+		
+			useEffect(()=>{
+				dispatch(getStudentReview({
+					courseId: courseDetail.id,
+					studentId: userCredentials.id
+				}))
+			},[])
+
 
 	return (
 		<section className="course-details">
@@ -168,10 +229,12 @@ export default function CourseDetail({ isLoggedIn }) {
 						<ReactPlayer
 							className="course-details_image"
 							url={video} //{courseDetail?.img} ---->  url del video!!!
-							width="100%"
-							height="100%"
+
+							width='100%'
+							height='100%'
 							controls
-							volume="0.5"
+							volume='0.5'
+
 						/>
 						{/* <img
 							className="course-details_image"
@@ -197,16 +260,30 @@ export default function CourseDetail({ isLoggedIn }) {
 								Autor:{" "}
 								{`${courseDetail?.teacherName} ${courseDetail?.teacherLastName}`}
 							</h3>
-							<Rating
-								name="read-only"
-								value={courseDetail?.meanReview}
-								readOnly
-							/>
+
+
+							{
+								courseDetail.meanReview > 0 ?
+									<Rating
+										name="read-only"
+										value={courseDetail?.meanReview}
+										readOnly
+									/> :
+									<Rating
+										value={rating}
+										onChange={onChange}
+									/>
+							}
+
+							{rating > 0 ? (
+
+								<button type="button" onClick={handleSubmit}>Agregar Review</button>
+							) : null}
 							<p>{courseDetail?.description}</p>
 							<h2>$ {courseDetail?.price}</h2>
 							<div className="actionsButtons">
 								{isLoggedIn === "teacher" &&
-								userCredentials.id === courseDetail.teacherID ? null : (
+									userCredentials.id === courseDetail.teacherID ? null : (
 									<div className="buyBtn">
 										<Button
 											icon={"bi:cart-plus"}
@@ -224,8 +301,9 @@ export default function CourseDetail({ isLoggedIn }) {
 					<Loader />
 				)}
 			</div>
-			<CardsVideos id={id}/>
+			<CardsVideos id={id} />
 		</section >
 
 	);
 }
+
