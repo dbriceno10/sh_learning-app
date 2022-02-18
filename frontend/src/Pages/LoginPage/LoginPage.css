@@ -1,0 +1,245 @@
+.login-form {
+  width          : 100vw;
+  min-height     : 100vh;
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+  background     : center/cover no-repeat ivory url('https://svgshare.com/i/eKD.svg1');
+  font-size      : 2ch;
+  font-weight    : 600;
+}
+
+.login-form .login-form_container {
+  height          : 40rem;
+  width           : 100%;
+  display         : flex;
+  align-items     : center;
+  justify-content : space-evenly;
+  padding         : 3rem 0;
+  margin          : 1rem 0 2rem 0;
+  border-radius   : .8rem;
+  background-color: var(--honeydew);
+}
+
+.login-form .login-form_header {
+  margin-left: 1rem;
+}
+
+.login-form .login-form_login-section {
+  display        : flex;
+  flex-direction : column;
+  justify-content: flex-start;
+}
+
+.login-form .login-form_login-section .login-section_form {
+  display       : flex;
+  flex-direction: column;
+  gap           : 1rem;
+}
+
+.login-form .login-form_login-section .login-section_password-wrapper {
+  position: relative;
+  height  : auto;
+  width   : 100%;
+}
+
+/* .login-form_login-section .login-section_email,
+.login-form_login-section .login-section_password {
+  height          : 80%;
+  width           : 100%;
+  padding         : 1rem;
+  border-radius   : .6rem;
+  font-size       : 2ch;
+  font-weight     : 600;
+  text-align      : left;
+  background-color: var(--ash-gray-lighter);
+  color           : var(--nice-black);
+  transition      : all .2s ease-in-out;
+  border          : none;
+  outline         : .2rem solid var(--ash-gray);
+} */
+
+.login-form_login-section .login-section_password {
+  padding: 1rem 4rem 1rem 1rem;
+}
+
+/* .login-form_login-section .login-section_email:hover,
+.login-form_login-section .login-section_password:hover,
+.login-form_login-section .login-section_email:focus-visible,
+.login-form_login-section .login-section_password:focus-visible {
+  outline-width: .4rem;
+  box-shadow   : 0px 0.4rem 1rem -0.2rem var(--ash-gray);
+} */
+
+.login-section_form .login-section_forgot-password {
+  margin-top: 1rem;
+  align-self: flex-end;
+}
+
+.login-form_login-section .button {
+  /* margin-top: 2rem; */
+}
+
+.login-form_login-section .button a {
+  width: 15rem;
+}
+
+.login-form .login-form_divider {
+  height          : 35rem;
+  background-color: #7e807f;
+  border          : .0625rem solid #7e807f;
+}
+
+.login-form .login-form_container .login-form_create-account-section {
+  height          : 25rem;
+  width           : 40rem;
+  display         : flex;
+  align-items     : center;
+  justify-content : space-between;
+  gap             : 2rem;
+  border-radius   : .4rem;
+  background-color: var(--nice-gray);
+}
+
+.login-form_create-account-section .create-account-section_col1 {
+  height: 100%;
+  width : fit-content;
+}
+
+.login-form_create-account-section .create-account-section_col1 img {
+  max-width    : 100%;
+  max-height   : 100%;
+  object-fit   : cover;
+  border-radius: .4rem 0 0 .4rem;
+}
+
+.login-form_create-account-section .create-account-section_col2 {
+  height            : 100%;
+  width             : 50%;
+  display           : flex;
+  flex-direction    : column;
+  justify-content   : space-evenly;
+  /* padding-right  : 8rem; */
+  font-size         : 2ch;
+}
+
+.login-form_create-account-section .create-account-section_col2 .button a {
+  width           : 12rem;
+  background-color: var(--crayola-yellow);
+  color           : var(--dark-purple);
+}
+
+.login-form_create-account-section .create-account-section_col2 .button a:hover,
+.login-form_create-account-section .create-account-section_col2 .button a:focus-visible {
+  background-color: var(--crayola-yellow-darker);
+  color           : var(--dark-purple);
+  transform       : scale(.9);
+  transition      : all ease-in-out .3s;
+}
+
+.login-form_create-account-section .create-account-section_col2 .button svg {
+  color: var(--dark-purple);
+}
+
+/* input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin            : 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+} */
+
+.text-primary {
+  color: var(--primary);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.btn {
+  height         : 40px;
+  width          : 100%;
+  border         : 1px solid var(--gray);
+  color          : var(--black);
+  margin         : 1rem 0;
+  padding        : 0 1rem;
+  border-radius  : 20px;
+  transition     : all .2s ease-in-out;
+  display        : flex;
+  align-items    : center;
+  justify-content: center;
+}
+
+.login-form_login-section .login-section_google-login-btn {
+  all             : unset;
+  width           : 80%;
+  border-radius   : 0.6rem;
+  padding         : .8rem 3rem;
+  background-color: whitesmoke;
+  color           : var(--dark-purple);
+  text-transform  : uppercase;
+  display         : flex;
+  justify-content : space-between;
+  align-items     : center;
+  cursor          : pointer;
+  font-weight     : 600;
+  font-size       : 2ch;
+  transition      : all ease-in-out .5s;
+}
+
+.login-form_login-section .login-section_google-login-btn:hover,
+.login-form_login-section .login-section_google-login-btn:focus-visible {
+  background-color: var(--ash-gray-lighter);
+  transform       : scale(.9);
+  transition      : all ease-out .3s;
+}
+
+.login-wrapper {
+  margin         : 1rem 0;
+  padding        : 1rem 2rem;
+  background     : linear-gradient(130deg, rgb(255 255 255 / 75%), transparent);
+  border-radius  : 1rem;
+  backdrop-filter: blur(12px);
+  max-width      : 380px;
+}
+
+.login-form_login-section .login-section_google-login-btn>svg {
+  margin-left: 1rem;
+}
+
+.password-button {
+  position        : absolute;
+  width           : fit-content;
+  height          : auto;
+  display         : flex;
+  top             : 2.5rem;
+  right           : 1rem;
+  align-items     : center;
+  font-size       : 2.5rem;
+  color           : var(--gray);
+  border          : none;
+  background-color: transparent;
+  cursor          : pointer;
+}
+
+.password-button svg {
+  transition: all 1s ease-in-out;
+}
+
+.divider {
+  display        : flex;
+  align-items    : center;
+  justify-content: space-between;
+  margin         : 1rem 0;
+}
+
+.divider:after,
+.divider:before {
+  content   : '';
+  width     : 45%;
+  height    : 1px;
+  background: var(--gray);
+}
