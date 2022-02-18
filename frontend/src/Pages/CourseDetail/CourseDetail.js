@@ -178,10 +178,6 @@ export default function CourseDetail({ isLoggedIn }) {
 			showConfirmButton: false,
 			timer: 2000,
 		});
-		setAux({
-			...aux,
-			aux: true
-		})
 
 	}
 	/* 
