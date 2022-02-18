@@ -1,0 +1,36 @@
+.contenedor{
+   font-weight: 600;
+   height               : 60vh;
+   width                : 90vw;
+   display              : grid;
+   grid-template-columns: repeat(2, 1fr);
+   font-size            : 1.5rem;
+   margin               :auto;
+   margin-top           : 100px;
+   align-items          : center;
+   justify-content      : center;
+   background-color     : white;
+   border-radius        : 1.5rem;
+   /* inset | offset-x | offset-y | color */
+   box-shadow           : 10rem 1rem 2rem hsla(0, 0%, 49%, 0.37);
+   color           : var(--dark-purple);
+}
+.video{
+   width        : 100%;
+   height       : 100%;
+   border-radius: 1.5rem 0 0 1.5rem;
+  
+}
+.info{
+   height         : 100%;
+   width          : 100%;
+   display        : flex;
+   flex-direction : column;
+  
+   justify-content:flex-start;
+   gap            : 1rem;
+   padding        : 2rem; 
+}
+.conteinerVideo{
+padding:0  6.5rem;
+}
