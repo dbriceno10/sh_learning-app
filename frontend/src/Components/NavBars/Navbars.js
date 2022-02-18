@@ -38,6 +38,7 @@ export default function Navbar({ isLoggedIn }) {
 
     const handleLogout = () => {
         window.localStorage.removeItem("userCredentials");
+        window.localStorage.removeItem("cart");
         MySwal.fire({
             position: "center",
             icon: "success",
