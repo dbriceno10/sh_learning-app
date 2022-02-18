@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getUserCredentials } from "../../Actions/login.actions";
 import Navbar from "../../Components/NavBars/Navbars";
 import RecentCourses from "../../Components/RecentCourses/RecentCourses";
 import CoursesBrowser from '../../Components/SharedHome/CoursesBrowser';
 import './UserHome.css'
+import { newReview, getStudentReview } from "../../Actions/review.actions"
 
 export default function UserHome({ isLoggedIn }) {
     const dispatch = useDispatch();
@@ -22,7 +23,7 @@ export default function UserHome({ isLoggedIn }) {
                 {/* <Button
                     link={''}
                     text={'Mostrar recientes'}
-                    type='flat'
+                    btnVariant='flat'
                     onClick={() => {
 
                         setHasRecents(hasRecents => !hasRecents)

@@ -70,21 +70,21 @@ export default function Navbar({ isLoggedIn }) {
                         <li className="nav-bar_item">
                             <Button
                                 link={'#why-section'}
-                                type={'flat'}
+                                btnVariant={'flat'}
                                 text={'Why us?'}>
                             </Button>
                         </li>
                         <li className="nav-bar_item">
                             <Button
                                 link={'#teach-section'}
-                                type={'flat'}
+                                btnVariant={'flat'}
                                 text={'Teach'}>
                             </Button>
                         </li>
                         <li className="nav-bar_item">
                             <Button
                                 link={'#about-section'}
-                                type={'flat'}
+                                btnVariant={'flat'}
                                 text={'About us'}>
                             </Button>
                         </li>
@@ -101,7 +101,7 @@ export default function Navbar({ isLoggedIn }) {
                                                 ? '/login'
                                                 : '/home'
                                         }
-                                        type={'raised'}
+                                        btnVariant={'raised'}
                                         text={'Login'}
                                     ></Button>
                                 </div>
@@ -113,7 +113,7 @@ export default function Navbar({ isLoggedIn }) {
                                             ? '/signUp'
                                             : '/home'
                                     }
-                                    type={'raised'}
+                                    btnVariant={'raised'}
                                     text={'Sign up'}
                                 ></Button>
                             </li>
@@ -122,7 +122,7 @@ export default function Navbar({ isLoggedIn }) {
                             <li className="nav-bar_item">
                                 <Button className='user-controls_logout_btn'
                                     link={'/'}
-                                    type={'round'}
+                                    btnVariant={'round'}
                                     text={''}
                                     icon={'ph:sign-out-bold'}
                                     tooltip={'Cerrar sesión'}
@@ -145,7 +145,7 @@ export default function Navbar({ isLoggedIn }) {
                     <section className="nav-bar_menu">
                         <Button
                             link={''}
-                            type={'raised-icon'}
+                            btnVariant={'raised-icon'}
                             icon={toggleMenuIcon}
                             onClick={e => toggleMenuOverlay(e)}
                         ></Button>

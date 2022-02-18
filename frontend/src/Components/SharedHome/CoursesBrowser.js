@@ -29,7 +29,7 @@ function CoursesBrowser({ isLoggedIn }) {
 				<h1>Explora entre muchos cursos disponibles</h1>
 			</header>
 			<Button
-				type={"flat"}
+				btnVariant={"flat"}
 				text={"Reset"}
 				onClick={handleReset}
 				link={""}
