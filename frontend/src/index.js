@@ -8,7 +8,8 @@ import store from './Store/index'
 import App from './App';
 import axios from "axios" //Importo axios
 const API = process.env.REACT_APP_API //Obtengo la variable de entorno con el api
-axios.defaults.baseURL = API || "http://localhost:3001" //Configuración base para conectarse al backend desde local o desde la nube
+// axios.defaults.baseURL = API || "http://localhost:3001" //Configuración base para conectarse al backend desde local o desde la nube
+axios.defaults.baseURL = "http://localhost:3001"
 
 ReactDOM.render(
   <React.StrictMode>
