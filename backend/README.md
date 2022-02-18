@@ -36,6 +36,7 @@ Ruta de review
 POST: El endpoind es http://localhost:3001/review/create ---> para crear el curso recibe recibe courseId, studentId, score por body
 GET: http://localhost:3001/review/detail/id ---> recibe el id del curso por params para buscar los detalles de una review
 GET: http://localhost:3001/review/ ---> para obtener todas las reviews
+GET: http://localhost:3001/review/verify ---> Va a recibir por query la propiedades courseId y studentId, para verificar si existe una review
 
 
 Ruta de estudiantes
@@ -61,7 +62,16 @@ PUT: http://localhost:3001/admins/update/id ---> recibe por params el id del adm
 DELETE: http://localhost:3001/admins/delete/id ---> recibe por params el id del administrador para eliminarlo de la base de datos
 
 Ruta de pasarela de pago con Stripe
+<<<<<<< HEAD
 POST: http://localhost:3001/stripe/pay ---> Ruta para utilizar la pasarela de pagos de stripe, recibe por body amount(monto), email(un email válido cualquiera), token, studentId, coursesId(un array de ids de cursos). Procesa el pago, y guarda en la base de datos el id del estudiante y del curso y guarda la orden en BD. Retorna el id de la orden.
+=======
+<<<<<<< HEAD
+POST: http://localhost:3001/stripe/pay ---> Ruta para utilizar la pasarela de pagos de stripe, recibe por body amount(monto), email(un email válido cualquiera), token, studentId, coursesId(un array de ids de cursos). Procesa el pago, y guarda en la base de datos el id del estudiante y del curso y guarda la orden en BD. Retorna el id de la orden.
+=======
+POST: http://localhost:3001/stripe/pay ---> Ruta para utilizar la pasarela de pagos de stripe, recibe por body amount(monto), email(un email válido cualquiera), token. Procesa el pago.
+POST: http://localhost:3001/stripe/generate ---> Genera la orden de compra para guardar en la base de datos, recibe por body studentId, coursesId(un array de ids de cursos) y el amount(el precio total). Retorna el id de la orden.
+>>>>>>> 56dc094e07215cc905c1364c5d27f0b148dec86d
+>>>>>>> mirror
 GET: http://localhost:3001/stripe/orders ---> Devuelve Todas las ordenes
 GET: http://localhost:3001/stripe/orders/detail/id ---> devuelve los datos de una orden
 

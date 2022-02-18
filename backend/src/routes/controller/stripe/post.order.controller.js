@@ -5,24 +5,25 @@ const stripe = require("stripe")(STRIPE_KEY);
 
 const stripePay = async (req, res) => {
   const { email, token, orderId } = req.body;
-
-  const order = await Order.findOne({
-    where: {
-      id: orderId,
-    },
-  });
-  if (!order) {
-    res.status(404).send({ message: "No se encontro la orden" });
-  }
-  const student = await Student.findOne({
-    where: {
-      id: order.studentId,
-    },
-  });
-  if (!student) {
-    res.status(404).send({ message: "No se encontro el estudiante" });
-  }
+  
   try {
+    const order = await Order.findOne({
+      where: {
+        id: orderId,
+      },
+    });
+    if (!order) {
+      res.status(404).send({ message: "No se encontro la orden" });
+    }
+    const student = await Student.findOne({
+      where: {
+        id: order.studentId,
+      },
+    });
+    if (!student) {
+      res.status(404).send({ message: "No se encontro el estudiante" });
+    }    
+
     let customer = await stripe.customers.create({
       //Crea el cliente
       email: email,
@@ -32,7 +33,7 @@ const stripePay = async (req, res) => {
 
     let charge = await stripe.charges.create({
       //Crea el cargo
-      amount: parseFloat(amount) * 100,
+      amount: parseFloat(order.amount) * 100,
       description: `Payment for USD ${order.amount}`,
       currency: "USD",
       customer: customer.id,
@@ -62,7 +63,8 @@ const stripePay = async (req, res) => {
 };
 
 const generateOrder = async (req, res) => {
-  const { studentId, coursesId, amount, status } = req.body;
+  const { id, studentId, coursesId, totalAmount, status } = req.body;
+
   try {
     const student = await Student.findOne({
       //Busca el estudiante
@@ -72,17 +74,20 @@ const generateOrder = async (req, res) => {
     });
     if (!student) {
       //Si no existe el estudiante
+      console.log("No existe el estudiante");
       return res.status(404).send({ message: "No se encontro el estudiante" });
     }
     // student.addCourse(coursesId); //Agrega los cursos al estudiante
     const order = await Order.create({
+      id: id,
       studentId: studentId,
-      amount: amount,
+      amount: totalAmount,
       arrayCoursesId: coursesId,
       status: status,
     });
+    console.log("Orden creada");
     res
-      .send(200)
+      .status(200)
       .send({ message: "Orden generada con exito", orderId: order.id });
   } catch (error) {
     console.log(error);
