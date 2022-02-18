@@ -71,11 +71,11 @@ export default function Profile({ isLoggedIn }) {
 							</label>
 							<label htmlFor='confirmpassword' className="profile_label">
 								Contraseña nueva
-								<input name='confirmpassword' className="profile_inputs" type={'text'} value={"******"} disabled />
+								<input name='confirmpassword' className="profile_inputs" btnVariant={'text'} value={"******"} disabled />
 							</label>
 							<Button
 								text={'Editar datos'}
-								type={'raised-icon'}
+								btnVariant={'raised-icon'}
 								onClick={(e) => alert('Editar datos')}
 								link={''}
 								icon={'ci:edit'}
@@ -94,7 +94,7 @@ export default function Profile({ isLoggedIn }) {
 							</div>
 							<Button
 								text={'Cambiar foto'}
-								type={'raised-icon'}
+								btnVariant={'raised-icon'}
 								onClick={(e) => alert('Cambiar foto')}
 								link={''}
 								icon={'eva:upload-outline'}
