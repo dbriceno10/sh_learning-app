@@ -7,6 +7,7 @@ import filtersReducer from "../Reducers/filters.reducer";
 import shoppingReducer from "../Reducers/cart.reducer";
 import profileReducer from "../Reducers/Profile.reducer.js"
 import videosReducer from "../Reducers/videos.reducer";
+import reviewReducer from "../Reducers/review.reducers";
 
 
 const store = createStore(
@@ -16,7 +17,8 @@ const store = createStore(
 		filters: filtersReducer,
 		cart: shoppingReducer,
 		student: profileReducer,
-		videosCursos:videosReducer
+		videosCursos:videosReducer,
+		review: reviewReducer
 	}), composeWithDevTools(
 		applyMiddleware(thunk)
 	));

@@ -3,6 +3,7 @@ const { Op } = require("sequelize");
 
 const getStudentReview = async (req, res) => {
   const { studentId, courseId } = req.query;
+  console.log({studentId, courseId})
   try {
     const review = await Review.findOne({
       where: {
