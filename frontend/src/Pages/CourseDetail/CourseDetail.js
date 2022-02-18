@@ -14,7 +14,7 @@ import { addToCart, getLocalStorage } from "../../Actions/cart.actions";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import ReactPlayer from 'react-player';
-import { newReview, getStudentReview } from "../../Actions/review.actions"
+import { newReview } from "../../Actions/review.actions"
 import CardsVideos from "../../Components/CardsVideos/CardsVideos";
 
 
@@ -34,9 +34,6 @@ export default function CourseDetail({ isLoggedIn }) {
 	const { userCredentials } = useSelector((state) => state.login);
 	console.log(userCredentials)
 	const [rating, setRating] = useState(0)
-	const { responseReview } = useSelector(state => state.review)
-	const [aux, setAux] = useState(false)
-	console.log(responseReview)
 
 	// const [courseCart, setCourseCart] = useState({
 	// 	id: "",
@@ -191,24 +188,14 @@ export default function CourseDetail({ isLoggedIn }) {
 		let courseId = courseDetail.id
 	j
 		let studentId = userCredentials.id */
-		
-		useEffect(() => {
-			dispatch(getUserCredentials());
-			dispatch(getCourseDetail(id));
-			dispatch(getLocalStorage());
-			dispatch(clearPage());
-			/* dispatch(getStudentReview({
-				courseId: courseDetail.id,
-				studentId: userCredentials.id
-			})) */
-		}, [dispatch, id]);
-		
-			useEffect(()=>{
-				dispatch(getStudentReview({
-					courseId: courseDetail.id,
-					studentId: userCredentials.id
-				}))
-			},[])
+
+	useEffect(() => {	
+		dispatch(getUserCredentials());
+		dispatch(getCourseDetail(id));
+		dispatch(getLocalStorage());
+	}, [dispatch, id]);
+
+
 
 
 	return (
@@ -262,18 +249,11 @@ export default function CourseDetail({ isLoggedIn }) {
 							</h3>
 
 
-							{
-								courseDetail.meanReview > 0 ?
-									<Rating
-										name="read-only"
-										value={courseDetail?.meanReview}
-										readOnly
-									/> :
 									<Rating
 										value={rating}
 										onChange={onChange}
 									/>
-							}
+							
 
 							{rating > 0 ? (
 
