@@ -2,8 +2,8 @@ import { ReactChild, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import "./Profile.css";
-import { getProfile } from "../../Actions/profile.action.js";
-import { uptadeProfile } from './../../Actions/profile.action';
+import { getProfileStudent, uptadeProfileStudent } from "../../Actions/profile.action.js";
+import { getProfileTeacher, uptadeProfileTeacher } from './../../Actions/profile.action';
 import { getUserCredentials } from "../../Actions/login.actions";
 import Navbar from "../../Components/NavBars/Navbars";
 import Cards from "../../Components/Cards/Cards";
@@ -18,7 +18,7 @@ export default function Profile({ isLoggedIn }) {
 
 	const dispatch = useDispatch();
 	const { userCredentials } = useSelector(state => state?.login);
-	const student = useSelector(state => state?.student?.dataUser);
+	const user = useSelector(state => state?.student.dataUser)
 	const [input, setInput] = useState({
 		name: '',
 		lastName: '',
@@ -31,7 +31,8 @@ export default function Profile({ isLoggedIn }) {
 	}, [dispatch])
 	
 	useEffect(() => {
-		dispatch(getProfile(userCredentials.id));
+		dispatch(getProfileStudent(userCredentials.id));
+		dispatch(getProfileTeacher(userCredentials.id));
 	}, [userCredentials])
 	
 
@@ -47,7 +48,8 @@ export default function Profile({ isLoggedIn }) {
 		e.preventDefault();
 		if(input.name || input.lastName || input.email || input.avatar){
 			try {
-				dispatch(uptadeProfile(student.id, input))
+				dispatch(uptadeProfileStudent(user.id, input))
+				dispatch(uptadeProfileTeacher(user.id, input));
 				setInput({
 					name: '',
 					lastName: '',
@@ -61,7 +63,7 @@ export default function Profile({ isLoggedIn }) {
 				MySwal.fire({
 					position: "center-center",
 					icon: "error",
-					title: "HA ocurrido un error.",
+					title: "Ha ocurrido un error.",
 					showConfirmButton: false,
 					timer: 2500,
 				});
@@ -90,15 +92,15 @@ export default function Profile({ isLoggedIn }) {
 						<div className="details_inputs_public-info">
 							<label htmlFor='name' className="profile_label">
 								Nombre
-								<input name='name' className="profile_inputs" type={'text'} placeholder={student.name} onChange={handleChange}/>
+								<input name='name' className="profile_inputs" type={'text'} placeholder={user.name} onChange={handleChange}/>
 							</label>
 							<label htmlFor='lastName' className="profile_label">
 								Lastname
-								<input name='lastName' className="profile_inputs" type={'text'} placeholder={student.lastName}  onChange={handleChange}/>
+								<input name='lastName' className="profile_inputs" type={'text'} placeholder={user.lastName}  onChange={handleChange}/>
 							</label>
 							<label htmlFor='email' className="profile_label">
 								Email
-								<input name='email' className="profile_inputs" type={'text'} placeholder={student.email}onChange={handleChange}/>
+								<input name='email' className="profile_inputs" type={'text'} placeholder={user.email}onChange={handleChange}/>
 							</label>
 
 						</div>
@@ -119,7 +121,7 @@ export default function Profile({ isLoggedIn }) {
 							
 							<div className="details_profile-pic_photo"
 								style={{
-									backgroundImage: `url(${student.avatar})`
+									backgroundImage: `url(${user.avatar})`
 								}}
 							>
 							</div>
