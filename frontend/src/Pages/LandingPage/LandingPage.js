@@ -32,12 +32,12 @@ export default function LandingPage({ isLoggedIn }) {
 										link={"/signUp"}
 										text={"Get started"}
 										icon={"bi:arrow-right-circle"}
-										type={"raised-icon"}
+										btnVariant={"raised-icon"}
 									></Button>
 									<Button
 										link={"/home"}
 										text={"Browse courses"}
-										type={"flat"}
+										btnVariant={"flat"}
 									></Button>
 								</div>
 							</div>
@@ -138,7 +138,7 @@ export default function LandingPage({ isLoggedIn }) {
 									link={"/login"}
 									text={"Start today"}
 									icon={"bi:arrow-right-circle"}
-									type={"raised-icon"}
+									btnVariant={"raised-icon"}
 								></Button>
 							</div>
 						</div>
@@ -327,7 +327,7 @@ export default function LandingPage({ isLoggedIn }) {
 										link={"https://github.com/dbriceno10/sh_learning-app"}
 										text={"See the project"}
 										icon={"ant-design:github-outlined"}
-										type={"flat-icon"}
+										btnVariant={"flat-icon"}
 									></Button>
 								</button>
 							</div>

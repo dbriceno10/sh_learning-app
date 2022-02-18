@@ -51,30 +51,31 @@ export default function Profile({ isLoggedIn }) {
 						<div className="details_inputs_public-info">
 							<label htmlFor='input_nombre' className="profile_label">
 								Nombre
-								<input name='input_nombre' className="profile_inputs" type={'text'} placeholder={user.name} />
+								<input name='input_nombre' className="profile_inputs" type={'text'} value={user.name} disabled />
 							</label>
 							<label htmlFor='input_lastName' className="profile_label">
 								Lastname
-								<input name='input_lastName' className="profile_inputs" type={'text'} placeholder={user.lastName} />
+								<input name='input_lastName' className="profile_inputs" type={'text'} value={user.lastName} disabled />
 							</label>
 							<label htmlFor='input_email' className="profile_label">
 								Email
-								<input name='input_email' className="profile_inputs" type={'text'} placeholder={user.email} />
+								<input name='input_email' className="profile_inputs" type={'text'} value={user.email}
+									disabled />
 							</label>
 
 						</div>
 						<div className="details_inputs_private-info">
 							<label htmlFor='input_contraseña' className="profile_label">
 								Contraseña actual
-								<input name='input_contraseña' className="profile_inputs" type={'text'} placeholder={"******"} />
+								<input name='input_contraseña' className="profile_inputs" type={'text'} value={"******"} disabled />
 							</label>
 							<label htmlFor='confirmpassword' className="profile_label">
 								Contraseña nueva
-								<input name='confirmpassword' className="profile_inputs" type={'text'} placeholder={"******"}  />
+								<input name='confirmpassword' className="profile_inputs" btnVariant={'text'} value={"******"} disabled />
 							</label>
 							<Button
 								text={'Editar datos'}
-								type={'raised-icon'}
+								btnVariant={'raised-icon'}
 								onClick={(e) => alert('Editar datos')}
 								link={''}
 								icon={'ci:edit'}
@@ -93,7 +94,7 @@ export default function Profile({ isLoggedIn }) {
 							</div>
 							<Button
 								text={'Cambiar foto'}
-								type={'raised-icon'}
+								btnVariant={'raised-icon'}
 								onClick={(e) => alert('Cambiar foto')}
 								link={''}
 								icon={'eva:upload-outline'}
