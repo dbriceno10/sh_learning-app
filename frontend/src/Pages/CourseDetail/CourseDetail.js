@@ -19,7 +19,6 @@ import CardsVideos from "../../Components/CardsVideos/CardsVideos";
 
 const video = 'https://www.youtube.com/watch?v=QrDJ9zv0Pwg&ab_channel=ENTERTAIMENTNOW'
 
-
 export default function CourseDetail({ isLoggedIn }) {
 	const { id } = useParams();
 	const dispatch = useDispatch();

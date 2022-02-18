@@ -11,7 +11,7 @@ import ReactPlayer from 'react-player';
 const video = 'https://www.youtube.com/watch?v=QrDJ9zv0Pwg&ab_channel=ENTERTAIMENTNOW'//para mostrar solamente!
 
 
-const MaterialCard = ({ id, name, image, price, teacher, rating , description,onClick}) => {
+const MaterialCard = ({ id, name, image, price, teacher, rating , description, onClick}) => {
 
 	// console.log(id);
 
@@ -20,10 +20,14 @@ const MaterialCard = ({ id, name, image, price, teacher, rating , description,on
 	const handleClickCard = () => {
 		navigate(`/courses/${id}`)
 	}
+	const handleClickCardVideo = ()=> {
+        navigate(`/video/detail/${id}`)
+    }
+
 
 
               return (
-						<Card sx={{ width: 270 }} onClick={ onClick? onClick : handleClickCard}>
+						<Card sx={{ width: 270 }} onClick={ onClick? handleClickCardVideo : handleClickCard}>
 								{/* <CardMedia
 									component="img"
 									height="140"
