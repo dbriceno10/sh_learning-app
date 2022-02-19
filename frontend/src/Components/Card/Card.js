@@ -29,7 +29,6 @@ const MaterialCard = ({ id, name, image, price, teacher, rating , description, o
               return (
 						<Card sx={{ width: 270 }} onClick={ onClick? handleClickCardVideo : handleClickCard}>
 								{/* <CardMedia
-
 									component="img"
 									height="140"
 									image={image}

@@ -46,7 +46,6 @@
 .profile_details_inputs .profile_inputs {
     height             : fit-content;
     width              : 100%;
-    /* padding         : 1rem; */
     border-radius      : .6rem;
     font-size          : 2ch;
     text-align         : left;
@@ -110,3 +109,41 @@
     z-index   : 2;
     align-self: flex-end;
 }
+
+.submit-btn-profile{
+  background-color: #eabb39;
+  border: 0ch;
+  border-radius: 10px;
+  width: 100%;
+  height: 3.6rem;
+  cursor: pointer;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: aliceblue;
+  position: relative;
+  top: 4.7rem;
+}
+
+.changepassword-btn{
+    background-color: #2b174f;
+    border: 0ch;
+    border-radius: 10px;
+    width: 100%;
+    height: 3.6rem;
+    cursor: pointer;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: aliceblue;
+    position: relative;
+    top: 2rem;
+}
+
+.avatar-url{
+    height             : fit-content;
+    width              : 100%;
+    border-radius      : .6rem;
+    font-size          : 2ch;
+    text-align         : left;
+    background-color   : var(--nice-gray);
+    color              : var(--rich-black);
+}
+
+
