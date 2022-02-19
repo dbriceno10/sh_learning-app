@@ -71,21 +71,21 @@ export default function Navbar({ isLoggedIn }) {
                             <Button
                                 link={'#why-section'}
                                 btnVariant={'flat'}
-                                text={'Why us?'}>
+                                text={'Quienes Somos?'}>
                             </Button>
                         </li>
                         <li className="nav-bar_item">
                             <Button
                                 link={'#teach-section'}
                                 btnVariant={'flat'}
-                                text={'Teach'}>
+                                text={'Empeza Como Profesor'}>
                             </Button>
                         </li>
                         <li className="nav-bar_item">
                             <Button
                                 link={'#about-section'}
                                 btnVariant={'flat'}
-                                text={'About us'}>
+                                text={'Nuestro Equipo'}>
                             </Button>
                         </li>
                     </section>
@@ -102,7 +102,7 @@ export default function Navbar({ isLoggedIn }) {
                                                 : '/home'
                                         }
                                         btnVariant={'raised'}
-                                        text={'Login'}
+                                        text={'Iniciar Sesion'}
                                     ></Button>
                                 </div>
                             </li>
@@ -114,7 +114,7 @@ export default function Navbar({ isLoggedIn }) {
                                             : '/home'
                                     }
                                     btnVariant={'raised'}
-                                    text={'Sign up'}
+                                    text={'Registrate'}
                                 ></Button>
                             </li>
                         </section>
