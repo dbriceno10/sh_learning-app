@@ -115,7 +115,7 @@ function LoginPage({ isLoggedIn }) {
 									type="email"
 									name="email"
 									className="login-section_email"
-									placeholder="john@example.com"
+									placeholder="samuelito22@gmail.com"
 									value={userLogin.email}
 									maxLength={50}
 									onChange={handleChange}

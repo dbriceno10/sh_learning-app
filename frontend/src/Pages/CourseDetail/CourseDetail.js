@@ -38,6 +38,8 @@ export default function CourseDetail({ isLoggedIn }) {
 	// 	img: "",
 	// });
 
+	console.log(isLoggedIn)
+
 	const MySwal = withReactContent(Swal);
 
 	const handleFavouriteClick = () => {
@@ -162,18 +164,31 @@ export default function CourseDetail({ isLoggedIn }) {
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		dispatch(newReview({
-			score: rating,
-			courseId: courseDetail.id,
-			studentId: userCredentials.id
-		}))
-		MySwal.fire({
-			position: "center-center",
-			icon: "success",
-			title: "Gracias por dejar tu review!",
-			showConfirmButton: false,
-			timer: 2000,
-		});
+		if(isLoggedIn !== "student" || isLoggedIn !== "teacher"){
+			MySwal.fire({
+				position: "center-center",
+				icon: "warning",
+				title: "Por favor, inicia sesión para continuar",
+				showConfirmButton: false,
+				timer: 2500,
+			});
+			setTimeout(() => {
+				navigate("/login");
+			}, 1000);
+		} else {
+			dispatch(newReview({
+				score: rating,
+				courseId: courseDetail.id,
+				studentId: userCredentials.id
+			}))
+			MySwal.fire({
+				position: "center-center",
+				icon: "success",
+				title: "Gracias por dejar tu review!",
+				showConfirmButton: false,
+				timer: 2000,
+			});
+		}
 
 	}
 	/* 
