@@ -8,6 +8,7 @@ import {CoursesList, CoursesEdit, CoursesCreate} from './componentes/CoursesList
 import {TeachertsList, TeachertsEdit, TeachertsCreate} from './componentes/Teacherts';
 import{AdminList, AdminEdit, AdminCreate} from './componentes/Admin'
 import { CategoryList ,CategoryCreate} from './componentes/CategoryList';
+import {VideoList,VideoEdit,VideoCreate } from './componentes/VideoList.js';
 import dataProvider from './dataprovider';
 import authProvider from './authProvider';
 
@@ -17,37 +18,41 @@ function Adm() {
     <Admin
       dataProvider={dataProvider}
       authProvider={authProvider}>
-      <Resource 
-      name='students'
-      list={UserList}
-      edit={UserEdit}
-      create={UserCreate}/>
-      <Resource 
-      name='courses'
-      list={CoursesList}
-      edit={CoursesEdit}
-      create={CoursesCreate}/>
-      <Resource 
-      name='teachers'
-      list={TeachertsList}
-      edit={TeachertsEdit}
-      create={TeachertsCreate}/>
-      <Resource 
-      name='admins'
-      list={AdminList}
-      edit={AdminEdit}
-      create={AdminCreate}/>
-      <Resource 
-      name="category"
-      list={CategoryList}
-      // edit={CategoryEdit}
-      create={CategoryCreate}
-    />
-   </Admin>
+
+        <Resource 
+        name='students'
+        list={UserList}
+        edit={UserEdit}
+        create={UserCreate}/>
+        <Resource 
+        name='courses'
+        list={CoursesList}
+        edit={CoursesEdit}
+        create={CoursesCreate}/>
+        <Resource 
+        name='teachers'
+        list={TeachertsList}
+        edit={TeachertsEdit}
+        create={TeachertsCreate}/>
+        <Resource 
+        name='admins'
+        list={AdminList}
+        edit={AdminEdit}
+        create={AdminCreate}/>
+        <Resource 
+        name="category"
+        list={CategoryList}
+        // edit={CategoryEdit}
+        create={CategoryCreate}/>
+        <Resource
+        name='video'
+        list={VideoList}
+        edit={VideoEdit}
+        create={VideoCreate}/>
+    </Admin>
    
    
    
-    
   );
 }
 

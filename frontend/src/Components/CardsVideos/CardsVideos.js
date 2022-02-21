@@ -4,7 +4,7 @@ import { useDispatch, useSelector} from "react-redux";
 import { useNavigate } from 'react-router-dom';
 
 import {getVideosCurses} from '../../Actions/videos.actions'
-
+import c from './Cards.module.css'
 import MaterialCard from '../Card/Card';
 
 
@@ -23,7 +23,7 @@ const CardsVideos=({id})=>{
 
 
  return(
-     <section style={{"display": "flex" , "marginLeft" : "45px"}}>
+     <section className={c.cards}>
             {videos_curses?
             
                 videos_curses.map(v=> {
