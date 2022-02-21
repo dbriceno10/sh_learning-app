@@ -1,71 +1,308 @@
-:root {
-  --primary: #F74A5C;
-  --black: #3E3E3E;
-  --gray: #8C8C8C;
-  --white: #FFFFFF;
-  --blue: #4285EB;
-}
-
-.contenedor{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-  width: 100%;
-  height: 40px;
-  line-height: 40px;
-  border: 1px solid var(--gray);
-  border-radius: 0.25rem;
-  padding: 0 1rem;
-  margin-bottom: 1rem;
-  box-shadow: 0px 5px 15px -5px rgb(0 0 0 / 15%);
-  transition: all .2s ease-in-out;
-  outline: none;
-}
-
-.btn {
-  height: 40px;
-  width: 100%;
-  border: 1px solid var(--gray);
-  color: var(--black);
-  margin: 1rem 0;
-  padding: 0 1rem;
-  border-radius: 20px;
-  transition: all .2s ease-in-out;
-  display: flex;
-  align-items: center;
+.register-form {
+  width          : 100vw;
+  min-height     : 100vh;
+  display        : flex;
+  align-items    : center;
   justify-content: center;
+  background     : center/cover no-repeat ivory url('https://svgshare.com/i/eKD.svg1');
+  font-size      : 2ch;
+  font-weight    : 600;
 }
 
-.btn.btn-primary{
-  background: var(--primary);
-  color: var(--white);
-  border-color: var(--primary);
-}
-.login-wrapper {
-  margin: 1rem 0;
-  padding: 1rem 2rem;
-  background: linear-gradient(130deg, rgb(255 255 255 / 75%), transparent);
-  border-radius: 1rem;
-  backdrop-filter: blur(12px);
-  max-width: 380px;
-}
-.error{
-  color: var( --primary);
-  font-size: 13px;
-  margin: -1rem 0 1rem 0;
+.register-form .register-form_container {
+  height             : fit-content;
+  width              : 100%;
+  display            : flex;
+  align-items        : stretch;
+  justify-content    : space-between;
+  margin             : 1rem 0 2rem 0;
+  /* gap             : 1rem; */
+  border-radius      : .8rem;
+  background-color   : var(--ash-gray-lighter);
 }
 
-.role-container {
-  display: flex;
-  justify-content: space-around;
+.register-form .register-form_container .register-form_role-section {
+  height         : 100%;
+  width          : 40%;
+  display        : flex;
+  flex-direction : column;
+  padding        : 4rem 4rem;
+  gap            : 1rem;
+  font-size      : 2ch;
+  align-items    : flex-start;
+  justify-content: flex-start;
 }
 
-.h4-rol {
-  margin-top: 0;
+.register-form_container .register-form_role-section .role-section_roles-group {
+  display           : flex;
+  gap               : 2rem;
+  /* margin-top     : 2rem; */
+  justify-content   : space-between;
+}
+
+.register-form_container .register-form_role-section .role-section_label {
+  display            : inline-flex;
+  width              : fit-content;
+  /* padding         : 1px; */
+  position           : relative;
+  border-radius      : 1rem;
+  outline            : solid .4rem var(--nice-gray);
+  border             : none;
+  transition         : all 0.3s ease-in-out;
+}
+
+.register-form_container .register-form_role-section .role-section_label img {
+  height: 100%;
+  width : 100%;
+}
+
+.register-form_container .register-form_role-section .role-section_label>div::after {
+  height          : 100%;
+  width           : 100%;
+  top             : 0;
+  left            : 0;
+  content         : '';
+  display         : block;
+  position        : absolute;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0, rgba(58, 58, 58, 0.5) 100%);
+  border-radius   : 1rem;
+}
+
+.register-form_container .register-form_role-section .role-section_roles-group input[type="radio"] {
+  display: none;
+}
+
+.register-form_container .register-form_role-section .role-section_roles-group input[type="radio"]:checked+label {
+  outline: solid .4rem var(--crayola-yellow-darker);
+}
+
+.register-form_container .register-form_role-section .role-section_roles-group .role-section_label span {
+  width                    : 100%;
+  position                 : absolute;
+  font-weight              : 700;
+  font-size                : 2.5ch;
+  bottom                   : 0;
+  border-radius            : 0 0 .4rem .4rem;
+  padding                  : .1rem .6rem;
+  /* background-color      : hsla(0, 0%, 22%, 0.39); */
+  color                    : whitesmoke;
+  /* left                  : calc(50% - 4rem); */
+}
+
+.register-form_role-section .role-section_roles-group .role-section_label .role-section_role-icon {
+  visibility: hidden;
+  position  : absolute;
+  color     : var(--crayola-yellow-darker);
+  font-size : 5ch;
+  bottom    : -1rem;
+  right     : -1rem;
+}
+
+.register-form_container .register-form_role-section .role-section_roles-group input[type="radio"]:checked+label>svg {
+  visibility: visible;
+}
+
+.register-form_container .register-form_role-section .role-section_cv-upload {
+  height: fit-content;
+  width : 100%;
+}
+
+.register-form_container .register-form_role-section .role-section_cv-upload .role-section_cv-upload-container {
+  /* height          : auto;
+  width           : 100%;
+  padding         : 1rem;
+  border-radius   : .6rem;
+  background-color: var(--nice-gray); */
+  height             : auto;
+  width              : fit-content;
+  /* position        : absolute; */
+  height             : auto;
+  width              : 100%;
+  background-color   : var(--ash-gray-lighter);
+  padding            : 1rem;
+  border-radius      : .6rem;
+  outline            : .3rem dashed var(--ash-gray);
+}
+
+.register-form_role-section .role-section_cv-upload .role-section_cv-upload-container .role-section_cv-uploader_dropzone {
+  height: auto;
+  width : fit-content;
+}
+
+.role-section_cv-upload .role-section_cv-upload-container .cv-upload_dropzone .cv-upload_dropzone_label {
+  width : 100%;
+  cursor: pointer;
+}
+
+.role-section_cv-upload .role-section_cv-upload-container .cv-upload_dropzone .cv-upload_dropzone_label:hover,
+.role-section_cv-upload .role-section_cv-upload-container .cv-upload_dropzone .cv-upload_dropzone_label:focus-visible {
+  color          : var(--lighter-purple);
+  text-decoration: underline;
+}
+
+.role-section_cv-upload .role-section_cv-upload-container .cv-upload_dropzone .cv-upload_dropzone_label>small {
+  margin-left: .5rem;
+}
+
+.role-section_cv-upload .role-section_cv-upload-container .cv-upload_dropzone_file-info {
+  width          : 100%;
+  display        : flex;
+  gap            : 1rem;
+  align-items    : center;
+  justify-content: space-between;
+}
+
+.role-section_cv-upload .role-section_cv-upload-container .cv-upload_dropzone_file-info .lds-ring {
+  height: 4rem;
+  width : 4rem;
+}
+
+.role-section_cv-upload .role-section_cv-upload-container .cv-upload_dropzone_file-info svg {
+  color    : green;
+  font-size: 4ch;
+}
+
+.role-section_cv-upload .role-section_cv-upload-container .cv-upload_dropzone_file-info .file-info_wrapper>svg {
+  color    : hsl(0, 96%, 29%);
+  font-size: 4ch;
+}
+
+.role-section_cv-upload .role-section_cv-upload-container .cv-upload_dropzone_file-info .file-info_wrapper {
+  display    : inline-flex;
+  gap        : 1rem;
+  align-items: center;
+}
+
+.register-form_container .register-form_info-section {
+  display: grid;
+  grid-template-areas:
+    'header header'
+    'public private'
+    'public private';
+  height            : auto;
+  width             : 60%;
+  gap               : 1rem 2rem;
+  padding           : 2rem 4rem;
+  border-radius     : 4rem 0.8rem 0.8rem 4rem;
+  background-color  : var(--honeydew);
+  justify-content   : space-around;
+  /* justify-content: space-evenly; */
+}
+
+.register-form_container .register-form_info-section .info-section_header {
+  grid-area : header;
+  margin-top: 2rem;
+  font-size : 2ch;
+}
+
+.register-form_container .register-form_info-section .error-input {
+  outline-color: red;
+}
+
+.register-form_container .register-form_info-section .error-input:hover,
+.register-form_container .register-form_info-section .error-input:focus-visible {
+  outline-color: red;
+}
+
+.register-form_container .register-form_info-section .info-section_public-details,
+.register-form_container .register-form_info-section .info-section_private-details {
+  width            : 100%;
+  display          : flex;
+  flex-direction   : column;
+  /* gap           : 1rem; */
+}
+
+.register-form_container .register-form_info-section .info-section_public-details {
+  grid-area     : public;
+  width         : fit-content;
+  /* grid-column: span 2; */
+}
+
+.register-form_container .register-form_info-section .info-section_private-details {
+  grid-area: private;
+  width    : fit-content;
+}
+
+.register-form_container .register-form_info-section .info-section_private-details .button {
+  width     : 95%;
+  margin-top: 7rem;
+  align-self: flex-end;
+}
+
+.register-form_container .register-form_info-section .error-msg.hidden {
+  visibility : hidden;
+  height     : fit-content;
+  color      : red;
+  font-size  : 1.5ch;
+  padding-top: -1rem;
+}
+
+.register-form_container .register-form_info-section .error-msg {
+  visibility : visible;
+  height     : fit-content;
+  color      : red;
+  font-size  : 1.5ch;
+  padding-top: -1rem;
+}
+
+.register-form_container .register-form_info-section input[type=text]~.error-msg {
+  outline-color: red;
+}
+
+.register-form_container .register-form_info-section .register-form_login-prompt {
+  display  : flex;
+  gap      : 1rem;
+  width    : fit-content;
+  font-size: 2ch;
+}
+
+@media screen and (max-width: 70rem) {
+  .register-form .register-form_container {
+    flex-direction: column;
+  }
+
+  .register-form .register-form_container .register-form_role-section {
+    width      : 100%;
+    align-items: center;
+  }
+
+  .register-form_container .register-form_info-section {
+    width        : 100%;
+    border-radius: 4rem 4rem 0.8rem 0.8rem;
+  }
+}
+
+@media screen and (max-width: 50rem) {
+
+  .register-form_container .register-form_info-section {
+    grid-template-areas:
+      'header'
+      'public'
+      'private';
+    align-items    : flex-start;
+    justify-content: stretch;
+  }
+
+  .register-form_container .register-form_info-section .info-section_public-details {
+    width: 100%;
+  }
+
+  .register-form_container .register-form_info-section .info-section_private-details {
+    width: 100%;
+  }
+
+  .register-form_container .register-form_info-section .info-section_private-details .button {
+    width     : 95%;
+    margin-top: 2rem;
+    align-self: center;
+  }
+}
+
+@media screen and (max-width: 30rem) {
+  .register-form_container .register-form_role-section .role-section_roles-group {
+    flex-direction       : column;
+    /* gap               : 2rem;
+    margin-top           : 2rem;
+    justify-content      : space-between; */
+  }
 }
