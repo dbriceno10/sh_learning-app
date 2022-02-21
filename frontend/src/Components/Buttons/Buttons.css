@@ -61,7 +61,7 @@
 
 .button-raised.icon,
 .button-flat.icon {
-    /* width: auto; */
+    width: 100%;
 }
 
 .button-raised.icon>svg {
@@ -76,9 +76,14 @@
     vertical-align: middle;
 }
 
+.button-flat.icon:hover svg,
+.button-flat.icon:focus-visible svg {
+    color: var(--honeydew);
+}
+
 .button-round {
     border-radius   : 7rem;
-    background-color: var(--ash-gray);
+    background-color: var(--nice-gray);
     padding         : 1rem 1rem;
     cursor          : pointer;
     font-weight     : 600;
@@ -86,10 +91,9 @@
 
 .button-round:hover,
 .button-round:focus-visible {
-    border-radius   : 7rem;
-    background-color: var(--ash-gray-lighter);
-    padding         : 1rem 1rem;
-    cursor          : pointer;
+    background-color: var(--ash-gray);
+    transform       : scale(.9);
+    transition      : all ease-out .3s;
 }
 
 .button-round>svg {
