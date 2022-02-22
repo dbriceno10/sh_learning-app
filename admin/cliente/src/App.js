@@ -9,6 +9,7 @@ import {TeachertsList, TeachertsEdit, TeachertsCreate} from './componentes/Teach
 import{AdminList, AdminEdit, AdminCreate} from './componentes/Admin'
 import { CategoryList ,CategoryCreate} from './componentes/CategoryList';
 import {VideoList,VideoEdit,VideoCreate } from './componentes/VideoList.js';
+import {OrdersList } from './componentes/StripeList.js'
 import dataProvider from './dataprovider';
 import authProvider from './authProvider';
 
@@ -49,6 +50,11 @@ function Adm() {
         list={VideoList}
         edit={VideoEdit}
         create={VideoCreate}/>
+        <Resource
+        name='stripe/orders'
+        list={OrdersList}
+        
+        />
     </Admin>
    
    
