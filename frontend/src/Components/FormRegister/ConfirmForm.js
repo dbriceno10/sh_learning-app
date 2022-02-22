@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import axios from "axios";
+import './ConfirmForm.css'
 
 const ConfirmForm = () => {
   // const dispatch = useDispatch();
@@ -46,8 +47,8 @@ const ConfirmForm = () => {
 
 
 	return (
-		<div>
-			<form onSubmit={handleSubmit}>
+		<div className="padre_confirm">
+			<form className='hijo_container'onSubmit={handleSubmit}>
 				<input
 					type="text"
 					placeholder="Confirma tu email"
@@ -55,7 +56,7 @@ const ConfirmForm = () => {
 					value={confirmForm.email}
 					onChange={handleChange}
 				/>
-				<input type="submit" value="Confirmar" />
+				<input id="input_confirm_btn" type="submit" value="Confirmar" />
 			</form>
 		</div>
 	);

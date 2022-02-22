@@ -17,6 +17,7 @@ import { getUserCredentials } from "./Actions/login.actions";
 import Pasarela from './Components/Pasarela/Pasarela.jsx'
 import ShoppingCart from "./Pages/ShoppingCart/ShoppingCart";
 import VideoDetail from './Pages/VideoDetail/VideoDetail';
+import UploadInputFiles from "./Components/UploadInputFile/UploadInputFile";
 
 function App() {
 	// copy and paste for new component route ⬇⬇⬇⬇⬇
@@ -83,7 +84,10 @@ function App() {
 			<Route
 				exact path="/profile/create"
 				element={<CreateForm />} />
-			<Route path='/video/detail/:id' element={<VideoDetail   isLoggedIn={isLoggedIn}/>} />
+			<Route path='/video/detail/:id' element={<VideoDetail isLoggedIn={isLoggedIn} />} />
+			<Route path='/upload' element={<UploadInputFiles />}
+			/>
+			{/*Ruta experimental para probar la carga de archivos al back*/}
 		</Routes>
 
 	);

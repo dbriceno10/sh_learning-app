@@ -16,27 +16,25 @@ export default function LandingPage({ isLoggedIn }) {
 					<div className="landing_hero_cols">
 						<div className="hero_col1">
 							<h1 className="hero_col1_title title">
-								No need for other place. Find the best tutors for the best price
-								here!
+
+								No hay necesidad de otro lugar. ¡Encuentra los mejores tutores al mejor precio aquí!
 							</h1>
 							<div className="hero_col1_body">
 								<p className="hero_col1_text">
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-									Pellentesque volutpat placerat consectetur euismod at semper
-									porttitor diam at. Vel faucibus tellus urna pellentesque
-									volutpat, vel habitant tristique. Montes, tellus dui, dis
-									neque egestas nibh. Curabitur etiam pulvinar cras proin nec.
+								Es hoy! Podes empezar ahora mismo a estudiar con nosotros, totalmente virtual y con todas las comodidades.
+									Contamos con una amplia cantidad de profesores con sus respectivos cursos. ¡Nos interesa tu evolucion academica!
+
 								</p>
 								<div className="hero_col1_ctas">
 									<Button
 										link={"/signUp"}
-										text={"Get started"}
+										text={"Empecemos"}
 										icon={"bi:arrow-right-circle"}
 										btnVariant={"raised-icon"}
 									></Button>
 									<Button
 										link={"/home"}
-										text={"Browse courses"}
+										text={"Ver cursos"}
 										btnVariant={"flat"}
 									></Button>
 								</div>
@@ -59,7 +57,7 @@ export default function LandingPage({ isLoggedIn }) {
 
 			<section className="landing_why-section" id="why-section">
 				<div className="page-container">
-					<h2 className="landing_why-section_title section-title">Why us?</h2>
+					<h2 className="landing_why-section_title section-title">Quienes somos?</h2>
 					<div className="landing_why-section_cards">
 						<article className="why_section_cards_card1 why-section-card">
 							<div className="card1_header card-header">
@@ -70,8 +68,7 @@ export default function LandingPage({ isLoggedIn }) {
 							</div>
 							<div className="card1_body">
 								<p className="card1_body_text">
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-									Interdum praesent eu luctus.
+									Contamos con los mejores precios de latinoamerica!
 								</p>
 							</div>
 						</article>
@@ -84,8 +81,7 @@ export default function LandingPage({ isLoggedIn }) {
 							</div>
 							<div className="card2_body">
 								<p className="card2_body_text">
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-									Interdum praesent eu luctus.
+									Mas de 800 visualizaciones diarias por curso!
 								</p>
 							</div>
 						</article>
@@ -98,8 +94,7 @@ export default function LandingPage({ isLoggedIn }) {
 							</div>
 							<div className="card3_body">
 								<p className="card3_body_text">
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-									Interdum praesent eu luctus.
+									Contamos con la mejor seguridad para el usuario
 								</p>
 							</div>
 						</article>
@@ -110,7 +105,7 @@ export default function LandingPage({ isLoggedIn }) {
 			<section className="landing_teach-section" id="teach-section">
 				<div className="page-container">
 					<h2 className="landing_teach-section_title section-title">
-						Start teaching today
+						Conviertete en instructor!
 					</h2>
 					<div className="teach-section_cols bg-section">
 						<div className="teach-section_col1">
@@ -122,21 +117,15 @@ export default function LandingPage({ isLoggedIn }) {
 						</div>
 						<div className="teach-section_col2">
 							<h1 className="teach-section_col2_title title">
-								No need for other school. Find the best tutors at the best
-								price!
+								Contamos con las mejores herramientas para una enseñanza profesional
 							</h1>
 							<div className="teach-section_col2_body">
 								<p className="teach-section_col2_text">
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-									Viverra fusce urna lectus proin at dignissim diam, augue. Ut
-									urna sapien enim magna consectetur gravida. Tellus,
-									scelerisque elit faucibus phasellus risus elit. Ut malesuada
-									eget adipiscing tincidunt eu pretium ridiculus in. Molestie
-									sit.
+								Si desea ser instructor en "Learnzilla" solo debe registrarse como profesor y se procedera a la validacion de su titulo y su experiencia
 								</p>
 								<Button
 									link={"/login"}
-									text={"Start today"}
+									text={"Empezà hoy"}
 									icon={"bi:arrow-right-circle"}
 									btnVariant={"raised-icon"}
 								></Button>
@@ -150,7 +139,7 @@ export default function LandingPage({ isLoggedIn }) {
 			<section className="landing_about-section" id="about-section">
 				<div className="page-container">
 					<h2 className="landing_about-section_title section-title">
-						Learn about the team
+						Nuestro Equipo!
 					</h2>
 					<div className="about-section_cols bg-section">
 						<div className="about-section_col1">
@@ -290,42 +279,18 @@ export default function LandingPage({ isLoggedIn }) {
 				<div className="page-container">
 					<div className="footer-section_cols bg-section">
 						<div className="footer-section_col1">
-							<h1 className="footer-section_col1_title title">Lorem ipsum</h1>
-							<div className="footer-section_col1_body">
-								<a
-									href="/landing"
-									className="footer-section_col1_text">Lorem ipsum</a>
-								<a
-									href="/landing"
-									className="footer-section_col1_text">Lorem ipsum</a>
-								<a
-									href="/landing"
-									className="footer-section_col1_text">Lorem ipsum</a>
-							</div>
-						</div>
-						<div className="footer-section_col2">
-							<h1 className="footer-section_col2_title title">Lorem ipsum</h1>
 							<div className="footer-section_col2_body">
-								<a
-									href="/landing"
-									className="footer-section_col2_text">Lorem ipsum</a>
-								<a
-									href="/landing"
-									className="footer-section_col2_text">Lorem ipsum</a>
-								<a
-									href="/landing"
-									className="footer-section_col2_text">Lorem ipsum</a>
+
 							</div>
 						</div>
 						<div className="footer-section_col3">
 							<h1 className="footer-section_col3_title title">
-								Lorem ipsum
 							</h1>
 							<div className="footer-section_col3_body">
 								<button className="footer-section_col3_cta">
 									<Button
 										link={"https://github.com/dbriceno10/sh_learning-app"}
-										text={"See the project"}
+										text={"Ver El Proyecto"}
 										icon={"ant-design:github-outlined"}
 										btnVariant={"flat-icon"}
 									></Button>
@@ -335,7 +300,6 @@ export default function LandingPage({ isLoggedIn }) {
 					</div>
 				</div>
 				<h3 className="landing_footer-section_bottom-text">
-					Ut tempor non posuere porta pentesque ut blandit massa.
 				</h3>
 				<div className="landing_footer-section_bg"></div>
 			</footer>

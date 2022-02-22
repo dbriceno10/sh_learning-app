@@ -1,0 +1,22 @@
+.padre_confirm{
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    margin-top: 20rem;
+
+}
+
+
+
+#input_confirm_btn{
+    height: 4rem;
+    width: 100px;
+    cursor: pointer;
+    background-color: var(--crayola-yellow-darker);
+    border-radius:10px;
+    border-width: 0px;
+}
+#input_confirm_btn :hover{
+    transform          : scale(.9);
+    transition         : all ease-in-out .3s;
+}

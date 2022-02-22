@@ -25,7 +25,6 @@ export default function UserHome({ isLoggedIn }) {
                     text={'Mostrar recientes'}
                     btnVariant='flat'
                     onClick={() => {
-
                         setHasRecents(hasRecents => !hasRecents)
                     }}
                 ></Button> */}
