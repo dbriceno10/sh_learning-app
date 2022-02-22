@@ -119,26 +119,20 @@ export default function CourseDetail({ isLoggedIn }) {
 						position: "center",
 						icon: "success",
 						title: "Curso agregado correctamente",
-						showConfirmButton: false,
-						timer: 2000,
+						showConfirmButton: true,
+						showDenyButton: true,
+						// showCancelButton: true,
+						denyButtonText: "Seguir viendo cursos",
+						denyButtonColor: "#2b174f",
+						confirmButtonText: "Ver mi carrito",
+						confirmButtonColor: "#eabb39"
 					}).then(() => {
-						MySwal.fire({
-							// title: `¿Quieres agregar ${name} al carrito?`,
-							icon: "info",
-							showDenyButton: true,
-							// showCancelButton: true,
-							confirmButtonText: "Seguir viendo cursos",
-							confirmButtonColor: "#2b174f",
-							denyButtonText: "Ver mi carrito",
-							denyButtonColor: "#eabb39",
-						}).then((result) => {
-							if (result.isConfirmed) {
-								navigate("/home");
-							} else {
-								navigate("/carrito");
-							}
-						});
-					});
+						if (result.isConfirmed) {
+							navigate("/cart");
+						} else {
+							navigate("/home");
+						}
+					})
 				}
 			});
 		} else {
@@ -164,7 +158,7 @@ export default function CourseDetail({ isLoggedIn }) {
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		if(isLoggedIn !== "student" || isLoggedIn !== "teacher"){
+		if (isLoggedIn !== "student" || isLoggedIn !== "teacher") {
 			MySwal.fire({
 				position: "center-center",
 				icon: "warning",
@@ -196,7 +190,7 @@ export default function CourseDetail({ isLoggedIn }) {
 	j
 		let studentId = userCredentials.id */
 
-	useEffect(() => {	
+	useEffect(() => {
 		dispatch(getUserCredentials());
 		dispatch(getCourseDetail(id));
 		dispatch(getLocalStorage());
@@ -256,11 +250,11 @@ export default function CourseDetail({ isLoggedIn }) {
 							</h3>
 
 
-									<Rating
-										value={rating}
-										onChange={onChange}
-									/>
-							
+							<Rating
+								value={rating}
+								onChange={onChange}
+							/>
+
 
 							{rating > 0 ? (
 
