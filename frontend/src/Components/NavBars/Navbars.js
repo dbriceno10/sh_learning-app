@@ -1,7 +1,9 @@
 import { React, useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getUserCredentials } from "../../Actions/login.actions";
+import { getProfileStudent, uptadeProfileStudent } from "../../Actions/profile.action.js";
+import { getProfileTeacher, uptadeProfileTeacher } from './../../Actions/profile.action';
 import Button from '../Buttons/Buttons';
 import './Navbars.css';
 import Swal from "sweetalert2";
@@ -11,6 +13,8 @@ export default function Navbar({ isLoggedIn }) {
     const dispatch = useDispatch();
     const location = useLocation();
     const [toggleMenuIcon, setToggleMenuIcon] = useState('ci:menu-alt-02');
+    const { userCredentials } = useSelector(state => state?.login);
+    const user = useSelector(state => state?.student.dataUser);
     const MySwal = withReactContent(Swal);
 
     const toggleMenuOverlay = (e) => {
@@ -51,6 +55,15 @@ export default function Navbar({ isLoggedIn }) {
     useEffect(() => {
         dispatch(getUserCredentials());
     }, [dispatch])
+
+    useEffect(() => {
+        if (isLoggedIn && isLoggedIn === 'student') {
+            dispatch(getProfileStudent(userCredentials.id));
+        } else if (isLoggedIn && isLoggedIn === 'teacher') {
+            dispatch(getProfileTeacher(userCredentials.id));
+        }
+    }, [userCredentials])
+    console.log(user);
 
     /* isLoggedIn is either false or true; true means is a logged-in student */
     /* isLoggedIn is either false or true; true means is a logged-in student */
@@ -120,6 +133,15 @@ export default function Navbar({ isLoggedIn }) {
                         </section>
                         : <section className="nav-bar_user-controls">
                             <li className="nav-bar_item">
+                                <Button className='user-controls_cart_btn'
+                                    link={'/cart'}
+                                    btnVariant={'round'}
+                                    text={''}
+                                    icon={'ph:shopping-cart-bold'}
+                                    tooltip={'Carrito'}
+                                ></Button>
+                            </li>
+                            <li className="nav-bar_item">
                                 <Button className='user-controls_logout_btn'
                                     link={'/'}
                                     btnVariant={'round'}
@@ -131,7 +153,11 @@ export default function Navbar({ isLoggedIn }) {
                             </li>
                             <li className="nav-bar_item">
                                 <Link to={'/profile'}>
-                                    <div className="user-controls-profile-pic tooltip" >
+                                    <div className="user-controls-profile-pic tooltip"
+                                        style={{
+                                            backgroundImage: `url(${user.avatar})`
+                                        }}
+                                    >
                                         <span className="tooltip_text">
                                             Mi perfil
                                         </span>
