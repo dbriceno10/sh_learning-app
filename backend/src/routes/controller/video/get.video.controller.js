@@ -4,7 +4,7 @@ const getAllVideos = async (req, res) => {
   try {
     const videos = await Video.findAll({
       where: {},
-      attributes: ["id", "title", "description", "url", "FKcourseID"],
+      attributes: ["id", "title", "description", "url", "FKcourseID", "img"],
     });
     res.status(200).send(videos);
   } catch (error) {
@@ -18,7 +18,7 @@ const getVideoDetail = async (req, res) => {
   try {
     const video = await Video.findOne({
       where: { id },
-      attributes: ["id", "title", "description", "url", "FKcourseID"],
+      attributes: ["id", "title", "description", "url", "FKcourseID", "img"],
     });
     if (!video) {
       return res.status(404).send({ message: "El video no existe" });
@@ -35,7 +35,7 @@ const getCourseVideos = async (req, res) => {
   try {
     const videos = await Video.findAll({
       where: { FKcourseID: courseId },
-      attributes: ["id", "title", "description", "url", "FKcourseID"],
+      attributes: ["id", "title", "description", "url", "FKcourseID", "img"],
     });
     if (!videos) {
       return res.status(404).send({ message: "No hay videos" });
