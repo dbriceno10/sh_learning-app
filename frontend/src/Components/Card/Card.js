@@ -1,61 +1,74 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-//import CardMedia from "@mui/material/CardMedia";
-import { /*CardActions,*/ CardContent, Card, Typography, Rating } from '@mui/material';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import CardMedia from "@mui/material/CardMedia";
+import {
+  /*CardActions,*/ CardContent,
+  Card,
+  Typography,
+  Rating,
+} from "@mui/material";
 import "./Card.css";
 //import { useSelector } from 'react-redux';
 //import CardVideo from '../CardVideo/CardVideo';
-import ReactPlayer from 'react-player';
+import ReactPlayer from "react-player";
 // import Button from '../Buttons/Buttons';
 
-const video = 'https://www.youtube.com/watch?v=QrDJ9zv0Pwg&ab_channel=ENTERTAIMENTNOW'//para mostrar solamente!
+// const video = "https://www.youtube.com/watch?v=QrDJ9zv0Pwg&ab_channel=ENTERTAIMENTNOW"; //para mostrar solamente!
 
+const MaterialCard = ({
+  id,
+  name,
+  image,
+  price,
+  teacher,
+  rating,
+  description,
+  onClick,
+}) => {
+  // console.log(id);
 
-const MaterialCard = ({ id, name, image, price, teacher, rating , description, onClick}) => {
+  let navigate = useNavigate();
 
-	// console.log(id);
+  const handleClickCard = () => {
+    navigate(`/courses/${id}`);
+  };
+  const handleClickCardVideo = () => {
+    navigate(`/video/detail/${id}`);
+  };
 
-	let navigate = useNavigate();
+  return (
+    <Card
+      sx={{ width: 270 }}
+      onClick={onClick ? handleClickCardVideo : handleClickCard}
+    >
+      <CardMedia component="img" height="140" image={image} alt={name} />
 
-	const handleClickCard = () => {
-		navigate(`/courses/${id}`)
-	}
-	const handleClickCardVideo = ()=> {
-        navigate(`/video/detail/${id}`)
-    }
+      {/* <ReactPlayer
+        url={video} //{image} seria la url que esta guardada en la bd
+        width="100%"
+        height="50%"
+        controls
+        volume="0.5"
+      /> */}
+      <CardContent>
+        <Typography
+          gutterBottom
+          variant="body2"
+          component="div"
+          sx={{ fontSize: 15, fontWeight: 700, lineHeight: 1.2 }}
+        >
+          {name}
+        </Typography>
+        <Typography gutterBottom variant="body2" color="text.secondary">
+          {teacher}
+        </Typography>
+        {rating ? <Rating name="read-only" value={rating} readOnly /> : null}
+        <Typography variant="body1" color="text.secondary">
+          $ {price ? price : description}
+        </Typography>
+      </CardContent>
 
-
-
-              return (
-						<Card sx={{ width: 270 }} onClick={ onClick? handleClickCardVideo : handleClickCard}>
-								{/* <CardMedia
-									component="img"
-									height="140"
-									image={image}
-									alt={name}
-								/> */}
-
-								<ReactPlayer
-								 url={video} //{image} seria la url que esta guardada en la bd
-								 width='100%'
-								 height='50%'
-								 controls
-								 volume='0.5'/>
-								<CardContent>
-									<Typography gutterBottom variant="body2" component="div" sx={{fontSize: 15, fontWeight: 700, lineHeight: 1.2}}>
-										{name}
-									</Typography>
-									<Typography gutterBottom variant="body2" color="text.secondary" >
-										{teacher}
-									</Typography>
-        {rating? <Rating name="read-only" value={rating} readOnly />: null}          
-									<Typography variant="body1" color="text.secondary" >
-										$ {price? price : description}
-									</Typography>
-								</CardContent>
-					
-			
-			{/* {isLoggedIn === 'teacher'
+      {/* {isLoggedIn === 'teacher'
 				&& (
 					<CardActions>
 						<Button
@@ -74,9 +87,8 @@ const MaterialCard = ({ id, name, image, price, teacher, rating , description, o
 						></Button>
 					</CardActions>
 				)} */}
-		</Card>
-	)
-
+    </Card>
+  );
 };
 
 export default MaterialCard;
