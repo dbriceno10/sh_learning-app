@@ -16,8 +16,9 @@ import withReactContent from "sweetalert2-react-content";
 import ReactPlayer from 'react-player';
 import { newReview } from "../../Actions/review.actions"
 import CardsVideos from "../../Components/CardsVideos/CardsVideos";
+import { getVideosCurses } from "../../Actions/videos.actions";
 
-const video = 'https://www.youtube.com/watch?v=QrDJ9zv0Pwg&ab_channel=ENTERTAIMENTNOW'
+let video = "https://www.youtube.com/watch?v=1R3hlqUMmk8";
 
 export default function CourseDetail({ isLoggedIn }) {
 	const { id } = useParams();
@@ -30,6 +31,20 @@ export default function CourseDetail({ isLoggedIn }) {
 	const { userCredentials } = useSelector((state) => state.login);
 	console.log(userCredentials)
 	const [rating, setRating] = useState(0)
+
+  const { videos_curses } = useSelector((state) => state.videosCursos);
+
+  useEffect(() => {
+    dispatch(getVideosCurses(id));
+    // getData();
+  }, [dispatch, id]);
+  console.log("id: ",id)
+  console.log("videos_curses.length: ", videos_curses.length)
+  if(videos_curses.length > 0) {
+    video = videos_curses[0].url;
+  } else {
+    video = "https://www.youtube.com/watch?v=1R3hlqUMmk8";
+  }
 
 	// const [courseCart, setCourseCart] = useState({
 	// 	id: "",
@@ -287,4 +302,3 @@ export default function CourseDetail({ isLoggedIn }) {
 		</section >
 	);
 }
-
