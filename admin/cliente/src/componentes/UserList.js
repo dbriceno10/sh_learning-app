@@ -15,9 +15,8 @@ import {
             <Datagrid rowClick="edit">
                 <TextField source="id"/>
                 <TextField source="name"/>
-                <TextField source="avatar"/>
                 <TextField source="lastName"/>
-                <TextField source="id"/>
+                <TextField source="avatar"/>
                 <TextField source="role"/>          
                 <EditButton basePath="students"/>
                 <DeleteButton basePath="students"/>
