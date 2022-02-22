@@ -4,8 +4,9 @@
 }
 
 .profile .profile_divider {
-    height: 23rem;
-    border: .1rem solid #7e807f;
+    height          : 25rem;
+    border          : .1rem solid #7e807f;
+    background-color: #7e807f;
 }
 
 .profile .profile_details {
@@ -20,9 +21,12 @@
 }
 
 .profile .profile_details .profile_details_inputs {
-    display       : flex;
-    flex-direction: row;
-    gap           : 2rem;
+    height         : fit-content;
+    width          : 50%;
+    display        : flex;
+    flex-direction : row;
+    gap            : 2rem;
+    justify-content: space-between;
 }
 
 .profile_details .profile_details_inputs .details_inputs_private-info,
@@ -31,7 +35,12 @@
     display           : flex;
     flex-direction    : column;
     /* gap            : 2rem; */
-    justify-content   : flex-start;
+    justify-content   : space-between;
+    gap               : 1rem;
+}
+
+.profile_details .profile_details_inputs .details_inputs_private-info {
+    width: fit-content;
 }
 
 .profile_details_inputs .details_inputs_private-info .button {
@@ -44,17 +53,22 @@
 }
 
 .profile_details_inputs .profile_inputs {
-    height             : fit-content;
-    width              : 100%;
-    border-radius      : .6rem;
-    font-size          : 2ch;
-    text-align         : left;
-    background-color   : var(--nice-gray);
-    color              : var(--rich-black);
+    height          : fit-content;
+    width           : 100%;
+    border-radius   : .6rem;
+    font-size       : 2ch;
+    text-align      : left;
+    background-color: var(--nice-gray);
+    color           : var(--rich-black);
 }
 
 .profile_details_inputs .profile_label {
     font-size: 2ch;
+}
+
+.profile .profile_details_profile-pic {
+    height: 100%;
+    width : fit-content;
 }
 
 .profile .profile_details_profile-pic .details_profile-container {
@@ -62,6 +76,7 @@
     flex-direction: column;
     gap           : 1rem;
 }
+
 
 .profile .profile_details_profile-pic .details_profile-pic_photo {
     all                : unset;
@@ -110,40 +125,19 @@
     align-self: flex-end;
 }
 
-.submit-btn-profile{
-  background-color: #eabb39;
-  border: 0ch;
-  border-radius: 10px;
-  width: 100%;
-  height: 3.6rem;
-  cursor: pointer;
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  color: aliceblue;
-  position: relative;
-  top: 4.7rem;
+@media screen and (max-width: 60rem) {
+    .profile .profile_details {
+        flex-direction: column;
+        align-items   : inherit;
+    }
+
+    .profile .profile_details .profile_details_inputs {
+        flex-direction: column;
+        width         : 100%;
+    }
+
+    .profile .profile_divider {
+        height: auto;
+        width : 90%;
+    }
 }
-
-.changepassword-btn{
-    background-color: #2b174f;
-    border: 0ch;
-    border-radius: 10px;
-    width: 100%;
-    height: 3.6rem;
-    cursor: pointer;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    color: aliceblue;
-    position: relative;
-    top: 2rem;
-}
-
-.avatar-url{
-    height             : fit-content;
-    width              : 100%;
-    border-radius      : .6rem;
-    font-size          : 2ch;
-    text-align         : left;
-    background-color   : var(--nice-gray);
-    color              : var(--rich-black);
-}
-
-
