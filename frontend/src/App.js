@@ -1,7 +1,7 @@
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useEffect, useMemo } from "react";
-// import ForgotPassword from "./Components/LoginPage/ForgotPassword";
+import ForgotPassword from "./Pages/LoginPage/ForgotPassword";
 import UserHome from "./Pages/UserHome/UserHome";
 import LoginPage from "./Pages/LoginPage/LoginPage";
 import Profile from "./Pages/Profile/Profile";
@@ -71,23 +71,25 @@ function App() {
 			</Route>
 			<Route exact path="/signUp" element={<FormRegister />} />
 			<Route path="/unlogin" element={<HomeUnlogin />} />
-			{/* <Route path='/forgotPassword' element={<ForgotPassword />} /> */}
+			<Route path='/forgotPassword' element={<ForgotPassword />} />
 			<Route path='/confirmUser' element={<ConfirmForm />} />
 			<Route
 				exact path="/courses/:id"
 				element={<CourseDetail isLoggedIn={isLoggedIn} />}
 			/>
 			<Route path='/pay' element={<Pasarela />} />
-			<Route path="/carrito" element={<PrivateRoute />}>
+			<Route path="/cart" element={<PrivateRoute />}>
 				<Route index element={<ShoppingCart isLoggedIn={isLoggedIn} />} />
 			</Route>
 			<Route
 				exact path="/profile/create"
 				element={<CreateForm />} />
-			<Route path='/video/detail/:id' element={<VideoDetail   isLoggedIn={isLoggedIn}/>} />
-      <Route path='/upload' element={<UploadInputFiles />} /> {/*Ruta experimental para probar la carga de archivos al back*/}
-		</Routes>
+			<Route path='/video/detail/:id' element={<VideoDetail isLoggedIn={isLoggedIn} />} />
 
+			<Route path='/upload' element={<UploadInputFiles />}
+			/>
+			{/*Ruta experimental para probar la carga de archivos al back*/}
+		</Routes>
 	);
 }
 

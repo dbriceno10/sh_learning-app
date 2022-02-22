@@ -25,28 +25,28 @@ export default function Profile({ isLoggedIn }) {
 		email: '',
 		avatar: ''
 	})
-	
+
 	useEffect(() => {
 		dispatch(getUserCredentials());
 	}, [dispatch])
-	
+
 	useEffect(() => {
 		dispatch(getProfileStudent(userCredentials.id));
 		dispatch(getProfileTeacher(userCredentials.id));
 	}, [userCredentials])
-	
 
 
-	function handleChange(e){
+
+	function handleChange(e) {
 		setInput({
 			...input,
 			[e.target.name]: e.target.value
 		})
 		console.log(input)
 	}
-	function handleSumbit(e){
+	function handleSumbit(e) {
 		e.preventDefault();
-		if(input.name || input.lastName || input.email || input.avatar){
+		if (input.name || input.lastName || input.email || input.avatar) {
 			try {
 				dispatch(uptadeProfileStudent(user.id, input))
 				dispatch(uptadeProfileTeacher(user.id, input));
@@ -68,7 +68,7 @@ export default function Profile({ isLoggedIn }) {
 					timer: 2500,
 				});
 			}
-		}if(!input.name && !input.lastName && !input.email && !input.avatar){
+		} if (!input.name && !input.lastName && !input.email && !input.avatar) {
 			MySwal.fire({
 				position: "center-center",
 				icon: "error",
@@ -92,33 +92,44 @@ export default function Profile({ isLoggedIn }) {
 						<div className="details_inputs_public-info">
 							<label htmlFor='name' className="profile_label">
 								Nombre
-								<input name='name' className="profile_inputs" type={'text'} placeholder={user.name} onChange={handleChange}/>
+								<input name='name' className="profile_inputs" type={'text'} placeholder={user.name} onChange={handleChange} />
 							</label>
 							<label htmlFor='lastName' className="profile_label">
-								Lastname
-								<input name='lastName' className="profile_inputs" type={'text'} placeholder={user.lastName}  onChange={handleChange}/>
+								Apellidos
+								<input name='lastName' className="profile_inputs" type={'text'} placeholder={user.lastName} onChange={handleChange} />
 							</label>
 							<label htmlFor='email' className="profile_label">
-								Email
-								<input name='email' className="profile_inputs" type={'text'} placeholder={user.email}onChange={handleChange}/>
+								Correo electrónico
+								<input name='email' className="profile_inputs" type={'text'} placeholder={user.email} onChange={handleChange} />
 							</label>
 
 						</div>
 						<div className="details_inputs_private-info">
-							<label htmlFor='contraseña' className="profile_label">
+							{/* <label htmlFor='contraseña' className="profile_label">
 								Contraseña
 								<input name='contraseña' className="profile_inputs" type={'text'} placeholder={"******"} disabled />
-							</label>
-							<Link to='/changepassword'>
-							<button className="changepassword-btn">Cambiar contraseña.</button>
-							</Link>
-							<button type="submit"className='submit-btn-profile'>Subir cambios</button>
+							</label> */}
+							<Button
+								btnVariant={'flat'}
+								text={'Cambiar contraseña'}
+								link={'/forgotPassword'}
+							/>
+							{/* <Link to='/changepassword'>
+								<button className="changepassword-btn">Cambiar contraseña.</button>
+							</Link> */}
+							<Button
+								btnVariant={'raised-icon'}
+								icon={'ic:outline-save'}
+								type={'submit'}
+								text={'Guardar cambios'}
+							/>
+							{/* <button type="submit" className='submit-btn-profile'>Guardar cambios</button> */}
 						</div>
 					</section>
 					<div className="profile_divider"></div>
 					<section className="profile_details_profile-pic">
 						<div className="details_profile-container">
-							
+
 							<div className="details_profile-pic_photo"
 								style={{
 									backgroundImage: `url(${user.avatar})`
@@ -127,7 +138,7 @@ export default function Profile({ isLoggedIn }) {
 							</div>
 							<label htmlFor='avatar' className="profile_label">
 								Cambiar avatar
-								<input name='avatar' className="avatar-url" type={'text'} placeholder={"Ingrese url..."} onChange={handleChange}/>
+								<input name='avatar' className="avatar-url" type={'text'} placeholder={"Ingrese url..."} onChange={handleChange} />
 							</label>
 						</div>
 					</section>
@@ -143,7 +154,7 @@ export default function Profile({ isLoggedIn }) {
 						&& (
 							<div className="profile_courses_create-btn">
 								<Button
-									type={'raised-icon'}
+									btnVariant={'raised-icon'}
 									text={'Crear nuevo curso'}
 									icon={'eos-icons:content-new'}
 									link={'/profile/create'}
@@ -158,7 +169,7 @@ export default function Profile({ isLoggedIn }) {
 					>
 					</Cards>
 				</section>
-			</div>
+			</div >
 		</form >
 	);
 }
