@@ -7,6 +7,7 @@ import Button from "../Buttons/Buttons";
 import Loader from "../Loader/Loader";
 import './FileUploader.css';
 
+//This component accepts three props; one for an array of accepted file types (MIME types), a maximum size for files uploaded and a callback to get if a file is selected from pages or components that use this one.
 export default function FileUploader({ sendIsFileSelected, acceptedTypes, maxFileSize }) {
     const API = process.env.REACT_APP_UPLOAD_API; //Obtengo la variable de entorno con el api
     const URL = API || "http://localhost:5000";
