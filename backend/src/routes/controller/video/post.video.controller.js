@@ -2,7 +2,7 @@ const { Course, Video } = require("../../../db");
 
 const postVideo = async (req, res) => {
   // const { title, description, url, duration, courseName } = req.body;
-  const { title, description,  url, cursoId } = req.body;
+  let { title, description, url, cursoId, img } = req.body;
   try {
     const FK = await Course.findByPk(cursoId);
     if (!FK) {
@@ -16,19 +16,19 @@ const postVideo = async (req, res) => {
     // if(urlVideo.url === url) {
     //   return res.status(404).send({ message: "Est video ya se encuentra agregado a la plataforma "})
     // }
+    if (!img) img = "https://placeimg.com/240/120/tech";
     const video = await Video.create({
       title,
       description,
       url,
       FKcourseID: FK.id,
+      img,
     });
     // console.log('llegue  a video create',FK);
-    res
-      .status(200)
-      .send({
-        message: "El video se ha creado correctamente",
-        videoId: video.id,
-      });
+    res.status(200).send({
+      message: "El video se ha creado correctamente",
+      videoId: video.id,
+    });
   } catch (error) {
     console.error(error);
     res.status(404).send(error);
