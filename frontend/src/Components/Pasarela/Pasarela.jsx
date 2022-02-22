@@ -51,7 +51,7 @@ export default function Pasarela() {
   
   
   const onSubmit = async (values) => {
-    if(!validacion(values.email)){
+    if(!validacion(values.email.toLowerCase())){
       alert('Introduzca un correo valido')
     }
     else{  await sleep(0); }
