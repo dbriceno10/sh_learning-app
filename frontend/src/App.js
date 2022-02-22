@@ -84,8 +84,10 @@ function App() {
 			<Route
 				exact path="/profile/create"
 				element={<CreateForm />} />
-			<Route path='/video/detail/:id' element={<VideoDetail   isLoggedIn={isLoggedIn}/>} />
-      <Route path='/upload' element={<UploadInputFiles />} /> {/*Ruta experimental para probar la carga de archivos al back*/}
+			<Route path='/video/detail/:id' element={<VideoDetail isLoggedIn={isLoggedIn} />} />
+			<Route path='/upload' element={<UploadInputFiles />}
+			/>
+			{/*Ruta experimental para probar la carga de archivos al back*/}
 		</Routes>
 
 	);
