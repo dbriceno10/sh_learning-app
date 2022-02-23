@@ -1,7 +1,7 @@
 import { React, useState, useEffect, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-/* import { createCv } from '../../Actions/cv.action'; */
+import { createCv } from '../../Actions/cv.action'; 
 import axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
