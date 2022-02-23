@@ -31,23 +31,26 @@ export default function CourseDetail({ isLoggedIn }) {
 	const [favourite, setFavourite] = useState(false);
 	const { userCredentials } = useSelector((state) => state.login);
 	console.log(userCredentials)
-	const {dataUser} = useSelector((state) => state.student)
+	const { dataUser } = useSelector((state) => state.student)
 	console.log(dataUser);
 	const [rating, setRating] = useState(0)
 
-  const { videos_curses } = useSelector((state) => state.videosCursos);
+	const { videos_curses } = useSelector((state) => state.videosCursos);
 
-  useEffect(() => {
-    dispatch(getVideosCurses(id));
-    // getData(); 
-  }, [dispatch, id]);
-  console.log("id: ",id)
-  console.log("videos_curses.length: ", videos_curses.length)
-  if(videos_curses.length > 0) {
-    video = videos_curses[0].url;
-  } else {
-    video = "https://www.youtube.com/watch?v=1R3hlqUMmk8";
-  }
+	useEffect(() => {
+		dispatch(getVideosCurses(id));
+		if (isLoggedIn === 'student') {
+			dispatch(getProfileStudent(userCredentials.id));
+		}
+		// getData(); 
+	}, [dispatch, id]);
+	console.log("id: ", id)
+	console.log("videos_curses.length: ", videos_curses.length)
+	if (videos_curses.length > 0) {
+		video = videos_curses[0].url;
+	} else {
+		video = "https://www.youtube.com/watch?v=1R3hlqUMmk8";
+	}
 
 	// const [courseCart, setCourseCart] = useState({
 	// 	id: "",
@@ -220,7 +223,7 @@ export default function CourseDetail({ isLoggedIn }) {
 
 	/* console.log(userCredentials) */
 
-	
+
 
 
 	return (
@@ -287,9 +290,11 @@ export default function CourseDetail({ isLoggedIn }) {
 							<p>{courseDetail?.description}</p>
 							<h2>$ {courseDetail?.price}</h2>
 							<div className="actionsButtons">
-								{(isLoggedIn === 'teacher' && userCredentials.id === courseDetail.teacherID)
+								{isLoggedIn === 'teacher'
 									? null
-									: (
+									: (!dataUser.courses?.includes(id))
+									&&
+									(
 										<div className="buyBtn">
 											<Button
 												icon={"bi:cart-plus"}
@@ -299,7 +304,8 @@ export default function CourseDetail({ isLoggedIn }) {
 												link={""}
 											></Button>
 										</div>
-									)}
+									)
+								}
 							</div>
 						</div>
 					</main>
