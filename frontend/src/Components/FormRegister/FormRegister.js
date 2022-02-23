@@ -113,11 +113,12 @@ const FormRegister = () => {
 					}
 				});
 				if (res.statusText === "OK") {
-					// if (fileUploadLink !== '') {
-					// 	dispatch(createCv({
-					// 		teacherId: 
-					// 	}))
-					// }
+					if (fileUploadLink !== '') {
+						dispatch(createCv({
+							teacherId: res.data.userId,
+							urlCv: fileUploadLink,
+						}))
+					}
 					MySwal.fire({
 						position: "center",
 						icon: "success",
