@@ -20,7 +20,8 @@ export default function ForgotPassword() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.put("/confirmput/forgotpassword", forgotForm);
+            // const res = await axios.put("/confirmput/forgotpassword", forgotForm);
+            const res = await axios.put("/password/update", forgotForm);
             console.log(res);
             MySwal.fire({
                 position: "center-center",
