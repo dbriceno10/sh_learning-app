@@ -1,5 +1,5 @@
 import React from "react";
-import {List, Datagrid, TextField, EditButton, DeleteButton, Edit, TextInput, SimpleForm, Create,ReferenceArrayInput,SelectArrayInput} from 'react-admin';
+import {List, Datagrid, TextField, EditButton,ReferenceField,  DeleteButton, Edit, TextInput, SimpleForm, Create,ReferenceArrayInput,SelectArrayInput} from 'react-admin';
 
  export const CoursesList =(props)=>{
     return(
@@ -9,9 +9,12 @@ import {List, Datagrid, TextField, EditButton, DeleteButton, Edit, TextInput, Si
                 <TextField source="name"/>
                 <TextField source="price"/>
                 <TextField source="img"/>
-                <TextField source="teacherID" label="teachers"/>
-                <TextField source="category"/>
                 <TextField multiline source="description"/>
+                <ReferenceField source="teacherID" reference= 'teachers' label='Profesor'>
+                   <TextField source="email" />
+                </ReferenceField>              
+                <TextField source="category"/>
+                
                 <EditButton basePath="courses"/>
                 <DeleteButton basePath="courses"/>
             </Datagrid>
