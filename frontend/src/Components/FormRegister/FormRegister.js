@@ -48,7 +48,7 @@ const FormRegister = () => {
 		}
 		if (!valores.password) {
 			errores.password = "Ingresa una contraseña";
-		} else if (valores.password.length < 16) {
+		} else if (valores.password.length < 4) {
 			errores.password = "La contraseña debe ser de minimo 16 caracteres";
 		}
 		if (!valores.confirmPassword) {
