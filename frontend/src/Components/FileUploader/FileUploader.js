@@ -68,7 +68,7 @@ export default function FileUploader({ sendIsFileSelected, acceptedTypes, maxFil
             const formData = new FormData();
             formData.append('file', currFile, currFile?.name);
             fetch(
-                `${URL}/upload`,
+                `https://learnzilla-uploadvideos.herokuapp.com/upload`,
                 {
                     method: 'POST',
                     body: formData,

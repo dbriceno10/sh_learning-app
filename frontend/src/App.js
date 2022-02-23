@@ -18,6 +18,7 @@ import Pasarela from './Components/Pasarela/Pasarela.jsx'
 import ShoppingCart from "./Pages/ShoppingCart/ShoppingCart";
 import VideoDetail from './Pages/VideoDetail/VideoDetail';
 import UploadInputFiles from "./Components/UploadInputFile/UploadInputFile";
+import FormVideo from "./Pages/FormVideo/FormVideo";
 
 function App() {
 	// copy and paste for new component route ⬇⬇⬇⬇⬇
@@ -84,6 +85,9 @@ function App() {
 			<Route
 				exact path="/profile/create"
 				element={<CreateForm />} />
+			<Route
+				exact path="/profile/createVideo"
+				element={<FormVideo/>} />
 			<Route path='/video/detail/:id' element={<VideoDetail isLoggedIn={isLoggedIn} />} />
 
 			<Route path='/upload' element={<UploadInputFiles />}
