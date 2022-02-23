@@ -11,7 +11,8 @@ export const CONFIRM_USER = "CONFIRM_USER";
 
 export const changePassword = (payload) => {
     return async (dispatch) => {
-        const user = axios.put('/confirmput/forgotpassword', payload);
+        // const user = axios.put('/confirmput/forgotpassword', payload);
+        const user = axios.put('/password/update', payload);
         return dispatch({
             type: CHANGE_PASSWORD,
             payload
