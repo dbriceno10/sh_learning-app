@@ -8,7 +8,7 @@ import Loader from "../Loader/Loader";
 import './FileUploader.css';
 
 //This component accepts three props; one for an array of accepted file types (MIME types), a maximum size for files uploaded and a callback to get if a file is selected from pages or components that use this one.
-export default function FileUploader({ sendIsFileSelected, acceptedTypes, maxFileSize }) {
+export default function FileUploader({ sendIsFileSelected, acceptedTypes, maxFileSize, fileUploadResponse }) {
     const API = process.env.REACT_APP_UPLOAD_API; //Obtengo la variable de entorno con el api
     const URL = API || "http://localhost:5000";
     const [currFile, setCurrFile] = useState({})
@@ -17,19 +17,21 @@ export default function FileUploader({ sendIsFileSelected, acceptedTypes, maxFil
         isUploaded: false,
         error: ''
     });
+    const [response, setResponse] = useState(null)
     const MySwal = withReactContent(Swal);
     const fileSizeInMB = Math.ceil(maxFileSize * 0.000001);
-    console.log(maxFileSize)
+    // console.log(maxFileSize)
+    // console.log(fileUploadResponse)
 
     const onFilesChange = (files) => {
         const file = files[0];
         if (file) {
             setCurrFile(prevFile => file);
             setIsFileSelected(prevIsFileSelected => true);
-            sendIsFileSelected(true);
+            sendIsFileSelected && sendIsFileSelected(true);
         } else {
             setIsFileSelected(prevIsFileSelected => false);
-            sendIsFileSelected(false);
+            sendIsFileSelected && sendIsFileSelected(false);
         }
     }
 
@@ -63,12 +65,8 @@ export default function FileUploader({ sendIsFileSelected, acceptedTypes, maxFil
                 isUploaded: false,
                 error: ''
             }));
-            console.log(currFile)
             const formData = new FormData();
             formData.append('file', currFile, currFile?.name);
-            for (const data of formData) {
-                console.log(data)
-            }
             fetch(
                 `https://learnzilla-uploadvideos.herokuapp.com/upload`,
                 {
@@ -83,6 +81,7 @@ export default function FileUploader({ sendIsFileSelected, acceptedTypes, maxFil
                         isUploaded: true,
                         error: ''
                     }));
+                    setResponse(prevResponse => result.webViewLink);
                 })
                 .catch((error) => {
                     console.error('Error:', error);
@@ -96,15 +95,28 @@ export default function FileUploader({ sendIsFileSelected, acceptedTypes, maxFil
                         title: "No se pudó subir el archivo correctamente. Por favor reintente mas tarde",
                         showConfirmButton: true,
                     });
+                    setResponse(prevResponse => null);
                 });
         }
-    }, [isFileSelected, currFile]);
+    }, [isFileSelected, currFile, fileUploadResponse]);
+
 
     useEffect(() => {
         //Example function for uploading a file chosen by the user
         handleFileUpload();
         console.log(currFile)
     }, [currFile, handleFileUpload])
+
+    useEffect(() => {
+        if (response) {
+            fileUploadResponse(response)
+        }
+        return () => {
+            fileUploadResponse("")
+        }
+    }, [response, fileUploadResponse])
+
+
 
     return (
         <div className="upload-container">

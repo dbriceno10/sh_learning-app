@@ -43,7 +43,7 @@ const uniqueCategories = (courses) => {
 };
 
 const randomPrice = () => {
-  let randomNumber = Math.floor(Math.random() * 999) + 1;
+  let randomNumber = Math.floor(Math.random() * 999) + 10;
   return randomNumber;
 };
 
@@ -179,21 +179,19 @@ const reviewMaker = async (studentId) => {
 };
 
 const videoMaker = async () => {
-  const course = await Course.findOne({
-    where: {
-      name: "React: De cero a experto",
-    },
-  });
-  let count = 1;
-  for (const video of videos) {
-    await Video.create({
-      title: `Clase Nro ${count}`,
-      description:
-        "Aprende a Dominar una de las herramienta más utilizadas por todos los desarrolladores web, programadores y expertos en código profesionales.",
-      url: video,
-      FKcourseID: course.id,
-    });
-    count++;
+  const courses = await Course.findAll({});
+  for (const course of courses) {
+    let count = 1;
+    for (const video of videos) {
+      await Video.create({
+        title: `Clase Nro ${count}`,
+        description:
+          "Aprende a Dominar una de las herramienta más utilizadas por todos los desarrolladores web, programadores y expertos en código profesionales.",
+        url: video,
+        FKcourseID: course.id,
+      });
+      count++;
+    }
   }
 };
 
