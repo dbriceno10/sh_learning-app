@@ -6,7 +6,7 @@ import CategoryFiltering from './CategoryFiltering';
 import './Filterings.css';
 
 // const array = ['Programacion', 'Matematica', 'Ingles', 'Español', 'UI/UX', 'React', 'Java']
-function Filterings() {
+function Filterings({setlimite,valor} ) {
   const dispatch = useDispatch();
   const { categories } = useSelector(state => state.courses);
   const { order } = useSelector(state => state.filters)
@@ -15,8 +15,10 @@ function Filterings() {
     // if (e.target.checked) {
     if (e.target.value === 'no-category') {
       dispatch(setFilterCategory(''))
+      setlimite(valor)
       dispatch(getCourses({}));
     } else {
+      setlimite(valor)
       dispatch(setFilterCategory(e.target.value))
       dispatch(getCourses({ category: e.target.value, order }))
       console.log('I dispatched it')
