@@ -4,10 +4,9 @@ import {
     TextField, EditButton, 
     DeleteButton, Edit, 
     TextInput, SimpleForm, 
-    Create, } from 'react-admin';
+    Create,PasswordInput,ArrayField,SingleFieldList, ChipField } from 'react-admin';
 
-
-
+    
 
  export const UserList =(props)=>{
     return(
@@ -17,7 +16,8 @@ import {
                 <TextField source="name"/>
                 <TextField source="lastName"/>
                 <TextField source="avatar"/>
-                <TextField source="role"/>          
+                <TextField source="role"/>
+                <TextField source="email"/>                   
                 <EditButton basePath="students"/>
                 <DeleteButton basePath="students"/>
             </Datagrid>
@@ -49,7 +49,7 @@ export const UserCreate =(props)=>{
                 <TextInput source="lastName"/>
                 <TextInput source="avatar"/>
                 <TextInput source="email"/>   
-                <TextInput source="password"/>  
+                <PasswordInput source="password"/>  
 
 
             </SimpleForm>
