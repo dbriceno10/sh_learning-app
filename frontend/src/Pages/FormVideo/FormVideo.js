@@ -166,8 +166,12 @@ function FormVideo() {
     }
 
     useEffect(() => {
+        console.log(fileUploadLink)
         if (fileUploadLink !== "") {
-                alert(fileUploadLink)
+            setForm({
+                ...form,
+                url: fileUploadLink
+            })
         }
         return () => {
         }
