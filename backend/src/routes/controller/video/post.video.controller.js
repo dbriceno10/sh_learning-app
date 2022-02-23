@@ -1,21 +1,16 @@
 const { Course, Video } = require("../../../db");
 
 const postVideo = async (req, res) => {
-  // const { title, description, url, duration, courseName } = req.body;
   let { title, description, url, cursoId, img } = req.body;
+  if (Array.isArray(cursoId)) {
+    cursoId = cursoId[0];
+  }
   try {
     const FK = await Course.findByPk(cursoId);
     if (!FK) {
       return res.status(404).send({ message: "El curso es inválido" });
     }
-    // const urlVideo = await Video.findOne({
-    //   where: {
-    //     url: url
-    //   }
-    // })
-    // if(urlVideo.url === url) {
-    //   return res.status(404).send({ message: "Est video ya se encuentra agregado a la plataforma "})
-    // }
+    
     if (!img) img = "https://placeimg.com/240/120/tech";
     const video = await Video.create({
       title,
