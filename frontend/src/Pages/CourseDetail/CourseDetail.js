@@ -17,6 +17,7 @@ import ReactPlayer from 'react-player';
 import { newReview } from "../../Actions/review.actions"
 import CardsVideos from "../../Components/CardsVideos/CardsVideos";
 import { getVideosCurses } from "../../Actions/videos.actions";
+import { getProfileStudent } from "../../Actions/profile.action";
 
 let video = "https://www.youtube.com/watch?v=1R3hlqUMmk8";
 
@@ -30,13 +31,15 @@ export default function CourseDetail({ isLoggedIn }) {
 	const [favourite, setFavourite] = useState(false);
 	const { userCredentials } = useSelector((state) => state.login);
 	console.log(userCredentials)
+	const {dataUser} = useSelector((state) => state.student)
+	console.log(dataUser);
 	const [rating, setRating] = useState(0)
 
   const { videos_curses } = useSelector((state) => state.videosCursos);
 
   useEffect(() => {
     dispatch(getVideosCurses(id));
-    // getData();
+    // getData(); 
   }, [dispatch, id]);
   console.log("id: ",id)
   console.log("videos_curses.length: ", videos_curses.length)
@@ -200,18 +203,30 @@ export default function CourseDetail({ isLoggedIn }) {
 		}
 
 	}
+
+		const disabled = dataUser.courses.find(e => e === courseDetail.id)
+		console.log(disabled);
+
+
+
+
+
 	/* 
 		let courseId = courseDetail.id
 	j
 		let studentId = userCredentials.id */
 
 	useEffect(() => {
+		dispatch(getProfileStudent())
 		dispatch(getUserCredentials());
 		dispatch(getCourseDetail(id));
 		dispatch(getLocalStorage());
 	}, [dispatch, id]);
 
 
+	/* console.log(userCredentials) */
+
+	
 
 
 	return (
@@ -288,6 +303,7 @@ export default function CourseDetail({ isLoggedIn }) {
 												text={"Agregar al carrito"}
 												onClick={handleAddCart}
 												link={""}
+												disabled={disabled}
 											></Button>
 										</div>
 									)}
