@@ -69,7 +69,7 @@ const Cards = ({ searchTerm, isLoggedIn,limite, setlimite,valor }) => {
 								name={c.name}
 								description={c.description}
 								image={c.img}// seria la url del video 
-								teacher="Instructor del curso"
+								teacher={`${c.teacherName} ${c.teacherLastName}`}
 								price={c.price}
 								rating={c.meanReview}
 								isLoggedIn={isLoggedIn}
