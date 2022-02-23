@@ -10,11 +10,13 @@ import { newReview, getStudentReview } from "../../Actions/review.actions"
 export default function UserHome({ isLoggedIn }) {
     const dispatch = useDispatch();
     const [hasRecents, setHasRecents] = useState(false);
+    const {dataUser} = useSelector(state=>state.student)
+    console.log('dataUser:',dataUser);
 
     useEffect(() => {
         dispatch(getUserCredentials());
     }, [dispatch])
-    console.log(isLoggedIn)
+    // console.log(isLoggedIn)
 
     return (
         <main className="user-homepage">
@@ -30,7 +32,7 @@ export default function UserHome({ isLoggedIn }) {
                 ></Button> */}
                 {(isLoggedIn === 'student' || isLoggedIn === 'teacher')
                     && <header className="user-homepage_header">
-                        <h1 className="title">Bienvenido, Nombre de usuario</h1>
+                        <h1 className="title">Bienvenido, {dataUser.name}</h1>
                     </header>}
                 {(isLoggedIn === 'student' && hasRecents)
                     ? (
