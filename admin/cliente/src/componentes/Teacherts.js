@@ -1,5 +1,5 @@
 import React from "react";
-import {List, Datagrid, TextField, EditButton, DeleteButton, Edit, TextInput, SimpleForm, Create} from 'react-admin';
+import {List, Datagrid, TextField, EditButton, PasswordInput, DeleteButton, Edit, TextInput, SimpleForm, Create} from 'react-admin';
 
  export const TeachertsList =(props)=>{
     return(
@@ -38,7 +38,7 @@ export const TeachertsCreate =(props)=>{
                 <TextInput source="name"/>
                 <TextInput source="lastName"/>
                 <TextInput source="email"/>  
-                <TextInput source="password"/>  
+                <PasswordInput source="password"/>  
             </SimpleForm>
         </Create>
 
