@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategories, courseCreate, getCourses } from "../../Actions/courses.actions";
@@ -16,15 +16,21 @@ import FileUploader from "../../Components/FileUploader/FileUploader"
 
 
 function FormVideo() {
+    let navigate = useNavigate();
+    const MySwal = withReactContent(Swal);
     const dispatch = useDispatch();
     const { courses } = useSelector(state => state.courses);
+    const [fileUploadLink, setFileUploadLink] = useState('');
     console.log(courses)
 
 
 
-    let navigate = useNavigate();
 
-    const MySwal = withReactContent(Swal);
+
+    const setFileUploadedLinkCb = useCallback((val) => {
+        setFileUploadLink(prevFileUploadLink => val)
+        console.log(val)
+    }, [])
 
     const coursesToOrder = courses.map((course) => {
         return {
@@ -68,7 +74,7 @@ function FormVideo() {
 
 
     const handleBlur = (e) => {
-        if(e.target.name === "title"){
+        if (e.target.name === "title") {
             validateTitle(e.target.value)
         }
         setForm({
@@ -98,7 +104,7 @@ function FormVideo() {
     }
 
     const handleClick = (e) => {
-        
+
         e.preventDefault();
         if (form.title === "" || form.img === "" || form.cursoId === "") {
             MySwal.fire({
@@ -110,7 +116,7 @@ function FormVideo() {
             });
             return;
         }
-         else if (errores.title !== "") {
+        else if (errores.title !== "") {
             MySwal.fire({
                 position: "center-center",
                 icon: "error",
@@ -119,14 +125,15 @@ function FormVideo() {
                 timer: 2500,
             });
             return;
-        } else{
+        } else {
             MySwal.fire({
                 position: "center-center",
                 icon: "success",
                 title: "Video creado con exito",
                 showConfirmButton: false,
                 timer: 2500,
-            })};
+            })
+        };
         console.log(form)
         /* if (form.title === "" || form.description === "" ) {
             MySwal.fire({
@@ -157,6 +164,14 @@ function FormVideo() {
             }); */
         dispatch(createVideo(form))
     }
+
+    useEffect(() => {
+        if (fileUploadLink !== "") {
+                alert(fileUploadLink)
+        }
+        return () => {
+        }
+    }, [fileUploadLink])
 
 
     useEffect((e) => {
@@ -221,10 +236,10 @@ function FormVideo() {
                     </select>
                     {errores.curso !== "" ? <p className="danger">{errores.curso}</p> : null}
                 </div>
-                <FileUploader maxFileSize={100000000} acceptedTypes={["video/*"]}/>
+                <FileUploader maxFileSize={100000000} acceptedTypes={["video/*"]} fileUploadResponse={setFileUploadedLinkCb} />
                 <button type="button" onClick={handleClick} className="createBtn">CREATE</button>
-              
-                
+
+
             </form>
             <div className="homeBtn">
                 <Button

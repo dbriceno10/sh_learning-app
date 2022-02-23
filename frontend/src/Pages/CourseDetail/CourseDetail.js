@@ -201,13 +201,7 @@ export default function CourseDetail({ isLoggedIn }) {
 				timer: 2000,
 			});
 		}
-
 	}
-
-		const disabled = dataUser.courses.find(e => e === courseDetail.id)
-		console.log(disabled);
-
-
 
 
 
@@ -303,7 +297,6 @@ export default function CourseDetail({ isLoggedIn }) {
 												text={"Agregar al carrito"}
 												onClick={handleAddCart}
 												link={""}
-												disabled={disabled}
 											></Button>
 										</div>
 									)}
