@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCourses, setOrder } from "../../Actions/courses.actions";
 import './Sorting.css';
 
-const Sorting = () => {
+const Sorting = ({setlimite,valor} ) => {
     const dispatch = useDispatch();
     const { category } = useSelector(state => state.filters)
 
     const handleOrder = (e) => {
         // dispatch(setOrder(e.target.value))
+        setlimite(valor)
         dispatch(setOrder(e.target.value))
         dispatch(getCourses({ order: e.target.value, category }))
     }

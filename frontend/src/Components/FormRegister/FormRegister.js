@@ -1,7 +1,7 @@
 import { React, useState, useEffect, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-//import { createCv } from '../../Actions/cv.action';
+import { createCv } from '../../Actions/cv.action'; 
 import axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -58,8 +58,10 @@ const FormRegister = () => {
 		}
 		if (!valores.password) {
 			errores.password = "Ingresa una contraseña";
-		} else if (valores.password.length < 16) {
-			errores.password = "La contraseña debe ser de minimo 16 caracteres";
+
+		} else if (valores.password.length < 8) {
+			errores.password = "La contraseña debe ser de minimo 8 caracteres";
+
 		}
 		if (!valores.confirmPassword) {
 			errores.confirmPassword = "Ingresa de nuevo tu contraseña";
@@ -113,11 +115,12 @@ const FormRegister = () => {
 					}
 				});
 				if (res.statusText === "OK") {
-					// if (fileUploadLink !== '') {
-					// 	dispatch(createCv({
-					// 		teacherId: 
-					// 	}))
-					// }
+					if (fileUploadLink !== '') {
+						dispatch(createCv({
+							teacherId: res.data.userId,
+							urlCv: fileUploadLink,
+						}))
+					}
 					MySwal.fire({
 						position: "center",
 						icon: "success",
