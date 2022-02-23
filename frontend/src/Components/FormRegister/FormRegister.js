@@ -58,8 +58,10 @@ const FormRegister = () => {
 		}
 		if (!valores.password) {
 			errores.password = "Ingresa una contraseña";
+
 		} else if (valores.password.length < 8) {
 			errores.password = "La contraseña debe ser de minimo 8 caracteres";
+
 		}
 		if (!valores.confirmPassword) {
 			errores.confirmPassword = "Ingresa de nuevo tu contraseña";
