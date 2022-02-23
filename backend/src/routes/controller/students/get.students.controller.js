@@ -4,7 +4,8 @@ const { getAllStudents } = require("./getAllStudents.js");
 
 const getStudents = async (req, res) => {
   try {
-    let students = await getAllStudents();
+    // let students = await getAllStudents();
+    const students = await Student.findAll({});
     res.status(200).json(students);
   } catch (err) {
     console.error(err);
