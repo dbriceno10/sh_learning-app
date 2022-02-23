@@ -1,18 +1,23 @@
-import { React, useState } from "react";
+import { React, useState, useEffect, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { createCv } from '../../Actions/cv.action';
 import axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { Formik } from "formik";
 import { Icon } from "@iconify/react";
 import Button from "../Buttons/Buttons";
-import "./FormRegister.css";
 import FileUploader from "../FileUploader/FileUploader";
+import "./FormRegister.css";
 
 const FormRegister = () => {
-	let navigate = useNavigate();
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	// const teacher = useSelector(state => )
 	const MySwal = withReactContent(Swal);
 	const [isFileSelected, setIsFileSelected] = useState(false);
+	const [fileUploadLink, setFileUploadLink] = useState('');
 	const formikInitialValues = {
 		name: "",
 		lastName: "",
@@ -22,9 +27,14 @@ const FormRegister = () => {
 		role: "",
 	};
 
-	const cb = (val) => {
+	const setFileSelectedCb = (val) => {
 		setIsFileSelected(prevIsfileSelected => val)
 	}
+
+	const setFileUploadedLinkCb = useCallback((val) => {
+		setFileUploadLink(prevFileUploadLink => val)
+		console.log(val)
+	}, [])
 
 	const validateInputs = (valores) => {
 		let errores = {};
@@ -103,6 +113,11 @@ const FormRegister = () => {
 					}
 				});
 				if (res.statusText === "OK") {
+					// if (fileUploadLink !== '') {
+					// 	dispatch(createCv({
+					// 		teacherId: 
+					// 	}))
+					// }
 					MySwal.fire({
 						position: "center",
 						icon: "success",
@@ -138,6 +153,13 @@ const FormRegister = () => {
 		// console.log(valores); //estan todos los datos en un objeto
 	}
 
+	useEffect(() => {
+		if (fileUploadLink !== "") {
+			alert(fileUploadLink)
+		}
+		return () => {
+		}
+	}, [fileUploadLink])
 
 	return (
 		<main className="register-form">
@@ -216,7 +238,8 @@ const FormRegister = () => {
 											<FileUploader
 												acceptedTypes={['.pdf']}
 												maxFileSize={10000000}
-												sendIsFileSelected={cb}
+												sendIsFileSelected={setFileSelectedCb}
+												fileUploadResponse={setFileUploadedLinkCb}
 											/>
 										</section>
 									)
