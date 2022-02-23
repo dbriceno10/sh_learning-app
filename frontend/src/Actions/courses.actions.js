@@ -5,7 +5,6 @@ export const GET_COURSE_DETAIL = 'GET_COURSE_DETAIL';
 export const CLEAR_PAGE = 'CLEAR_PAGE';
 export const GET_CATEGORIES = 'GET_CATEGORIES'
 export const SET_ORDER = 'SET_ORDER'
-export const GET_COURSES_TEACHER = 'GET_COURSES_TEACHER';
 
 
 export const getCourses = ({ order, category }) => async (dispatch) => {
@@ -44,16 +43,6 @@ export const getCourseDetail = (id) => {
       payload: course.data
     })
     /* console.log(payload) */
-  }
-}
-
-export const getCoursesTeacher = (id) => {
-  return async (dispatch) => {
-    const courses = await axios.get(`/courses/teacher/${id}`)
-    dispatch({
-      type: GET_COURSES_TEACHER,
-      payload: courses.data
-    })
   }
 }
 

@@ -10,7 +10,6 @@ import Cards from "../../Components/Cards/Cards";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import Button from "../../Components/Buttons/Buttons";
-import CoursesTeacher from './CardsCoursesTeacher.js'
 import './Profile.css';
 
 
@@ -145,25 +144,9 @@ export default function Profile({ isLoggedIn }) {
 					</section>
 				</section>
 				<header className="profile_courses_header title">
-					{isLoggedIn === 'student'?
-						<div>
-							<h1>Mis cursos comprados</h1>
-							<Cards
-								searchTerm={''}
-								isLoggedIn={isLoggedIn}
-							>
-							</Cards>
-						</div>
-						:
-						<div>
-							<h1>Mis cursos creados</h1>
-							<CoursesTeacher
-							searchTerm={''}
-							isLoggedIn={isLoggedIn}
-							id={userCredentials.id}
-							/>
-						</div>
-					}
+					{isLoggedIn === 'student'
+						? <h1>Mis cursos comprados</h1>
+						: <h1>Mis cursos creados</h1>}
 				</header>
 				<section className="profile_courses">
 					{
@@ -180,6 +163,11 @@ export default function Profile({ isLoggedIn }) {
 							</div>
 						)
 					}
+					<Cards
+						searchTerm={''}
+						isLoggedIn={isLoggedIn}
+					>
+					</Cards>
 				</section>
 			</div >
 		</form >
