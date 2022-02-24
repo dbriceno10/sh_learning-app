@@ -150,7 +150,7 @@ export default function CourseDetail({ isLoggedIn }) {
 					}).then(() => {
 						if (result.isConfirmed) {
 							navigate("/cart");
-						} else {
+						} else if (result.isDenied) {
 							navigate("/home");
 						}
 					})
@@ -179,11 +179,15 @@ export default function CourseDetail({ isLoggedIn }) {
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		if (isLoggedIn !== "student" || isLoggedIn !== "teacher") {
+		console.log('isLoggedIn in handle submit=', isLoggedIn);
+
+
+
+		if (isLoggedIn !== "teacher" && isLoggedIn !== "student") {
 			MySwal.fire({
 				position: "center-center",
-				icon: "warning",
-				title: "Por favor, inicia sesión para continuar",
+				icon: "error",
+				title: "Hubo un error",
 				showConfirmButton: false,
 				timer: 2500,
 			});
@@ -191,18 +195,28 @@ export default function CourseDetail({ isLoggedIn }) {
 				navigate("/login");
 			}, 1000);
 		} else {
-			dispatch(newReview({
-				score: rating,
-				courseId: courseDetail.id,
-				studentId: userCredentials.id
-			}))
-			MySwal.fire({
-				position: "center-center",
-				icon: "success",
-				title: "Gracias por dejar tu review!",
-				showConfirmButton: false,
-				timer: 2000,
-			});
+			if (isLoggedIn === 'teacher') {
+				MySwal.fire({
+					position: "center-center",
+					icon: "error",
+					title: "No puede dejar review a sus cursos",
+					showConfirmButton: false,
+					timer: 2500,
+				});
+			} else {
+				dispatch(newReview({
+					score: rating,
+					courseId: courseDetail.id,
+					studentId: userCredentials.id
+				}))
+				MySwal.fire({
+					position: "center-center",
+					icon: "success",
+					title: "Gracias por dejar tu review!",
+					showConfirmButton: false,
+					timer: 2000,
+				});
+			}
 		}
 	}
 
@@ -259,7 +273,7 @@ export default function CourseDetail({ isLoggedIn }) {
 						<div className="course-details_info">
 							<header className="course-details_info_header">
 								<h1 className="title">{courseDetail?.name}</h1>
-								{favourite ? (
+								{/* {favourite ? (
 									<FavoriteIcon
 										className="favorite-btn"
 										onClick={handleFavouriteClick}
@@ -269,7 +283,7 @@ export default function CourseDetail({ isLoggedIn }) {
 										className="favorite-btn"
 										onClick={handleFavouriteClick}
 									/>
-								)}
+								)} */}
 							</header>
 							<h3 className="course-details_info_author">
 								Autor:{" "}
@@ -312,6 +326,20 @@ export default function CourseDetail({ isLoggedIn }) {
 				) : (
 					<Loader />
 				)}
+				{
+					isLoggedIn === 'teacher'
+					&& (
+						<div className="profile_courses_create-btn">
+							<Button
+								btnVariant={'raised-icon'}
+								text={'Agregar video'}
+								icon={'eos-icons:content-new'}
+								link={'/profile/createVideo'}
+							>
+							</Button>
+						</div>
+					)
+				}
 			</div>
 			<CardsVideos id={id} />
 		</section >

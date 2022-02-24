@@ -133,6 +133,7 @@ function FormVideo() {
                 showConfirmButton: false,
                 timer: 2500,
             })
+            navigate("/profile")
         };
         console.log(form)
         /* if (form.title === "" || form.description === "" ) {
@@ -159,7 +160,7 @@ function FormVideo() {
                 position: "center-center",
                 icon: "success",
                 title: "Curso creado con exito",
-                showConfirmButton: false,
+                showConfirmButton: false,x
                 timer: 2500,
             }); */
         dispatch(createVideo(form))
@@ -247,9 +248,9 @@ function FormVideo() {
             </form>
             <div className="homeBtn">
                 <Button
-                    type={'raised'}
+                    btnVariant={'raised'}
                     text={<HomeIcon />}
-                    link={'/home'}
+                    link={'/profile'}
                 >
                 </Button>
             </div>
