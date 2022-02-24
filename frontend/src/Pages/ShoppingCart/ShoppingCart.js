@@ -60,16 +60,6 @@ const ShoppingCart = ({ isLoggedIn }) => {
 				<h1 style={{ textAlign: "center" }}>Mi carrito de compras</h1>
 				{localStorageCart ? (
 					<div className="cartItemsContainer">
-						<div className="totalAndBtn">
-							<h2 style={{ marginRight: "1rem" }}>{`Total: $${total}.00`}</h2>
-							<Button
-								icon={"bi:cart-plus"}
-								btnVariant={"raised-icon"}
-								text={"Comprar"}
-								link={""}
-								onClick={handlePurchase}
-							></Button>
-						</div>
 						<article className="box">
 							{localStorageCart?.map((item) => (
 								<CartItem key={item.id} data={item} />
@@ -89,7 +79,7 @@ const ShoppingCart = ({ isLoggedIn }) => {
 							<Button
 								icon={"bi:cart-plus"}
 								btnVariant={"raised-icon"}
-								text={"Comprar"}
+								text={"Ir a comprar"}
 								link={""}
 								onClick={handlePurchase}
 							></Button>
