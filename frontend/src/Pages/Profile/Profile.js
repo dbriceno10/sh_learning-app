@@ -15,7 +15,7 @@ import './Profile.css';
 
 export default function Profile({ isLoggedIn }) {
 	const MySwal = withReactContent(Swal);
-
+	const [perfil, setPerfil] = useState(false)
 	const dispatch = useDispatch();
 	const { userCredentials } = useSelector(state => state?.login);
 	const user = useSelector(state => state?.student.dataUser)
@@ -28,11 +28,16 @@ export default function Profile({ isLoggedIn }) {
 
 	useEffect(() => {
 		dispatch(getUserCredentials());
+		setPerfil(true)
 	}, [dispatch])
 
 	useEffect(() => {
-		dispatch(getProfileStudent(userCredentials.id));
-		dispatch(getProfileTeacher(userCredentials.id));
+		if (isLoggedIn === 'student') {
+			dispatch(getProfileStudent(userCredentials.id));
+		} else if (isLoggedIn === 'teacher') {
+			dispatch(getProfileTeacher(userCredentials.id));
+		}
+		setPerfil(prevPerfil => true);
 	}, [userCredentials])
 
 
@@ -166,6 +171,7 @@ export default function Profile({ isLoggedIn }) {
 					<Cards
 						searchTerm={''}
 						isLoggedIn={isLoggedIn}
+						isProfile={perfil}
 					>
 					</Cards>
 				</section>
