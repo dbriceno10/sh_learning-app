@@ -1,25 +1,23 @@
 import { React, useState, useEffect, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { createCv } from '../../Actions/cv.action'; 
 import axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { Formik } from "formik";
-import Files from 'react-files';
 import { Icon } from "@iconify/react";
 import Button from "../Buttons/Buttons";
-import Loader from "../Loader/Loader";
+import FileUploader from "../FileUploader/FileUploader";
 import "./FormRegister.css";
 
 const FormRegister = () => {
-	const [currFile, setCurrFile] = useState(null)
-	const [isFileSelected, setIsFileSelected] = useState(false);
-	const [fileUploaded, setFileUploaded] = useState({
-		isUploaded: false,
-		error: ''
-	});
-	let navigate = useNavigate();
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	// const teacher = useSelector(state => )
 	const MySwal = withReactContent(Swal);
-
+	const [isFileSelected, setIsFileSelected] = useState(false);
+	const [fileUploadLink, setFileUploadLink] = useState('');
 	const formikInitialValues = {
 		name: "",
 		lastName: "",
@@ -29,73 +27,14 @@ const FormRegister = () => {
 		role: "",
 	};
 
-	const onFilesChange = (files) => {
-		const file = files[0];
-		setCurrFile(prevFile => file);
-		if (file) {
-			setIsFileSelected(prevIsFileSelected => true)
-		}
+	const setFileSelectedCb = (val) => {
+		setIsFileSelected(prevIsfileSelected => val)
 	}
 
-	const onFilesError = (error, file) => {
-		if (error.message.includes("too large")) {
-			MySwal.fire({
-				position: "center",
-				icon: "error",
-				title: "El tamaño del archivo debe ser menor a 10MB",
-				showConfirmButton: false,
-				timer: 2500,
-			});
-		}
-		setCurrFile(currFile => { });
-		setIsFileSelected(prevIsFileSelected => false)
-		console.log(error.message)
-	}
-
-	const handleFileUpload = useCallback((file) => {
-		if (isFileSelected && file) {
-			// setFileUploaded(prevFileUploaded => ({
-			// 	isUploaded: false,
-			// 	error: ''
-			// }));
-			const apikey = "AsFs8hCLaSK6x6VsQ6vg6z"
-			const formData = new FormData();
-			formData.append('cv-file', file);
-			fetch(
-				`https://www.filestackapi.com/api/store/S3?key=${apikey}&filename=${file.name}`,
-				{
-					method: 'POST',
-					body: formData,
-					headers: {
-						"Content-Type": "application/pdf",
-						// "Content-Disposition": `filename: ${file.name}`,
-					}
-				}
-			)
-				.then((response) => response.json())
-				.then((result) => {
-					console.log('Success:', result);
-					setFileUploaded(prevFileUploaded => ({
-						isUploaded: true,
-						error: ''
-					}));
-				})
-				.catch((error) => {
-					console.error('Error:', error);
-					setFileUploaded(prevFileUploaded => ({
-						isUploaded: false,
-						error: error
-					}));
-					MySwal.fire({
-						position: "center",
-						icon: "error",
-						title: "No se pudó subir el archivo de curriculum correctamente. Por favor reintente mas tarde",
-						showConfirmButton: true,
-					});
-					return;
-				});
-		}
-	}, [isFileSelected]);
+	const setFileUploadedLinkCb = useCallback((val) => {
+		setFileUploadLink(prevFileUploadLink => val)
+		console.log(val)
+	}, [])
 
 	const validateInputs = (valores) => {
 		let errores = {};
@@ -119,8 +58,10 @@ const FormRegister = () => {
 		}
 		if (!valores.password) {
 			errores.password = "Ingresa una contraseña";
-		} else if (valores.password.length < 16) {
-			errores.password = "La contraseña debe ser de minimo 16 caracteres";
+
+		} else if (valores.password.length < 8) {
+			errores.password = "La contraseña debe ser de minimo 8 caracteres";
+
 		}
 		if (!valores.confirmPassword) {
 			errores.confirmPassword = "Ingresa de nuevo tu contraseña";
@@ -174,6 +115,12 @@ const FormRegister = () => {
 					}
 				});
 				if (res.statusText === "OK") {
+					if (fileUploadLink !== '') {
+						dispatch(createCv({
+							teacherId: res.data.userId,
+							urlCv: fileUploadLink,
+						}))
+					}
 					MySwal.fire({
 						position: "center",
 						icon: "success",
@@ -210,10 +157,12 @@ const FormRegister = () => {
 	}
 
 	useEffect(() => {
-		//Example function for uploading a file chosen by the user
-		handleFileUpload(currFile);
-	}, [currFile, handleFileUpload])
-
+		if (fileUploadLink !== "") {
+			alert(fileUploadLink)
+		}
+		return () => {
+		}
+	}, [fileUploadLink])
 
 	return (
 		<main className="register-form">
@@ -289,61 +238,12 @@ const FormRegister = () => {
 											<h3>
 												Sube tu curriculum:
 											</h3>
-											<div className="role-section_cv-upload-container">
-												<Files
-													className='cv-upload_dropzone'
-													onChange={onFilesChange}
-													onError={onFilesError}
-													accepts={['image/png',
-														'.pdf']}
-													multiple={false}
-													maxFileSize={10000000}
-													minFileSize={0}
-												>
-													<span className="cv-upload_dropzone_label">
-														Haz click aqui o arrastra un archivo
-														<small>
-															(.pdf)
-														</small>
-													</span>
-												</Files>
-												<div className="cv-upload_dropzone_file-info">
-													<div className="file-info_wrapper">
-														<Icon
-															icon={
-																(currFile?.extension === 'pdf')
-																	? 'uiw:file-pdf'
-																	: ''
-															}
-														></Icon>
-														<span
-															className="cv-upload_dropzone_file-info_text">
-															<b>{currFile?.name && currFile.name}</b>
-															<p>{currFile?.sizeReadable && currFile.sizeReadable}</p>
-														</span>
-													</div>
-													{
-														isFileSelected ?
-															(!fileUploaded.isUploaded
-																? (!fileUploaded.error ?
-																	<Loader />
-																	:
-																	<Button
-																		btnVariant={'round'}
-																		icon={'pepicons:reload'}
-																		link={''}
-																		onClick={handleFileUpload}
-																	/>)
-																: (
-																	<Icon
-																		icon={'eva:checkmark-circle-2-fill'}
-																	/>
-																)
-															)
-															: null
-													}
-												</div>
-											</div>
+											<FileUploader
+												acceptedTypes={['.pdf']}
+												maxFileSize={10000000}
+												sendIsFileSelected={setFileSelectedCb}
+												fileUploadResponse={setFileUploadedLinkCb}
+											/>
 										</section>
 									)
 									: null}

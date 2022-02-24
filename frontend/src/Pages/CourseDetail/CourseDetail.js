@@ -16,8 +16,10 @@ import withReactContent from "sweetalert2-react-content";
 import ReactPlayer from 'react-player';
 import { newReview } from "../../Actions/review.actions"
 import CardsVideos from "../../Components/CardsVideos/CardsVideos";
+import { getVideosCurses } from "../../Actions/videos.actions";
+import { getProfileStudent } from "../../Actions/profile.action";
 
-const video = 'https://www.youtube.com/watch?v=QrDJ9zv0Pwg&ab_channel=ENTERTAIMENTNOW'
+let video = "https://www.youtube.com/watch?v=1R3hlqUMmk8";
 
 export default function CourseDetail({ isLoggedIn }) {
 	const { id } = useParams();
@@ -29,7 +31,26 @@ export default function CourseDetail({ isLoggedIn }) {
 	const [favourite, setFavourite] = useState(false);
 	const { userCredentials } = useSelector((state) => state.login);
 	console.log(userCredentials)
+	const { dataUser } = useSelector((state) => state.student)
+	console.log(dataUser);
 	const [rating, setRating] = useState(0)
+
+	const { videos_curses } = useSelector((state) => state.videosCursos);
+
+	useEffect(() => {
+		dispatch(getVideosCurses(id));
+		if (isLoggedIn === 'student') {
+			dispatch(getProfileStudent(userCredentials.id));
+		}
+		// getData(); 
+	}, [dispatch, id]);
+	console.log("id: ", id)
+	console.log("videos_curses.length: ", videos_curses.length)
+	if (videos_curses.length > 0) {
+		video = videos_curses[0].url;
+	} else {
+		video = "https://www.youtube.com/watch?v=1R3hlqUMmk8";
+	}
 
 	// const [courseCart, setCourseCart] = useState({
 	// 	id: "",
@@ -119,26 +140,20 @@ export default function CourseDetail({ isLoggedIn }) {
 						position: "center",
 						icon: "success",
 						title: "Curso agregado correctamente",
-						showConfirmButton: false,
-						timer: 2000,
+						showConfirmButton: true,
+						showDenyButton: true,
+						// showCancelButton: true,
+						denyButtonText: "Seguir viendo cursos",
+						denyButtonColor: "#2b174f",
+						confirmButtonText: "Ver mi carrito",
+						confirmButtonColor: "#eabb39"
 					}).then(() => {
-						MySwal.fire({
-							// title: `¿Quieres agregar ${name} al carrito?`,
-							icon: "info",
-							showDenyButton: true,
-							// showCancelButton: true,
-							confirmButtonText: "Seguir viendo cursos",
-							confirmButtonColor: "#2b174f",
-							denyButtonText: "Ver mi carrito",
-							denyButtonColor: "#eabb39",
-						}).then((result) => {
-							if (result.isConfirmed) {
-								navigate("/home");
-							} else {
-								navigate("/carrito");
-							}
-						});
-					});
+						if (result.isConfirmed) {
+							navigate("/cart");
+						} else if (result.isDenied) {
+							navigate("/home");
+						}
+					})
 				}
 			});
 		} else {
@@ -164,11 +179,15 @@ export default function CourseDetail({ isLoggedIn }) {
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		if(isLoggedIn !== "student" || isLoggedIn !== "teacher"){
+		console.log('isLoggedIn in handle submit=', isLoggedIn);
+
+
+
+		if (isLoggedIn !== "teacher" && isLoggedIn !== "student") {
 			MySwal.fire({
 				position: "center-center",
-				icon: "warning",
-				title: "Por favor, inicia sesión para continuar",
+				icon: "error",
+				title: "Hubo un error",
 				showConfirmButton: false,
 				timer: 2500,
 			});
@@ -176,31 +195,47 @@ export default function CourseDetail({ isLoggedIn }) {
 				navigate("/login");
 			}, 1000);
 		} else {
-			dispatch(newReview({
-				score: rating,
-				courseId: courseDetail.id,
-				studentId: userCredentials.id
-			}))
-			MySwal.fire({
-				position: "center-center",
-				icon: "success",
-				title: "Gracias por dejar tu review!",
-				showConfirmButton: false,
-				timer: 2000,
-			});
+			if (isLoggedIn === 'teacher') {
+				MySwal.fire({
+					position: "center-center",
+					icon: "error",
+					title: "No puede dejar review a sus cursos",
+					showConfirmButton: false,
+					timer: 2500,
+				});
+			} else {
+				dispatch(newReview({
+					score: rating,
+					courseId: courseDetail.id,
+					studentId: userCredentials.id
+				}))
+				MySwal.fire({
+					position: "center-center",
+					icon: "success",
+					title: "Gracias por dejar tu review!",
+					showConfirmButton: false,
+					timer: 2000,
+				});
+			}
 		}
-
 	}
+
+
+
 	/* 
 		let courseId = courseDetail.id
 	j
 		let studentId = userCredentials.id */
 
-	useEffect(() => {	
+	useEffect(() => {
+		dispatch(getProfileStudent())
 		dispatch(getUserCredentials());
 		dispatch(getCourseDetail(id));
 		dispatch(getLocalStorage());
 	}, [dispatch, id]);
+
+
+	/* console.log(userCredentials) */
 
 
 
@@ -238,7 +273,7 @@ export default function CourseDetail({ isLoggedIn }) {
 						<div className="course-details_info">
 							<header className="course-details_info_header">
 								<h1 className="title">{courseDetail?.name}</h1>
-								{favourite ? (
+								{/* {favourite ? (
 									<FavoriteIcon
 										className="favorite-btn"
 										onClick={handleFavouriteClick}
@@ -248,7 +283,7 @@ export default function CourseDetail({ isLoggedIn }) {
 										className="favorite-btn"
 										onClick={handleFavouriteClick}
 									/>
-								)}
+								)} */}
 							</header>
 							<h3 className="course-details_info_author">
 								Autor:{" "}
@@ -256,11 +291,11 @@ export default function CourseDetail({ isLoggedIn }) {
 							</h3>
 
 
-									<Rating
-										value={rating}
-										onChange={onChange}
-									/>
-							
+							<Rating
+								value={rating}
+								onChange={onChange}
+							/>
+
 
 							{rating > 0 ? (
 
@@ -269,9 +304,11 @@ export default function CourseDetail({ isLoggedIn }) {
 							<p>{courseDetail?.description}</p>
 							<h2>$ {courseDetail?.price}</h2>
 							<div className="actionsButtons">
-								{(isLoggedIn === 'teacher' && userCredentials.id === courseDetail.teacherID)
+								{isLoggedIn === 'teacher'
 									? null
-									: (
+									: (!dataUser.courses?.includes(id))
+									&&
+									(
 										<div className="buyBtn">
 											<Button
 												icon={"bi:cart-plus"}
@@ -281,16 +318,30 @@ export default function CourseDetail({ isLoggedIn }) {
 												link={""}
 											></Button>
 										</div>
-									)}
+									)
+								}
 							</div>
 						</div>
 					</main>
 				) : (
 					<Loader />
 				)}
+				{
+					isLoggedIn === 'teacher'
+					&& (
+						<div className="profile_courses_create-btn">
+							<Button
+								btnVariant={'raised-icon'}
+								text={'Agregar video'}
+								icon={'eos-icons:content-new'}
+								link={'/profile/createVideo'}
+							>
+							</Button>
+						</div>
+					)
+				}
 			</div>
 			<CardsVideos id={id} />
 		</section >
 	);
 }
-

@@ -2,10 +2,8 @@ import React, { useEffect,useState} from "react";
 import { render } from "react-dom";
 import Styles from "./Styles";
 import {useSelector,useDispatch} from 'react-redux'
-
 import { Form, Field } from "react-final-form";
 import {useSearchParams, useNavigate } from 'react-router-dom'
-
 import Card from "./Card";
 import {
 
@@ -13,12 +11,13 @@ import {
   formatCVC,
   formatExpirationDate,
 } from "./cardUtils";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 import axios from "axios";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export default function Pasarela() {
-
   const [query, setquery]=useSearchParams()
   const orderId=query.get('orderId')
   const studentId=query.get('studentId')
@@ -31,6 +30,7 @@ export default function Pasarela() {
    let valido=expReg.test(correo)
    return valido 
   }
+  const MySwal = withReactContent(Swal);
   
   useEffect(() => {
     
@@ -51,52 +51,74 @@ export default function Pasarela() {
   
   
   const onSubmit = async (values) => {
-    if(!validacion(values.email)){
+    if(!validacion(values.email.toLowerCase())){
       alert('Introduzca un correo valido')
     }
-    else{ await sleep(0);
-    
-    try {
-      
-      window.Stripe.card.createToken(
-        {
-          number: values.number,
-          exp_month:values.expiry.split("/")[0],
-          exp_year:values.expiry.split("/")[1],
-          cvc:values.cvc,
-          name:values.name,
-        },
-        (status, response) => {
-          if (status === 200) {
-            
-            axios
-              .post("/stripe/pay", {
-                token: response,
-                email: values.email,
-                amount:total,
-                orderId:orderId,
-               
-                
-              })
-              .then((hola) =>{
-                
-              alert(hola)
-                 //window.alert(JSON.stringify(res.data, 0, 2))
-                //alert('Comprado')
-              navigate('/home')}
-               //retorno()
-               )
-              .catch((err) => console.log(`Error: ${err}`));
-          } else {
-            // console.log(`Error: ${response.error.message}`);
-            alert(response.error.message)
+    else{  await sleep(0); }
+
+       MySwal.fire({
+        position: "center",
+        title: "¿Estas seguro de proceder con la compra?",
+        icon: "info",
+				showDenyButton: true,
+				// showCancelButton: true,
+				confirmButtonText: "Aceptar",
+				denyButtonText: "Cancelar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          try {
+            console.log('trying')
+            window.Stripe.card.createToken(
+              {
+                number: values.number,
+                exp_month:values.expiry.split("/")[0],
+                exp_year:values.expiry.split("/")[1],
+                cvc:values.cvc,
+                name:values.name,
+              },
+              (status, response) => {
+                if (status === 200) {
+                  
+                  axios
+                    .post("/stripe/pay", {
+                      token: response,
+                      email: values.email,
+                      amount:total,
+                      orderId:orderId,
+                    })
+                    .then((val) =>{
+                      MySwal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Compra exitosa!",
+                        showConfirmButton: false,
+                        timer: 2500,
+                      });
+                       //window.alert(JSON.stringify(res.data, 0, 2))
+                      //alert('Comprado')
+                    navigate('/home')
+                  }
+                     //retorno()
+                     )
+                    .catch((err) => console.log(`Error: ${err}`));
+                } else {
+                  // console.log(`Error: ${response.error.message}`);
+                  alert(response.error.message)
+                }
+              }
+            );
+          } catch (error) {
+            console.log(error);
+            MySwal.fire({
+              position: "center",
+              icon: "error",
+              title: "Lo sentimos! No se pudó hacer el pago",
+              showConfirmButton: true,
+            });
           }
         }
-      );
-    } catch (error) {
-      console.log(error)
-    }}
-  };
+      })
+  }
 
   return (
     <Styles>

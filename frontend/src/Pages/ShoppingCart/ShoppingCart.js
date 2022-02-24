@@ -37,11 +37,15 @@ const ShoppingCart = ({ isLoggedIn }) => {
 		}
 		dispatch(postPurchaseOrder(orderObj))
 		MySwal.fire({
-			position: "center-center",
-			icon: "info",
+			position: "center",
 			title: "Redirigiendo",
+			allowEscapeKey: false,
+			allowOutsideClick: false,
+			didOpen: () => {
+				Swal.showLoading();
+			},
 			showConfirmButton: false,
-			timer: 2000,
+			timer: 3000,
 		});
 		setTimeout(() => {
 			navigate(`/pay?orderId=${orderObj.id}&studentId=${userCredentials.id}&total=${orderObj.totalAmount}`)
@@ -92,9 +96,19 @@ const ShoppingCart = ({ isLoggedIn }) => {
 						</div>
 					</div>
 				) : (
-					<h2 style={{ textAlign: "center" }}>
-						No tienes productos en tu carrito
-					</h2>
+					<main>
+						<Button
+							btnVariant={'raised'}
+							text={'Volver atras'}
+							link={''}
+							onClick={
+								() => navigate(-1)
+							}
+						/>
+						<h2 style={{ textAlign: "center" }}>
+							No tienes productos en tu carrito
+						</h2>
+					</main>
 				)}
 			</div>
 		</div>

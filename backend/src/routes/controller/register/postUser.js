@@ -124,7 +124,7 @@ const postUser = async (req, res) => {
           } else{
             res.status(404).send({ message: "El rol no es valido" });
           }
-          res.status(200).send({ message: "Usuario Registrado con Éxito" });
+          res.status(200).send({ message: "Usuario Registrado con Éxito", userId: user.id });
         }
       );
     });

@@ -38,7 +38,7 @@ function LoginPage({ isLoggedIn }) {
 		};
 		console.log(userData);
 		localStorage.setItem("user", JSON.stringify(userData));
-		navigate("/profile");
+		navigate("/home");
 		return dispatch(loginGoogle(userData));
 	};
 
@@ -256,8 +256,7 @@ function LoginPage({ isLoggedIn }) {
 						</Formik>
 						< div className="divider">O</div>
 						<GoogleLogin
-							clientId="481476732546-redihub2q7951q72m79sjcgglp0iatsc.apps.googleusercontent.com"
-							// buttonText="Login"
+							clientId={process.env.REACT_APP_CLIENT_ID_GOOGLE}
 							render={(renderProps) => (
 								<button
 									type="button"

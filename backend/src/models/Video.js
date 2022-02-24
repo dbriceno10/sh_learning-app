@@ -21,11 +21,11 @@ module.exports = (sequelize) => {
       url: {
         type: DataTypes.TEXT,
         allowNull: false,
-        unique: true,
+        // unique: true,
       },
-      // duration: {
-      //   type: DataTypes.FLOAT, //*Puede ser una duración en segundos...
-      // },
+      img: {
+        type: DataTypes.TEXT,
+      }
     },
     {
       timestamps: true,

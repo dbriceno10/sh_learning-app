@@ -12,6 +12,8 @@ import { getCourses } from "../../Actions/courses.actions";
 function CoursesBrowser({ isLoggedIn }) {
 	const dispatch = useDispatch();
 	const [searchTerm, setSearchTerm] = useState("");
+	const valor=10;
+	const [limite,setlimite]=useState(valor);
 
 	const handleReset = (e) => {
 		dispatch(getCourses({}));
@@ -39,13 +41,13 @@ function CoursesBrowser({ isLoggedIn }) {
 					onChange={(e) => setSearchTerm(e.target.value)}
 					value={searchTerm}
 				></SearchModificado>
-				<Sorting />
+				<Sorting  setlimite={setlimite} valor={valor}/>
 			</section>
 			<aside className="courses-browser_filter-controls">
-				<Filterings />
+				<Filterings setlimite={setlimite} valor={valor} />
 			</aside>
 			<section className="courses-browser_course-gallery">
-				<Cards searchTerm={searchTerm} isLoggedIn={isLoggedIn} />
+				<Cards searchTerm={searchTerm} isLoggedIn={isLoggedIn} limite={limite} setlimite={setlimite} valor={valor}/>
 			</section>
 		</section>
 	);

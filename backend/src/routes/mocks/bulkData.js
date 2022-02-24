@@ -19,13 +19,23 @@ const {
   FAKE_PASSWORD,
 } = process.env;
 
-const { courseMocks, videos } = require("./mocksDataCourses");
+const { courseMocks, videos, imagenes } = require("./mocksDataCourses");
 
 const { getCategoryId } = require("../controller/getCategoryId");
 
 //función que retorna un número aleatorio entero entre 1 y 5
 const randomNumber = () => {
   let randomNumber = Math.floor(Math.random() * 5) + 1;
+  return randomNumber;
+};
+
+const randomVideosImg = () => {
+  let randomNumber = Math.floor(Math.random() * 10) + 1;
+  return randomNumber;
+};
+
+const randomVideosUrl = () => {
+  let randomNumber = Math.floor(Math.random() * 11) + 1;
   return randomNumber;
 };
 
@@ -43,7 +53,7 @@ const uniqueCategories = (courses) => {
 };
 
 const randomPrice = () => {
-  let randomNumber = Math.floor(Math.random() * 999) + 1;
+  let randomNumber = Math.floor(Math.random() * 999) + 10;
   return randomNumber;
 };
 
@@ -179,32 +189,34 @@ const reviewMaker = async (studentId) => {
 };
 
 const videoMaker = async () => {
-  const course = await Course.findOne({
-    where: {
-      name: "React: De cero a experto",
-    },
-  });
-  let count = 1;
-  for (const video of videos) {
-    await Video.create({
-      title: `Clase Nro ${count}`,
-      description:
-        "Aprende a Dominar una de las herramienta más utilizadas por todos los desarrolladores web, programadores y expertos en código profesionales.",
-      url: video,
-      FKcourseID: course.id,
-    });
-    count++;
+  const courses = await Course.findAll({});
+  for (const course of courses) {
+    let count = 1;
+    for (const video of videos) {
+      const index2 = randomVideosUrl();
+      const index = randomVideosImg();
+      await Video.create({
+        title: `Clase Nro ${count}`,
+        description:
+          "Aprende a Dominar una de las herramienta más utilizadas por todos los desarrolladores web, programadores y expertos en código profesionales.",
+        url: videos[index - 1],
+        FKcourseID: course.id,
+        img: imagenes[index - 1],
+      });
+      count++;
+    }
   }
 };
 
 const courseMaker = async (teacherId) => {
   try {
     for (const course of courseMocks) {
+      const index = randomVideosImg();
       const courseCreated = await Course.create({
         name: course.name,
         description: course.description,
         price: randomPrice(),
-        img: course.img,
+        img: imagenes[index - 1],
         FKteacherID: teacherId,
       });
       const categoryID = await getCategoryId(course.category); //Busca el id de las categorias

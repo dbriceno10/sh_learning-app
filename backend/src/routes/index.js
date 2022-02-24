@@ -19,6 +19,7 @@ const teachers = require("./teachers.js");
 const stripe = require("./stripe.js");
 const dataMaker = require("./dataMaker.js");
 const cv = require("./cv.js");
+const updatePassword = require("./updatePassword.js")
 
 // Configurar los routers
 router.use("/confirmput", confirmput);
@@ -35,6 +36,7 @@ router.use("/teachers", teachers);
 router.use("/video", video);
 router.use("/stripe", stripe);
 router.use("/cv", cv);
+router.use("/password", updatePassword);
 router.use("/datamaker", dataMaker); // ----> esta ruta es solo para cargar info en base de datos si hace falta
 
 /////////////////USER////////////////
