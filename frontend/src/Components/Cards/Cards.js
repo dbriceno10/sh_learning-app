@@ -12,14 +12,14 @@ import './Cards.css';
 
 const Cards = ({ searchTerm, isLoggedIn, limite, setlimite, valor, isProfile }) => {
 	// const [courses, setCourses] = useState([]);
-
+	limite = limite || 20
 	const [hasMore, sethasMore] = useState(true);
 	const [page, setPage] = useState(2);
 	const allCourses = useSelector(state => state.courses.courses);
 	const teacherCourses = useSelector(state => state.courses.courses);
 	// console.log('courses in cards:', courses);
 	const longitud = allCourses?.length;
-	const cursos = allCourses?.slice(0, 20);
+	const cursos = allCourses?.slice(0, limite);
 	const dispatch = useDispatch();
 	const { dataUser } = useSelector(state => state?.student)
 	const { userCredentials } = useSelector(state => state?.login);
