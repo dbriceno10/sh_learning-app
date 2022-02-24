@@ -23,8 +23,11 @@ export default function UserHome({ isLoggedIn }) {
     }, [dispatch])
 
     useEffect(() => {
-        dispatch(getProfileStudent(userCredentials.id));
-        dispatch(getProfileTeacher(userCredentials.id));
+        if (isLoggedIn === 'student') {
+            dispatch(getProfileStudent(userCredentials.id));
+        } else if (isLoggedIn === 'teacher') {
+            dispatch(getProfileTeacher(userCredentials.id));
+        }
     }, [userCredentials])
     console.log(isLoggedIn)
 
