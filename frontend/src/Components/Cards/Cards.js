@@ -7,6 +7,7 @@ import { getCourses, getCoursesTeacher } from "../../Actions/courses.actions"
 import { getProfileStudent, getProfileTeacher } from "../../Actions/profile.action";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserCredentials } from "../../Actions/login.actions"
+import Button from "../Buttons/Buttons";
 import './Cards.css';
 
 const Cards = ({ searchTerm, isLoggedIn, limite, setlimite, valor, isProfile }) => {
@@ -54,7 +55,6 @@ const Cards = ({ searchTerm, isLoggedIn, limite, setlimite, valor, isProfile }) 
 		// 	})
 		// console.log('results inside userCourses',results2);
 		console.log('results2', results2);
-
 		return results2
 	}
 
@@ -65,7 +65,7 @@ const Cards = ({ searchTerm, isLoggedIn, limite, setlimite, valor, isProfile }) 
 	// 	const data = await res.json();
 	// 	setCourses(data);
 	// }, []);
-	function handlelimite(e) {
+	function handleLimite(e) {
 		e.preventDefault()
 		setlimite(limite + valor)
 	}
@@ -124,7 +124,20 @@ const Cards = ({ searchTerm, isLoggedIn, limite, setlimite, valor, isProfile }) 
 								);
 							})
 					}
-					{allCourses ? longitud > limite ? <button onClick={handlelimite}>Mostrar más cursos</button> : '' : ''}
+					{allCourses 
+					? longitud > limite 
+						? (
+							<Button
+								btnVariant={'flat'}
+								text={'Mostrar más cursos'}
+								link={''}
+								onClick={handleLimite}
+							/>
+						)
+						: '' 
+					: ''
+					}
+					{/* <button onClick={handleLimite}>Mostrar más cursos</button>  */}
 				</div>
 			)
 			: (
@@ -135,7 +148,7 @@ const Cards = ({ searchTerm, isLoggedIn, limite, setlimite, valor, isProfile }) 
 					next={fetchMoreCourses}
 					hasMore={hasMore}
 					loader={<Loader />}
-					endMessage={<Message msg="Has llegado al final!" bgColor="#444" />}
+					// endMessage={<Message msg="Has llegado al final!" bgColor="#444" />}
 				>
 					{cursos
 						? (
@@ -165,7 +178,20 @@ const Cards = ({ searchTerm, isLoggedIn, limite, setlimite, valor, isProfile }) 
 						)
 						: <h2>No hay cursos disponibles!</h2>
 					}
-					{allCourses ? longitud > limite ? <button onClick={handlelimite}>Mostrar más cursos</button> : '' : ''}
+					{allCourses 
+					? longitud > limite 
+						? (
+							<Button
+								btnVariant={'flat'}
+								text={'Mostrar más cursos'}
+								link={''}
+								onClick={handleLimite}
+							/>
+						)
+						: '' 
+					: ''
+					}
+					{/* <button onClick={handleLimite}>Mostrar más cursos</button>  */}
 				</InfiniteScroll>
 			)
 	)
