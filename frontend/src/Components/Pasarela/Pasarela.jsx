@@ -52,15 +52,9 @@ export default function Pasarela() {
   
   const onSubmit = async (values) => {
     if(!validacion(values.email.toLowerCase())){
-      MySwal.fire({
-        position: "center",
-        icon: "error",
-        title: 'Introduzca un correo valido',
-        showConfirmButton: false,
-        timer: 5000,
-      })
+      alert('Introduzca un correo valido')
     }
-    else{  await sleep(0); 
+    else{  await sleep(0); }
 
        MySwal.fire({
         position: "center",
@@ -92,7 +86,7 @@ export default function Pasarela() {
                       amount:total,
                       orderId:orderId,
                     })
-                    .then((res) =>{
+                    .then((val) =>{
                       MySwal.fire({
                         position: "center",
                         icon: "success",
@@ -100,32 +94,16 @@ export default function Pasarela() {
                         showConfirmButton: false,
                         timer: 2500,
                       });
-                       console.log(JSON.stringify(res.data, 0, 2))
+                       //window.alert(JSON.stringify(res.data, 0, 2))
                       //alert('Comprado')
                     navigate('/home')
                   }
                      //retorno()
                      )
-                    .catch((err) => 
-                   
-                    MySwal.fire({
-                      position: "center",
-                      icon: "error",
-                      title: err.message,
-                      showConfirmButton: false,
-                      timer: 5000,
-                    })
-                    );
+                    .catch((err) => console.log(`Error: ${err}`));
                 } else {
                   // console.log(`Error: ${response.error.message}`);
-                  //alert(response.error.message)
-                  MySwal.fire({
-                    position: "center",
-                    icon: "error",
-                    title: response.error.message,
-                    showConfirmButton: false,
-                    timer: 5000,
-                  });
+                  alert(response.error.message)
                 }
               }
             );
@@ -139,8 +117,7 @@ export default function Pasarela() {
             });
           }
         }
-        
-      })}
+      })
   }
 
   return (
@@ -188,7 +165,6 @@ export default function Pasarela() {
                   placeholder="Card Number"
                   format={formatCreditCardNumber}
                   autoComplete='off'
-                  required
                   
                   
                  
@@ -201,7 +177,6 @@ export default function Pasarela() {
                   type="text"
                   placeholder="Name"
                   autoComplete='off'
-                  required
                   
                 />
               </div>
@@ -214,7 +189,6 @@ export default function Pasarela() {
                   placeholder="Valid Thru"
                   format={formatExpirationDate}
                   autoComplete='off'
-                  required
                  
                 />
                 <Field
@@ -225,7 +199,7 @@ export default function Pasarela() {
                   placeholder="CVC"
                   format={formatCVC}
                   autoComplete='off'
-                  required
+                 
                 />
               </div>
               <div className="buttons">
