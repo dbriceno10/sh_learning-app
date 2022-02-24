@@ -154,7 +154,7 @@ export default function LandingPage({ isLoggedIn }) {
 									</a>
 								</div>
 								<span className="about_section_col1_member-name">
-									Lorem ipsum
+									Samuel Cantos
 								</span>
 							</article>
 							<article className="about-section_col1_member">
@@ -169,7 +169,7 @@ export default function LandingPage({ isLoggedIn }) {
 									</a>
 								</div>
 								<span className="about_section_col1_member-name">
-									Lorem ipsum
+									Daniel Briceño
 								</span>
 							</article>
 							<article className="about-section_col1_member">
@@ -184,7 +184,7 @@ export default function LandingPage({ isLoggedIn }) {
 									</a>
 								</div>
 								<span className="about_section_col1_member-name">
-									Lorem ipsum
+									Marcelo Malacalza
 								</span>
 							</article>
 							<article className="about-section_col1_member">
@@ -199,7 +199,7 @@ export default function LandingPage({ isLoggedIn }) {
 									</a>
 								</div>
 								<span className="about_section_col1_member-name">
-									Lorem ipsum
+									Romina Acevedo
 								</span>
 							</article>
 							<article className="about-section_col1_member">
@@ -214,7 +214,7 @@ export default function LandingPage({ isLoggedIn }) {
 									</a>
 								</div>
 								<span className="about_section_col1_member-name">
-									Lorem ipsum
+									David Murga
 								</span>
 							</article>
 							<article className="about-section_col1_member">
@@ -229,7 +229,7 @@ export default function LandingPage({ isLoggedIn }) {
 									</a>
 								</div>
 								<span className="about_section_col1_member-name">
-									Lorem ipsum
+									Nestor Gómez
 								</span>
 							</article>
 							<article className="about-section_col1_member">
@@ -244,7 +244,7 @@ export default function LandingPage({ isLoggedIn }) {
 									</a>
 								</div>
 								<span className="about_section_col1_member-name">
-									Lorem ipsum
+									Santiago Herrera
 								</span>
 							</article>
 							<article className="about-section_col1_member">
@@ -259,20 +259,15 @@ export default function LandingPage({ isLoggedIn }) {
 									</a>
 								</div>
 								<span className="about_section_col1_member-name">
-									Lorem ipsum
+									Alejandro Muñoz
 								</span>
 							</article>
 						</div>
 						<div className="about-section_col2">
-							<h1 className="about-section_col2_title title">Lorem ipsum</h1>
+							<h1 className="about-section_col2_title title">Learnzilla</h1>
 							<div className="about-section_col2_body">
 								<p className="about-section_col2_text">
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-									Viverra fusce urna lectus proin at dignissim diam, augue. Ut
-									urna sapien enim magna consectetur gravida. Tellus,
-									scelerisque elit faucibus phasellus risus elit. Ut malesuada
-									eget adipiscing tincidunt eu pretium ridiculus in. Molestie
-									sit.
+									Se parte de la revolución digital con nosotros!
 								</p>
 							</div>
 						</div>
