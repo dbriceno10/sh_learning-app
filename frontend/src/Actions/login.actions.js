@@ -15,7 +15,7 @@ export const getUserCredentials = () => {
 
 export const loginGoogle = (userData) => async (dispatch) => {
 	const data = await axios.post(
-		"http://localhost:3001/user/loginGoogle",
+		"/user/loginGoogle",
 		userData
 	);
 	return dispatch({
