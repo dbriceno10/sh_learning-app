@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategories, courseCreate, getCourses } from "../../Actions/courses.actions";
+import { getCategories, courseCreate, getCourses, getCoursesTeacher } from "../../Actions/courses.actions";
 import Button from "../../Components/Buttons/Buttons";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -12,6 +12,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import '../FormCreate/FormCreate.css'
 import { createVideo } from "../../Actions/videos.actions";
 import FileUploader from "../../Components/FileUploader/FileUploader"
+import { getUserCredentials } from "../../Actions/login.actions";
+
 
 
 
@@ -22,17 +24,17 @@ function FormVideo() {
     const { courses } = useSelector(state => state.courses);
     const [fileUploadLink, setFileUploadLink] = useState('');
     console.log(courses)
+    const teacherCourses = useSelector(state => state.courses.courses);
+    console.log(teacherCourses);
+    const { userCredentials } = useSelector(state => state?.login);
 
 
-
-
-
-    const setFileUploadedLinkCb = useCallback((val) => {
+    /* const setFileUploadedLinkCb = useCallback((val) => {
         setFileUploadLink(prevFileUploadLink => val)
         console.log(val)
-    }, [])
+    }, []) */
 
-    const coursesToOrder = courses.map((course) => {
+   /*  const coursesToOrder = teacherCourses.map((course) => {
         return {
             id: course.id,
             name: course.name,
@@ -41,7 +43,7 @@ function FormVideo() {
     const orderedCourses = coursesToOrder.sort((a, b) =>
         a.name > b.name ? 1 : a.name < b.name ? -1 : 0
     );
-
+ */
 
     const [form, setForm] = useState({
         title: "",
@@ -133,7 +135,7 @@ function FormVideo() {
                 showConfirmButton: false,
                 timer: 2500,
             })
-            navigate("/profile")
+            navigate(-1);
         };
         console.log(form)
         /* if (form.title === "" || form.description === "" ) {
@@ -166,7 +168,7 @@ function FormVideo() {
         dispatch(createVideo(form))
     }
 
-    useEffect(() => {
+   /*  useEffect(() => {
         console.log(fileUploadLink)
         if (fileUploadLink !== "") {
             setForm({
@@ -176,13 +178,20 @@ function FormVideo() {
         }
         return () => {
         }
-    }, [fileUploadLink])
-
-
-    useEffect((e) => {
+    }, [fileUploadLink]) */
+    useEffect(() => {
         dispatch(getCategories({}))
-        dispatch(getCourses({}))
-    }, [dispatch])
+        dispatch(getUserCredentials());
+        /* dispatch(getCourses({})) */
+        dispatch(getCoursesTeacher(userCredentials.id));
+    }, [])
+    console.log(teacherCourses)
+    console.log(userCredentials)
+
+    useEffect(() => {
+	}, [dispatch]);
+
+
 
     return (
         <div className='formContainer'>
@@ -228,7 +237,7 @@ function FormVideo() {
                             Seleccione el curso
                         </option>
                         {
-                            orderedCourses.map((e) => {
+                            teacherCourses.map((e) => {
                                 console.log(e.id)
                                 return (
                                     <option name="cursoId" value={e.id}>
@@ -241,7 +250,18 @@ function FormVideo() {
                     </select>
                     {errores.curso !== "" ? <p className="danger">{errores.curso}</p> : null}
                 </div>
-                <FileUploader maxFileSize={100000000} acceptedTypes={["video/*"]} fileUploadResponse={setFileUploadedLinkCb} />
+                <div className="inputDiv">
+                        <label>VideoURL</label>
+                        <input
+                            name="url"
+                            type="text"
+                            placeholder="Url..."
+                            value={form.url}
+                            onChange={handleChange}
+                        />
+                    </div>
+                {/* <FileUploader maxFileSize={100000000} acceptedTypes={["video/*"]} fileUploadResponse={setFileUploadedLinkCb} /> */}
+                
                 <button type="button" onClick={handleClick} className="createBtn">CREATE</button>
 
 
@@ -249,8 +269,8 @@ function FormVideo() {
             <div className="homeBtn">
                 <Button
                     btnVariant={'raised'}
-                    text={<HomeIcon />}
-                    link={'/profile'}
+                    text={'Volver atras'}
+                    link={`/profile`}
                 >
                 </Button>
             </div>

@@ -147,10 +147,10 @@ export default function CourseDetail({ isLoggedIn }) {
 						denyButtonColor: "#2b174f",
 						confirmButtonText: "Ver mi carrito",
 						confirmButtonColor: "#eabb39"
-					}).then(() => {
-						if (result.isConfirmed) {
+					}).then((res) => {
+						if (res.isConfirmed) {
 							navigate("/cart");
-						} else if (result.isDenied) {
+						} else if (res.isDenied){
 							navigate("/home");
 						}
 					})

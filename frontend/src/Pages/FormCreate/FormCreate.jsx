@@ -14,10 +14,7 @@ import './FormCreate.css';
 function CreateForm() {
 
     let navigate = useNavigate();
-
 	const MySwal = withReactContent(Swal);
-
-
     const dispatch = useDispatch();
     const { categories } = useSelector(state => state.courses);
     const { courses } = useSelector(state => state.courses);
@@ -167,6 +164,14 @@ function CreateForm() {
                 timer: 2500,
             });
             dispatch(courseCreate(form))
+            setForm({
+                name: "",
+                description: "",
+                email: "",
+                img: "",
+                price: "",
+                category: []
+            })
         }
     }
 
@@ -312,11 +317,11 @@ function CreateForm() {
                 </form>
                     <div className="homeBtn">
                         <Button
-                            type={'raised'}
-                            text={<HomeIcon />}
-                            link={'/home'}
-                        >
-                        </Button>
+                        btnVariant={'raised'}
+                        text={'Volver atras'}
+                        link={`/profile`}
+                    >
+                    </Button>
                     </div>
             </div>
         )
