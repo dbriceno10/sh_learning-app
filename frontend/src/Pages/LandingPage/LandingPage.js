@@ -21,7 +21,7 @@ export default function LandingPage({ isLoggedIn }) {
 							</h1>
 							<div className="hero_col1_body">
 								<p className="hero_col1_text">
-								Es hoy! Podes empezar ahora mismo a estudiar con nosotros, totalmente virtual y con todas las comodidades.
+									Es hoy! Podes empezar ahora mismo a estudiar con nosotros, totalmente virtual y con todas las comodidades.
 									Contamos con una amplia cantidad de profesores con sus respectivos cursos. ¡Nos interesa tu evolucion academica!
 
 								</p>
@@ -121,7 +121,7 @@ export default function LandingPage({ isLoggedIn }) {
 							</h1>
 							<div className="teach-section_col2_body">
 								<p className="teach-section_col2_text">
-								Si desea ser instructor en "Learnzilla" solo debe registrarse como profesor y se procedera a la validacion de su titulo y su experiencia
+									Si desea ser instructor en "Learnzilla" solo debe registrarse como profesor y se procedera a la validacion de su titulo y su experiencia
 								</p>
 								<Button
 									link={"/login"}
@@ -144,7 +144,7 @@ export default function LandingPage({ isLoggedIn }) {
 					<div className="about-section_cols bg-section">
 						<div className="about-section_col1">
 							<article className="about-section_col1_member">
-								<div className="about-section_col1_member-photo">
+								<div className="about-section_col1_member-photo about-section_col1_member1-photo">
 									<a
 										href="https://www.linkedin.com/in/samuel-cantos-perez-4811a1208/"
 										target="_blank"
@@ -158,7 +158,8 @@ export default function LandingPage({ isLoggedIn }) {
 								</span>
 							</article>
 							<article className="about-section_col1_member">
-								<div className="about-section_col1_member-photo">
+								<div className="about-section_col1_member-photo
+								about-section_col1_member2-photo">
 									<a
 										href="https://www.linkedin.com/in/dbriceno10/"
 										target="_blank"
@@ -172,7 +173,8 @@ export default function LandingPage({ isLoggedIn }) {
 								</span>
 							</article>
 							<article className="about-section_col1_member">
-								<div className="about-section_col1_member-photo">
+								<div className="about-section_col1_member-photo
+								about-section_col1_member3-photo">
 									<a
 										href="https://www.linkedin.com/in/marcelo-malacalza/"
 										target="_blank"
@@ -186,7 +188,8 @@ export default function LandingPage({ isLoggedIn }) {
 								</span>
 							</article>
 							<article className="about-section_col1_member">
-								<div className="about-section_col1_member-photo">
+								<div className="about-section_col1_member-photo
+								about-section_col1_member4-photo">
 									<a
 										href="https://www.linkedin.com/in/romina-acevedo-98515920a/"
 										target="_blank"
@@ -200,7 +203,8 @@ export default function LandingPage({ isLoggedIn }) {
 								</span>
 							</article>
 							<article className="about-section_col1_member">
-								<div className="about-section_col1_member-photo">
+								<div className="about-section_col1_member-photo
+								about-section_col1_member5-photo">
 									<a
 										href="https://www.linkedin.com/in/david-murga-pereyra-5a3254216/"
 										target="_blank"
@@ -214,7 +218,8 @@ export default function LandingPage({ isLoggedIn }) {
 								</span>
 							</article>
 							<article className="about-section_col1_member">
-								<div className="about-section_col1_member-photo">
+								<div className="about-section_col1_member-photo
+								about-section_col1_member6-photo">
 									<a
 										href="https://www.linkedin.com/in/nestoralons/"
 										target="_blank"
@@ -228,7 +233,8 @@ export default function LandingPage({ isLoggedIn }) {
 								</span>
 							</article>
 							<article className="about-section_col1_member">
-								<div className="about-section_col1_member-photo">
+								<div className="about-section_col1_member-photo
+								about-section_col1_member7-photo">
 									<a
 										href="https://www.linkedin.com/in/santiago-herrera-dev/"
 										target="_blank"
@@ -242,7 +248,8 @@ export default function LandingPage({ isLoggedIn }) {
 								</span>
 							</article>
 							<article className="about-section_col1_member">
-								<div className="about-section_col1_member-photo">
+								<div className="about-section_col1_member-photo
+								about-section_col1_member8-photo">
 									<a
 										href="https://www.linkedin.com/in/alejandroml1/"
 										target="_blank"

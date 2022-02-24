@@ -501,4 +501,16 @@ module.exports = {
     "https://www.youtube.com/watch?v=kUbLmaT47VA",
     "https://www.youtube.com/watch?v=HiXLkL42tMU",
   ],
+  imagenes: [
+    "https://placeimg.com/240/120/tech",
+    "https://placeimg.com/320/240/tech",
+    "https://placeimg.com/200/150/tech",
+    "https://placeimg.com/300/220/tech",
+    "https://placeimg.com/320/240/tech",
+    "https://placeimg.com/240/200/tech",
+    "https://placeimg.com/310/240/tech",
+    "https://placeimg.com/220/200/tech",
+    "https://placeimg.com/280/240/tech",
+    "https://placeimg.com/300/250/tech"
+  ]
 };

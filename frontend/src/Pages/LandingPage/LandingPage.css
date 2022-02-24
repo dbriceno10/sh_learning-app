@@ -357,12 +357,43 @@ html {
     width              : fit-content;
     border-radius      : 50%;
     padding            : 5rem;
-    background-image   : url('https://i.imgur.com/5mcOMlp.png');
     background-color   : var(--honeydew);
     background-position: center;
     background-repeat  : no-repeat;
     background-size    : cover;
     cursor             : pointer;
+}
+
+.landing_about-section .about-section_col1 .about-section_col1_member-photo.about-section_col1_member1-photo {
+    background-image: url('../../../assets/samu.jpg');
+}
+
+.landing_about-section .about-section_col1 .about-section_col1_member-photo.about-section_col1_member2-photo {
+    background-image: url('../../../assets/dani.png');
+}
+
+.landing_about-section .about-section_col1 .about-section_col1_member-photo.about-section_col1_member3-photo {
+    background-image: url('../../../assets/marce.jpg');
+}
+
+.landing_about-section .about-section_col1 .about-section_col1_member-photo.about-section_col1_member4-photo {
+    background-image: url('../../../assets/romi.jpg');
+}
+
+.landing_about-section .about-section_col1 .about-section_col1_member-photo.about-section_col1_member5-photo {
+    background-image: url('../../../assets/david.jpg');
+}
+
+.landing_about-section .about-section_col1 .about-section_col1_member-photo.about-section_col1_member6-photo {
+    background-image: url('../../../assets/nestor.jpg');
+}
+
+.landing_about-section .about-section_col1 .about-section_col1_member-photo.about-section_col1_member7-photo {
+    background-image: url('../../../assets/santi.jpg');
+}
+
+.landing_about-section .about-section_col1 .about-section_col1_member-photo.about-section_col1_member8-photo {
+    background-image: url('../../../assets/ale.png');
 }
 
 .landing_about-section .about-section_col1 .about-section_col1_member-photo:hover::before {
