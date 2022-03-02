@@ -1,5 +1,6 @@
 .course-details {
   font-weight: 600;
+  background: linear-gradient(180deg, rgba(255,255,255,1) 22%, rgba(199,179,234,1) 55%);
 }
 
 .course-details_card {
@@ -80,3 +81,32 @@ a:hover {
 }
 
 @media screen and (max-width: 72rem) {}
+
+
+.button-review {
+  all             : unset;
+  cursor: pointer;
+  /* width           : 100%; */
+  border          : none;
+  border-radius   : 0.4rem;
+  padding         : .6rem 1rem;
+  background-color: hsla(260, 40%, 78%, 0.2);
+  color           : var(--dark-purple);
+  border          : .125rem solid var(--dark-purple);
+  display         : flex;
+  justify-content : center;
+  align-items     : center;
+  cursor          : pointer;
+  font-weight     : 600;
+  transition      : all ease-in-out .5s;
+}
+
+.button-review:hover,
+.button-review:focus-visible {
+    background-color   : var(--dark-purple);
+    color              : var(--honeydew);
+    /* border          : .2rem solid var(--dark-purple); */
+    font-weight        : 700;
+    transform          : scale(.9);
+    transition         : all ease-in-out .3s;
+}

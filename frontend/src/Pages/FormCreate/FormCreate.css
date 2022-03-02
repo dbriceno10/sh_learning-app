@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #FFF1CE;
+  /* background-color: #FFF1CE; */
+  background: linear-gradient(180deg, rgba(255,255,255,1) 22%, rgba(199,179,234,1) 55%);
   height: 100%;
 }
 
@@ -18,10 +19,16 @@
   margin-bottom: 1rem;
 }
 
+.inputDiv label {
+  margin: 10px;
+  font-weight: bold;
+}
+
 .selectContainer {
   display: grid;
   grid-template-columns: repeat(1, 7fr 1fr);
   column-gap: .5rem;
+  margin-top: 3.5rem;
 }
 
 .selectInput {
@@ -108,4 +115,25 @@
 .danger {
   margin-top: -10px;
   color: red;
+}
+
+.price-input {
+  height: -moz-fit-content;
+    height: fit-content;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0.6rem;
+    font-size: 2ch;
+    font-weight: 600;
+    text-align: left;
+    background-color: var(--ash-gray-lighter);
+    color: var(--nice-black);
+    transition: all .2s ease-in-out;
+    border: none;
+    outline: 0.2rem solid var(--ash-gray);
+}
+
+.form-title {
+  text-align: center;
+  margin: 20px;
 }
