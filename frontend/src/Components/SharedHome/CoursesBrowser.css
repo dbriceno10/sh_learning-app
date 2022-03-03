@@ -64,3 +64,15 @@
         height: 100%;
     }
 }
+
+.reset-btn-container {
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+
+.reset-btn {
+  display: grid;
+  grid-template-columns: auto;
+  width: 100%;
+}

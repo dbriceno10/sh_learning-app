@@ -196,7 +196,7 @@ function FormVideo() {
     return (
         <div className='formContainer'>
             <form className="realForm">
-                <h1>Crear Video</h1>
+                <h1 className="form-title">Crear Video</h1>
                 <div>
                     <div className="inputDiv">
                         <label>Titulo Del Video</label>
@@ -232,7 +232,10 @@ function FormVideo() {
                     </div>
                 </div>
                 <div>
-                    <select onChange={handleSelect}>
+                <div className="selectContainer"
+                >
+                   <select id="selectCategory"
+                            className="filterings_category-select selectInput" onChange={handleSelect}>
                         <option selected value="">
                             Seleccione el curso
                         </option>
@@ -248,6 +251,8 @@ function FormVideo() {
                         }
 
                     </select>
+                </div>
+                   
                     {errores.curso !== "" ? <p className="danger">{errores.curso}</p> : null}
                 </div>
                 <div className="inputDiv">
