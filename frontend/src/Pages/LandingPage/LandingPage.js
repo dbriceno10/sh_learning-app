@@ -22,7 +22,7 @@ export default function LandingPage({ isLoggedIn }) {
 							<div className="hero_col1_body">
 								<p className="hero_col1_text">
 									Es hoy! Podes empezar ahora mismo a estudiar con nosotros, totalmente virtual y con todas las comodidades.
-									Contamos con una amplia cantidad de profesores con sus respectivos cursos. ¡Nos interesa tu evolucion academica!
+									Contamos con una amplia cantidad de profesores con sus respectivos cursos. ¡Nos interesa tu evolución académica!
 
 								</p>
 								<div className="hero_col1_ctas">
