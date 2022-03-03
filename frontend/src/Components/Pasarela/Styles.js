@@ -35,11 +35,16 @@ const btnPrimary = btn("#4f93ce", "#285f8f");
 const btnDanger = btn("#e27c79", "#c9302c");
 
 export default styled.div`
-  font-family: sans-serif;
+  font-family: "Roboto", sans-serif;
+  background: linear-gradient(180deg, rgba(255,255,255,1) 22%, rgba(199,179,234,1) 55%);
+  padding-bottom: 40px;
+  
 
   h1 {
     text-align: center;
     color: #222;
+    margin-top: 10px;
+    font-size: 30px;
   }
 
   h2 {
