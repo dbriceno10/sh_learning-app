@@ -221,7 +221,7 @@ function CreateForm() {
         return (
             <div className='formContainer'>
                 <form className="realForm">
-                    <h1>Crear Curso</h1>
+                    <h1 className="form-title">Crear Curso</h1>
                     <div>
                         <div className="inputDiv">
                             <label>Tu email</label>
@@ -269,7 +269,8 @@ function CreateForm() {
                         <div className="inputDiv">
                             <label>Precio</label>
                             <input
-                                className="inputNumber"
+                                // className="inputNumber"
+                                className="price-input"
                                 name="price"
                                 type="number"
                                 placeholder="Precio..."

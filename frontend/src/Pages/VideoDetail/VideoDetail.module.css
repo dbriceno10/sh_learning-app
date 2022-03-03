@@ -14,6 +14,7 @@
    /* inset | offset-x | offset-y | color */
    box-shadow           : 10rem 1rem 2rem hsla(0, 0%, 49%, 0.37);
    color           : var(--dark-purple);
+   margin-bottom: 40px;
 }
 .video{
    width        : 100%;
