@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, Fragment } from "react";
 import SearchModificado from "./SearchModificado";
 import Filterings from "../Filtering/Filterings";
 import Cards from "../Cards/Cards";
@@ -26,16 +26,11 @@ function CoursesBrowser({ isLoggedIn }) {
 	};
 
 	return (
-		<section className="courses-browser">
+		<Fragment>
+      <section className="courses-browser">
 			<header className="courses-browser_header title">
 				<h1>Explora entre muchos cursos disponibles</h1>
 			</header>
-			<Button
-				btnVariant={"flat"}
-				text={"Reset"}
-				onClick={handleReset}
-				link={""}
-			></Button>
 			<section className="courses-browser_top-panel">
 				<SearchModificado
 					onChange={(e) => setSearchTerm(e.target.value)}
@@ -49,7 +44,19 @@ function CoursesBrowser({ isLoggedIn }) {
 			<section className="courses-browser_course-gallery">
 				<Cards searchTerm={searchTerm} isLoggedIn={isLoggedIn} limite={limite} setlimite={setlimite} valor={valor}/>
 			</section>
+      
 		</section>
+    <section className="reset-btn-container">
+      <div className="reset-btn">
+      <Button
+				btnVariant={"flat"}
+				text={"Reset"}
+				onClick={handleReset}
+				link={""}
+			></Button>
+      </div>
+      </section>
+    </Fragment>
 	);
 }
 

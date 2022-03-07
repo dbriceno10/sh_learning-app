@@ -181,6 +181,36 @@
         z-index: 4;
     }
 
+    /* Agrego media querie para reducir la imagen del logo */
+    @media (max-width: 570px) {
+      .nav-bar_logo {
+        max-width: 250px;
+      }
+    }
+
+    @media (max-width: 514px) {
+      .nav-bar_logo {
+        max-width: 220px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-bar_logo {
+        max-width: 150px;
+      }
+    }
+    @media (max-width: 400px) {
+      .nav-bar_logo {
+        max-width: 120px;
+      }
+    }
+
+    @media (max-width: 370px) {
+      .nav-bar_logo {
+        max-width: 90px;
+      }
+    }
+
     @keyframes come-out {
         0% {
             transform: translateY(-100rem);

@@ -1,6 +1,10 @@
 .user-homepage {
     font-weight: 600;
     overflow-x : hidden;
+    /* background: linear-gradient(180deg, rgba(255,255,255,1) 40%, rgba(199,179,234,1) 70%); */
+    /* background: radial-gradient(circle, rgba(255,255,255,1) 40%, rgba(199,179,234,1) 70%); */
+    
+background: linear-gradient(180deg, rgba(255,255,255,1) 22%, rgba(199,179,234,1) 55%);
 }
 
 .user-homepage .user-homepage_header {

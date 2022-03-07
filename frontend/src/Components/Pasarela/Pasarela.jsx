@@ -14,6 +14,7 @@ import {
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import axios from "axios";
+import Navbar from "../NavBars/Navbars";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -23,6 +24,7 @@ export default function Pasarela() {
   const studentId=query.get('studentId')
   const total=query.get('total')
   console.log(total)
+  const isLoggedIn = true;
   const navigate=useNavigate();
   const dispatch=useDispatch();
   function validacion(correo){
@@ -121,7 +123,9 @@ export default function Pasarela() {
   }
 
   return (
-    <Styles>
+    <React.Fragment>
+    <Navbar isLoggedIn={isLoggedIn}></Navbar>
+      <Styles>
       <h1>Compra</h1>
       <Form
         onSubmit={onSubmit}
@@ -220,6 +224,7 @@ export default function Pasarela() {
         }}
       />
     </Styles>
+    </React.Fragment>
   );
 }
 

@@ -299,7 +299,7 @@ export default function CourseDetail({ isLoggedIn }) {
 
 							{rating > 0 ? (
 
-								<button type="button" onClick={handleSubmit}>Agregar Review</button>
+								<button type="button" className="button-review" onClick={handleSubmit}>Agregar Review</button>
 							) : null}
 							<p>{courseDetail?.description}</p>
 							<h2>$ {courseDetail?.price}</h2>
