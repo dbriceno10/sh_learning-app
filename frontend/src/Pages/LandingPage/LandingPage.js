@@ -125,7 +125,7 @@ export default function LandingPage({ isLoggedIn }) {
 								</p>
 								<Button
 									link={"/login"}
-									text={"Empezà hoy"}
+									text={"Empieza hoy"}
 									icon={"bi:arrow-right-circle"}
 									btnVariant={"raised-icon"}
 								></Button>
