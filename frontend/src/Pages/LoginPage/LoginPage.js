@@ -285,7 +285,7 @@ function LoginPage({ isLoggedIn }) {
 							<p>Conoce miles de cursos con profesores de todo el mundo</p>
 							<Button
 								btnVariant={'raised-icon'}
-								text={'Registrate'}
+								text={'Regístrate'}
 								icon={'bi:arrow-right-circle'}
 								link={'/signUp'}
 							>
