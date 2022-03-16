@@ -84,14 +84,14 @@ export default function Navbar({ isLoggedIn }) {
                             <Button
                                 link={'#why-section'}
                                 btnVariant={'flat'}
-                                text={'Quienes Somos?'}>
+                                text={'¿Quienes Somos?'}>
                             </Button>
                         </li>
                         <li className="nav-bar_item">
                             <Button
                                 link={'#teach-section'}
                                 btnVariant={'flat'}
-                                text={'Empeza Como Profesor'}>
+                                text={'Empieza Como Profesor'}>
                             </Button>
                         </li>
                         <li className="nav-bar_item">
@@ -115,7 +115,7 @@ export default function Navbar({ isLoggedIn }) {
                                                 : '/home'
                                         }
                                         btnVariant={'raised'}
-                                        text={'Iniciar Sesion'}
+                                        text={'Iniciar Sesión'}
                                     ></Button>
                                 </div>
                             </li>
@@ -127,7 +127,7 @@ export default function Navbar({ isLoggedIn }) {
                                             : '/home'
                                     }
                                     btnVariant={'raised'}
-                                    text={'Registrate'}
+                                    text={'Regístrate'}
                                 ></Button>
                             </li>
                         </section>
