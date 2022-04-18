@@ -1,12 +1,12 @@
-import { React } from 'react';
+import { React } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCourses } from '../../Actions/courses.actions';
-import { setFilterCategory } from '../../Actions/filter.actions';
-import './CategoryFiltering.css';
+import { getCourses } from "../../Actions/courses.actions";
+import { setFilterCategory } from "../../Actions/filter.actions";
+import "./CategoryFiltering.css";
 
 function CategoryFiltering({ category, setrenderizado, renderizado }) {
   const dispatch = useDispatch();
-  const { order } = useSelector(state => state.filters)
+  const { order } = useSelector((state) => state.filters);
   // function handleCategories(e) {
   //   // if (e.target.checked) {
   //   dispatch(setFilterCategory(e.target.value))
@@ -17,10 +17,11 @@ function CategoryFiltering({ category, setrenderizado, renderizado }) {
   // }
   return (
     <option
-      className='categories'
+      className="categories"
       // className='categories_checkbox'
-      name='category'
-      value={category.name}>
+      name="category"
+      value={category.name}
+    >
       {category.name}
     </option>
     /* <label className='categories_label' >

@@ -1,17 +1,17 @@
 .MuiCard-root {
-	margin: 1rem;
+  margin: 1rem;
 }
 
 .MuiCard-root:hover {
-	-webkit-box-shadow: 0px 5px 15px 0px rgba(128, 128, 128, 0.45);
-	-moz-box-shadow   : 0px 5px 15px 0px rgba(128, 128, 128, 0.45);
-	box-shadow        : 0px 5px 15px 0px rgba(128, 128, 128, 0.45);
-	cursor            : pointer;
+  -webkit-box-shadow: 0px 5px 15px 0px rgba(128, 128, 128, 0.45);
+  -moz-box-shadow: 0px 5px 15px 0px rgba(128, 128, 128, 0.45);
+  box-shadow: 0px 5px 15px 0px rgba(128, 128, 128, 0.45);
+  cursor: pointer;
 }
 
 .MuiCard-root .MuiCardActions-root {
-	width          : fit-content;
-	display        : flex;
-	gap            : 2rem;
-	justify-content: space-between;
+  width: fit-content;
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
 }

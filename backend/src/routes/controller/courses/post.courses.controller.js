@@ -4,7 +4,7 @@ const { getCategoryId, getCategoryNames } = require("../getCategoryId");
 const postCourses = async (req, res) => {
   //*email is of the teacher, category must be an array
   let { name, description, email, img, price, category, role } = req.body;
-  if(!img) img = "https://placeimg.com/240/120/tech";
+  if (!img) img = "https://placeimg.com/240/120/tech";
   try {
     if (role && role === "admin") {
       category = await getCategoryNames(category);

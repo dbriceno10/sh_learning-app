@@ -1,27 +1,25 @@
-import { LOGIN_GOOGLE, GET_CREDENTIALS } from '../Actions/login.actions'
+import { LOGIN_GOOGLE, GET_CREDENTIALS } from "../Actions/login.actions";
 
 const initialState = {
-    userGoogleData: [],
-    userCredentials: []
-}
+  userGoogleData: [],
+  userCredentials: [],
+};
 
 function loginReducer(state = initialState, { type, payload }) {
-    switch (type) {
-        case LOGIN_GOOGLE:
-            return {
-                ...state,
-                userGoogleData: [...state.userGoogleData, payload]
-            }
-        case GET_CREDENTIALS:
-            return {
-                ...state,
-                userCredentials: payload
-            }
-        default:
-            return state;
-    }
-
+  switch (type) {
+    case LOGIN_GOOGLE:
+      return {
+        ...state,
+        userGoogleData: [...state.userGoogleData, payload],
+      };
+    case GET_CREDENTIALS:
+      return {
+        ...state,
+        userCredentials: payload,
+      };
+    default:
+      return state;
+  }
 }
-
 
 export default loginReducer;

@@ -3,7 +3,7 @@ const { Op } = require("sequelize");
 
 const getStudentReview = async (req, res) => {
   const { studentId, courseId } = req.query;
-  console.log({studentId, courseId})
+  console.log({ studentId, courseId });
   try {
     const review = await Review.findOne({
       where: {
@@ -21,11 +21,11 @@ const getStudentReview = async (req, res) => {
 
 const getReview = async (req, res) => {
   try {
-      const review = await Review.findAll();
-      if (!review) {
-        res.status(404).send({ message: "Aún no hay reviews" });
-      }
-      res.status(200).send(review);
+    const review = await Review.findAll();
+    if (!review) {
+      res.status(404).send({ message: "Aún no hay reviews" });
+    }
+    res.status(200).send(review);
   } catch (error) {
     res.status(404).send(error);
   }
@@ -51,5 +51,5 @@ const getReviewById = async (req, res) => {
 module.exports = {
   getReview,
   getReviewById,
-  getStudentReview
+  getStudentReview,
 };

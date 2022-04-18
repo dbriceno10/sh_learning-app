@@ -286,9 +286,11 @@ const Container = styled.div`
   }
 `;
 
-function Card(props){
-return (<Container>
-  <Cards {...props} />
-</Container>)
+function Card(props) {
+  return (
+    <Container>
+      <Cards {...props} />
+    </Container>
+  );
 }
 export default Card;

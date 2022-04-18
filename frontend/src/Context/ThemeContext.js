@@ -8,17 +8,17 @@ const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(initialTheme);
 
   const handleTheme = (e) => {
-    if(e.target.value === "light") {
-      setTheme("light")
+    if (e.target.value === "light") {
+      setTheme("light");
     } else {
-      setTheme("dark")
+      setTheme("dark");
     }
-  }
+  };
 
   const data = { theme, handleTheme };
 
-  return <ThemeContext.Provider value={data}>{children}</ThemeContext.Provider>
-}
+  return <ThemeContext.Provider value={data}>{children}</ThemeContext.Provider>;
+};
 
-export { ThemeProvider }
+export { ThemeProvider };
 export default ThemeContext;

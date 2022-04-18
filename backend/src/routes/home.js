@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const router = Router();
-const {getLastFiveCourses} = require('./controller/home/getHome')
+const { getLastFiveCourses } = require("./controller/home/getHome");
 
 router.get("/", getLastFiveCourses);
 

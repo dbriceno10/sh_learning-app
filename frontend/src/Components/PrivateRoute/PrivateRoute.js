@@ -2,12 +2,11 @@ import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
 const PrivateRoute = () => {
-
   const userCredentials = JSON.parse(
-		window.localStorage.getItem("userCredentials")
-	);
+    window.localStorage.getItem("userCredentials")
+  );
   // console.log(userCredentials);
-	return userCredentials ? <Outlet/> : <Navigate to="/login" />
+  return userCredentials ? <Outlet /> : <Navigate to="/login" />;
 };
 
 // El componente <Outlet>

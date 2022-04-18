@@ -1,128 +1,128 @@
 .button {
-    all   : unset;
-    cursor: pointer;
+  all: unset;
+  cursor: pointer;
 }
 
 .button-flat {
-    all             : unset;
-    width           : 100%;
-    border          : none;
-    border-radius   : 0.4rem;
-    padding         : .6rem 1rem;
-    background-color: hsla(260, 40%, 78%, 0.2);
-    color           : var(--dark-purple);
-    border          : .125rem solid var(--dark-purple);
-    display         : flex;
-    justify-content : space-between;
-    align-items     : center;
-    cursor          : pointer;
-    font-weight     : 600;
-    transition      : all ease-in-out .5s;
+  all: unset;
+  width: 100%;
+  border: none;
+  border-radius: 0.4rem;
+  padding: 0.6rem 1rem;
+  background-color: hsla(260, 40%, 78%, 0.2);
+  color: var(--dark-purple);
+  border: 0.125rem solid var(--dark-purple);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all ease-in-out 0.5s;
 }
 
 .button-raised {
-    all             : unset;
-    width           : 100%;
-    border-radius   : 0.6rem;
-    padding         : .8rem 1rem;
-    background-color: var(--dark-purple);
-    color           : var(--honeydew);
-    text-transform  : uppercase;
-    display         : flex;
-    justify-content : space-between;
-    align-items     : center;
-    cursor          : pointer;
-    font-weight     : 600;
-    transition      : all ease-in-out .5s;
+  all: unset;
+  width: 100%;
+  border-radius: 0.6rem;
+  padding: 0.8rem 1rem;
+  background-color: var(--dark-purple);
+  color: var(--honeydew);
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all ease-in-out 0.5s;
 }
 
 .button-flat:hover,
 .button-flat:focus-visible {
-    background-color   : var(--dark-purple);
-    color              : var(--honeydew);
-    /* border          : .2rem solid var(--dark-purple); */
-    font-weight        : 700;
-    transform          : scale(.9);
-    transition         : all ease-in-out .3s;
+  background-color: var(--dark-purple);
+  color: var(--honeydew);
+  /* border          : .2rem solid var(--dark-purple); */
+  font-weight: 700;
+  transform: scale(0.9);
+  transition: all ease-in-out 0.3s;
 }
 
 .button-raised:hover,
 .button-raised:focus-visible {
-    background-color: var(--lighter-purple);
-    color           : var(--honeydew);
-    transform       : scale(.9);
-    transition      : all ease-out .3s;
+  background-color: var(--lighter-purple);
+  color: var(--honeydew);
+  transform: scale(0.9);
+  transition: all ease-out 0.3s;
 }
 
 .button-flat span,
 .button-raised span {
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
 .button-raised.icon,
 .button-flat.icon {
-    width: 100%;
+  width: 100%;
 }
 
-.button-raised.icon>svg {
-    color         : var(--honeydew);
-    font-size     : 2.5rem;
-    vertical-align: middle;
+.button-raised.icon > svg {
+  color: var(--honeydew);
+  font-size: 2.5rem;
+  vertical-align: middle;
 }
 
-.button-flat.icon>svg {
-    color         : var(--dark-purple);
-    font-size     : 2.5rem;
-    vertical-align: middle;
+.button-flat.icon > svg {
+  color: var(--dark-purple);
+  font-size: 2.5rem;
+  vertical-align: middle;
 }
 
 .button-flat.icon:hover svg,
 .button-flat.icon:focus-visible svg {
-    color: var(--honeydew);
+  color: var(--honeydew);
 }
 
 .button-round {
-    border-radius   : 7rem;
-    background-color: var(--nice-gray);
-    padding         : 1rem 1rem;
-    cursor          : pointer;
-    font-weight     : 600;
+  border-radius: 7rem;
+  background-color: var(--nice-gray);
+  padding: 1rem 1rem;
+  cursor: pointer;
+  font-weight: 600;
 }
 
 .button-round:hover,
 .button-round:focus-visible {
-    background-color: var(--ash-gray);
-    transform       : scale(.5);
-    transition      : all ease-out .3s;
+  background-color: var(--ash-gray);
+  transform: scale(0.5);
+  transition: all ease-out 0.3s;
 }
 
-.button-round>svg {
-    font-size     : 2rem;
-    color         : var(--dark-purple);
-    vertical-align: middle;
+.button-round > svg {
+  font-size: 2rem;
+  color: var(--dark-purple);
+  vertical-align: middle;
 }
 
 .button .tooltip {
-    position: relative;
+  position: relative;
 }
 
 .button .tooltip .tooltip_text {
-    visibility            : hidden;
-    height                : fit-content;
-    width                 : max-content;
-    background-color      : black;
-    color                 : #fff;
-    text-align            : center;
-    border-radius         : 0.4rem;
-    padding               : 0.5rem 1rem;
-    position              : absolute;
-    z-index               : 1;
-    bottom                : -3rem;
-    left                  : calc(50%);
-    /* margin             : 0 0.5rem; */
-    font-size             : 1.5ch;
+  visibility: hidden;
+  height: fit-content;
+  width: max-content;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 0.4rem;
+  padding: 0.5rem 1rem;
+  position: absolute;
+  z-index: 1;
+  bottom: -3rem;
+  left: calc(50%);
+  /* margin             : 0 0.5rem; */
+  font-size: 1.5ch;
 }
 
 .button .tooltip:hover .tooltip_text {
-    visibility: visible;
+  visibility: visible;
 }

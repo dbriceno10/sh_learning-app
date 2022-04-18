@@ -1,22 +1,22 @@
-import React from 'react';
+import React from "react";
 
 const Message = ({ msg, bgColor }) => {
   let styles = {
-    padding: '1rem',
-    marginBottom: '1rem',
-    textAlign: 'center',
+    padding: "1rem",
+    marginBottom: "1rem",
+    textAlign: "center",
     backgroundColor: bgColor,
-    color: '#fff',
-    fontWeight: 'bold',
-    borderRadius: '0.5rem',
-    gridColumn: '1/-1'
-  }
+    color: "#fff",
+    fontWeight: "bold",
+    borderRadius: "0.5rem",
+    gridColumn: "1/-1",
+  };
   return (
     <div style={styles}>
       {/* <p>{msg}</p> */}
       <p dangerouslySetInnerHTML={{ __html: msg }} />
     </div>
-  )
+  );
 };
 
 export default Message;

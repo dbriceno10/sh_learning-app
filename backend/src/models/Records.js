@@ -1,4 +1,3 @@
-
 const { DataTypes } = require("sequelize");
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
@@ -16,14 +15,11 @@ module.exports = (sequelize) => {
       idVideo: {
         type: DataTypes.UUID, //genera un identidicador numérico único
         allowNull: false,
-        
       },
       idStudent: {
         type: DataTypes.UUID, //genera un identidicador numérico único
         allowNull: false,
       },
-      
-      
     },
     {
       timestamps: true,

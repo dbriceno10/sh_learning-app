@@ -1,14 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import { BrowserRouter } from 'react-router-dom';
-import reportWebVitals from './reportWebVitals';
-import { Provider } from 'react-redux';
-import store from './Store/index'
-import App from './App';
-import axios from "axios" //Importo axios
-const API = process.env.REACT_APP_API //Obtengo la variable de entorno con el api
-axios.defaults.baseURL = API || "http://localhost:3001" //Configuración base para conectarse al backend desde local o desde la nube
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import { BrowserRouter } from "react-router-dom";
+import reportWebVitals from "./reportWebVitals";
+import { Provider } from "react-redux";
+import store from "./Store/index";
+import App from "./App";
+import axios from "axios"; //Importo axios
+const API = process.env.REACT_APP_API; //Obtengo la variable de entorno con el api
+axios.defaults.baseURL = API || "http://localhost:3001"; //Configuración base para conectarse al backend desde local o desde la nube
 
 ReactDOM.render(
   <React.StrictMode>
@@ -18,7 +18,7 @@ ReactDOM.render(
       </Provider>
     </BrowserRouter>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

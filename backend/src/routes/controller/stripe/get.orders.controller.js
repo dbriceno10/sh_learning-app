@@ -18,7 +18,7 @@ const getOrder = async (req, res) => {
         id,
       },
     });
-    if(!order) {
+    if (!order) {
       res.status(404).send({ message: "No se encontro el pedido" });
     }
     res.status(200).send(order);
@@ -26,9 +26,9 @@ const getOrder = async (req, res) => {
     console.log(error);
     res.status(404).send(error);
   }
-}
+};
 
 module.exports = {
   getOrders,
   getOrder,
-}
+};

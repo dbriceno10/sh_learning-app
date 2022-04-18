@@ -1,16 +1,16 @@
-:root{
-  --font-title: 'Playfair Display', serif;
-  --crayola-yellow: #EFCB68;
+:root {
+  --font-title: "Playfair Display", serif;
+  --crayola-yellow: #efcb68;
   --rich-black: #000411;
   --just-black: #000000;
-  --dark-purple: #160C28;
-  --ash-gray: #AEB7B3;
-  --honeydew: #E1EFE6;
+  --dark-purple: #160c28;
+  --ash-gray: #aeb7b3;
+  --honeydew: #e1efe6;
 }
 
 html {
   box-sizing: border-box;
-  font-family: 'Mukta', sans-serif;
+  font-family: "Mukta", sans-serif;
 }
 
 *,

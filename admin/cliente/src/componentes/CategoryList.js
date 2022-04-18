@@ -1,18 +1,25 @@
 import React from "react";
-import {List, Datagrid, TextField, DeleteButton,  TextInput, SimpleForm, Create} from 'react-admin';
+import {
+  List,
+  Datagrid,
+  TextField,
+  DeleteButton,
+  TextInput,
+  SimpleForm,
+  Create,
+} from "react-admin";
 
- export const CategoryList =(props)=>{
-    return(
-        <List {...props}>
-            <Datagrid rowClick="edit">
-                <TextField source="id"/>
-                <TextField source="name"/>   
-                <DeleteButton basePath="category"/>
-            </Datagrid>
-        </List>
-
-    )
-}
+export const CategoryList = (props) => {
+  return (
+    <List {...props}>
+      <Datagrid rowClick="edit">
+        <TextField source="id" />
+        <TextField source="name" />
+        <DeleteButton basePath="category" />
+      </Datagrid>
+    </List>
+  );
+};
 // export const CategoryEdit =(props)=>{
 //     return(
 //         <Edit {...props}>
@@ -24,13 +31,12 @@ import {List, Datagrid, TextField, DeleteButton,  TextInput, SimpleForm, Create}
 
 //     )
 // }
-export const CategoryCreate =(props)=>{
-    return(
-        <Create {...props}>
-            <SimpleForm rowClick="edit">
-                <TextInput source="name"/>
-            </SimpleForm>
-        </Create>
-
-    )
-}
+export const CategoryCreate = (props) => {
+  return (
+    <Create {...props}>
+      <SimpleForm rowClick="edit">
+        <TextInput source="name" />
+      </SimpleForm>
+    </Create>
+  );
+};

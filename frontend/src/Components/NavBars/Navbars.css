@@ -1,235 +1,240 @@
 .nav-bar {
-    margin-top: 2rem;
+  margin-top: 2rem;
 }
 
 .nav-bar .nav-bar_items {
-    display        : flex;
-    justify-content: space-between;
-    align-items    : center;
-    list-style     : none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
 }
 
 .nav-bar .nav-bar_middle-btns,
 .nav-bar .nav-bar_cta,
 .nav-bar .nav-bar_user-controls {
-    display: flex;
-    gap    : 2.5rem;
+  display: flex;
+  gap: 2.5rem;
 }
 
 .nav-bar_items .nav-bar_cta .nav-bar_cta_login a {
-    background-color: var(--crayola-yellow);
-    color           : var(--dark-purple);
+  background-color: var(--crayola-yellow);
+  color: var(--dark-purple);
 }
 
 .nav-bar_items .nav-bar_cta .nav-bar_cta_login a:hover,
 .nav-bar_items .nav-bar_cta .nav-bar_cta_login a:focus-visible {
-    background-color: var(--crayola-yellow-darker);
-    color           : var(--dark-purple);
-    transform       : scale(.9);
-    transition      : all ease-in-out .3s;
+  background-color: var(--crayola-yellow-darker);
+  color: var(--dark-purple);
+  transform: scale(0.9);
+  transition: all ease-in-out 0.3s;
 }
 
 .nav-bar_items .nav-bar_user-controls .user-controls-profile-pic {
-    all                : unset;
-    border-radius      : 7rem;
-    background-color   : var(--honeydew);
-    padding            : 1rem 2rem;
-    background-position: center;
-    background-repeat  : no-repeat;
-    background-size    : cover;
+  all: unset;
+  border-radius: 7rem;
+  background-color: var(--honeydew);
+  padding: 1rem 2rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.nav-bar_items .nav-bar_user-controls .user-controls-profile-pic>img {
-    width: 100%;
+.nav-bar_items .nav-bar_user-controls .user-controls-profile-pic > img {
+  width: 100%;
 }
 
 .nav-bar .nav-bar_menu {
-    visibility: hidden;
-    display   : none;
+  visibility: hidden;
+  display: none;
 }
 
 .nav-bar .nav-bar_menu .button-raised {
-    width: auto;
+  width: auto;
 }
 
 .nav-bar .nav-menu-overlay {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 .nav-bar_items .nav-bar_user-controls .user-controls-profile-pic.tooltip {
-    position: relative;
+  position: relative;
 }
 
-.nav-bar_items .nav-bar_user-controls .user-controls-profile-pic.tooltip .tooltip_text {
-    visibility            : hidden;
-    height                : fit-content;
-    width                 : max-content;
-    background-color      : black;
-    color                 : #fff;
-    text-align            : center;
-    border-radius         : 0.4rem;
-    padding               : 0.5rem 1rem;
-    position              : absolute;
-    z-index               : 1;
-    bottom                : -3rem;
-    left                  : -1rem;
-    /* margin             : 0 0.5rem; */
-    font-size             : 1.5ch;
+.nav-bar_items
+  .nav-bar_user-controls
+  .user-controls-profile-pic.tooltip
+  .tooltip_text {
+  visibility: hidden;
+  height: fit-content;
+  width: max-content;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 0.4rem;
+  padding: 0.5rem 1rem;
+  position: absolute;
+  z-index: 1;
+  bottom: -3rem;
+  left: -1rem;
+  /* margin             : 0 0.5rem; */
+  font-size: 1.5ch;
 }
 
-.nav-bar_items .nav-bar_user-controls .user-controls-profile-pic.tooltip:hover .tooltip_text {
-    visibility: visible;
+.nav-bar_items
+  .nav-bar_user-controls
+  .user-controls-profile-pic.tooltip:hover
+  .tooltip_text {
+  visibility: visible;
 }
 
 @media screen and (max-width: 67rem) {
+  .nav-bar .nav-bar_menu.menu-visible .button-raised {
+    width: auto;
+    background-color: hsl(44deg 81% 60%);
+  }
 
-    .nav-bar .nav-bar_menu.menu-visible .button-raised {
-        width           : auto;
-        background-color: hsl(44deg 81% 60%);
+  .nav-bar .nav-bar_menu.menu-visible .button-raised:hover,
+  .nav-bar .nav-bar_menu.menu-visible .button-raised:focus-visible {
+    width: auto;
+    background-color: var(--crayola-yellow-darker);
+  }
+
+  .nav-bar .nav-bar_menu svg {
+    color: var(--honeydew);
+    font-size: 1.5rem;
+    vertical-align: middle;
+    transition: all 1s ease-in-out;
+  }
+
+  .nav-bar .nav-menu-overlay.visible {
+    visibility: visible;
+    transform: translateY(0rem);
+    transition: transform 0.3s ease-in-out linear;
+    /* animation : come-out .5s ease-in-out; */
+  }
+
+  .nav-bar .nav-menu-overlay {
+    height: 36rem;
+    width: 100%;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    background-color: hsl(44deg 81% 67%);
+    position: absolute;
+    z-index: 1;
+    transform: translateY(-100rem);
+    /* animation       : come-in .5s ease-in-out; */
+    transition: all 0.3s ease-in-out;
+  }
+
+  .nav-bar .nav-bar_menu {
+    visibility: visible;
+    display: flex;
+    z-index: 2;
+  }
+
+  .nav-bar .nav-bar_cta {
+    visibility: hidden;
+    display: none;
+  }
+
+  .nav-bar .nav-bar_middle-btns {
+    visibility: hidden;
+    display: none;
+  }
+
+  .nav-bar .nav-bar_cta.menu-visible {
+    visibility: visible;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    height: fit-content;
+    width: 100%;
+    top: 26rem;
+    left: 0;
+    z-index: 3;
+    align-items: center;
+    justify-content: flex-end;
+    animation: come-out 0.5s ease-in-out;
+  }
+
+  .nav-bar .nav-bar_cta.menu-visible .nav-bar_cta_login a {
+    background-color: hsl(44deg 81% 60%);
+  }
+
+  .nav-bar .nav-bar_cta.menu-visible .nav-bar_cta_login a:hover,
+  .nav-bar .nav-bar_cta.menu-visible .nav-bar_cta_login a:focus-visible {
+    background-color: var(--crayola-yellow-darker);
+  }
+
+  .nav-bar .nav-bar_middle-btns.menu-visible {
+    visibility: visible;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    height: fit-content;
+    width: 100%;
+    top: 9rem;
+    left: 0;
+    align-items: center;
+    z-index: 3;
+    justify-content: flex-start;
+    animation: come-out 0.5s ease-in-out;
+  }
+
+  .nav-bar .nav-bar_logo {
+    z-index: 4;
+  }
+
+  /* Agrego media querie para reducir la imagen del logo */
+  @media (max-width: 570px) {
+    .nav-bar_logo {
+      max-width: 250px;
+    }
+  }
+
+  @media (max-width: 514px) {
+    .nav-bar_logo {
+      max-width: 220px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .nav-bar_logo {
+      max-width: 150px;
+    }
+  }
+  @media (max-width: 400px) {
+    .nav-bar_logo {
+      max-width: 120px;
+    }
+  }
+
+  @media (max-width: 370px) {
+    .nav-bar_logo {
+      max-width: 90px;
+    }
+  }
+
+  @keyframes come-out {
+    0% {
+      transform: translateY(-100rem);
     }
 
-    .nav-bar .nav-bar_menu.menu-visible .button-raised:hover,
-    .nav-bar .nav-bar_menu.menu-visible .button-raised:focus-visible {
-        width           : auto;
-        background-color: var(--crayola-yellow-darker);
+    20% {
+      transform: translateY(-70rem);
     }
 
-    .nav-bar .nav-bar_menu svg {
-        color         : var(--honeydew);
-        font-size     : 1.5rem;
-        vertical-align: middle;
-        transition    : all 1s ease-in-out;
+    50% {
+      transform: translateY(-50rem);
     }
 
-    .nav-bar .nav-menu-overlay.visible {
-        visibility   : visible;
-        transform    : translateY(0rem);
-        transition   : transform .3s ease-in-out linear;
-        /* animation : come-out .5s ease-in-out; */
+    70% {
+      transform: translateY(-30rem);
     }
 
-    .nav-bar .nav-menu-overlay {
-        height             : 36rem;
-        width              : 100%;
-        top                : 0;
-        left               : 0;
-        visibility         : hidden;
-        background-color   : hsl(44deg 81% 67%);
-        position           : absolute;
-        z-index            : 1;
-        transform          : translateY(-100rem);
-        /* animation       : come-in .5s ease-in-out; */
-        transition         : all .3s ease-in-out;
+    100% {
+      transform: translateY(0rem);
     }
-
-    .nav-bar .nav-bar_menu {
-        visibility: visible;
-        display   : flex;
-        z-index   : 2;
-    }
-
-    .nav-bar .nav-bar_cta {
-        visibility: hidden;
-        display   : none;
-    }
-
-    .nav-bar .nav-bar_middle-btns {
-        visibility: hidden;
-        display   : none;
-    }
-
-    .nav-bar .nav-bar_cta.menu-visible {
-        visibility     : visible;
-        display        : flex;
-        flex-direction : column;
-        position       : absolute;
-        height         : fit-content;
-        width          : 100%;
-        top            : 26rem;
-        left           : 0;
-        z-index        : 3;
-        align-items    : center;
-        justify-content: flex-end;
-        animation      : come-out .5s ease-in-out;
-    }
-
-    .nav-bar .nav-bar_cta.menu-visible .nav-bar_cta_login a {
-        background-color: hsl(44deg 81% 60%);
-    }
-
-    .nav-bar .nav-bar_cta.menu-visible .nav-bar_cta_login a:hover,
-    .nav-bar .nav-bar_cta.menu-visible .nav-bar_cta_login a:focus-visible {
-        background-color: var(--crayola-yellow-darker);
-    }
-
-    .nav-bar .nav-bar_middle-btns.menu-visible {
-        visibility     : visible;
-        display        : flex;
-        flex-direction : column;
-        position       : absolute;
-        height         : fit-content;
-        width          : 100%;
-        top            : 9rem;
-        left           : 0;
-        align-items    : center;
-        z-index        : 3;
-        justify-content: flex-start;
-        animation      : come-out .5s ease-in-out;
-    }
-
-    .nav-bar .nav-bar_logo {
-        z-index: 4;
-    }
-
-    /* Agrego media querie para reducir la imagen del logo */
-    @media (max-width: 570px) {
-      .nav-bar_logo {
-        max-width: 250px;
-      }
-    }
-
-    @media (max-width: 514px) {
-      .nav-bar_logo {
-        max-width: 220px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .nav-bar_logo {
-        max-width: 150px;
-      }
-    }
-    @media (max-width: 400px) {
-      .nav-bar_logo {
-        max-width: 120px;
-      }
-    }
-
-    @media (max-width: 370px) {
-      .nav-bar_logo {
-        max-width: 90px;
-      }
-    }
-
-    @keyframes come-out {
-        0% {
-            transform: translateY(-100rem);
-        }
-
-        20% {
-            transform: translateY(-70rem);
-        }
-
-        50% {
-            transform: translateY(-50rem);
-        }
-
-        70% {
-            transform: translateY(-30rem);
-        }
-
-        100% {
-            transform: translateY(0rem);
-        }
-    }
+  }
 }

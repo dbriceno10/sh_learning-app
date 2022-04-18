@@ -1,9 +1,16 @@
 const { Student, Teacher, Admin } = require("../../../db.js");
 require("dotenv").config();
-const { BYTES, BASE, ITERATIONS, LONG_ENCRYPTION, ENCRYPT_ALGORITHM, EMAIL_USER, PASSWORD_USER } =
-  process.env;
+const {
+  BYTES,
+  BASE,
+  ITERATIONS,
+  LONG_ENCRYPTION,
+  ENCRYPT_ALGORITHM,
+  EMAIL_USER,
+  PASSWORD_USER,
+} = process.env;
 const crypto = require("crypto");
-const nodemailer = require('nodemailer');
+const nodemailer = require("nodemailer");
 
 const postUser = async (req, res) => {
   let { name, lastName, email, password, role, avatar } = req.body; //recibimos por body
@@ -11,7 +18,8 @@ const postUser = async (req, res) => {
     let user; //creamos una variable para guardar el usuario
     if (!avatar)
       //Asignamos avatar por defecto en caso de no venir
-      avatar = "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200";
+      avatar =
+        "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200";
     //vamos a utilizar la libería cryto de node para encriptar la contraseña
     crypto.randomBytes(parseInt(BYTES), (error, salt) => {
       //recibimos una base numérica en bytes una función callback
@@ -25,24 +33,28 @@ const postUser = async (req, res) => {
         ENCRYPT_ALGORITHM, //algoritmo de encriptación
         async (error, key) => {
           //Verificamos si alguno e los email está ya en la base de datos
-          const verifyEmailStudent = await Student.findOne({ where: { email } }); //buscamos el usuario en la tabla de estudiantes
-            if (verifyEmailStudent) {
-              return res
-                .status(404)
-                .send({ message: "El correo ya esta registrado" });
-            }
-            const verifyEmailTeacher = await Teacher.findOne({ where: { email } }); //buscamos el usuario en la tabla de profesores
-            if (verifyEmailTeacher) {
-              return res
-                .status(404)
-                .send({ message: "El correo ya esta registrado" });
-            }
-            const verifyEmailAdmin = await Admin.findOne({ where: { email } }); //buscamos el usuario en la tabla de administradores
-            if (verifyEmailAdmin) {
-              return res
-                .status(404)
-                .send({ message: "El correo ya esta registrado" });
-            }
+          const verifyEmailStudent = await Student.findOne({
+            where: { email },
+          }); //buscamos el usuario en la tabla de estudiantes
+          if (verifyEmailStudent) {
+            return res
+              .status(404)
+              .send({ message: "El correo ya esta registrado" });
+          }
+          const verifyEmailTeacher = await Teacher.findOne({
+            where: { email },
+          }); //buscamos el usuario en la tabla de profesores
+          if (verifyEmailTeacher) {
+            return res
+              .status(404)
+              .send({ message: "El correo ya esta registrado" });
+          }
+          const verifyEmailAdmin = await Admin.findOne({ where: { email } }); //buscamos el usuario en la tabla de administradores
+          if (verifyEmailAdmin) {
+            return res
+              .status(404)
+              .send({ message: "El correo ya esta registrado" });
+          }
           const encryptedPassword = key.toString(BASE); //encriptamos la contraseña
           if (role === "alumno") {
             const student = await Student.create({
@@ -64,19 +76,20 @@ const postUser = async (req, res) => {
                 user: EMAIL_USER, // generated ethereal user
                 pass: PASSWORD_USER, // generated ethereal password
               },
-            }); 
-              await Transport.sendMail({
-                from: '<confirmpassword@learnzilla.com>', // sender address
-                to: email, // list of receivers
-                 subject: "Confirmar cuenta", // Subject line
-                html: `
+            });
+            await Transport.sendMail({
+              from: "<confirmpassword@learnzilla.com>", // sender address
+              to: email, // list of receivers
+              subject: "Confirmar cuenta", // Subject line
+              html: `
                 <h1>Hola ${name}</h1>
                 <h2>Entra al siguiente link para confirmar tu cuenta <a href="https://learnzilla-app.vercel.app/confirmUser" target="_blank" rel="noreferrer">Confirmar mi cuenta</a></h2>
-                `, 
-              });
-          
+                `,
+            });
+
             Transport.close();
-          } else if (role === "profesor") { //si es profesor
+          } else if (role === "profesor") {
+            //si es profesor
             const teacher = await Teacher.create({
               name,
               lastName,
@@ -88,7 +101,7 @@ const postUser = async (req, res) => {
               role: "profesor",
             });
             user = teacher; //guardamos el usuario en la variable
-            let Transport =  nodemailer.createTransport({
+            let Transport = nodemailer.createTransport({
               host: "smtp.gmail.com",
               port: 465,
               secure: true, // true for 465, false for other ports
@@ -96,20 +109,20 @@ const postUser = async (req, res) => {
                 user: EMAIL_USER, // generated ethereal user
                 pass: PASSWORD_USER, // generated ethereal password
               },
-            }); 
-              await Transport.sendMail({
-                from: '<confirmpassword@learnzilla.com>', // sender address
-                to: email, // list of receivers
-                 subject: "Confirmar cuenta", // Subject line
-                html: `
+            });
+            await Transport.sendMail({
+              from: "<confirmpassword@learnzilla.com>", // sender address
+              to: email, // list of receivers
+              subject: "Confirmar cuenta", // Subject line
+              html: `
                 <h1>Hola ${name}</h1>
                 <h2>Entra al siguiente link para confirmar tu cuenta <a href="https://learnzilla-app.vercel.app/confirmUser" target="_blank" rel="noreferrer">Confirmar mi cuenta</a></h2>
-                `, 
-              });
-            
-          
+                `,
+            });
+
             Transport.close();
-          } else if (role === "admin") { //si es admin
+          } else if (role === "admin") {
+            //si es admin
             const admin = await Admin.create({
               name,
               lastName,
@@ -121,10 +134,12 @@ const postUser = async (req, res) => {
               role: "admin",
             });
             user = admin; //guardamos el usuario en la variable
-          } else{
+          } else {
             res.status(404).send({ message: "El rol no es valido" });
           }
-          res.status(200).send({ message: "Usuario Registrado con Éxito", userId: user.id });
+          res
+            .status(200)
+            .send({ message: "Usuario Registrado con Éxito", userId: user.id });
         }
       );
     });

@@ -6,8 +6,12 @@ const {
   getStudents,
   getStudent,
 } = require("./controller/students/get.students.controller");
-const { updateStudent } = require("./controller/students/update.student.controller")
-const { deteteStudent } = require("./controller/students/delete.student.controller")
+const {
+  updateStudent,
+} = require("./controller/students/update.student.controller");
+const {
+  deteteStudent,
+} = require("./controller/students/delete.student.controller");
 
 router.get("/", getStudents);
 router.get("/detail/:id", getStudent);

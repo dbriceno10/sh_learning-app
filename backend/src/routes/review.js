@@ -4,7 +4,7 @@ const { postReview } = require("./controller/review/post.review.controller");
 const {
   getReview,
   getReviewById,
-  getStudentReview
+  getStudentReview,
 } = require("./controller/review/get.review.controller");
 
 router.post("/create", postReview);

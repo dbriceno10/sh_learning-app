@@ -1,6 +1,9 @@
 const { Router } = require("express");
 const router = Router();
-const { stripePay, generateOrder } = require("./controller/stripe/post.order.controller");
+const {
+  stripePay,
+  generateOrder,
+} = require("./controller/stripe/post.order.controller");
 const {
   getOrders,
   getOrder,

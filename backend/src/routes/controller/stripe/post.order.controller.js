@@ -5,7 +5,7 @@ const stripe = require("stripe")(STRIPE_KEY);
 
 const stripePay = async (req, res) => {
   const { email, token, orderId } = req.body;
-  
+
   try {
     const order = await Order.findOne({
       where: {
@@ -22,7 +22,7 @@ const stripePay = async (req, res) => {
     });
     if (!student) {
       res.status(404).send({ message: "No se encontro el estudiante" });
-    }    
+    }
 
     let customer = await stripe.customers.create({
       //Crea el cliente

@@ -14,7 +14,7 @@ router.get("/", getAllVideos);
 router.get("/detail/:id", getVideoDetail);
 router.get("/course/:courseId", getCourseVideos);
 router.post("/create", postVideo);
-router.post("/newrecord", postRecord);//para crear un nuevo record, recibe parámetros por query
+router.post("/newrecord", postRecord); //para crear un nuevo record, recibe parámetros por query
 router.put("/update/:id", updateVideo);
 router.delete("/delete/:id", deleteVideo);
 

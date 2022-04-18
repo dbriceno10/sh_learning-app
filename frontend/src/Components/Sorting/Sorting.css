@@ -1,34 +1,34 @@
 .sorting {
-    height         : 100%;
-    width          : fit-content;
-    display        : inline-flex;
-    align-items    : center;
-    justify-content: space-between;
-    gap            : 1rem;
-    font-family    : 'Mukta', 'Arial', sans-serif;
-    font-weight    : 600;
+  height: 100%;
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: "Mukta", "Arial", sans-serif;
+  font-weight: 600;
 }
 
 .sorting .selector {
-    height             : auto;
-    border-radius      : .5rem;
-    padding            : .5rem;
-    /* color           : aqua; */
-    outline            : .2rem solid var(--honeydew-darker);
-    border             : none;
-    font-size          : 2ch;
-    background-color   : var(--honeydew);
+  height: auto;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  /* color           : aqua; */
+  outline: 0.2rem solid var(--honeydew-darker);
+  border: none;
+  font-size: 2ch;
+  background-color: var(--honeydew);
 }
 
 .sorting .selector:hover,
 .sorting .selector:focus-visible {
-    outline: .4rem solid var(--honeydew-darker);
+  outline: 0.4rem solid var(--honeydew-darker);
 }
 
 @media screen and (max-width: 75rem) {
-    .sorting {
-        width: 100%;
-    }
+  .sorting {
+    width: 100%;
+  }
 }
 
 .sorting select {

@@ -3,7 +3,7 @@ const { Video } = require("../../../db");
 const updateVideo = async (req, res) => {
   const { id } = req.params;
   const { title, description, url, img } = req.body;
-  
+
   try {
     const video = await Video.findOne({
       where: { id: id },

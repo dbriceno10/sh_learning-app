@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CardMedia from "@mui/material/CardMedia";
 import {
@@ -15,7 +15,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserCredentials } from "../../Actions/login.actions";
-import {getProfileStudent} from "../../Actions/profile.action.js"
+import { getProfileStudent } from "../../Actions/profile.action.js";
 import { getCourseDetail } from "../../Actions/courses.actions";
 // import Button from '../Buttons/Buttons';
 
@@ -32,12 +32,12 @@ const MaterialCard = ({
   cursoId,
   onClick,
 }) => {
- console.log(id);
+  console.log(id);
   let navigate = useNavigate();
   const dispatch = useDispatch();
-  const { dataUser } = useSelector(state => state?.student);
+  const { dataUser } = useSelector((state) => state?.student);
   console.log(dataUser);
-  const {userCredentials} = useSelector(state => state?.login)
+  const { userCredentials } = useSelector((state) => state?.login);
   const { courseDetail } = useSelector((state) => state.courses);
   /* console.log(courseDetail.id); */
   const MySwal = withReactContent(Swal);
@@ -46,12 +46,12 @@ const MaterialCard = ({
     navigate(`/courses/${id}`);
   };
 
-  console.log(id)
+  console.log(id);
   const handleClickCardVideo = () => {
-    if(userCredentials.role === 'alumno'){
-      if(dataUser.courses.includes(courseDetail.id)){
+    if (userCredentials.role === "alumno") {
+      if (dataUser.courses.includes(courseDetail.id)) {
         navigate(`/video/detail/${id}`);
-      }else{
+      } else {
         MySwal.fire({
           position: "center",
           icon: "error",
@@ -60,21 +60,19 @@ const MaterialCard = ({
           timer: 2500,
         });
       }
-    }else {
+    } else {
       navigate(`/video/detail/${id}`);
     }
   };
-  
+
   useEffect(() => {
-      dispatch(getUserCredentials());	
+    dispatch(getUserCredentials());
   }, []);
 
   useEffect(() => {
-			dispatch(getProfileStudent(userCredentials?.id));	
-      dispatch(getCourseDetail())
-	}, [dispatch]);
-  
-
+    dispatch(getProfileStudent(userCredentials?.id));
+    dispatch(getCourseDetail());
+  }, [dispatch]);
 
   return (
     <Card

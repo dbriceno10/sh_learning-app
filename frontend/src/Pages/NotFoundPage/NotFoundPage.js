@@ -1,10 +1,6 @@
-import React from 'react';
-import './NotFoundPage.css';
+import React from "react";
+import "./NotFoundPage.css";
 
 export default function NotFoundPage() {
-    return (
-        <div>
-            hello
-        </div>
-    )
+  return <div>hello</div>;
 }

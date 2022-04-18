@@ -1,6 +1,10 @@
 .cartContainer {
   margin: 1rem;
-  background: linear-gradient(180deg, rgba(255,255,255,1) 22%, rgba(199,179,234,1) 55%);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 22%,
+    rgba(199, 179, 234, 1) 55%
+  );
 }
 
 .box {

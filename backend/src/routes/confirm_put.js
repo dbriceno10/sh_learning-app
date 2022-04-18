@@ -1,21 +1,27 @@
-const express = require('express');
+const express = require("express");
 const router = express();
 const { Student, Teacher } = require("../db");
-const cors = require('cors');
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const crypto = require("crypto");
 require("dotenv").config();
-const { BYTES, BASE, ITERATIONS, LONG_ENCRYPTION, ENCRYPT_ALGORITHM, EMAIL_USER, PASSWORD_USER } =
-  process.env;
+const {
+  BYTES,
+  BASE,
+  ITERATIONS,
+  LONG_ENCRYPTION,
+  ENCRYPT_ALGORITHM,
+  EMAIL_USER,
+  PASSWORD_USER,
+} = process.env;
 router.use(bodyParser.json());
-router.use(bodyParser.urlencoded({extended: true}));
+router.use(bodyParser.urlencoded({ extended: true }));
 router.use(cors());
 
-
 // router.put('/confirm', async (req, res) => {
-//   const { email } = req.body;  
+//   const { email } = req.body;
 //   try{
-//     const verifyEmailStudent = await Student.findOne({ where: { email } }); 
+//     const verifyEmailStudent = await Student.findOne({ where: { email } });
 //     if (verifyEmailStudent) {
 //       await Student.update({
 //         authorization: true
@@ -27,7 +33,7 @@ router.use(cors());
 //         });
 //         res.send('Authorization=true!');
 //     }
-//     const verifyEmailTeacher = await Teacher.findOne({ where: { email } }); 
+//     const verifyEmailTeacher = await Teacher.findOne({ where: { email } });
 //     if (verifyEmailTeacher) {
 //       await Teacher.update({
 //         authorization: true
@@ -48,11 +54,11 @@ router.use(cors());
 // });
 
 // router.post('/forgotpassword', async (req, res) => {
-  
+
 //   const {email, password} = req.body;
 //   console.log(password, email);
 //   try {
-//     let verifyEmailStudent = await Student.findOne({ where: { email } }); 
+//     let verifyEmailStudent = await Student.findOne({ where: { email } });
 //     if(!verifyEmailStudent){
 //       return res.sendStatus(404).send('El correo no esta registrado');
 //     }
@@ -82,8 +88,8 @@ router.use(cors());
 //     } else {
 //       res.status(400).send("Email incorrecto")
 //     }
-    
-//     let verifyEmailTeacher = await Teacher.findOne({ where: { email } }); 
+
+//     let verifyEmailTeacher = await Teacher.findOne({ where: { email } });
 //     if (verifyEmailTeacher) {
 //       await Teacher.update({
 //         password
@@ -102,23 +108,22 @@ router.use(cors());
 //   }
 // });
 
-router.post('/register', async (req, res) => {
-  
-  let {name, lastName, email, password, salt} = req.body;
-try{
-  const user = await Student.create({
-    name,
-    lastName,
-    email,
-    password,
-    salt
-  });
-  res.json(user);
-}catch(error){
-  res.send(`ERROR ${error}`);
-}
+router.post("/register", async (req, res) => {
+  let { name, lastName, email, password, salt } = req.body;
+  try {
+    const user = await Student.create({
+      name,
+      lastName,
+      email,
+      password,
+      salt,
+    });
+    res.json(user);
+  } catch (error) {
+    res.send(`ERROR ${error}`);
+  }
 });
-router.get('/student', async (req, res) => {
+router.get("/student", async (req, res) => {
   try {
     let student = await Student.findAll();
     res.send(student);
@@ -126,6 +131,5 @@ router.get('/student', async (req, res) => {
     res.sendStatus(500).send(error);
   }
 });
-
 
 module.exports = router;

@@ -10,7 +10,7 @@ const postVideo = async (req, res) => {
     if (!FK) {
       return res.status(404).send({ message: "El curso es inválido" });
     }
-    
+
     if (!img) img = "https://placeimg.com/240/120/tech";
     const video = await Video.create({
       title,

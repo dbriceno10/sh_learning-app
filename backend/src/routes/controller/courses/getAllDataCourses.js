@@ -22,12 +22,12 @@ const getAllDataCourses = async () => {
   }
 };
 
-const getAllDataCoursesOfOneTeacher = async ( teacherId ) => {
+const getAllDataCoursesOfOneTeacher = async (teacherId) => {
   try {
     let getAllCourses = await Course.findAll({
       //Busca todos los cursos de un profesor
-      where :{
-        FKteacherID: teacherId
+      where: {
+        FKteacherID: teacherId,
       },
       attributes: ["name"],
     });
@@ -47,5 +47,5 @@ const getAllDataCoursesOfOneTeacher = async ( teacherId ) => {
 
 module.exports = {
   getAllDataCourses,
-  getAllDataCoursesOfOneTeacher
+  getAllDataCoursesOfOneTeacher,
 };

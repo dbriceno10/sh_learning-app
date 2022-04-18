@@ -511,6 +511,6 @@ module.exports = {
     "https://placeimg.com/310/240/tech",
     "https://placeimg.com/220/200/tech",
     "https://placeimg.com/280/240/tech",
-    "https://placeimg.com/300/250/tech"
-  ]
+    "https://placeimg.com/300/250/tech",
+  ],
 };

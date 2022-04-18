@@ -39,7 +39,8 @@ router.post("/", async (req, res, next) => {
           where: { email: email.trim().toLowerCase() },
         }); //buscamos el usuario en la tabla de administradores
         role = "admin";
-        if (!DbUser) return res.status(404).send({ message: "usuario invalido" });
+        if (!DbUser)
+          return res.status(404).send({ message: "usuario invalido" });
       }
     }
     crypto.pbkdf2(

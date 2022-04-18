@@ -11,7 +11,7 @@ const updateTeacher = async (req, res) => {
       },
       attributes: ["name", "lastName", "email", "avatar"], //sacamos solo los atributos a comparar
     });
-    if(!teacher) {
+    if (!teacher) {
       return res.status(404).send({ message: "Profesor no encontrado" });
     }
     await Teacher.update(

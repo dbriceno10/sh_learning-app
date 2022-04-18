@@ -3,7 +3,11 @@
   flex-direction: column;
   align-items: center;
   /* background-color: #FFF1CE; */
-  background: linear-gradient(180deg, rgba(255,255,255,1) 22%, rgba(199,179,234,1) 55%);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 22%,
+    rgba(199, 179, 234, 1) 55%
+  );
   height: 100%;
 }
 
@@ -27,7 +31,7 @@
 .selectContainer {
   display: grid;
   grid-template-columns: repeat(1, 7fr 1fr);
-  column-gap: .5rem;
+  column-gap: 0.5rem;
   margin-top: 3.5rem;
 }
 
@@ -40,7 +44,7 @@
   padding: 0 1rem;
   margin-bottom: 1rem;
   box-shadow: 0px 5px 15px -5px rgb(0 0 0 / 15%);
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   outline: none;
 }
 
@@ -50,13 +54,13 @@
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  transition         : all ease-in-out .3s;
+  transition: all ease-in-out 0.3s;
 }
 
 .addCategoryBtn:hover {
-    font-weight        : 700;
-    transform          : scale(.9);
-    transition         : all ease-in-out .3s;
+  font-weight: 700;
+  transform: scale(0.9);
+  transition: all ease-in-out 0.3s;
 }
 
 .listContainer {
@@ -67,44 +71,44 @@
 }
 
 .categorySelected {
-  margin-bottom: .3rem;
+  margin-bottom: 0.3rem;
 }
 
 .deleteBtn {
-  background-color: #FF7777;
+  background-color: #ff7777;
   border: none;
-  padding: .2rem;
-  margin-right: .3rem;
+  padding: 0.2rem;
+  margin-right: 0.3rem;
   cursor: pointer;
   border-radius: 2px;
-  transition: all .5s;
+  transition: all 0.5s;
 }
 
 .deleteBtn:hover {
-  background-color: #D83A56;
-  transition: all .5s;
+  background-color: #d83a56;
+  transition: all 0.5s;
 }
 
 .createBtn {
-  width           : 100%;
-    border          : none;
-    border-radius   : 0.4rem;
-    padding         : .6rem 1rem;
-    background-color: hsla(260, 40%, 78%, 0.2);
-    color           : var(--dark-purple);
-    border          : .125rem solid var(--dark-purple);
-    display         : flex;
-    justify-content : center;
-    cursor          : pointer;
-    font-weight     : 600;
-    transition      : all ease-in-out .5s;
+  width: 100%;
+  border: none;
+  border-radius: 0.4rem;
+  padding: 0.6rem 1rem;
+  background-color: hsla(260, 40%, 78%, 0.2);
+  color: var(--dark-purple);
+  border: 0.125rem solid var(--dark-purple);
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all ease-in-out 0.5s;
 }
 
 .createBtn:hover {
   background-color: var(--lighter-purple);
-    color           : var(--honeydew);
-    transform       : scale(.9);
-    transition      : all ease-out .3s;
+  color: var(--honeydew);
+  transform: scale(0.9);
+  transition: all ease-out 0.3s;
 }
 
 .homeBtn {
@@ -119,18 +123,18 @@
 
 .price-input {
   height: -moz-fit-content;
-    height: fit-content;
-    width: 100%;
-    padding: 1rem;
-    border-radius: 0.6rem;
-    font-size: 2ch;
-    font-weight: 600;
-    text-align: left;
-    background-color: var(--ash-gray-lighter);
-    color: var(--nice-black);
-    transition: all .2s ease-in-out;
-    border: none;
-    outline: 0.2rem solid var(--ash-gray);
+  height: fit-content;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.6rem;
+  font-size: 2ch;
+  font-weight: 600;
+  text-align: left;
+  background-color: var(--ash-gray-lighter);
+  color: var(--nice-black);
+  transition: all 0.2s ease-in-out;
+  border: none;
+  outline: 0.2rem solid var(--ash-gray);
 }
 
 .form-title {

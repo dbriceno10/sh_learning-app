@@ -1,68 +1,69 @@
-
-import { fetchUtils } from 'react-admin';
+import { fetchUtils } from "react-admin";
 const API = process.env.REACT_APP_API;
-const apiUrl = API || 'http://localhost:3001';
+const apiUrl = API || "http://localhost:3001";
 
 const authProvider = {
-    login: ({ username, password }) =>  {
-        const httpClient = fetchUtils.fetchJson;
+  login: ({ username, password }) => {
+    const httpClient = fetchUtils.fetchJson;
 
-    return httpClient(apiUrl +'/login' ,{
-      method: 'POST',
-      body: JSON.stringify({
-        email: username,
-        password: password
-      }),
-    }).then(response => {
-
-        if (response.status < 200 || response.status >= 300) {
+    return (
+      httpClient(apiUrl + "/login", {
+        method: "POST",
+        body: JSON.stringify({
+          email: username,
+          password: password,
+        }),
+      })
+        .then((response) => {
+          if (response.status < 200 || response.status >= 300) {
             throw new Error(response.statusText);
-        }
-        let authorization= response.json.authorization;
-        let role= response.json.role;
-        console.log(response)
-        if (role ==="admin"){
-          localStorage.setItem('authorization', JSON.stringify(authorization));
-          localStorage.setItem('role', JSON.stringify(role));
+          }
+          let authorization = response.json.authorization;
+          let role = response.json.role;
+          console.log(response);
+          if (role === "admin") {
+            localStorage.setItem(
+              "authorization",
+              JSON.stringify(authorization)
+            );
+            localStorage.setItem("role", JSON.stringify(role));
 
-                //return response.json();
-              }
-              return {id:"id"}
-        // localStorage.setItem('authorization', JSON.stringify(authorization));
-        // localStorage.setItem('role', JSON.stringify(role));
+            //return response.json();
+          }
+          return { id: "id" };
+          // localStorage.setItem('authorization', JSON.stringify(authorization));
+          // localStorage.setItem('role', JSON.stringify(role));
 
-        //         //return response.json();
-        //         return {id:"id"}
-    })
-            // .then(auth => {
-            //     localStorage.setItem('auth', JSON.stringify(auth));
-            // })
-    .catch(() => {
-                throw new Error('Network error')
-     });
-    },
-    logout: () => {
-        localStorage.removeItem('authorization');
-        return Promise.resolve();
-      },
-    
-    
-    checkAuth: () => {
-        return localStorage.getItem('authorization')
-          ? Promise.resolve()
-          : Promise.reject();
-      },
-    
-    getPermissions: () => {
-        // Required for the authentication to work
-        return Promise.resolve();
-    },
-    // ...
+          //         //return response.json();
+          //         return {id:"id"}
+        })
+        // .then(auth => {
+        //     localStorage.setItem('auth', JSON.stringify(auth));
+        // })
+        .catch(() => {
+          throw new Error("Network error");
+        })
+    );
+  },
+  logout: () => {
+    localStorage.removeItem("authorization");
+    return Promise.resolve();
+  },
+
+  checkAuth: () => {
+    return localStorage.getItem("authorization")
+      ? Promise.resolve()
+      : Promise.reject();
+  },
+
+  getPermissions: () => {
+    // Required for the authentication to work
+    return Promise.resolve();
+  },
+  // ...
 };
 
 export default authProvider;
-
-
 
 // import { fetchUtils } from 'react-admin';
 

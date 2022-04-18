@@ -1,10 +1,10 @@
 .search-bar {
-  height         : 100%;
-  width          : 100%;
-  display        : flex;
-  flex-direction : row;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
   justify-content: flex-start;
-  align-items    : center;
+  align-items: center;
 }
 
 .search-bar .search-bar_input {
@@ -13,18 +13,18 @@
 
 .searchIcon {
   background-color: var(--crayola-yellow);
-  width           : 5vw;
-  border          : none;
-  display         : flex;
-  justify-content : center;
-  align-items     : center;
-  border-radius   : 999px;
-  cursor          : pointer;
+  width: 5vw;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 999px;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 75rem) {
   .search-bar .search-bar_input {
     height: 80%;
-    width : 100%;
+    width: 100%;
   }
 }

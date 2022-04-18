@@ -19,7 +19,7 @@ const teachers = require("./teachers.js");
 const stripe = require("./stripe.js");
 const dataMaker = require("./dataMaker.js");
 const cv = require("./cv.js");
-const updatePassword = require("./updatePassword.js")
+const updatePassword = require("./updatePassword.js");
 
 // Configurar los routers
 router.use("/confirmput", confirmput);
