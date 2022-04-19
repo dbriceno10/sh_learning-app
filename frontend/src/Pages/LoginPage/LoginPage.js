@@ -27,8 +27,8 @@ function LoginPage({ isLoggedIn }) {
   };
 
   const respuestaGoogle = (respuesta) => {
-    console.log(respuesta);
-    console.log(respuesta.profileObj);
+    // console.log(respuesta);
+    // console.log(respuesta.profileObj);
     let userData = {
       firstName: respuesta.profileObj.givenName,
       lastName: respuesta.profileObj.familyName,
@@ -36,7 +36,7 @@ function LoginPage({ isLoggedIn }) {
       email: respuesta.profileObj.email,
       tokenId: respuesta.tokenId,
     };
-    console.log(userData);
+    // console.log(userData);
     localStorage.setItem("user", JSON.stringify(userData));
     navigate("/home");
     return dispatch(loginGoogle(userData));

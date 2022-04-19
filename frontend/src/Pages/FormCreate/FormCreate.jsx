@@ -21,7 +21,7 @@ function CreateForm() {
   const dispatch = useDispatch();
   const { categories } = useSelector((state) => state.courses);
   const { courses } = useSelector((state) => state.courses);
-  console.log(categories);
+  // console.log(categories);
 
   const categoriesToOrder = categories.map((category) => {
     return {
@@ -135,7 +135,7 @@ function CreateForm() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    console.log(form);
+    // console.log(form);
     if (
       form.name === "" ||
       form.description === "" ||

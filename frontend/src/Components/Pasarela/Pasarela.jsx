@@ -22,7 +22,7 @@ export default function Pasarela() {
   const orderId = query.get("orderId");
   const studentId = query.get("studentId");
   const total = query.get("total");
-  console.log(total);
+  // console.log(total);
   const isLoggedIn = true;
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -67,7 +67,7 @@ export default function Pasarela() {
     }).then((result) => {
       if (result.isConfirmed) {
         try {
-          console.log("trying");
+          // console.log("trying");
           window.Stripe.card.createToken(
             {
               number: values.number,

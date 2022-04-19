@@ -15,7 +15,6 @@ export const getCourses =
         category ? category : ""
       }`
     );
-    console.log(courses.data);
     return dispatch({
       type: GET_COURSES,
       payload: courses.data,
@@ -24,7 +23,6 @@ export const getCourses =
 
 export const courseCreate = (form) => async (dispatch) => {
   await axios.post(`/courses/create`, form);
-  console.log(form);
   return dispatch(getCourses({}));
 };
 
@@ -46,7 +44,6 @@ export const getCourseDetail = (id) => {
       type: GET_COURSE_DETAIL,
       payload: course.data,
     });
-    /* console.log(payload) */
   };
 };
 

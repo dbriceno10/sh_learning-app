@@ -32,21 +32,17 @@ const MaterialCard = ({
   cursoId,
   onClick,
 }) => {
-  console.log(id);
   let navigate = useNavigate();
   const dispatch = useDispatch();
   const { dataUser } = useSelector((state) => state?.student);
-  console.log(dataUser);
   const { userCredentials } = useSelector((state) => state?.login);
   const { courseDetail } = useSelector((state) => state.courses);
-  /* console.log(courseDetail.id); */
   const MySwal = withReactContent(Swal);
 
   const handleClickCard = () => {
     navigate(`/courses/${id}`);
   };
 
-  console.log(id);
   const handleClickCardVideo = () => {
     if (userCredentials.role === "alumno") {
       if (dataUser.courses.includes(courseDetail.id)) {

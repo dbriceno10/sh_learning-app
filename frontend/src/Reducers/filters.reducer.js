@@ -8,7 +8,7 @@ const initialState = {
 function filtersReducer(state = initialState, { type, payload }) {
   switch (type) {
     case SET_FILTER_CATEGORY:
-      console.log(payload);
+      // console.log(payload);
       return {
         ...state,
         category: payload,

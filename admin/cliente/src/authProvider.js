@@ -20,7 +20,6 @@ const authProvider = {
           }
           let authorization = response.json.authorization;
           let role = response.json.role;
-          console.log(response);
           if (role === "admin") {
             localStorage.setItem(
               "authorization",

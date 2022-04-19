@@ -27,17 +27,13 @@ const Cards = ({
   const [page, setPage] = useState(2);
   const allCourses = useSelector((state) => state.courses.courses);
   const teacherCourses = useSelector((state) => state.courses.courses);
-  // console.log('courses in cards:', courses);
   const longitud = allCourses?.length;
   const cursos = allCourses?.slice(0, limite);
   const dispatch = useDispatch();
   const { dataUser } = useSelector((state) => state?.student);
   const { userCredentials } = useSelector((state) => state?.login);
 
-  console.log("user in cards:", dataUser);
   const userCourses = () => {
-    console.log(isLoggedIn);
-    // console.log(courses)
     let arrayId = [];
     let results2 = [];
     if (isLoggedIn === "student") {
@@ -50,21 +46,12 @@ const Cards = ({
         }
       });
     } else if (isLoggedIn === "teacher") {
-      console.log("techerCourses", teacherCourses);
 
       arrayId = teacherCourses?.map((element) => {
         return element;
       });
       results2 = [...arrayId];
     }
-    console.log("[...arrayId]=", arrayId);
-    // let results2 = courses.map((course)=>{
-    // 		arrayId.filter(ele=>{
-    // 			return course.id === ele
-    // 		})
-    // 	})
-    // console.log('results inside userCourses',results2);
-    console.log("results2", results2);
     return results2;
   };
 
@@ -103,8 +90,6 @@ const Cards = ({
       dispatch(getCoursesTeacher(userCredentials.id));
     }
   }, [dispatch, isLoggedIn]);
-  // console.log(courses.length)
-  // console.log('has more? ', hasMore)
 
   return isProfile ? (
     <div className="cards">
@@ -144,7 +129,8 @@ const Cards = ({
       {/* <button onClick={handleLimite}>Mostrar más cursos</button>  */}
     </div>
   ) : (
-    <InfiniteScroll
+    //! Acá antes iba el InfiniteScroll pero se eliminó porque daba problemas...
+    <div
       style={{ overflowX: "hidden" }}
       className="cards"
       dataLength={allCourses.length} //This is important field to render the next data
@@ -203,7 +189,7 @@ const Cards = ({
         ""
       )}
       {/* <button onClick={handleLimite}>Mostrar más cursos</button>  */}
-    </InfiniteScroll>
+    </div>
   );
 };
 

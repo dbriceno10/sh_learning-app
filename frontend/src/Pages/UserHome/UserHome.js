@@ -20,7 +20,7 @@ export default function UserHome({ isLoggedIn }) {
   const dispatch = useDispatch();
   const [hasRecents, setHasRecents] = useState(false);
   const { dataUser } = useSelector((state) => state.student);
-  console.log("dataUser:", dataUser);
+  // console.log("dataUser:", dataUser);
   const { userCredentials } = useSelector((state) => state?.login);
   const user = useSelector((state) => state?.student.dataUser);
 
@@ -35,7 +35,7 @@ export default function UserHome({ isLoggedIn }) {
       dispatch(getProfileTeacher(userCredentials.id));
     }
   }, [userCredentials]);
-  console.log(isLoggedIn);
+  // console.log(isLoggedIn);
 
   return (
     <main className="user-homepage">

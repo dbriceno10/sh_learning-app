@@ -21,8 +21,6 @@ function Filterings({ setlimite, valor }) {
       setlimite(valor);
       dispatch(setFilterCategory(e.target.value));
       dispatch(getCourses({ category: e.target.value, order }));
-      console.log("I dispatched it");
-      console.log(e.target.value);
     }
     // }
   }
@@ -33,7 +31,6 @@ function Filterings({ setlimite, valor }) {
     },
     [dispatch]
   );
-  console.log(categories);
 
   return (
     <main className="filterings">

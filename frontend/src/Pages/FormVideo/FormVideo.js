@@ -25,9 +25,9 @@ function FormVideo() {
   const dispatch = useDispatch();
   const { courses } = useSelector((state) => state.courses);
   const [fileUploadLink, setFileUploadLink] = useState("");
-  console.log(courses);
+  // console.log(courses);
   const teacherCourses = useSelector((state) => state.courses.courses);
-  console.log(teacherCourses);
+  // console.log(teacherCourses);
   const { userCredentials } = useSelector((state) => state?.login);
 
   /* const setFileUploadedLinkCb = useCallback((val) => {
@@ -94,8 +94,8 @@ function FormVideo() {
   };
 
   const handleSelect = (e) => {
-    console.log(e);
-    console.log(e.target.name);
+    // console.log(e);
+    // console.log(e.target.name);
     setForm({
       ...form,
       cursoId: e.target.value,
@@ -132,7 +132,7 @@ function FormVideo() {
       });
       navigate(-1);
     }
-    console.log(form);
+    // console.log(form);
     /* if (form.title === "" || form.description === "" ) {
             MySwal.fire({
                 position: "center-center",
@@ -180,8 +180,8 @@ function FormVideo() {
     /* dispatch(getCourses({})) */
     dispatch(getCoursesTeacher(userCredentials.id));
   }, []);
-  console.log(teacherCourses);
-  console.log(userCredentials);
+  // console.log(teacherCourses);
+  // console.log(userCredentials);
 
   useEffect(() => {}, [dispatch]);
 
@@ -236,7 +236,7 @@ function FormVideo() {
                 Seleccione el curso
               </option>
               {teacherCourses.map((e) => {
-                console.log(e.id);
+                {/* console.log(e.id); */}
                 return (
                   <option name="cursoId" value={e.id}>
                     {e.name}
