@@ -22,7 +22,7 @@ export default function ForgotPassword() {
     try {
       // const res = await axios.put("/confirmput/forgotpassword", forgotForm);
       const res = await axios.put("/password/update", forgotForm);
-      console.log(res);
+      // console.log(res);
       MySwal.fire({
         position: "center-center",
         icon: "success",

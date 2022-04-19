@@ -33,7 +33,7 @@ const FormRegister = () => {
 
   const setFileUploadedLinkCb = useCallback((val) => {
     setFileUploadLink((prevFileUploadLink) => val);
-    console.log(val);
+    // console.log(val);
   }, []);
 
   const validateInputs = (valores) => {
@@ -98,7 +98,7 @@ const FormRegister = () => {
       };
       try {
         const res = await axios.post("/register", newUser);
-        console.log(res);
+        // console.log(res);
         MySwal.fire({
           position: "center",
           title: "Espera un momento...",

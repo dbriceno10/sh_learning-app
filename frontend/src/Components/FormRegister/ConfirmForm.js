@@ -24,7 +24,7 @@ const ConfirmForm = () => {
     // dispatch(confirmUser(confirmForm))
     try {
       const res = await axios.put("/confirmput/confirm", confirmForm);
-      console.log(res);
+      // console.log(res);
       MySwal.fire({
         position: "center-center",
         icon: "success",

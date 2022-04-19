@@ -21,7 +21,7 @@ export default function RecentCourses({ isLoggedIn, hasRecents }) {
       getData();
     }
   }, [getData, hasRecents]);
-  console.log(courses);
+  // console.log(courses);
 
   return (
     <section className="recent-courses">

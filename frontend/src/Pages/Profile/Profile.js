@@ -50,7 +50,7 @@ export default function Profile({ isLoggedIn }) {
       ...input,
       [e.target.name]: e.target.value,
     });
-    console.log(input);
+    // console.log(input);
   }
   function handleSumbit(e) {
     e.preventDefault();

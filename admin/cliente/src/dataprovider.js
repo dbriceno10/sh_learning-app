@@ -34,7 +34,6 @@ const provi = {
   },
 
   create: (resource, params) => {
-    console.log(params);
 
     if (resource === "courses") {
       params.data.role = "admin";
