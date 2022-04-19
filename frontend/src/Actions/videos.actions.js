@@ -10,7 +10,6 @@ const MySwal = withReactContent(Swal);
 
 export const getVideosCurses = (id) => async (dispatch) => {
   const videos = await axios.get(`/video/course/${id}`);
-  console.log(videos);
   return dispatch({
     type: GET_VIDEOS_CURSES,
     payload: videos.data,
@@ -19,7 +18,6 @@ export const getVideosCurses = (id) => async (dispatch) => {
 
 export const getVideosDetail = (id) => async (dispatch) => {
   const video = await axios.get(`/video/detail/${id}`);
-  //console.log(videos)
   return dispatch({
     type: GET_VIDEO_DETAIL,
     payload: video.data,
@@ -29,7 +27,6 @@ export const getVideosDetail = (id) => async (dispatch) => {
 export const createVideo =
   ({ title, description, url, cursoId, img }) =>
   async (dispatch) => {
-    console.log({ title, description, url, cursoId });
     try {
       await axios.post("/video/create", {
         title,

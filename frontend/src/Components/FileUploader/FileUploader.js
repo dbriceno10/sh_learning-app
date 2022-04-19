@@ -25,8 +25,6 @@ export default function FileUploader({
   const [response, setResponse] = useState(null);
   const MySwal = withReactContent(Swal);
   const fileSizeInMB = Math.ceil(maxFileSize * 0.000001);
-  // console.log(maxFileSize)
-  // console.log(fileUploadResponse)
 
   const onFilesChange = (files) => {
     const file = files[0];
@@ -79,7 +77,6 @@ export default function FileUploader({
       })
         .then((response) => response.json())
         .then((result) => {
-          console.log("Success:", result);
           setFileUploaded((prevFileUploaded) => ({
             isUploaded: true,
             error: "",
@@ -107,7 +104,6 @@ export default function FileUploader({
   useEffect(() => {
     //Example function for uploading a file chosen by the user
     handleFileUpload();
-    console.log(currFile);
   }, [currFile, handleFileUpload]);
 
   useEffect(() => {

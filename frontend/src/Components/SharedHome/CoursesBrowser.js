@@ -1,4 +1,4 @@
-import { React, useState, Fragment } from "react";
+import { React, useState, Fragment, useEffect } from "react";
 import SearchModificado from "./SearchModificado";
 import Filterings from "../Filtering/Filterings";
 import Cards from "../Cards/Cards";
@@ -24,6 +24,10 @@ function CoursesBrowser({ isLoggedIn }) {
 		   in place of 'smooth' */
     });
   };
+
+  useEffect(() => {
+    dispatch(getCourses({}));
+  }, []);
 
   return (
     <Fragment>

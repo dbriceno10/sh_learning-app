@@ -9,14 +9,12 @@ const MySwal = withReactContent(Swal);
 export const newReview =
   ({ score, courseId, studentId }) =>
   async (dispatch) => {
-    console.log({ score, courseId, studentId });
     try {
       const response = await axios.post(`/review/create`, {
         score,
         courseId,
         studentId,
       });
-      console.log(response.data);
       return dispatch({
         type: NEW_REVIEW,
         payload: response.data,

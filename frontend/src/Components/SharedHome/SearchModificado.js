@@ -9,7 +9,7 @@ export default function SearchModificado({ onChange, value }) {
   //     setInput(e.target.value)
   //     dispatch(getCourses(e.target.value))
   // }
-  console.log(value);
+  // console.log(value);
   return (
     <article className="search-bar">
       <input

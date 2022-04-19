@@ -37,7 +37,6 @@ function App() {
   useEffect(() => {
     dispatch(getUserCredentials());
   }, [dispatch]);
-  console.log(isLoggedIn);
 
   return (
     <Routes>

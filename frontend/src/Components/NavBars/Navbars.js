@@ -24,7 +24,7 @@ export default function Navbar({ isLoggedIn }) {
   const MySwal = withReactContent(Swal);
 
   const toggleMenuOverlay = (e) => {
-    console.log("toggle");
+    // console.log("toggle");
     setToggleMenuIcon("eva:close-outline");
     let menu = document.querySelector(".nav-menu-overlay");
     let ctas = document.querySelector(".nav-bar_cta");
@@ -69,7 +69,7 @@ export default function Navbar({ isLoggedIn }) {
       dispatch(getProfileTeacher(userCredentials.id));
     }
   }, [userCredentials]);
-  console.log(user);
+  // console.log(user);
 
   /* isLoggedIn is either false or true; true means is a logged-in student */
   /* isLoggedIn is either false or true; true means is a logged-in student */
