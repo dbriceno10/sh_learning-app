@@ -151,7 +151,7 @@ export default function LandingPage({ isLoggedIn }) {
               <article className="about-section_col1_member">
                 <div className="about-section_col1_member-photo about-section_col1_member1-photo">
                   <a
-                    href="https://www.linkedin.com/in/samuel-cantos-perez-4811a1208/"
+                    href="https://www.linkedin.com/in/samuel-cantos-4811a1208/"
                     target="_blank"
                     rel="noreferrer"
                   >
