@@ -74,7 +74,7 @@ Ruta para cargar archivos en el servidor
 POST: http://localhost:3001/upload/files ---> Recibe por body el archivo a subir (como form-data)
 
 Ruta Para Crear data en base de datos
-GET: http://localhost:3001/datamaker ----> hacer get a esta ruta solo una si no hay nada de data en base de datos o se puede romper todo
+POST: http://localhost:3001/datamaker ----> hacer post a esta ruta solo una vez si no hay nada de data en base de datos
 
 Ruta Para Cv
 GET: http://localhost:3001/cv ----> Va a trater todos los cv que esten en la base de datos

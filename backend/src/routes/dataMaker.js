@@ -3,6 +3,6 @@ const router = Router();
 
 const { dataMaker } = require("./mocks/bulkData");
 
-router.get("/", dataMaker);
+router.post("/", dataMaker);
 
 module.exports = router;

@@ -14,8 +14,6 @@ export default function FileUploader({
   maxFileSize,
   fileUploadResponse,
 }) {
-  const API = process.env.REACT_APP_UPLOAD_API; //Obtengo la variable de entorno con el api
-  const URL = API || "http://localhost:5000";
   const [currFile, setCurrFile] = useState({});
   const [isFileSelected, setIsFileSelected] = useState(false);
   const [fileUploaded, setFileUploaded] = useState({
@@ -58,7 +56,7 @@ export default function FileUploader({
         timer: 2500,
       });
     }
-    setCurrFile((currFile) => {});
+    setCurrFile((currFile) => { });
     setIsFileSelected((prevIsFileSelected) => false);
     console.log(error);
   };
@@ -71,7 +69,7 @@ export default function FileUploader({
       }));
       const formData = new FormData();
       formData.append("file", currFile, currFile?.name);
-      fetch(`https://learnzilla-uploadvideos.herokuapp.com/upload`, {
+      fetch('https://learnzilla-uploadvideos-production.up.railway.app/upload', {
         method: "POST",
         body: formData,
       })

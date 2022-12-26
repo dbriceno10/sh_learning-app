@@ -8,6 +8,7 @@ const {
   Video,
   Records,
   Category,
+  Datamaker
 } = require("../../db");
 require("dotenv").config();
 const {
@@ -244,6 +245,9 @@ const buyMaker = async (studentId) => {
 
 const dataMaker = async (req, res) => {
   try {
+    const data = await Datamaker.findAll({});
+    if (data.length > 0) return res.status(400).send({ message: "Ya se ha creado data anteriormente" });
+    Datamaker.create({ called: true })
     await categoyMaker();
     await teacherMaker();
     const teacherId = await teacherMaker2();
