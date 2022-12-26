@@ -74,6 +74,7 @@ const {
   Admin,
   Order,
   Cv,
+  Datamaker
 } = sequelize.models;
 
 // Aca vendrian las relaciones
