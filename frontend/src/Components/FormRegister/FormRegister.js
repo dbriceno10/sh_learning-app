@@ -156,7 +156,7 @@ const FormRegister = () => {
 
   useEffect(() => {
     if (fileUploadLink !== "") {
-      alert(fileUploadLink);
+      // alert(fileUploadLink);
     }
     return () => {};
   }, [fileUploadLink]);
