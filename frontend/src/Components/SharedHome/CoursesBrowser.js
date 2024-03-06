@@ -55,7 +55,7 @@ function CoursesBrowser({ isLoggedIn }) {
           />
         </section>
       </section>
-      <section className="reset-btn-container">
+      {/* <section className="reset-btn-container">
         <div className="reset-btn">
           <Button
             btnVariant={"flat"}
@@ -64,7 +64,7 @@ function CoursesBrowser({ isLoggedIn }) {
             link={""}
           ></Button>
         </div>
-      </section>
+      </section> */}
     </Fragment>
   );
 }

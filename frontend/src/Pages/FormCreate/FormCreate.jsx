@@ -336,7 +336,7 @@ function CreateForm() {
           </div>
         </div>
         <button type="button" onClick={handleClick} className="createBtn">
-          CREATE
+          Crear Curso
         </button>
       </form>
       <div className="homeBtn">
