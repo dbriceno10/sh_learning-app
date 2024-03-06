@@ -89,7 +89,9 @@ html {
 }
 
 .landing_hero .landing_hero_bg {
-  background-image: url(https://i.imgur.com/cJmYlr1.png);
+  /* background-image: url(https://i.imgur.com/cJmYlr1.png); */
+  /* background: linear-gradient(153deg, rgba(255,255,255,1) 35%, rgba(199,179,234,1) 100%); */
+  background: linear-gradient(153deg, rgba(255,255,255,1) 10%, rgba(199,179,234,1) 100%);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

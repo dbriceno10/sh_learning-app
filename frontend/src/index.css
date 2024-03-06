@@ -14,6 +14,9 @@
   --honeydew: #e1efe6;
   --honeydew-darker: hsl(141, 30%, 81%);
   --nice-gray: #bebebe;
+  --learnzilla-purple: #c7b3ea;
+  --normal-white: #fff;
+  --normal-black: #000;
 }
 
 html {
@@ -22,6 +25,7 @@ html {
   font-family: var(--font-title);
   scroll-behavior: smooth;
   font-size: 1.5ch;
+  background-color: var(--learnzilla-purple);
 }
 
 *,
