@@ -3,11 +3,12 @@
   flex-direction: column;
   align-items: center;
   /* background-color: #FFF1CE; */
-  background: linear-gradient(
+  /* background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 1) 22%,
     rgba(199, 179, 234, 1) 55%
-  );
+  ); */
+  background-color: var(--learnzilla-purple);
   height: 100%;
 }
 
@@ -94,8 +95,10 @@
   border: none;
   border-radius: 0.4rem;
   padding: 0.6rem 1rem;
-  background-color: hsla(260, 40%, 78%, 0.2);
-  color: var(--dark-purple);
+  /* background-color: hsla(260, 40%, 78%, 0.2); */
+  background-color: var(--dark-purple);
+  /* color: var(--dark-purple); */
+  color: var(--normal-white);
   border: 0.125rem solid var(--dark-purple);
   display: flex;
   justify-content: center;

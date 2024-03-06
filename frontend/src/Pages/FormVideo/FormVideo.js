@@ -236,7 +236,7 @@ function FormVideo() {
                 Seleccione el curso
               </option>
               {teacherCourses.map((e) => {
-                {/* console.log(e.id); */}
+                /* console.log(e.id); */
                 return (
                   <option name="cursoId" value={e.id}>
                     {e.name}
@@ -263,7 +263,7 @@ function FormVideo() {
         {/* <FileUploader maxFileSize={100000000} acceptedTypes={["video/*"]} fileUploadResponse={setFileUploadedLinkCb} /> */}
 
         <button type="button" onClick={handleClick} className="createBtn">
-          CREATE
+          Agregar Video
         </button>
       </form>
       <div className="homeBtn">

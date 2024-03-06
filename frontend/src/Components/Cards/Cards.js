@@ -20,6 +20,7 @@ const Cards = ({
   setlimite,
   valor,
   isProfile,
+  hideButtoms = false,
 }) => {
   // const [courses, setCourses] = useState([]);
   limite = limite || 20;
@@ -46,13 +47,22 @@ const Cards = ({
         }
       });
     } else if (isLoggedIn === "teacher") {
-
       arrayId = teacherCourses?.map((element) => {
         return element;
       });
       results2 = [...arrayId];
     }
     return results2;
+  };
+
+  const handleReset = (e) => {
+    dispatch(getCourses({}));
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+      /* you can also use 'auto' behaviour
+		   in place of 'smooth' */
+    });
   };
 
   // const getData = useCallback(async () => {
@@ -112,7 +122,7 @@ const Cards = ({
           );
         })
       )}
-      {allCourses ? (
+      {/* {allCourses ? (
         longitud > limite ? (
           <Button
             btnVariant={"flat"}
@@ -125,56 +135,88 @@ const Cards = ({
         )
       ) : (
         ""
-      )}
+      )} */}
+      <div className="buttomsContainer">
+        {allCourses && !hideButtoms ? (
+          longitud > limite ? (
+            <Button
+              btnVariant={"raised"}
+              text={"Mostrar Más Cursos"}
+              link={"other"}
+              onClick={handleLimite}
+            />
+          ) : (
+            ""
+          )
+        ) : (
+          ""
+        )}
+
+        {allCourses && !hideButtoms ? (
+          longitud > limite ? (
+            <Button
+              btnVariant={"raised"}
+              text={"Volver Al Inicio"}
+              onClick={handleReset}
+              link={"other"}
+            />
+          ) : (
+            ""
+          )
+        ) : (
+          ""
+        )}
+      </div>
       {/* <button onClick={handleLimite}>Mostrar más cursos</button>  */}
     </div>
   ) : (
     //! Acá antes iba el InfiniteScroll pero se eliminó porque daba problemas...
-    <div
-      style={{ overflowX: "hidden" }}
-      className="cards"
-      dataLength={allCourses.length} //This is important field to render the next data
-      next={fetchMoreCourses}
-      hasMore={hasMore}
-      loader={<Loader />}
-      // endMessage={<Message msg="Has llegado al final!" bgColor="#444" />}
-    >
-      {cursos ? (
-        cursos
-          .filter((val) => {
-            if (searchTerm === "") {
-              document
-                .querySelector(".cards")
-                ?.classList?.remove("search-result-cards");
-              return val;
-            } else if (
-              val.name.toLowerCase().includes(searchTerm.toLowerCase())
-            ) {
-              document
-                .querySelector(".cards")
-                ?.classList?.add("search-result-cards");
-              return val;
-            }
-          })
-          .map((c) => {
-            return (
-              <MaterialCard
-                key={c.id}
-                id={c.id}
-                name={c.name}
-                description={c.description}
-                image={c.img} // seria la url del video
-                teacher={`${c.teacherName} ${c.teacherLastName}`}
-                price={c.price}
-                rating={c.meanReview}
-                isLoggedIn={isLoggedIn}
-              />
-            );
-          })
-      ) : (
-        <h2>No hay cursos disponibles!</h2>
-      )}
-      {allCourses ? (
+    <React.Fragment>
+      <div
+        style={{ overflowX: "hidden" }}
+        className="cards"
+        dataLength={allCourses.length} //This is important field to render the next data
+        next={fetchMoreCourses}
+        hasMore={hasMore}
+        loader={<Loader />}
+        // endMessage={<Message msg="Has llegado al final!" bgColor="#444" />}
+      >
+        {cursos ? (
+          cursos
+            .filter((val) => {
+              if (searchTerm === "") {
+                document
+                  .querySelector(".cards")
+                  ?.classList?.remove("search-result-cards");
+                return val;
+              } else if (
+                val.name.toLowerCase().includes(searchTerm.toLowerCase())
+              ) {
+                document
+                  .querySelector(".cards")
+                  ?.classList?.add("search-result-cards");
+                return val;
+              }
+            })
+            .map((c) => {
+              return (
+                <MaterialCard
+                  key={c.id}
+                  id={c.id}
+                  name={c.name}
+                  description={c.description}
+                  image={c.img} // seria la url del video
+                  teacher={`${c.teacherName} ${c.teacherLastName}`}
+                  price={c.price}
+                  rating={c.meanReview}
+                  isLoggedIn={isLoggedIn}
+                />
+              );
+            })
+        ) : (
+          <h2>No hay cursos disponibles!</h2>
+        )}
+        {/* {allCourses ? (
         longitud > limite ? (
           <Button
             btnVariant={"flat"}
@@ -187,9 +229,41 @@ const Cards = ({
         )
       ) : (
         ""
-      )}
-      {/* <button onClick={handleLimite}>Mostrar más cursos</button>  */}
-    </div>
+      )} */}
+        {/* <button onClick={handleLimite}>Mostrar más cursos</button>  */}
+      </div>
+      <div className="buttomsContainer">
+        {allCourses && !hideButtoms ? (
+          longitud > limite ? (
+            <Button
+              btnVariant={"raised"}
+              text={"Mostrar Más Cursos"}
+              link={""}
+              onClick={handleLimite}
+            />
+          ) : (
+            ""
+          )
+        ) : (
+          ""
+        )}
+
+        {allCourses && !hideButtoms ? (
+          longitud > limite ? (
+            <Button
+              btnVariant={"raised"}
+              text={"Volver Al Inicio"}
+              onClick={handleReset}
+              link={"other"}
+            />
+          ) : (
+            ""
+          )
+        ) : (
+          ""
+        )}
+      </div>
+    </React.Fragment>
   );
 };
 
