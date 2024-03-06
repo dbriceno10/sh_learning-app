@@ -12,6 +12,7 @@ export default function Button({
   icon,
   onClick,
   tooltip,
+  extraContainerStyles = {},
 }) {
   //link, text, type, icon, onClick and tooltip are passed through props to this component
   if (!type || type === "") {
@@ -23,7 +24,11 @@ export default function Button({
           if (link.startsWith("/")) {
             //For local or empty links, a react-router link as a button is returned with its provided icon
             return (
-              <button className="button" onClick={onClick}>
+              <button
+                style={extraContainerStyles}
+                className="button"
+                onClick={onClick}
+              >
                 <Link className="button-flat icon" to={link !== "" ? link : ""}>
                   {text ? <span>{text}</span> : null}
                   <Icon icon={icon} />
@@ -46,6 +51,7 @@ export default function Button({
           } else if (link === "") {
             return (
               <button
+                style={extraContainerStyles}
                 className="button button-flat icon"
                 onClick={onClick}
                 type={"button"}
@@ -59,7 +65,11 @@ export default function Button({
         } else if (btnVariant === "raised-icon") {
           if (link.startsWith("/")) {
             return (
-              <button className="button" onClick={onClick}>
+              <button
+                style={extraContainerStyles}
+                className="button"
+                onClick={onClick}
+              >
                 <Link className="button-raised icon" to={link !== "" && link}>
                   {text ? <span>{text}</span> : null}
                   <Icon icon={icon} />
@@ -81,6 +91,7 @@ export default function Button({
           } else if (link === "") {
             return (
               <button
+                style={extraContainerStyles}
                 className="button button-raised icon"
                 onClick={onClick}
                 type={"button"}
@@ -95,6 +106,7 @@ export default function Button({
           if (link === "") {
             return (
               <button
+                style={extraContainerStyles}
                 className="button button-round tooltip"
                 onClick={onClick}
                 type={"button"}
@@ -107,7 +119,11 @@ export default function Button({
             );
           } else {
             return (
-              <button className="button" onClick={onClick}>
+              <button
+                style={extraContainerStyles}
+                className="button"
+                onClick={onClick}
+              >
                 <Link className="button-round tooltip" to={link}>
                   <Icon icon={icon} />
                   {tooltip && tooltip !== "" ? (
@@ -129,7 +145,11 @@ export default function Button({
         if (btnVariant === "flat") {
           if (link.startsWith("#") || link === "") {
             return (
-              <button className="button" onClick={onClick}>
+              <button
+                style={extraContainerStyles}
+                className="button"
+                onClick={onClick}
+              >
                 <a className="button-flat" href={link !== "" && link}>
                   <span>{text}</span>
                 </a>
@@ -137,7 +157,11 @@ export default function Button({
             );
           } else {
             return (
-              <button className="button" onClick={onClick}>
+              <button
+                style={extraContainerStyles}
+                className="button"
+                onClick={onClick}
+              >
                 <Link className="button-flat" to={link}>
                   <span>{text}</span>
                 </Link>
@@ -147,15 +171,35 @@ export default function Button({
         } else if (btnVariant === "raised") {
           if (link.startsWith("#") || link === "") {
             return (
-              <button className="button" onClick={onClick}>
+              <button
+                style={extraContainerStyles}
+                className="button"
+                onClick={onClick}
+              >
                 <a className="button-raised" href={link !== "" && link}>
                   <span>{text}</span>
                 </a>
               </button>
             );
+          } else if (link === "other") {
+            return (
+              <button
+                style={extraContainerStyles}
+                className="button"
+                onClick={onClick}
+              >
+                <div className="button-raised">
+                  <span>{text}</span>
+                </div>
+              </button>
+            );
           } else {
             return (
-              <button className="button" onClick={onClick}>
+              <button
+                style={extraContainerStyles}
+                className="button"
+                onClick={onClick}
+              >
                 <Link className="button-raised" to={link}>
                   <span>{text}</span>
                 </Link>
@@ -178,7 +222,12 @@ export default function Button({
     //In case Button was not given a link or is empty, return just a button element
   } else {
     return (
-      <button className="button button-raised" onClick={onClick} type={type}>
+      <button
+        style={extraContainerStyles}
+        className="button button-raised"
+        onClick={onClick}
+        type={type}
+      >
         <span>{text}</span>
       </button>
     );

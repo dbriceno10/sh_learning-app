@@ -11,6 +11,13 @@
   width: 100%;
 }
 
+.buttomsContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
 .cards .MuiCard-root {
   height: auto;
   width: auto;

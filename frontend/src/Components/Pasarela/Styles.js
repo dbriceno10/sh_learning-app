@@ -36,11 +36,7 @@ const btnDanger = btn("#e27c79", "#c9302c");
 
 export default styled.div`
   font-family: "Roboto", sans-serif;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 1) 22%,
-    rgba(199, 179, 234, 1) 55%
-  );
+  backgroundColor: '#c7b3ea',
   padding-bottom: 40px;
 
   h1 {

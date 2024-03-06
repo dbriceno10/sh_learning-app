@@ -192,6 +192,7 @@ export default function Profile({ isLoggedIn }) {
             searchTerm={""}
             isLoggedIn={isLoggedIn}
             isProfile={perfil}
+            hideButtoms={true}
           ></Cards>
         </section>
       </div>

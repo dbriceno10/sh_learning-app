@@ -1,11 +1,12 @@
 .profile {
   display: flex;
   font-weight: 600;
-  background: linear-gradient(
+  /* background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 1) 22%,
     rgba(199, 179, 234, 1) 55%
-  );
+  ); */
+  background-color: var(--learnzilla-purple);
 }
 
 .profile .profile_divider {
