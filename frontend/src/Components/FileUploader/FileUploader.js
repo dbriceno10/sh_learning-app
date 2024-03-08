@@ -14,6 +14,7 @@ export default function FileUploader({
   maxFileSize,
   fileUploadResponse,
 }) {
+  const url = process.env.REACT_APP_UPLOAD_API ?? "http://localhost:3001";
   const [currFile, setCurrFile] = useState({});
   const [isFileSelected, setIsFileSelected] = useState(false);
   const [fileUploaded, setFileUploaded] = useState({
@@ -56,7 +57,7 @@ export default function FileUploader({
         timer: 2500,
       });
     }
-    setCurrFile((currFile) => { });
+    setCurrFile((currFile) => {});
     setIsFileSelected((prevIsFileSelected) => false);
     console.log(error);
   };
@@ -69,7 +70,7 @@ export default function FileUploader({
       }));
       const formData = new FormData();
       formData.append("file", currFile, currFile?.name);
-      fetch('https://learnzilla-uploadvideos-production.up.railway.app/upload', {
+      fetch(`${url}/upload`, {
         method: "POST",
         body: formData,
       })
